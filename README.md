@@ -5,6 +5,10 @@ simula um CRM de Talentos, permitindo explorar profissionais de
 diferentes empresas e registrar observações estratégicas associadas a
 cada perfil.
 
+# 🏷 TalentCRM
+
+[![Flutter CI](https://github.com/adi/talent-crm/actions/workflows/ci.yml/badge.svg)](https://github.com/adi/talent-crm/actions/workflows/ci.yml)
+
 A aplicação consome dados da API pública
 `https://jsonplaceholder.typicode.com/`, realiza o parse estruturado do
 JSON em Models tipados e exibe as informações em Views organizadas
