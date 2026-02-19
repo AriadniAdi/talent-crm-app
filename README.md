@@ -1,6 +1,8 @@
 
 # 🏷 TalentCRM
 
+[![Flutter CI](https://github.com/AriadniAdi/talent-crm-app/actions/workflows/ci.yml/badge.svg)](https://github.com/AriadniAdi/talent-crm-app/actions/workflows/ci.yml)
+
 O **TalentCRM** é uma aplicação mobile desenvolvida em Flutter que
 simula um CRM de Talentos, permitindo explorar profissionais de
 diferentes empresas e registrar observações estratégicas associadas a
