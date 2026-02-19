@@ -13,20 +13,12 @@ utilizando **GetX** como gerenciador de estado.
 
 ------------------------------------------------------------------------
 
-## 🎯 Objetivo
+## 📌 Contexto do Produto
 
-Demonstrar a implementação de boas práticas de desenvolvimento mobile
-utilizando Flutter, incluindo:
-
--   Consumo de API REST\
--   Modelagem e parse de JSON\
--   Gerenciamento de estado\
--   Navegação dinâmica com Deep Linking\
--   Notificações locais\
--   Gravação e reprodução de áudio\
--   Upload opcional para Firebase Storage\
--   Testes unitários\
--   Integração contínua (CI)
+O aplicativo simula um cenário onde recrutadores ou gestores podem
+visualizar informações públicas de profissionais e registrar avaliações
+contextuais por meio de notas de voz, funcionando como um CRM leve para
+organização de talentos.
 
 ------------------------------------------------------------------------
 
@@ -151,12 +143,3 @@ O projeto possui workflow configurado para:
 -   Executar `flutter test`
 
 Garantindo qualidade e validação automática a cada push.
-
-------------------------------------------------------------------------
-
-## 📌 Contexto do Produto
-
-O aplicativo simula um cenário onde recrutadores ou gestores podem
-visualizar informações públicas de profissionais e registrar avaliações
-contextuais por meio de notas de voz, funcionando como um CRM leve para
-organização de talentos.
