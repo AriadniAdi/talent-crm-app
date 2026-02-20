@@ -52,29 +52,27 @@ organização de talentos.
 
 ------------------------------------------------------------------------
 
-## 📂 Estrutura de Pastas
+📂 Estrutura de Pastas
 
-    lib/
-    │
-    ├── data/
-    │   ├── models/
-    │   ├── services/
-    │
-    ├── presentation/
-    │   ├── controllers/
-    │   ├── pages/
-    │
-    ├── routes/
-    │
-    └── main.dart
+O projeto segue arquitetura modular baseada em features.
 
-A estrutura segue separação por responsabilidades:
-
--   **Models** → Representação dos dados\
--   **Services** → Comunicação com API e recursos externos\
--   **Controllers** → Gerenciamento de estado\
--   **Pages** → Interface do usuário\
--   **Routes** → Configuração de navegação
+lib/
+│
+├── core/                         # Recursos compartilhados (utilitários, design, etc)
+│
+├── features/
+│  ├── feature/                  
+│      ├── data/                 # Camada de acesso a dados
+│      ├── domain/               # Entidades e regras de negócio
+│      ├── presentation/         # Controllers, Views e Bindings
+|      ├── entities/             # Entidades do domínio
+|      ├── usecases/             # Casos de uso (regras de negócio)
+|      ├── model/                # Entidades do domínio
+|      ├── services/             # Comunicação com API
+|      ├── repositories/         # Implementações de repositórios
+|      └── usecases/             # Casos de uso (regras de negócio)
+│
+└── main.dart
 
 ------------------------------------------------------------------------
 
