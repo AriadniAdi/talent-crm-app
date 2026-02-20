@@ -1,5 +1,5 @@
-import 'package:talent_crm_app/domain/entities/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
 
 class TalentModel {
   final int id;
@@ -28,12 +28,37 @@ class TalentModel {
       name: json['name'] ?? '',
       email: json['email'] ?? '',
       website: json['website'] ?? '',
-      city: json['address']?['city'] ?? '',
-      catchPhrase: json['company']?['catchPhrase'] ?? '',
-      companyName: json['company']?['name'] ?? '',
+      city: _extractCity(json),
+      catchPhrase: _extractCatchPhrase(json),
+      companyName: _extractCompanyName(json),
       phone: json['phone'] ?? '',
     );
   }
+
+  static String _extractCity(Map<String, dynamic> json) {
+    final address = json['address'];
+    if (address is Map<String, dynamic>) {
+      return address['city'] ?? '';
+    }
+    return '';
+  }
+
+  static String _extractCatchPhrase(Map<String, dynamic> json) {
+    final company = json['company'];
+    if (company is Map<String, dynamic>) {
+      return company['catchPhrase'] ?? '';
+    }
+    return '';
+  }
+
+  static String _extractCompanyName(Map<String, dynamic> json) {
+    final company = json['company'];
+    if (company is Map<String, dynamic>) {
+      return company['name'] ?? '';
+    }
+    return '';
+  }
+
   Talent toEntity() {
     return Talent(
       id: id,
