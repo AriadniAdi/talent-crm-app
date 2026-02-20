@@ -23,8 +23,8 @@ class TalentController extends GetxController {
       isLoading.value = true;
       error.value = null;
 
-      final models = await service.fetchTalents();
-      talents.value = models.map((m) => m.toEntity()).toList();
+      final result = await service.fetchTalents();
+      talents.value = result;
     } catch (e) {
       error.value = e.toString();
     } finally {

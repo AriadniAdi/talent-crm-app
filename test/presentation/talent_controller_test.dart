@@ -1,8 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/data/models/talent_model.dart';
 import 'package:talent_crm_app/data/services/talent_service.dart';
+import 'package:talent_crm_app/domain/entities/contact_talent.dart';
+import 'package:talent_crm_app/domain/entities/talent.dart';
 import 'package:talent_crm_app/presentation/talent_controller.dart';
 
 class MockTalentService extends Mock implements TalentService {}
@@ -17,19 +18,22 @@ void main() {
     controller = TalentController(mockService);
   });
 
-  final fakeModel = TalentModel(
+  final fakeTalent = Talent(
     id: 1,
     name: 'John',
-    email: 'john@email.com',
-    website: 'site.com',
+    description: 'Hello',
     city: 'POA',
-    catchPhrase: 'Hello',
-    companyName: 'Company',
-    phone: '9999',
+    company: 'Company',
+    website: 'site.com',
+    contact: const ContactTalent(
+      email: 'john@email.com',
+      phone: '9999',
+    ),
   );
 
   test('should load talents successfully', () async {
-    when(() => mockService.fetchTalents()).thenAnswer((_) async => [fakeModel]);
+    when(() => mockService.fetchTalents())
+        .thenAnswer((_) async => [fakeTalent]);
 
     await controller.fetchTalents();
 
