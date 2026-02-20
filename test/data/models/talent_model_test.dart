@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:talent_crm_app/data/models/talent/talent_model.dart';
-import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
+import 'package:talent_crm_app/features/talent/model/talent_model.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 void main() {
   group('TalentModel', () {

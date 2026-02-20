@@ -3,14 +3,14 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
-import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
-import 'package:talent_crm_app/presentation/home/controller/home_controller.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_recent_talent_usecase.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
-import 'package:talent_crm_app/domain/usecases/talent/search_talents_usecase.dart';
-import 'package:talent_crm_app/presentation/home/widgets/home_content/home_content_view.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
 
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 

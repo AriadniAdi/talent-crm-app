@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
-import 'package:talent_crm_app/data/services/talent/talent_service.dart';
+import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
