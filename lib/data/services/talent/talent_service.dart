@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:talent_crm_app/data/models/talent_model.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:talent_crm_app/data/models/talent/talent_model.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
 
 class TalentService {
   final http.Client client;

@@ -1,11 +1,22 @@
 import 'package:get/get.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
-import 'package:talent_crm_app/data/services/talent_service.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_recent_talent_usecase.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
+import 'package:talent_crm_app/domain/usecases/talent/search_talents_usecase.dart';
 
 class HomeController extends GetxController {
-  final TalentService service;
+  final GetTalentsUseCase getTalentsUseCase;
+  final GetRecentTalentsUseCase getRecentTalentsUseCase;
+  final SearchTalentsUseCase searchTalentsUseCase;
 
-  HomeController(this.service);
+  HomeController(
+    this.getTalentsUseCase, {
+    GetRecentTalentsUseCase? getRecentTalentsUseCase,
+    SearchTalentsUseCase? searchTalentsUseCase,
+  })  : getRecentTalentsUseCase =
+            getRecentTalentsUseCase ?? const GetRecentTalentsUseCase(),
+        searchTalentsUseCase =
+            searchTalentsUseCase ?? const SearchTalentsUseCase();
 
   final selectedIndex = 0.obs;
   final notificationsCount = 0.obs;
@@ -18,7 +29,7 @@ class HomeController extends GetxController {
 
   final RxString searchQuery = ''.obs;
 
-  List<Talent> _allOriginal = [];
+  List<Talent> _allOriginal = const [];
 
   void changeTab(int index) => selectedIndex.value = index;
 
@@ -35,12 +46,12 @@ class HomeController extends GetxController {
       isLoading.value = true;
       error.value = null;
 
-      final talents = await service.fetchTalents();
+      final talents = await getTalentsUseCase();
 
       _allOriginal = talents;
 
       allEmployees.assignAll(talents);
-      recentEmployees.assignAll(talents.take(4).toList());
+      recentEmployees.assignAll(getRecentTalentsUseCase(talents, limit: 4));
     } catch (e) {
       error.value = 'Falha ao carregar funcionários';
     } finally {
@@ -51,15 +62,7 @@ class HomeController extends GetxController {
   void search(String value) {
     searchQuery.value = value;
 
-    if (value.isEmpty) {
-      allEmployees.assignAll(_allOriginal);
-      return;
-    }
-
-    final filtered = _allOriginal.where((talent) {
-      return talent.name.toLowerCase().contains(value.toLowerCase());
-    }).toList();
-
+    final filtered = searchTalentsUseCase(_allOriginal, value);
     allEmployees.assignAll(filtered);
   }
 }

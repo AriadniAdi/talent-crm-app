@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:equatable/equatable.dart';
-import 'package:talent_crm_app/domain/entities/contact_talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
 
 class Talent extends Equatable {
   final int id;

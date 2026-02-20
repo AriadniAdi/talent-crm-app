@@ -1,12 +1,11 @@
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:talent_crm_app/data/services/talent_service.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:get/get.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
 
 class TalentController extends GetxController {
-  final TalentService service;
+  final GetTalentsUseCase getTalentsUseCase;
 
-  TalentController(this.service);
+  TalentController(this.getTalentsUseCase);
 
   final isLoading = false.obs;
   final talents = <Talent>[].obs;
@@ -23,7 +22,7 @@ class TalentController extends GetxController {
       isLoading.value = true;
       error.value = null;
 
-      final result = await service.fetchTalents();
+      final result = await getTalentsUseCase();
       talents.value = result;
     } catch (e) {
       error.value = e.toString();

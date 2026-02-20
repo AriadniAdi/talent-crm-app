@@ -1,0 +1,125 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:network_image_mock/network_image_mock.dart';
+
+import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
+import 'package:talent_crm_app/presentation/home/controller/home_controller.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_recent_talent_usecase.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
+import 'package:talent_crm_app/domain/usecases/talent/search_talents_usecase.dart';
+import 'package:talent_crm_app/presentation/home/widgets/home_content/home_content_view.dart';
+
+class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
+
+void main() {
+  late MockGetTalentsUseCase mockGetTalentsUseCase;
+  late HomeController controller;
+
+  Widget wrap(Widget child) => GetMaterialApp(home: Scaffold(body: child));
+
+  final talents = [
+    const Talent(
+      id: 1,
+      name: 'John Doe',
+      description: 'Dev',
+      city: 'POA',
+      company: 'Tech',
+      website: 'site.com',
+      contact: ContactTalent(email: 'john@mail.com', phone: '9999'),
+    ),
+    const Talent(
+      id: 2,
+      name: 'Adi Machado',
+      description: 'Flutter',
+      city: 'POA',
+      company: 'Mobile',
+      website: 'adi.dev',
+      contact: ContactTalent(email: 'adi@mail.com', phone: '8888'),
+    ),
+  ];
+
+  setUp(() {
+    Get.testMode = true;
+    Get.reset();
+
+    mockGetTalentsUseCase = MockGetTalentsUseCase();
+
+    controller = HomeController(
+      mockGetTalentsUseCase,
+      getRecentTalentsUseCase: const GetRecentTalentsUseCase(),
+      searchTalentsUseCase: const SearchTalentsUseCase(),
+    );
+
+    Get.put<HomeController>(controller);
+  });
+
+  tearDown(() {
+    Get.reset();
+  });
+
+  testWidgets('shows loading when isLoading is true', (tester) async {
+    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+
+    controller.isLoading.value = true;
+
+    await tester.pumpWidget(wrap(const HomeContentView()));
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    expect(find.text('Nenhum funcionário encontrado'), findsNothing);
+  });
+
+  testWidgets(
+    'shows error UI when error != null and allEmployees is empty and retry calls fetchEmployees',
+    (tester) async {
+      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+
+      controller.isLoading.value = false;
+      controller.error.value = 'Falha ao carregar funcionários';
+      controller.allEmployees.clear();
+
+      await tester.pumpWidget(wrap(const HomeContentView()));
+
+      expect(find.byIcon(Icons.error_outline), findsOneWidget);
+      expect(find.text('Falha ao carregar funcionários'), findsOneWidget);
+      expect(find.text('Tentar novamente'), findsOneWidget);
+
+      await tester.pump();
+      verify(() => mockGetTalentsUseCase()).called(1);
+    },
+  );
+
+  testWidgets('shows empty message when allEmployees is empty and no error',
+      (tester) async {
+    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+
+    controller.isLoading.value = false;
+    controller.error.value = null;
+    controller.allEmployees.clear();
+
+    await tester.pumpWidget(wrap(const HomeContentView()));
+
+    expect(find.text('Nenhum funcionário encontrado'), findsOneWidget);
+    expect(find.byType(CircularProgressIndicator), findsNothing);
+    expect(find.text('Tentar novamente'), findsNothing);
+  });
+
+  testWidgets('renders HomeContent when there are employees', (tester) async {
+    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => talents);
+
+    controller.isLoading.value = false;
+    controller.error.value = null;
+
+    controller.allEmployees.assignAll(talents);
+    controller.recentEmployees.assignAll(talents.take(1).toList());
+
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(wrap(const HomeContentView()));
+    });
+
+    expect(find.text('Funcionários Recentes'), findsOneWidget);
+    expect(find.text('Todos os Funcionários'), findsOneWidget);
+  });
+}

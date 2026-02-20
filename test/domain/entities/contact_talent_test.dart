@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:talent_crm_app/domain/entities/contact_talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
 
 void main() {
   group('ContactTalent', () {

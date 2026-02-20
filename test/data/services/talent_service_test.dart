@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
-import 'package:talent_crm_app/data/services/talent_service.dart';
+import 'package:talent_crm_app/data/services/talent/talent_service.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
@@ -54,4 +54,49 @@ void main() {
       throwsException,
     );
   });
+
+  test('should return empty list when response is empty', () async {
+    when(() => mockClient.get(any())).thenAnswer(
+      (_) async => http.Response(jsonEncode([]), 200),
+    );
+
+    final result = await service.fetchTalents();
+
+    expect(result, isEmpty);
+  });
+
+  test('should throw exception when response body is invalid JSON', () async {
+    when(() => mockClient.get(any())).thenAnswer(
+      (_) async => http.Response('invalid-json', 200),
+    );
+
+    expect(
+      () => service.fetchTalents(),
+      throwsA(isA<FormatException>()),
+    );
+  });
+
+  test('should throw exception when response is not a list', () async {
+    when(() => mockClient.get(any())).thenAnswer(
+      (_) async => http.Response(jsonEncode({"error": "unexpected"}), 200),
+    );
+
+    expect(
+      () => service.fetchTalents(),
+      throwsException,
+    );
+  });
+
+  test('should throw exception when http client fails', () async {
+    when(() => mockClient.get(any())).thenThrow(Exception('Network error'));
+
+    expect(
+      () => service.fetchTalents(),
+      throwsException,
+    );
+  });
+
+  verify(() => mockClient.get(
+        Uri.parse('https://api.exemplo.com/talents'),
+      )).called(1);
 }

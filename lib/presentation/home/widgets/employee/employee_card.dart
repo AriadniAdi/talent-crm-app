@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
 
 class HomeSectionEmployees extends StatelessWidget {
   final String title;

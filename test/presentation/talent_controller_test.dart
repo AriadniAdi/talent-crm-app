@@ -1,55 +1,88 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/data/services/talent_service.dart';
-import 'package:talent_crm_app/domain/entities/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
-import 'package:talent_crm_app/presentation/talent_controller.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
+import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
+import 'package:talent_crm_app/presentation/talent/talent_controller.dart';
 
-class MockTalentService extends Mock implements TalentService {}
+class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
   late TalentController controller;
-  late MockTalentService mockService;
+  late MockGetTalentsUseCase mockUseCase;
+
+  final mockTalents = [
+    const Talent(
+      id: 1,
+      name: 'John',
+      description: 'Developer',
+      city: 'POA',
+      company: 'Tech',
+      website: 'site.com',
+      contact: ContactTalent(
+        email: 'john@email.com',
+        phone: '9999',
+      ),
+    ),
+  ];
 
   setUp(() {
-    Get.testMode = true;
-    mockService = MockTalentService();
-    controller = TalentController(mockService);
+    mockUseCase = MockGetTalentsUseCase();
+    controller = TalentController(mockUseCase);
   });
 
-  const fakeTalent = Talent(
-    id: 1,
-    name: 'John',
-    description: 'Hello',
-    city: 'POA',
-    company: 'Company',
-    website: 'site.com',
-    contact: ContactTalent(
-      email: 'john@email.com',
-      phone: '9999',
-    ),
-  );
+  group('TalentController - fetchTalents', () {
+    test('should populate talents on success', () async {
+      when(() => mockUseCase()).thenAnswer((_) async => mockTalents);
 
-  test('should load talents successfully', () async {
-    when(() => mockService.fetchTalents())
-        .thenAnswer((_) async => [fakeTalent]);
+      await controller.fetchTalents();
 
-    await controller.fetchTalents();
+      expect(controller.isLoading.value, false);
+      expect(controller.error.value, null);
+      expect(controller.talents, mockTalents);
 
-    expect(controller.isLoading.value, false);
-    expect(controller.error.value, null);
-    expect(controller.talents.length, 1);
-    expect(controller.talents.first.name, 'John');
+      verify(() => mockUseCase()).called(1);
+      verifyNoMoreInteractions(mockUseCase);
+    });
+
+    test('should set error when usecase throws', () async {
+      when(() => mockUseCase()).thenThrow(Exception('UseCase failure'));
+
+      await controller.fetchTalents();
+
+      expect(controller.isLoading.value, false);
+      expect(controller.talents, isEmpty);
+      expect(controller.error.value, contains('UseCase failure'));
+
+      verify(() => mockUseCase()).called(1);
+      verifyNoMoreInteractions(mockUseCase);
+    });
+
+    test('should toggle loading correctly during execution', () async {
+      when(() => mockUseCase()).thenAnswer((_) async {
+        await Future.delayed(const Duration(milliseconds: 10));
+        return mockTalents;
+      });
+
+      final future = controller.fetchTalents();
+
+      expect(controller.isLoading.value, true);
+
+      await future;
+
+      expect(controller.isLoading.value, false);
+    });
   });
 
-  test('should set error when service throws', () async {
-    when(() => mockService.fetchTalents()).thenThrow(Exception('error'));
+  group('onInit', () {
+    test('should call fetchTalents on init', () async {
+      when(() => mockUseCase()).thenAnswer((_) async => mockTalents);
 
-    await controller.fetchTalents();
+      controller.onInit();
 
-    expect(controller.isLoading.value, false);
-    expect(controller.error.value, isNotNull);
-    expect(controller.talents.isEmpty, true);
+      await Future.delayed(const Duration(milliseconds: 10));
+
+      verify(() => mockUseCase()).called(1);
+    });
   });
 }

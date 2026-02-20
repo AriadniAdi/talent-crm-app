@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
 import 'package:talent_crm_app/presentation/home/widgets/employee/employee_card.dart';
 
 class HomeContent extends StatelessWidget {

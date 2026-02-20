@@ -10,17 +10,19 @@ class HomeShell extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() => Scaffold(
-          backgroundColor: Colors.pink,
-          body: SafeArea(
-            child: _buildPage(controller.selectedIndex.value),
-          ),
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: controller.selectedIndex.value,
-            notificationCount: 1, //TODO: controller.notificationCount.value,
-            onTap: controller.changeTab,
-          ),
-        ));
+    return Obx(
+      () => Scaffold(
+        backgroundColor: Colors.pink,
+        body: SafeArea(
+          child: _buildPage(controller.selectedIndex.value),
+        ),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: controller.selectedIndex.value,
+          notificationCount: 1, //TODO: controller.notificationCount.value,
+          onTap: controller.changeTab,
+        ),
+      ),
+    );
   }
 
   Widget _buildPage(int index) {

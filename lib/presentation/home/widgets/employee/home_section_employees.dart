@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/domain/entities/talent.dart';
+import 'package:talent_crm_app/domain/entities/talent/talent.dart';
 
 class HomeSectionEmployees extends StatelessWidget {
   final String title;
@@ -20,7 +20,6 @@ class HomeSectionEmployees extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        /// Section Title
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(
@@ -28,10 +27,7 @@ class HomeSectionEmployees extends StatelessWidget {
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
-
         const SizedBox(height: 12),
-
-        /// Employees List
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
@@ -72,15 +68,11 @@ class _EmployeeCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          /// Avatar
           CircleAvatar(
             radius: 24,
             backgroundImage: NetworkImage(employee.avatarUrl),
           ),
-
           const SizedBox(width: 12),
-
-          /// Info
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -95,8 +87,6 @@ class _EmployeeCard extends StatelessWidget {
               ],
             ),
           ),
-
-          /// Action
           TextButton(
             onPressed: () {},
             child: const Text('Ver Perfil'),
