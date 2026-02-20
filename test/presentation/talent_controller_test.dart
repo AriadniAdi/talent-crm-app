@@ -18,14 +18,14 @@ void main() {
     controller = TalentController(mockService);
   });
 
-  final fakeTalent = Talent(
+  const fakeTalent = Talent(
     id: 1,
     name: 'John',
     description: 'Hello',
     city: 'POA',
     company: 'Company',
     website: 'site.com',
-    contact: const ContactTalent(
+    contact: ContactTalent(
       email: 'john@email.com',
       phone: '9999',
     ),

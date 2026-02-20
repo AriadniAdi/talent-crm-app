@@ -30,7 +30,7 @@ class Talent extends Equatable {
     return 'https://ui-avatars.com/api/?'
         'name=${Uri.encodeComponent(name)}'
         '&background=$hex'
-        '&color=ffffff'
+        '&color=000999'
         '&bold=true';
   }
 

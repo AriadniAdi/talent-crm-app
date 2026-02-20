@@ -11,6 +11,10 @@ class TalentService {
   Future<List<Talent>> fetchTalents() async {
     final response = await client.get(
       Uri.parse('https://jsonplaceholder.typicode.com/users'),
+      headers: {
+        'User-Agent': 'Mozilla/5.0',
+        'Accept': 'application/json',
+      },
     );
 
     if (response.statusCode == 200) {
@@ -19,8 +23,8 @@ class TalentService {
       return decoded
           .map((json) => TalentModel.fromJson(json).toEntity())
           .toList();
-    } else {
-      throw Exception('Failed to load talents');
     }
+
+    throw Exception('Failed to load talents');
   }
 }
