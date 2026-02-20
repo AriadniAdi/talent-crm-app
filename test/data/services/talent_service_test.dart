@@ -96,7 +96,22 @@ void main() {
     );
   });
 
-  verify(() => mockClient.get(
-        Uri.parse('https://api.exemplo.com/talents'),
-      )).called(1);
+  test('should call correct endpoint', () async {
+    when(() => mockClient.get(
+          any(),
+          headers: any(named: 'headers'),
+        )).thenAnswer(
+      (_) async => http.Response(jsonEncode(mockResponse), 200),
+    );
+
+    await service.fetchTalents();
+
+    verify(() => mockClient.get(
+          Uri.parse('https://jsonplaceholder.typicode.com/users'),
+          headers: {
+            'User-Agent': 'Mozilla/5.0',
+            'Accept': 'application/json',
+          },
+        )).called(1);
+  });
 }
