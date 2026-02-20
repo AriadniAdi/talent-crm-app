@@ -18,7 +18,11 @@ class TalentService {
     );
 
     if (response.statusCode == 200) {
-      final List decoded = jsonDecode(response.body);
+      final decoded = jsonDecode(response.body);
+
+      if (decoded is! List) {
+        throw Exception('Invalid response format');
+      }
 
       return decoded
           .map((json) => TalentModel.fromJson(json).toEntity())

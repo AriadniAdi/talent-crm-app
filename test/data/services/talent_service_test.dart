@@ -33,7 +33,8 @@ void main() {
 
   test('should return list of TalentModel when request is successful',
       () async {
-    when(() => mockClient.get(any())).thenAnswer(
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
       (_) async => http.Response(jsonEncode(mockResponse), 200),
     );
 
@@ -45,7 +46,8 @@ void main() {
   });
 
   test('should throw exception when status code is not 200', () async {
-    when(() => mockClient.get(any())).thenAnswer(
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
       (_) async => http.Response('Error', 500),
     );
 
@@ -56,7 +58,8 @@ void main() {
   });
 
   test('should return empty list when response is empty', () async {
-    when(() => mockClient.get(any())).thenAnswer(
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
       (_) async => http.Response(jsonEncode([]), 200),
     );
 
@@ -66,7 +69,8 @@ void main() {
   });
 
   test('should throw exception when response body is invalid JSON', () async {
-    when(() => mockClient.get(any())).thenAnswer(
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
       (_) async => http.Response('invalid-json', 200),
     );
 
@@ -77,7 +81,8 @@ void main() {
   });
 
   test('should throw exception when response is not a list', () async {
-    when(() => mockClient.get(any())).thenAnswer(
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
       (_) async => http.Response(jsonEncode({"error": "unexpected"}), 200),
     );
 
@@ -88,7 +93,8 @@ void main() {
   });
 
   test('should throw exception when http client fails', () async {
-    when(() => mockClient.get(any())).thenThrow(Exception('Network error'));
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenThrow(Exception('Network error'));
 
     expect(
       () => service.fetchTalents(),
