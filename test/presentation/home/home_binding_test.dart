@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-import 'package:talent_crm_app/data/services/talent/talent_service.dart';
-import 'package:talent_crm_app/domain/repositories/talent_repository.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
-import 'package:talent_crm_app/presentation/home/controller/home_controller.dart';
-import 'package:talent_crm_app/presentation/home/home_binding.dart';
+import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
+import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/home/presentation/home_binding.dart';
 
 void main() {
   setUp(() {

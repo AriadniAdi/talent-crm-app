@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_recent_talent_usecase.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
-import 'package:talent_crm_app/domain/usecases/talent/search_talents_usecase.dart';
+import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 
-import 'package:talent_crm_app/presentation/home/controller/home_controller.dart';
-import 'package:talent_crm_app/presentation/home/widgets/home_search_bar.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 
-/// Controller simples apenas para teste
 class TestHomeController extends GetxController implements HomeController {
   final calledValues = <String>[];
 

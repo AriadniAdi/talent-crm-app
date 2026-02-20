@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
-import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
-import 'package:talent_crm_app/presentation/home/widgets/home_content/home_content.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content.dart';
 
 void main() {
   Widget wrap(Widget child) => MaterialApp(home: Scaffold(body: child));

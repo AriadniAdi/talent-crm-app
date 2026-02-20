@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/data/services/talent/talent_service.dart';
-import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
-import 'package:talent_crm_app/domain/repositories/talent_repository.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
+import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 
 class MockTalentService extends Mock implements TalentService {}
 

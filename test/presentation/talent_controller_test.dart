@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/domain/entities/talent/talent.dart';
-import 'package:talent_crm_app/domain/entities/talent/contact_talent.dart';
-import 'package:talent_crm_app/domain/usecases/talent/get_talent_usecase.dart';
-import 'package:talent_crm_app/presentation/talent/talent_controller.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/presentation/talent_controller.dart';
 
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
