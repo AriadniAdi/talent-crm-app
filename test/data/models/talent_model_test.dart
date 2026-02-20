@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:talent_crm_app/data/models/talent_model.dart';
+import 'package:talent_crm_app/domain/entities/contact_talent.dart';
 import 'package:talent_crm_app/domain/entities/talent.dart';
 
 void main() {
@@ -43,38 +44,6 @@ void main() {
     });
   });
 
-  group('resolvedContact', () {
-    test('should return phone when phone is not empty', () {
-      final model = TalentModel(
-        id: 1,
-        name: 'Test',
-        email: 'email@test.com',
-        website: '',
-        city: '',
-        catchPhrase: '',
-        companyName: '',
-        phone: '123456',
-      );
-
-      expect(model.resolvedContact, '123456');
-    });
-
-    test('should return email when phone is empty', () {
-      final model = TalentModel(
-        id: 1,
-        name: 'Test',
-        email: 'email@test.com',
-        website: '',
-        city: '',
-        catchPhrase: '',
-        companyName: '',
-        phone: '',
-      );
-
-      expect(model.resolvedContact, 'email@test.com');
-    });
-  });
-
   group('toEntity', () {
     test('should convert model to Talent entity correctly', () {
       final model = TalentModel(
@@ -97,7 +66,10 @@ void main() {
       expect(entity.city, 'POA');
       expect(entity.company, 'Company');
       expect(entity.website, 'site.com');
-      expect(entity.contact, '9999'); // resolvedContact
+
+      expect(entity.contact, isA<ContactTalent>());
+      expect(entity.contact.email, 'john@email.com');
+      expect(entity.contact.phone, '9999');
     });
   });
 }

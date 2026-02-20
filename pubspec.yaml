@@ -38,6 +38,7 @@ dependencies:
   http: ^1.6.0
   get: ^4.7.3
   mocktail: ^1.0.4
+  equatable: ^2.0.8
 
 dev_dependencies:
   flutter_test:
