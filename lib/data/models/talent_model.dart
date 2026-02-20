@@ -1,3 +1,4 @@
+import 'package:talent_crm_app/domain/entities/contact_talent.dart';
 import 'package:talent_crm_app/domain/entities/talent.dart';
 
 class TalentModel {
@@ -33,9 +34,6 @@ class TalentModel {
       phone: json['phone'] ?? '',
     );
   }
-
-  String get resolvedContact => phone.isNotEmpty ? phone : email;
-
   Talent toEntity() {
     return Talent(
       id: id,
@@ -44,7 +42,10 @@ class TalentModel {
       city: city,
       company: companyName,
       website: website,
-      contact: resolvedContact,
+      contact: ContactTalent(
+        email: email,
+        phone: phone,
+      ),
     );
   }
 }
