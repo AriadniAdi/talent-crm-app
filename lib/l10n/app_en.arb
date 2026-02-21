@@ -44,5 +44,7 @@
     "description": "Hint text displayed in the employee search field"
   },
   "appTitle": "IntraPeople",
-  "@appTitle": {}
+  "@appTitle": {
+      "description": "Application name displayed in the top app bar"
+  }
 }

@@ -1,4 +1,9 @@
 {
+  "appTitle": "IntraPeople",
+  "@appTitle": {
+    "description": "Nome da aplicação exibido na barra superior"
+  },
+
   "viewProfile": "Ver Perfil",
   "@viewProfile": {
     "description": "Texto do botão para visualizar o perfil do funcionário"
@@ -13,6 +18,7 @@
   "@noEmployeesFound": {
     "description": "Mensagem exibida quando não há funcionários disponíveis na listagem"
   },
+
   "recentEmployee": "Funcionários Recentes",
   "@recentEmployee": {
     "description": "Título da seção que exibe os funcionários adicionados ou visualizados recentemente"
@@ -22,6 +28,7 @@
   "@allEmployees": {
     "description": "Título da seção que exibe a lista completa de funcionários"
   },
+
   "home": "Início",
   "@home": {
     "description": "Label da aba inicial da navegação inferior"
@@ -45,7 +52,5 @@
   "searchEmployeeHint": "Buscar funcionário...",
   "@searchEmployeeHint": {
     "description": "Texto de dica exibido no campo de busca de funcionários"
-  },
-  "appTitle": "IntraPeople",
-  "@appTitle": {}
+  }
 }
