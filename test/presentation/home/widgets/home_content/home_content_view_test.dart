@@ -12,13 +12,13 @@ import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart'
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
 
+import '../../../helpers/wrapper.dart';
+
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
   late MockGetTalentsUseCase mockGetTalentsUseCase;
   late HomeController controller;
-
-  Widget wrap(Widget child) => GetMaterialApp(home: Scaffold(body: child));
 
   final talents = [
     const Talent(
@@ -65,7 +65,7 @@ void main() {
 
     controller.isLoading.value = true;
 
-    await tester.pumpWidget(wrap(const HomeContentView()));
+    await tester.pumpWidget(wrapper(const HomeContentView()));
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);
     expect(find.text('Nenhum funcionário encontrado'), findsNothing);
@@ -80,11 +80,11 @@ void main() {
       controller.error.value = 'Falha ao carregar funcionários';
       controller.allEmployees.clear();
 
-      await tester.pumpWidget(wrap(const HomeContentView()));
+      await tester.pumpWidget(wrapper(const HomeContentView()));
 
       expect(find.byIcon(Icons.error_outline), findsOneWidget);
       expect(find.text('Falha ao carregar funcionários'), findsOneWidget);
-      expect(find.text('Tentar novamente'), findsOneWidget);
+      expect(find.text('Tentar Novamente'), findsOneWidget);
 
       await tester.pump();
       verify(() => mockGetTalentsUseCase()).called(1);
@@ -99,7 +99,7 @@ void main() {
     controller.error.value = null;
     controller.allEmployees.clear();
 
-    await tester.pumpWidget(wrap(const HomeContentView()));
+    await tester.pumpWidget(wrapper(const HomeContentView()));
 
     expect(find.text('Nenhum funcionário encontrado'), findsOneWidget);
     expect(find.byType(CircularProgressIndicator), findsNothing);
@@ -116,7 +116,7 @@ void main() {
     controller.recentEmployees.assignAll(talents.take(1).toList());
 
     await mockNetworkImagesFor(() async {
-      await tester.pumpWidget(wrap(const HomeContentView()));
+      await tester.pumpWidget(wrapper(const HomeContentView()));
     });
 
     expect(find.text('Funcionários Recentes'), findsOneWidget);

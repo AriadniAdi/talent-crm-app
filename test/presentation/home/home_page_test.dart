@@ -13,6 +13,8 @@ import 'package:talent_crm_app/features/home/presentation/home_page.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
 
+import '../helpers/wrapper.dart';
+
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
@@ -24,8 +26,6 @@ void main() {
   tearDown(() {
     Get.reset();
   });
-
-  Widget wrap(Widget child) => GetMaterialApp(home: Scaffold(body: child));
 
   testWidgets('HomePage renders layout widgets', (tester) async {
     final mockUseCase = MockGetTalentsUseCase();
@@ -39,7 +39,7 @@ void main() {
 
     Get.put<HomeController>(controller);
 
-    await tester.pumpWidget(wrap(const HomePage()));
+    await tester.pumpWidget(wrapper(const Scaffold(body: HomePage())));
     await tester.pump();
 
     expect(find.byType(SingleChildScrollView), findsOneWidget);

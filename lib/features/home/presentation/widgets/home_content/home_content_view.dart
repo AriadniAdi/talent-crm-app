@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 import 'home_content.dart';
 
 class HomeContentView extends GetView<HomeController> {
@@ -20,13 +22,14 @@ class HomeContentView extends GetView<HomeController> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.error_outline, size: 40, color: Colors.red),
-              const SizedBox(height: 12),
+              Icon(Icons.error_outline,
+                  size: 40, color: Theme.of(context).colorScheme.error),
+              const SizedBox(height: AppSpacing.md),
               Text(controller.error.value!),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppSpacing.lg),
               ElevatedButton(
                 onPressed: controller.fetchEmployees,
-                child: const Text('Tentar novamente'),
+                child: Text(AppLocalizations.of(context)!.tryAgain),
               ),
             ],
           ),
@@ -34,8 +37,8 @@ class HomeContentView extends GetView<HomeController> {
       }
 
       if (controller.allEmployees.isEmpty) {
-        return const Center(
-          child: Text('Nenhum funcionário encontrado'),
+        return Center(
+          child: Text(AppLocalizations.of(context)!.noEmployeesFound),
         );
       }
 

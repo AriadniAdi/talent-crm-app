@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 class HomeContent extends StatelessWidget {
   final List<Talent> recent;
@@ -18,12 +20,12 @@ class HomeContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         HomeSectionEmployees(
-          title: 'Funcionários Recentes',
+          title: AppLocalizations.of(context)!.recentEmployee,
           employees: recent,
         ),
-        const SizedBox(height: 24),
+        const SizedBox(height: AppSpacing.xl),
         HomeSectionEmployees(
-          title: 'Todos os Funcionários',
+          title: AppLocalizations.of(context)!.allEmployees,
           employees: all,
         ),
       ],

@@ -22,6 +22,9 @@ jobs:
 
       - name: Install dependencies
         run: flutter pub get
+        
+      - name: Run flutter gen-l10n
+        run: flutter gen-l10n
 
       - name: Run analyze
         run: flutter analyze

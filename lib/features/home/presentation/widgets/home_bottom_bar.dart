@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 class HomeBottomBar extends StatelessWidget {
   final int currentIndex;
@@ -20,21 +21,21 @@ class HomeBottomBar extends StatelessWidget {
       onTap: onTap,
       type: BottomNavigationBarType.fixed,
       elevation: AppBottomBarStyle.elevation,
-      backgroundColor: AppBottomBarStyle.selectedColor,
+      backgroundColor: AppBottomBarStyle.backgroundColor,
       selectedItemColor: AppBottomBarStyle.selectedColor,
       unselectedItemColor: AppBottomBarStyle.unselectedColor,
       selectedLabelStyle: AppBottomBarStyle.selectedLabelStyle,
       unselectedLabelStyle: AppBottomBarStyle.unselectedLabelStyle,
       items: [
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.home_outlined),
-          activeIcon: Icon(Icons.home),
-          label: 'Início',
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.home_outlined),
+          activeIcon: const Icon(Icons.home),
+          label: AppLocalizations.of(context)!.home,
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.group_outlined),
-          activeIcon: Icon(Icons.group),
-          label: 'Equipes',
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.group_outlined),
+          activeIcon: const Icon(Icons.group),
+          label: AppLocalizations.of(context)!.teams,
         ),
         BottomNavigationBarItem(
           icon: _NotificationIcon(
@@ -45,12 +46,12 @@ class HomeBottomBar extends StatelessWidget {
             count: notificationCount,
             isActive: true,
           ),
-          label: 'Notificações',
+          label: AppLocalizations.of(context)!.notifications,
         ),
-        const BottomNavigationBarItem(
-          icon: Icon(Icons.mic_none_outlined),
-          activeIcon: Icon(Icons.mic),
-          label: 'Notas de Voz',
+        BottomNavigationBarItem(
+          icon: const Icon(Icons.mic_none_outlined),
+          activeIcon: const Icon(Icons.mic),
+          label: AppLocalizations.of(context)!.voiceNotes,
         ),
       ],
     );

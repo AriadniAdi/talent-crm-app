@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 class HomeSectionEmployees extends StatelessWidget {
   final String title;
@@ -21,19 +23,19 @@ class HomeSectionEmployees extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
           child: Text(
             title,
             style: Theme.of(context).textTheme.titleLarge,
           ),
         ),
-        const SizedBox(height: 12),
+        const SizedBox(height: AppSpacing.md),
         ListView.separated(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
           itemCount: employees.length,
-          separatorBuilder: (_, __) => const SizedBox(height: 12),
+          separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.md),
           itemBuilder: (context, index) {
             final employee = employees[index];
 
@@ -53,10 +55,10 @@ class _EmployeeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(AppSpacing.md),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppSpacing.md),
         boxShadow: [
           BoxShadow(
             blurRadius: 6,
@@ -83,13 +85,13 @@ class _EmployeeCard extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: AppSpacing.xs),
               ],
             ),
           ),
           TextButton(
             onPressed: () {},
-            child: const Text('Ver Perfil'),
+            child: Text(AppLocalizations.of(context)!.viewProfile),
           ),
         ],
       ),

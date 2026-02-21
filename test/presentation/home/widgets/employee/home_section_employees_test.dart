@@ -5,13 +5,9 @@ import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 
-void main() {
-  Widget wrap(Widget child) {
-    return MaterialApp(
-      home: Scaffold(body: child),
-    );
-  }
+import '../../../helpers/wrapper.dart';
 
+void main() {
   final employees = [
     const Talent(
       id: 1,
@@ -38,7 +34,7 @@ void main() {
         (tester) async {
       await mockNetworkImagesFor(() async {
         await tester.pumpWidget(
-          wrap(
+          wrapper(
             HomeSectionEmployees(
               title: 'Funcionários',
               employees: employees,
