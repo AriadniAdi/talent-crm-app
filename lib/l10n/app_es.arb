@@ -44,5 +44,7 @@
     "description": "Texto de sugerencia mostrado en el campo de búsqueda de empleados"
   },
   "appTitle": "IntraPeople",
-  "@appTitle": {}
+  "@appTitle": {
+  "description": "Nombre de la aplicación mostrado en la barra superior"
+  }
 }
