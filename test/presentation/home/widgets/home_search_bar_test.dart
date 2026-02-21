@@ -9,6 +9,8 @@ import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.d
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 
+import '../../helpers/wrapper.dart';
+
 class TestHomeController extends GetxController implements HomeController {
   final calledValues = <String>[];
 
@@ -59,8 +61,6 @@ class TestHomeController extends GetxController implements HomeController {
 }
 
 void main() {
-  Widget wrap(Widget child) => GetMaterialApp(home: Scaffold(body: child));
-
   late TestHomeController controller;
 
   setUp(() {
@@ -76,7 +76,7 @@ void main() {
   });
 
   testWidgets('renders TextField with hint and search icon', (tester) async {
-    await tester.pumpWidget(wrap(const HomeSearchBar()));
+    await tester.pumpWidget(wrapper(const Scaffold(body: HomeSearchBar())));
 
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text('Buscar funcionário...'), findsOneWidget);
@@ -84,7 +84,7 @@ void main() {
   });
 
   testWidgets('calls controller.search when typing', (tester) async {
-    await tester.pumpWidget(wrap(const HomeSearchBar()));
+    await tester.pumpWidget(wrapper(const Scaffold(body: HomeSearchBar())));
 
     await tester.enterText(find.byType(TextField), 'Adi');
     await tester.pump();
@@ -93,7 +93,7 @@ void main() {
   });
 
   testWidgets('has horizontal padding of 16', (tester) async {
-    await tester.pumpWidget(wrap(const HomeSearchBar()));
+    await tester.pumpWidget(wrapper(const Scaffold(body: HomeSearchBar())));
 
     final padding = tester.widget<Padding>(find.byType(Padding).first);
 

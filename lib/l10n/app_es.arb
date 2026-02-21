@@ -1,0 +1,48 @@
+{
+  "viewProfile": "Ver Perfil",
+  "@viewProfile": {
+    "description": "Etiqueta del botón para ver el perfil del empleado"
+  },
+  "tryAgain": "Intentar de nuevo",
+  "@tryAgain": {
+    "description": "Etiqueta del botón para reintentar cuando ocurre un error"
+  },
+  "noEmployeesFound": "No se encontraron empleados",
+  "@noEmployeesFound": {
+    "description": "Mensaje mostrado cuando no hay empleados disponibles"
+  },
+  "recentEmployee": "Empleados Recientes",
+  "@recentEmployee": {
+    "description": "Título de la sección que muestra los empleados agregados o vistos recientemente"
+  },
+  "allEmployees": "Todos los Empleados",
+  "@allEmployees": {
+    "description": "Título de la sección que muestra la lista completa de empleados"
+  },
+  "home": "Inicio",
+  "@home": {
+    "description": "Etiqueta de navegación inferior para la pestaña principal"
+  },
+
+  "teams": "Equipos",
+  "@teams": {
+    "description": "Etiqueta de navegación inferior para la pestaña de equipos"
+  },
+
+  "notifications": "Notificaciones",
+  "@notifications": {
+    "description": "Etiqueta de navegación inferior para la pestaña de notificaciones"
+  },
+
+  "voiceNotes": "Notas de Voz",
+  "@voiceNotes": {
+    "description": "Etiqueta de navegación inferior para la pestaña de notas de voz"
+  },
+
+  "searchEmployeeHint": "Buscar empleado...",
+  "@searchEmployeeHint": {
+    "description": "Texto de sugerencia mostrado en el campo de búsqueda de empleados"
+  },
+  "appTitle": "IntraPeople",
+  "@appTitle": {}
+}

@@ -8,14 +8,16 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(height: AppSpacing.lg),
-          HomeSearchBar(),
-          SizedBox(height: AppSpacing.xl),
-          HomeContentView(),
-        ],
+    return const Scaffold(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: AppSpacing.lg),
+            HomeSearchBar(),
+            SizedBox(height: AppSpacing.xl),
+            HomeContentView(),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:get/get.dart';
 import 'package:talent_crm_app/features/home/presentation/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,13 +15,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        initialBinding: HomeBinding(),
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("IntraPeople"),
-          ),
-          body: const HomePage(),
-        ));
+      debugShowCheckedModeBanner: false,
+      locale: const Locale('pt'),
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizations.supportedLocales,
+      initialBinding: HomeBinding(),
+      home: const HomePage(),
+    );
   }
 }
