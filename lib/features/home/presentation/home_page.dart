@@ -8,8 +8,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SingleChildScrollView(
+    return const Material(
+      child: SingleChildScrollView(
         child: Column(
           children: [
             SizedBox(height: AppSpacing.lg),

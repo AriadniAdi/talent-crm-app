@@ -72,9 +72,7 @@ class _NotificationIcon extends StatelessWidget {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        Icon(
-          isActive ? Icons.notifications : Icons.notifications_outlined,
-        ),
+        Icon(isActive ? Icons.notifications : Icons.notifications_outlined),
         if (count > 0)
           Positioned(
             right: -AppSpacing.sm,

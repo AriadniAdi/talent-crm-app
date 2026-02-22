@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/features/home/presentation/home_binding.dart';
-import 'package:talent_crm_app/features/home/presentation/home_page.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 void main() {
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       ],
       supportedLocales: AppLocalizations.supportedLocales,
       initialBinding: HomeBinding(),
-      home: const HomePage(),
+      home: const HomeShell(),
     );
   }
 }
