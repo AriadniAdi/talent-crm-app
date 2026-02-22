@@ -157,7 +157,7 @@ abstract class AppLocalizations {
   /// **'Search employee...'**
   String get searchEmployeeHint;
 
-  /// No description provided for @appTitle.
+  /// Application name displayed in the top app bar
   ///
   /// In en, this message translates to:
   /// **'IntraPeople'**

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
-import 'package:talent_crm_app/l10n/app_localizations.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar_item.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class HomeBottomBar extends StatelessWidget {
   final int currentIndex;
@@ -16,45 +17,30 @@ class HomeBottomBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      currentIndex: currentIndex,
-      onTap: onTap,
-      type: BottomNavigationBarType.fixed,
-      elevation: AppBottomBarStyle.elevation,
-      backgroundColor: AppBottomBarStyle.backgroundColor,
-      selectedItemColor: AppBottomBarStyle.selectedColor,
-      unselectedItemColor: AppBottomBarStyle.unselectedColor,
-      selectedLabelStyle: AppBottomBarStyle.selectedLabelStyle,
-      unselectedLabelStyle: AppBottomBarStyle.unselectedLabelStyle,
-      items: [
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.home_outlined),
-          activeIcon: const Icon(Icons.home),
-          label: AppLocalizations.of(context)!.home,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.group_outlined),
-          activeIcon: const Icon(Icons.group),
-          label: AppLocalizations.of(context)!.teams,
-        ),
-        BottomNavigationBarItem(
-          icon: _NotificationIcon(
-            count: notificationCount,
-            isActive: false,
-          ),
-          activeIcon: _NotificationIcon(
-            count: notificationCount,
-            isActive: true,
-          ),
-          label: AppLocalizations.of(context)!.notifications,
-        ),
-        BottomNavigationBarItem(
-          icon: const Icon(Icons.mic_none_outlined),
-          activeIcon: const Icon(Icons.mic),
-          label: AppLocalizations.of(context)!.voiceNotes,
-        ),
-      ],
-    );
+    return NavigationBar(
+        selectedIndex: currentIndex,
+        onDestinationSelected: onTap,
+        elevation: AppBottomBarStyle.elevation,
+        backgroundColor: AppBottomBarStyle.backgroundColor,
+        destinations: homeBottomBarItems.map((item) {
+          final isNotifications = item.tab == HomeTab.notifications;
+
+          return NavigationDestination(
+            icon: isNotifications
+                ? _NotificationIcon(
+                    count: notificationCount,
+                    isActive: false,
+                  )
+                : Icon(item.icon),
+            selectedIcon: isNotifications
+                ? _NotificationIcon(
+                    count: notificationCount,
+                    isActive: true,
+                  )
+                : Icon(item.activeIcon),
+            label: item.label(context.translate),
+          );
+        }).toList());
   }
 }
 
