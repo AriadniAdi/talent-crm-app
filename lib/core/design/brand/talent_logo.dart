@@ -20,6 +20,7 @@ class TalentLogo extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         boxShadow: [
           BoxShadow(
+            // ignore: deprecated_member_use
             color: const Color(0xFF6E5CFF).withOpacity(0.35),
             blurRadius: 10,
             offset: const Offset(0, 4),
@@ -37,6 +38,7 @@ class _NetworkPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final linePaint = Paint()
+      // ignore: deprecated_member_use
       ..color = Colors.white.withOpacity(0.9)
       ..strokeWidth = 1.8
       ..strokeCap = StrokeCap.round;
