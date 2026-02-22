@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/features/home/presentation/home_binding.dart';
+import 'package:talent_crm_app/core/global_binding.dart';
+import 'package:talent_crm_app/core/routes/app_pages.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 void main() {
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      initialRoute: AppRoutes.home,
+      initialBinding: GlobalBinding(),
+      getPages: AppPages.pages,
       debugShowCheckedModeBanner: false,
       locale: const Locale('pt'),
       localizationsDelegates: const [
@@ -24,8 +28,6 @@ class MyApp extends StatelessWidget {
         GlobalCupertinoLocalizations.delegate,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      initialBinding: HomeBinding(),
-      home: const HomeShell(),
     );
   }
 }
