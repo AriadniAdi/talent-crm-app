@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/features/account/account_binding.dart';
-import 'package:talent_crm_app/features/account/presentation/account_controler.dart';
+import 'package:talent_crm_app/features/account/presentation/account_controller.dart';
 
 void main() {
   setUp(() {
