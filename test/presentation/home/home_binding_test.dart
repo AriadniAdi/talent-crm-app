@@ -4,7 +4,7 @@ import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 
 void main() {

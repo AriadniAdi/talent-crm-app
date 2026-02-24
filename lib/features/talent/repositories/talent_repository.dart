@@ -3,6 +3,7 @@ import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 abstract class TalentRepository {
   Future<List<Talent>> getTalents();
+  Future<Talent> getTalentById(int id);
 }
 
 class TalentRepositoryImpl implements TalentRepository {
@@ -13,5 +14,10 @@ class TalentRepositoryImpl implements TalentRepository {
   @override
   Future<List<Talent>> getTalents() async {
     return await service.fetchTalents();
+  }
+
+  @override
+  Future<Talent> getTalentById(int id) async {
+    return await service.fetchTalentById(id);
   }
 }

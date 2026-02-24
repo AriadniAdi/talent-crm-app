@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';

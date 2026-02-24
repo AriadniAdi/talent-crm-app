@@ -8,7 +8,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
