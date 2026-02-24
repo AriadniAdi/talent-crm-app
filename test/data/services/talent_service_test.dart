@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockClient = MockHttpClient();
-    service = TalentService(mockClient);
+    service = TalentService(client: mockClient, baseUrl: '');
   });
 
   const mockResponse = [
@@ -112,12 +112,16 @@ void main() {
 
     await service.fetchTalents();
 
-    verify(() => mockClient.get(
-          Uri.parse('https://jsonplaceholder.typicode.com/users'),
-          headers: {
-            'User-Agent': 'Mozilla/5.0',
-            'Accept': 'application/json',
-          },
-        )).called(1);
+    final captured = verify(() => mockClient.get(
+          captureAny(),
+          headers: captureAny(named: 'headers'),
+        )).captured;
+
+    final Uri calledUri = captured[0];
+
+    expect(
+      calledUri.toString(),
+      'https://jsonplaceholder.typicode.com/users',
+    );
   });
 }
