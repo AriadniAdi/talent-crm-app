@@ -16,7 +16,16 @@ class HomeShell extends GetView<HomeController> {
     return Material(
       child: Obx(
         () => BasePage(
-          title: 'Talent CRM',
+          title: Row(
+            children: [
+              const TalentLogo(size: 26),
+              const SizedBox(width: AppSpacing.sm),
+              Text(
+                context.translate.appTitle,
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            ],
+          ),
           showBackButton: false,
           padding: EdgeInsets.zero,
           actions: const [

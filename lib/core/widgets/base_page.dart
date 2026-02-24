@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 
 class BasePage extends StatelessWidget {
-  final String? title;
+  final Widget? title;
   final Widget child;
   final Widget? bottomNavigationBar;
 
