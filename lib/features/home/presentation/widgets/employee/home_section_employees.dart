@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
-import 'package:talent_crm_app/l10n/app_localizations.dart';
+
+import '../../../../../core/design/design.dart';
 
 class HomeSectionEmployees extends StatelessWidget {
   final String title;
@@ -39,62 +40,10 @@ class HomeSectionEmployees extends StatelessWidget {
           itemBuilder: (context, index) {
             final employee = employees[index];
 
-            return _EmployeeCard(employee: employee);
+            return EmployeeCard(employee: employee);
           },
         ),
       ],
-    );
-  }
-}
-
-class _EmployeeCard extends StatelessWidget {
-  final Talent employee;
-
-  const _EmployeeCard({required this.employee});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(AppSpacing.md),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(AppSpacing.md),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 6,
-            // ignore: deprecated_member_use
-            color: Colors.black.withOpacity(0.05),
-            offset: const Offset(0, 3),
-          ),
-        ],
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 24,
-            backgroundImage: NetworkImage(employee.avatarUrl),
-          ),
-          const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  employee.name,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: AppSpacing.xs),
-              ],
-            ),
-          ),
-          TextButton(
-            onPressed: () {},
-            child: Text(AppLocalizations.of(context)!.viewProfile),
-          ),
-        ],
-      ),
     );
   }
 }

@@ -157,10 +157,10 @@ abstract class AppLocalizations {
   /// **'Search employee...'**
   String get searchEmployeeHint;
 
-  /// No description provided for @appTitle.
+  /// Application name
   ///
   /// In en, this message translates to:
-  /// **'IntraPeople'**
+  /// **'Talent CRM'**
   String get appTitle;
 }
 

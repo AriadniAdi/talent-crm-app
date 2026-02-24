@@ -1,4 +1,5 @@
 {
+  "@@locale": "es",
   "viewProfile": "Ver Perfil",
   "@viewProfile": {
     "description": "Etiqueta del botón para ver el perfil del empleado"
@@ -43,8 +44,8 @@
   "@searchEmployeeHint": {
     "description": "Texto de sugerencia mostrado en el campo de búsqueda de empleados"
   },
-  "appTitle": "IntraPeople",
+  "appTitle": "Talent CRM",
   "@appTitle": {
-  "description": "Nombre de la aplicación mostrado en la barra superior"
+  "description": "Nombre de la aplicación"
   }
 }

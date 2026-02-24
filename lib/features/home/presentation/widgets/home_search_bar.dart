@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:talent_crm_app/core/design/app_colors.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
@@ -11,7 +10,7 @@ class HomeSearchBar extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
       child: TextField(
         onChanged: controller.search,
         decoration: InputDecoration(
