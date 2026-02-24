@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/employee/home_section_employees.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
-import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 
 import '../../../helpers/wrapper.dart';
 
