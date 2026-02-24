@@ -9,6 +9,10 @@ class AccountBinding extends Bindings {
   void dependencies() {
     final id = Get.parameters['id'];
 
-    Get.lazyPut(() => AccountController(id!));
+    if (id == null) {
+      throw Exception('AccountBinding requires an id parameter');
+    }
+
+    Get.lazyPut(() => AccountController(id));
   }
 }
