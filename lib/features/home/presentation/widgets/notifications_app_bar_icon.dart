@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 
 class NotificationsAppBarIcon extends GetView<HomeController> {
@@ -56,12 +57,11 @@ class _Badge extends StatelessWidget {
               key: ValueKey(count),
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                color: const Color(0xFFE53935),
+                color: AppColors.badge,
                 borderRadius: BorderRadius.circular(12),
                 boxShadow: [
                   BoxShadow(
-                    // ignore: deprecated_member_use
-                    color: const Color(0xFFE53935).withOpacity(0.4),
+                    color: AppColors.badge.withValues(alpha: 0.4),
                     blurRadius: 8,
                     offset: const Offset(0, 3),
                   ),

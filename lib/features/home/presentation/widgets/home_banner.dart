@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/design/painters/dotted_background_painter.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 
 class HomeBanner extends StatelessWidget {
   final String title;

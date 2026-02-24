@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:equatable/equatable.dart';
+import 'package:flutter/widgets.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
 class Talent extends Equatable {
@@ -20,18 +22,24 @@ class Talent extends Equatable {
 
   String get avatarUrl {
     final random = Random(id);
-    final r = 100 + random.nextInt(156);
-    final g = 100 + random.nextInt(156);
-    final b = 100 + random.nextInt(156);
 
-    final hex =
-        '${r.toRadixString(16).padLeft(2, '0')}${g.toRadixString(16).padLeft(2, '0')}${b.toRadixString(16).padLeft(2, '0')}';
+    const base = Color(0xFF5E4AE3);
+    final hsl = HSLColor.fromColor(base);
+
+    final adjusted = hsl
+        .withLightness(
+          (0.55 + random.nextDouble() * 0.15).clamp(0.5, 0.7),
+        )
+        .toColor();
+
+    final hex = adjusted.toHex(leadingHash: false);
 
     return 'https://ui-avatars.com/api/?'
         'name=${Uri.encodeComponent(name)}'
         '&background=$hex'
-        '&color=000999'
-        '&bold=true';
+        '&color=ffffff'
+        '&bold=false'
+        '&size=128';
   }
 
   @override
