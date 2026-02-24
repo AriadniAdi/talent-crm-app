@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
-import 'package:talent_crm_app/core/design/brand/talent_logo.dart';
+import 'package:talent_crm_app/core/widgets/base_page.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
-import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
 
@@ -17,48 +15,17 @@ class HomeShell extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Material(
       child: Obx(
-        () => Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            scrolledUnderElevation: 2,
-            backgroundColor: Theme.of(context).colorScheme.surface,
-            surfaceTintColor: Colors.transparent,
-            centerTitle: false,
-            titleSpacing: 16,
-            title: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const TalentLogo(),
-                    const SizedBox(
-                      width: AppSpacing.md,
-                    ),
-                    Text(
-                      'Talent CRM',
-                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                            fontWeight: FontWeight.w600,
-                          ),
-                    ),
-                  ],
-                ),
-              ],
+        () => BasePage(
+          title: 'Talent CRM',
+          showBackButton: false,
+          padding: EdgeInsets.zero,
+          actions: const [
+            NotificationsAppBarIcon(),
+            ProfileAvatarButton(
+              account: Account(id: 1),
             ),
-            actions: const [
-              NotificationsAppBarIcon(),
-              ProfileAvatarButton(
-                account: Account(id: 1),
-              ),
-            ],
-          ),
-          body: SafeArea(
-            child: _buildPage(context, controller.selectedIndex.value),
-          ),
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: controller.selectedIndex.value,
-            notificationCount: controller.notificationsCount.value,
-            onTap: controller.changeTab,
-          ),
+          ],
+          child: _buildPage(context, controller.selectedIndex.value),
         ),
       ),
     );

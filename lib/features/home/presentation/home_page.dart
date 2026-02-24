@@ -9,31 +9,26 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: AppSpacing.lg,
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+          horizontal: AppSpacing.lg,
+        ),
+        child: Column(
+          children: [
+            const SizedBox(height: AppSpacing.lg),
+            const HomeSearchBar(),
+            const SizedBox(height: AppSpacing.xl),
+            HomeBanner(
+              title: 'Connect with top talents',
+              subtitle: 'Explore professionals, teams and skills in one place.',
+              buttonText: 'View Profiles',
+              onPressed: () {},
             ),
-            child: Column(
-              children: [
-                const SizedBox(height: AppSpacing.lg),
-                const HomeSearchBar(),
-                const SizedBox(height: AppSpacing.xl),
-                HomeBanner(
-                  title: 'Connect with top talents',
-                  subtitle:
-                      'Explore professionals, teams and skills in one place.',
-                  buttonText: 'View Profiles',
-                  onPressed: () {},
-                ),
-                const SizedBox(height: AppSpacing.xl),
-                const HomeContentView(),
-                const SizedBox(height: AppSpacing.xl),
-              ],
-            ),
-          ),
+            const SizedBox(height: AppSpacing.xl),
+            const HomeContentView(),
+            const SizedBox(height: AppSpacing.xl),
+          ],
         ),
       ),
     );
