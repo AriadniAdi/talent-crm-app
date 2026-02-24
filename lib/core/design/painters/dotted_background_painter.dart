@@ -11,7 +11,7 @@ class DottedBackgroundPainter extends CustomPainter {
     const double radius = 1.3;
 
     final paint = Paint()
-      ..color = dotColor.withOpacity(0.45)
+      ..color = dotColor.withValues(alpha: 0.45)
       ..style = PaintingStyle.fill;
 
     for (double x = 0; x < size.width; x += spacing) {

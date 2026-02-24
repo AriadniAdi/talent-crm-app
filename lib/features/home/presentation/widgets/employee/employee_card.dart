@@ -62,8 +62,7 @@ class _EmployeeCard extends StatelessWidget {
         boxShadow: [
           BoxShadow(
             blurRadius: 6,
-            // ignore: deprecated_member_use
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withValues(alpha: 0.05),
             offset: const Offset(0, 3),
           ),
         ],

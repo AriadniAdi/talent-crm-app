@@ -27,7 +27,7 @@ class HomeBanner extends StatelessWidget {
         gradient: LinearGradient(
           colors: [
             theme.colorScheme.primary,
-            theme.colorScheme.primary.withOpacity(0.85),
+            theme.colorScheme.primary.withValues(alpha: 0.85),
             theme.colorScheme.primaryContainer,
           ],
           begin: Alignment.topLeft,
@@ -35,7 +35,7 @@ class HomeBanner extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: theme.colorScheme.primary.withOpacity(0.22),
+            color: theme.colorScheme.primary.withValues(alpha: 0.22),
             blurRadius: 24,
             spreadRadius: 0,
             offset: const Offset(0, 12),
@@ -68,14 +68,14 @@ class HomeBanner extends StatelessWidget {
               Text(
                 subtitle,
                 style: theme.textTheme.bodyMedium?.copyWith(
-                  // ignore: deprecated_member_use
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withValues(alpha: 0.9),
                 ),
               ),
               const SizedBox(height: 16),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: theme.colorScheme.surface.withOpacity(0.9),
+                  backgroundColor:
+                      theme.colorScheme.surface.withValues(alpha: 0.9),
                   foregroundColor: theme.colorScheme.primary,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
