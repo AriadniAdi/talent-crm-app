@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -61,7 +62,7 @@ class _SplashPageState extends State<SplashPage>
               ),
               const SizedBox(height: AppSpacing.md),
               Text(
-                'Talent CRM',
+                context.translate.appTitle,
                 style: theme.textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w600,
                 ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
@@ -26,10 +26,12 @@ class EmployeeCard extends StatelessWidget {
       child: Row(
         children: [
           CircleAvatar(
-            radius: 24,
+            radius: AppSpacing.xl,
             backgroundImage: NetworkImage(employee.avatarUrl),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(
+            width: AppSpacing.md,
+          ),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

@@ -10,7 +10,7 @@ class HomeSearchBar extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
       child: TextField(
         onChanged: controller.search,
         decoration: InputDecoration(

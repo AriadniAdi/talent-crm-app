@@ -77,7 +77,7 @@ class _Badge extends StatelessWidget {
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 11,
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ),

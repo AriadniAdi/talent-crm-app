@@ -1,7 +1,8 @@
 {
-  "appTitle": "IntraPeople",
+  "@@locale": "pt",
+  "appTitle": "Talent CRM",
   "@appTitle": {
-    "description": "Nome da aplicação exibido na barra superior"
+    "description": "Nome da aplicação"
   },
 
   "viewProfile": "Ver Perfil",
