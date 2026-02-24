@@ -157,10 +157,10 @@ abstract class AppLocalizations {
   /// **'Search employee...'**
   String get searchEmployeeHint;
 
-  /// Application name displayed in the top app bar
+  /// Application name
   ///
   /// In en, this message translates to:
-  /// **'IntraPeople'**
+  /// **'Talent CRM'**
   String get appTitle;
 }
 

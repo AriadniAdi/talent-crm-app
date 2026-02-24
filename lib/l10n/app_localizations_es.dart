@@ -39,5 +39,5 @@ class AppLocalizationsEs extends AppLocalizations {
   String get searchEmployeeHint => 'Buscar empleado...';
 
   @override
-  String get appTitle => 'IntraPeople';
+  String get appTitle => 'Talent CRM';
 }
