@@ -13,8 +13,14 @@ void main() {
       ),
     );
 
-    expect(find.byType(TalentLogo), findsOneWidget);
-    expect(find.byType(CustomPaint), findsOneWidget);
+    final finder = find.descendant(
+      of: find.byType(TalentLogo),
+      matching: find.byType(CustomPaint),
+    );
+
+    final customPaint = tester.widget<CustomPaint>(finder);
+
+    expect(customPaint.painter, isA<NetworkPainter>());
   });
 
   testWidgets('TalentLogo respects size parameter', (tester) async {
@@ -65,9 +71,12 @@ void main() {
       ),
     );
 
-    final customPaint = tester.widget<CustomPaint>(
-      find.byType(CustomPaint),
+    final finder = find.descendant(
+      of: find.byType(TalentLogo),
+      matching: find.byType(CustomPaint),
     );
+
+    final customPaint = tester.widget<CustomPaint>(finder);
 
     expect(customPaint.painter, isA<NetworkPainter>());
   });

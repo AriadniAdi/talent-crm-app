@@ -46,6 +46,7 @@ class HomeBanner extends StatelessWidget {
         children: [
           Positioned.fill(
             child: CustomPaint(
+              key: const Key('home_banner_background'),
               painter: DottedBackgroundPainter(
                 dotColor: theme.colorScheme.onPrimary,
               ),

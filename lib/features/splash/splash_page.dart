@@ -6,7 +6,13 @@ import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
 class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
+  final Duration delay;
+  final bool enableNavigation;
+  const SplashPage({
+    super.key,
+    this.delay = const Duration(seconds: 2),
+    this.enableNavigation = true,
+  });
 
   @override
   State<SplashPage> createState() => _SplashPageState();
@@ -31,11 +37,13 @@ class _SplashPageState extends State<SplashPage>
 
     _controller.forward();
 
-    _navigate();
+    if (widget.enableNavigation) {
+      _navigate();
+    }
   }
 
   Future<void> _navigate() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(widget.delay);
     Get.offAllNamed(AppRoutes.home);
   }
 

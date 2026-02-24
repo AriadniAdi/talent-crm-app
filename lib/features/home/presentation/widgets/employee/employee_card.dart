@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
-import 'package:talent_crm_app/l10n/app_localizations.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class EmployeeCard extends StatelessWidget {
   final Talent employee;
@@ -48,7 +48,7 @@ class EmployeeCard extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {},
-            child: Text(AppLocalizations.of(context)!.viewProfile),
+            child: Text(context.translate.viewProfile),
           ),
         ],
       ),
