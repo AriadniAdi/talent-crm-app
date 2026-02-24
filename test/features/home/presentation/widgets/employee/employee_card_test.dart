@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:network_image_mock/network_image_mock.dart';
