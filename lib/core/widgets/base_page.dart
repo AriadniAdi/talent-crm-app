@@ -30,7 +30,7 @@ class BasePage extends StatelessWidget {
     return Scaffold(
       appBar: showAppBar
           ? AppBar(
-              title: title != null ? Text(title!) : null,
+              title: title,
               centerTitle: false,
               elevation: 0,
               backgroundColor: colors.surface,

@@ -44,7 +44,6 @@ class HomeBanner extends StatelessWidget {
       ),
       child: Stack(
         children: [
-          /// 🔹 Background decoration (linhas tech)
           Positioned.fill(
             child: CustomPaint(
               painter: DottedBackgroundPainter(
@@ -52,8 +51,6 @@ class HomeBanner extends StatelessWidget {
               ),
             ),
           ),
-
-          /// 🔹 Conteúdo
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -71,7 +68,7 @@ class HomeBanner extends StatelessWidget {
                   color: Colors.white.withValues(alpha: 0.9),
                 ),
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: AppSpacing.lg),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   backgroundColor:
