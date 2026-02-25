@@ -9,12 +9,13 @@ class TalentShell extends GetView<TalentController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final talent = controller.talent.value;
       if (controller.isLoading.value) {
         return const Scaffold(
           body: Center(child: CircularProgressIndicator()),
         );
       }
+
+      final talent = controller.talent.value;
 
       if (talent == null) {
         return const Scaffold(
@@ -24,8 +25,6 @@ class TalentShell extends GetView<TalentController> {
 
       return TalentPage(
         talent: talent,
-        voiceNotes: controller.voiceNotes.toList(),
-        onRecord: controller.recordNote,
       );
     });
   }

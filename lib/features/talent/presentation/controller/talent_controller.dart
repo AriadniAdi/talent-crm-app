@@ -12,17 +12,16 @@ class TalentController extends GetxController {
   final isLoading = false.obs;
   final error = RxnString();
   final talent = Rxn<Talent>();
-  final observationText = ''.obs;
+
   final voiceNotes = <VoiceNoteModel>[].obs;
+  final isRecording = false.obs;
+  final isPlayingId = RxnString();
+  final audioError = RxnString();
 
   @override
   void onInit() {
     super.onInit();
     fetchTalent();
-  }
-
-  void updateObservation(String value) {
-    observationText.value = value;
   }
 
   Future<void> fetchTalent() async {
@@ -33,21 +32,70 @@ class TalentController extends GetxController {
       final result = await getTalentByIdUseCase(id);
       talent.value = result;
     } catch (e) {
-      error.value = e.toString();
+      error.value =
+          e is Exception ? e.toString() : 'Erro inesperado ao carregar talento';
     } finally {
       isLoading.value = false;
     }
   }
 
-  void recordNote() {
-    // Mock temporário
-    voiceNotes.add(
-      VoiceNoteModel(
-        id: DateTime.now().millisecondsSinceEpoch.toString(),
-        duration: const Duration(),
-        filePath: '',
-        createdAt: DateTime.now(),
-      ),
-    );
+  // 🔴 Start / Stop recording
+  Future<void> toggleRecording() async {
+    try {
+      audioError.value = null;
+
+      if (isRecording.value) {
+        // Parar gravação
+        isRecording.value = false;
+
+        // MOCK temporário até integrar lib real
+        voiceNotes.insert(
+          0,
+          VoiceNoteModel(
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
+            duration: const Duration(seconds: 12),
+            filePath: '',
+            createdAt: DateTime.now(),
+          ),
+        );
+      } else {
+        // Iniciar gravação
+        isRecording.value = true;
+      }
+    } catch (e) {
+      audioError.value = 'Erro ao gravar áudio';
+      isRecording.value = false;
+    }
+  }
+
+  // 🔴 Play / Stop
+  Future<void> togglePlay(VoiceNoteModel note) async {
+    try {
+      audioError.value = null;
+
+      if (isPlayingId.value == note.id) {
+        // stop
+        isPlayingId.value = null;
+        return;
+      }
+
+      // start
+      isPlayingId.value = note.id;
+
+      // Quando integrar player real,
+      // você deve zerar isPlayingId quando terminar.
+    } catch (e) {
+      audioError.value = 'Erro ao reproduzir áudio';
+      isPlayingId.value = null;
+    }
+  }
+
+  // 🔴 Delete
+  void deleteNote(String id) {
+    if (isPlayingId.value == id) {
+      isPlayingId.value = null;
+    }
+
+    voiceNotes.removeWhere((note) => note.id == id);
   }
 }

@@ -4,6 +4,8 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 
+import '../../../../core/design/design.dart';
+
 class ProfileAvatarButton extends StatelessWidget {
   final Account account;
 
@@ -17,9 +19,9 @@ class ProfileAvatarButton extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.only(right: 16),
+      padding: const EdgeInsets.only(right: AppSpacing.lg),
       child: InkWell(
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(AppSpacing.xl),
         onTap: () => Get.toNamed(AppRoutes.account,
             parameters: {'id': account.id.toString()}),
         child: CircleAvatar(
