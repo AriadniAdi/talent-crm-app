@@ -6,6 +6,8 @@ import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 
+import '../../../../presentation/helpers/wrapper.dart';
+
 void main() {
   setUp(() {
     Get.testMode = true;
@@ -16,21 +18,9 @@ void main() {
     Get.reset();
   });
 
-  Widget buildTestWidget(Widget child) {
-    return GetMaterialApp(
-      getPages: [
-        GetPage(
-          name: AppRoutes.account,
-          page: () => const Scaffold(body: Text('Account Page')),
-        ),
-      ],
-      home: Scaffold(body: child),
-    );
-  }
-
   testWidgets('renders CircleAvatar and letter', (tester) async {
     await tester.pumpWidget(
-      buildTestWidget(
+      wrapper(
         const ProfileAvatarButton(
           account: Account(id: 1),
         ),
@@ -44,7 +34,7 @@ void main() {
   testWidgets('navigates to account route with correct parameter',
       (tester) async {
     await tester.pumpWidget(
-      buildTestWidget(
+      wrapper(
         const ProfileAvatarButton(
           account: Account(id: 42),
         ),
@@ -60,7 +50,7 @@ void main() {
 
   testWidgets('InkWell is tappable', (tester) async {
     await tester.pumpWidget(
-      buildTestWidget(
+      wrapper(
         const ProfileAvatarButton(
           account: Account(id: 1),
         ),

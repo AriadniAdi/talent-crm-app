@@ -7,6 +7,7 @@ void main() {
       expect(AppRoutes.splash, '/');
       expect(AppRoutes.home, '/home');
       expect(AppRoutes.account, '/account');
+      expect(AppRoutes.account, '/talent');
     });
 
     test('all routes start with "/"', () {
@@ -14,6 +15,7 @@ void main() {
         AppRoutes.splash,
         AppRoutes.home,
         AppRoutes.account,
+        AppRoutes.talent,
       ];
 
       for (final route in routes) {
@@ -26,6 +28,7 @@ void main() {
         AppRoutes.splash,
         AppRoutes.home,
         AppRoutes.account,
+        AppRoutes.talent,
       ];
 
       expect(routes.length, routes.toSet().length);

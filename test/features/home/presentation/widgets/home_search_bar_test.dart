@@ -32,25 +32,20 @@ void main() {
   testWidgets('HomeSearchBar renders TextField and hint', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomeSearchBar(),
-        ),
+        const HomeSearchBar(),
       ),
     );
 
     expect(find.byType(TextField), findsOneWidget);
     expect(find.byIcon(Icons.search), findsOneWidget);
 
-    // hintText vem do l10n
     expect(find.textContaining('Buscar'), findsOneWidget);
   });
 
   testWidgets('HomeSearchBar calls controller.search on input', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomeSearchBar(),
-        ),
+        const HomeSearchBar(),
       ),
     );
 

@@ -80,9 +80,7 @@ void main() {
   testWidgets('renders notification icon', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -94,9 +92,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
     await tester.pump();
@@ -109,9 +105,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -123,9 +117,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -137,9 +129,7 @@ void main() {
   testWidgets('calls changeTab(2) when tapped', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -154,9 +144,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 

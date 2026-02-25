@@ -39,11 +39,9 @@ void main() {
       (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomeSectionEmployees(
-            title: 'Section',
-            employees: [],
-          ),
+        const HomeSectionEmployees(
+          title: 'Section',
+          employees: [],
         ),
       ),
     );

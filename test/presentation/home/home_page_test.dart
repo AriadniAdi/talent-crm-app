@@ -28,9 +28,7 @@ void main() {
   testWidgets('HomePage renders layout widgets', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomePage(),
-        ),
+        const HomePage(),
       ),
     );
 

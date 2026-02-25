@@ -3,7 +3,20 @@ import 'package:get/get.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
-Widget wrapper(Widget child) {
+Widget wrapper(Widget child, {Size? surfaceSize, bool center = false}) {
+  Widget content = child;
+
+  if (center) {
+    content = Center(child: content);
+  }
+
+  if (surfaceSize != null) {
+    content = SizedBox(
+      width: surfaceSize.width,
+      height: surfaceSize.height,
+      child: content,
+    );
+  }
   return GetMaterialApp(
     locale: const Locale('pt'),
     localizationsDelegates: const [
@@ -13,6 +26,6 @@ Widget wrapper(Widget child) {
       GlobalCupertinoLocalizations.delegate,
     ],
     supportedLocales: AppLocalizations.supportedLocales,
-    home: child,
+    home: Scaffold(body: content),
   );
 }
