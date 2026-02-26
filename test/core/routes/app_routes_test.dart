@@ -7,7 +7,7 @@ void main() {
       expect(AppRoutes.splash, '/');
       expect(AppRoutes.home, '/home');
       expect(AppRoutes.account, '/account');
-      expect(AppRoutes.account, '/talent');
+      expect(AppRoutes.talent, '/talent');
     });
 
     test('all routes start with "/"', () {

@@ -35,8 +35,7 @@ void main() {
     await tester.tap(find.byType(InkWell));
     await tester.pumpAndSettle();
 
-    expect(Get.currentRoute.startsWith(AppRoutes.account), isTrue);
-    expect(Get.parameters['id'], '42');
+    expect(Get.currentRoute, '${AppRoutes.account}?id=42');
   });
 
   testWidgets('InkWell is tappable', (tester) async {

@@ -1,14 +1,30 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_page.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/talent_header_banner.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/info_card.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/observations_section.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
 import '../../../presentation/helpers/wrapper.dart';
 
+class MockGetTalentsUseCase extends Mock implements GetTalentByIdUseCase {}
+
 void main() {
+  setUp(() {
+    Get.reset();
+
+    Get.put<TalentController>(TalentController(
+      MockGetTalentsUseCase(),
+      1,
+    ));
+  });
   const talent = Talent(
     id: 1,
     name: 'Test User',
@@ -22,7 +38,7 @@ void main() {
   testWidgets('renders all sections properly', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        TalentPage(talent: talent),
+        const TalentPage(talent: talent),
         surfaceSize: const Size(400, 800),
       ),
     );
@@ -37,7 +53,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        TalentPage(talent: talent),
+        const TalentPage(talent: talent),
         surfaceSize: size,
       ),
     );

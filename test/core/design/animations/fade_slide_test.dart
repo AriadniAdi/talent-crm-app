@@ -60,13 +60,20 @@ void main() {
       ),
     );
 
+    final fadeSlideFinder = find.byType(FadeSlide);
+
+    final transformFinder = find.descendant(
+      of: fadeSlideFinder,
+      matching: find.byType(Transform),
+    );
+
     final transformBefore =
-        tester.widget<Transform>(find.byType(Transform)).transform;
+        tester.widget<Transform>(transformFinder.first).transform;
 
     await tester.pump(const Duration(milliseconds: 400));
 
     final transformMid =
-        tester.widget<Transform>(find.byType(Transform)).transform;
+        tester.widget<Transform>(transformFinder.first).transform;
 
     expect(transformBefore, isNot(equals(transformMid)));
   });
