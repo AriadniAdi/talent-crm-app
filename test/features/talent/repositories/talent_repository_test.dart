@@ -1,0 +1,90 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
+import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
+import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
+
+class MockTalentService extends Mock implements TalentService {}
+
+void main() {
+  late MockTalentService mockService;
+  late TalentRepositoryImpl repository;
+
+  setUp(() {
+    mockService = MockTalentService();
+    repository = TalentRepositoryImpl(mockService);
+  });
+
+  const mockTalent = Talent(
+    id: 1,
+    name: 'Test User',
+    website: 'site.com',
+    company: 'company',
+    description: 'description',
+    city: 'city',
+    contact: ContactTalent(email: 'test@test.com', phone: '123'),
+  );
+
+  group('getTalents', () {
+    test('should call service.fetchTalents once', () async {
+      when(() => mockService.fetchTalents()).thenAnswer((_) async => []);
+
+      await repository.getTalents();
+
+      verify(() => mockService.fetchTalents()).called(1);
+      verifyNoMoreInteractions(mockService);
+    });
+
+    test('should return list of talents from service', () async {
+      final talents = [mockTalent];
+
+      when(() => mockService.fetchTalents()).thenAnswer((_) async => talents);
+
+      final result = await repository.getTalents();
+
+      expect(result, equals(talents));
+    });
+
+    test('should propagate exception when service throws', () async {
+      when(() => mockService.fetchTalents())
+          .thenThrow(Exception('Service error'));
+
+      expect(
+        () => repository.getTalents(),
+        throwsA(isA<Exception>()),
+      );
+    });
+  });
+
+  group('getTalentById', () {
+    test('should call service.fetchTalentById with correct id', () async {
+      when(() => mockService.fetchTalentById(1))
+          .thenAnswer((_) async => mockTalent);
+
+      await repository.getTalentById(1);
+
+      verify(() => mockService.fetchTalentById(1)).called(1);
+      verifyNoMoreInteractions(mockService);
+    });
+
+    test('should return talent from service', () async {
+      when(() => mockService.fetchTalentById(1))
+          .thenAnswer((_) async => mockTalent);
+
+      final result = await repository.getTalentById(1);
+
+      expect(result, equals(mockTalent));
+    });
+
+    test('should propagate exception when service throws', () async {
+      when(() => mockService.fetchTalentById(1))
+          .thenThrow(Exception('Service error'));
+
+      expect(
+        () => repository.getTalentById(1),
+        throwsA(isA<Exception>()),
+      );
+    });
+  });
+}

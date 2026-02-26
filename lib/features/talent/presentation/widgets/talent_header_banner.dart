@@ -16,7 +16,6 @@ class TalentHeaderBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    final colors = theme.colorScheme;
 
     return AppBanner(
       backgroundKey: const Key('profile_banner_background'),
