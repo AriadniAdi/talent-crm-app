@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:talent_crm_app/core/design/app_spacing.dart';
@@ -19,9 +16,6 @@ class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     GlobalBinding().dependencies();
     HomeBinding().dependencies();
   });

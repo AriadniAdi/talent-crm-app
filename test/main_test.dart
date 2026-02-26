@@ -7,14 +7,6 @@ import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 void main() {
-  setUp(() {
-    Get.testMode = true;
-  });
-
-  tearDown(() {
-    Get.reset();
-  });
-
   testWidgets('MyApp builds GetMaterialApp', (tester) async {
     await tester.pumpWidget(const MyApp());
     await tester.pumpAndSettle(const Duration(seconds: 2));

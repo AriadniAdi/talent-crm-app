@@ -64,9 +64,6 @@ void main() {
   late TestHomeController controller;
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     controller = TestHomeController();
     Get.put<HomeController>(controller);
   });

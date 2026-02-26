@@ -98,7 +98,7 @@ Widget buildShadowAvatar({
       ],
     ),
     child: Container(
-      padding: const EdgeInsets.all(3), // “anel”
+      padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: colors.surface.withValues(alpha: 0.45),

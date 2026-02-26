@@ -39,16 +39,13 @@ class TalentController extends GetxController {
     }
   }
 
-  // 🔴 Start / Stop recording
   Future<void> toggleRecording() async {
     try {
       audioError.value = null;
 
       if (isRecording.value) {
-        // Parar gravação
         isRecording.value = false;
 
-        // MOCK temporário até integrar lib real
         voiceNotes.insert(
           0,
           VoiceNoteModel(
@@ -59,7 +56,6 @@ class TalentController extends GetxController {
           ),
         );
       } else {
-        // Iniciar gravação
         isRecording.value = true;
       }
     } catch (e) {
@@ -68,29 +64,22 @@ class TalentController extends GetxController {
     }
   }
 
-  // 🔴 Play / Stop
   Future<void> togglePlay(VoiceNoteModel note) async {
     try {
       audioError.value = null;
 
       if (isPlayingId.value == note.id) {
-        // stop
         isPlayingId.value = null;
         return;
       }
 
-      // start
       isPlayingId.value = note.id;
-
-      // Quando integrar player real,
-      // você deve zerar isPlayingId quando terminar.
     } catch (e) {
       audioError.value = 'Erro ao reproduzir áudio';
       isPlayingId.value = null;
     }
   }
 
-  // 🔴 Delete
   void deleteNote(String id) {
     if (isPlayingId.value == id) {
       isPlayingId.value = null;

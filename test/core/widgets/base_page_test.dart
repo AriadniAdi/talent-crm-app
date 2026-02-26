@@ -1,16 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
 import 'package:talent_crm_app/core/widgets/base_page.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 
 import '../../presentation/helpers/wrapper.dart';
 
 void main() {
-  setUp(() {
-    Get.testMode = true;
-  });
-
   group('BasePage', () {
     testWidgets('renders child content', (tester) async {
       await tester.pumpWidget(

@@ -66,9 +66,6 @@ void main() {
   late FakeHomeController controller;
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     controller = FakeHomeController();
     Get.put<HomeController>(controller);
   });

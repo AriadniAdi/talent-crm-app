@@ -1,7 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:network_image_mock/network_image_mock.dart';
@@ -18,7 +16,6 @@ void main() {
   });
 
   setUp(() {
-    Get.testMode = true;
     FlutterError.onError = (FlutterErrorDetails details) {};
     fakeTalent = const Talent(
       id: 1,
@@ -35,9 +32,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -51,9 +46,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -65,9 +58,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -79,11 +70,9 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(
-              employee: fakeTalent,
-              onViewProfile: () {},
-            ),
+          EmployeeCard(
+            employee: fakeTalent,
+            onViewProfile: () {},
           ),
         ),
       );

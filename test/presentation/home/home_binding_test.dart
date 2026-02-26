@@ -9,9 +9,6 @@ import 'package:talent_crm_app/features/home/home_binding.dart';
 
 void main() {
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     GlobalBinding().dependencies();
   });
 

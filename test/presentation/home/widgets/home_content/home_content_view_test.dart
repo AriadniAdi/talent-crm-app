@@ -42,9 +42,6 @@ void main() {
   ];
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     mockGetTalentsUseCase = MockGetTalentsUseCase();
 
     controller = HomeController(

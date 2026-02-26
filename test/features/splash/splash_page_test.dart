@@ -9,10 +9,6 @@ import 'package:talent_crm_app/l10n/translate.dart';
 import 'splash_wrapper.dart';
 
 void main() {
-  setUp(() {
-    Get.testMode = true;
-  });
-
   testWidgets('SplashPage renders logo and title', (tester) async {
     await tester.pumpWidget(
       splashWrapper(

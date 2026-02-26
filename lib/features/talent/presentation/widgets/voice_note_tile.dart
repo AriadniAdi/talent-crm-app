@@ -25,17 +25,13 @@ class VoiceNoteTile extends GetView<TalentController> {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Row(children: [
-          // ▶️ Play / Stop button
           IconButton(
             onPressed: () => controller.togglePlay(note),
             icon: Icon(
               isPlaying ? Icons.stop : Icons.play_arrow,
             ),
           ),
-
           const SizedBox(width: 8),
-
-          // 🕒 Duration + Date
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,8 +49,6 @@ class VoiceNoteTile extends GetView<TalentController> {
               ],
             ),
           ),
-
-          // 🗑 Delete
           IconButton(
             onPressed: () => controller.deleteNote(note.id),
             icon: const Icon(Icons.delete_outline),
@@ -63,18 +57,6 @@ class VoiceNoteTile extends GetView<TalentController> {
       );
     });
   }
-
-  // String _formatDate(DateTime date) {
-  //   final difference = DateTime.now().difference(date);
-
-  //   if (difference.inMinutes < 60) {
-  //     return "${difference.inMinutes} min atrás";
-  //   } else if (difference.inHours < 24) {
-  //     return "${difference.inHours}h atrás";
-  //   } else {
-  //     return "${difference.inDays} dias atrás";
-  //   }
-  // }
 
   String _formatDate(DateTime date) {
     return "${date.day.toString().padLeft(2, '0')}/"

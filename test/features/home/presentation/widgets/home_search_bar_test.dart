@@ -16,9 +16,6 @@ void main() {
   late MockGetTalentsUseCase mockUseCase;
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     mockUseCase = MockGetTalentsUseCase();
     controller = HomeController(mockUseCase);
 

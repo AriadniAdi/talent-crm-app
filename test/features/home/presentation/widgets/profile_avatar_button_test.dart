@@ -1,23 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
-import 'package:talent_crm_app/core/routes/app_routes.dart';
 
 import '../../../../presentation/helpers/wrapper.dart';
 
 void main() {
-  setUp(() {
-    Get.testMode = true;
-    Get.reset();
-  });
-
-  tearDown(() {
-    Get.reset();
-  });
-
   testWidgets('renders CircleAvatar and letter', (tester) async {
     await tester.pumpWidget(
       wrapper(
