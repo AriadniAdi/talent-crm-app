@@ -2,69 +2,67 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
-import 'package:talent_crm_app/features/talent/presentation/talent_controller.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
+import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 
-class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
+class MockGetTalentsByIdUseCase extends Mock implements GetTalentByIdUseCase {}
 
 void main() {
   late TalentController controller;
-  late MockGetTalentsUseCase mockUseCase;
+  late MockGetTalentsByIdUseCase mockUseCase;
 
-  final mockTalents = [
-    const Talent(
-      id: 1,
-      name: 'John',
-      description: 'Developer',
-      city: 'POA',
-      company: 'Tech',
-      website: 'site.com',
-      contact: ContactTalent(
-        email: 'john@email.com',
-        phone: '9999',
-      ),
+  const mockTalent = Talent(
+    id: 1,
+    name: 'John',
+    description: 'Developer',
+    city: 'POA',
+    company: 'Tech',
+    website: 'site.com',
+    contact: ContactTalent(
+      email: 'john@email.com',
+      phone: '9999',
     ),
-  ];
+  );
 
   setUp(() {
-    mockUseCase = MockGetTalentsUseCase();
-    controller = TalentController(mockUseCase);
+    mockUseCase = MockGetTalentsByIdUseCase();
+    controller = TalentController(mockUseCase, 1);
   });
 
   group('TalentController - fetchTalents', () {
     test('should populate talents on success', () async {
-      when(() => mockUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockUseCase(1)).thenAnswer((_) async => mockTalent);
 
-      await controller.fetchTalents();
+      await controller.fetchTalent();
 
       expect(controller.isLoading.value, false);
       expect(controller.error.value, null);
-      expect(controller.talents, mockTalents);
+      expect(controller.talent.value, mockTalent);
 
-      verify(() => mockUseCase()).called(1);
+      verify(() => mockUseCase(1)).called(1);
       verifyNoMoreInteractions(mockUseCase);
     });
 
     test('should set error when usecase throws', () async {
-      when(() => mockUseCase()).thenThrow(Exception('UseCase failure'));
+      when(() => mockUseCase(1)).thenThrow(Exception('UseCase failure'));
 
-      await controller.fetchTalents();
+      await controller.fetchTalent();
 
       expect(controller.isLoading.value, false);
-      expect(controller.talents, isEmpty);
+      expect(controller.talent.value, isNull);
       expect(controller.error.value, contains('UseCase failure'));
 
-      verify(() => mockUseCase()).called(1);
+      verify(() => mockUseCase(1)).called(1);
       verifyNoMoreInteractions(mockUseCase);
     });
 
     test('should toggle loading correctly during execution', () async {
-      when(() => mockUseCase()).thenAnswer((_) async {
+      when(() => mockUseCase(1)).thenAnswer((_) async {
         await Future.delayed(const Duration(milliseconds: 10));
-        return mockTalents;
+        return mockTalent;
       });
 
-      final future = controller.fetchTalents();
+      final future = controller.fetchTalent();
 
       expect(controller.isLoading.value, true);
 
@@ -76,13 +74,13 @@ void main() {
 
   group('onInit', () {
     test('should call fetchTalents on init', () async {
-      when(() => mockUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockUseCase(1)).thenAnswer((_) async => mockTalent);
 
       controller.onInit();
 
       await Future.delayed(const Duration(milliseconds: 10));
 
-      verify(() => mockUseCase()).called(1);
+      verify(() => mockUseCase(1)).called(1);
     });
   });
 }

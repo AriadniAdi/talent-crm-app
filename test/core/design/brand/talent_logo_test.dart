@@ -3,13 +3,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:talent_crm_app/core/design/brand/talent_logo.dart';
 import 'package:talent_crm_app/core/design/painters/network_painter.dart';
 
+import '../../../presentation/helpers/wrapper.dart';
+
 void main() {
   testWidgets('TalentLogo renders without crashing', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: TalentLogo(),
-        ),
+      wrapper(
+        const TalentLogo(),
       ),
     );
 
@@ -27,10 +27,8 @@ void main() {
     const size = 100.0;
 
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: TalentLogo(size: size),
-        ),
+      wrapper(
+        const TalentLogo(size: size),
       ),
     );
 
@@ -48,10 +46,8 @@ void main() {
     const size = 80.0;
 
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: TalentLogo(size: size),
-        ),
+      wrapper(
+        const TalentLogo(size: size),
       ),
     );
 
@@ -64,10 +60,8 @@ void main() {
 
   testWidgets('TalentLogo uses NetworkPainter', (tester) async {
     await tester.pumpWidget(
-      const MaterialApp(
-        home: Scaffold(
-          body: TalentLogo(),
-        ),
+      wrapper(
+        const TalentLogo(),
       ),
     );
 

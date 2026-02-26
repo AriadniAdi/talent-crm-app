@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/core/design/design.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
 class EmployeeCard extends StatelessWidget {
   final Talent employee;
+  final VoidCallback? onViewProfile;
 
-  const EmployeeCard({super.key, required this.employee});
+  const EmployeeCard({super.key, required this.employee, this.onViewProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +51,13 @@ class EmployeeCard extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: onViewProfile ??
+                () => Get.toNamed(
+                      AppRoutes.talent,
+                      parameters: {
+                        'id': employee.id.toString(),
+                      },
+                    ),
             child: Text(context.translate.viewProfile),
           ),
         ],

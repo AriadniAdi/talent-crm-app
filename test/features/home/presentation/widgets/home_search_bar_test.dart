@@ -5,7 +5,7 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 
 import '../../../../presentation/helpers/wrapper.dart';
 
@@ -16,9 +16,6 @@ void main() {
   late MockGetTalentsUseCase mockUseCase;
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     mockUseCase = MockGetTalentsUseCase();
     controller = HomeController(mockUseCase);
 
@@ -32,25 +29,20 @@ void main() {
   testWidgets('HomeSearchBar renders TextField and hint', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomeSearchBar(),
-        ),
+        const HomeSearchBar(),
       ),
     );
 
     expect(find.byType(TextField), findsOneWidget);
     expect(find.byIcon(Icons.search), findsOneWidget);
 
-    // hintText vem do l10n
     expect(find.textContaining('Buscar'), findsOneWidget);
   });
 
   testWidgets('HomeSearchBar calls controller.search on input', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomeSearchBar(),
-        ),
+        const HomeSearchBar(),
       ),
     );
 

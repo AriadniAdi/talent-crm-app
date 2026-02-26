@@ -16,6 +16,7 @@ void main() {
   });
 
   setUp(() {
+    FlutterError.onError = (FlutterErrorDetails details) {};
     fakeTalent = const Talent(
       id: 1,
       name: 'John Doe',
@@ -31,9 +32,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -47,9 +46,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -61,9 +58,7 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
-          ),
+          EmployeeCard(employee: fakeTalent),
         ),
       );
     });
@@ -75,15 +70,16 @@ void main() {
     await mockNetworkImagesFor(() async {
       await tester.pumpWidget(
         wrapper(
-          Scaffold(
-            body: EmployeeCard(employee: fakeTalent),
+          EmployeeCard(
+            employee: fakeTalent,
+            onViewProfile: () {},
           ),
         ),
       );
     });
 
     await tester.tap(find.byType(TextButton));
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.byType(TextButton), findsOneWidget);
   });

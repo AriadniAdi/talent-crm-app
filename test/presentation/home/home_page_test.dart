@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:mocktail/mocktail.dart';
 
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
@@ -19,18 +16,13 @@ class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     GlobalBinding().dependencies();
     HomeBinding().dependencies();
   });
   testWidgets('HomePage renders layout widgets', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: HomePage(),
-        ),
+        const HomePage(),
       ),
     );
 

@@ -8,7 +8,7 @@ import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_content/home_content_view.dart';
 
@@ -42,9 +42,6 @@ void main() {
   ];
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     mockGetTalentsUseCase = MockGetTalentsUseCase();
 
     controller = HomeController(

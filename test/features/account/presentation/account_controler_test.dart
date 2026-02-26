@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:talent_crm_app/features/account/presentation/account_controler.dart';
+import 'package:talent_crm_app/features/account/presentation/account_controller.dart';
 
 class TestAccountController extends AccountController {
   bool loadCalled = false;

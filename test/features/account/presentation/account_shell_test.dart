@@ -1,8 +1,10 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/features/account/presentation/account_controler.dart';
+import 'package:talent_crm_app/features/account/presentation/account_controller.dart';
 import 'package:talent_crm_app/features/account/presentation/account_page.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
+
+import '../../../presentation/helpers/wrapper.dart';
 
 void main() {
   setUp(() {
@@ -12,8 +14,8 @@ void main() {
 
   testWidgets('AccountShell renders AccountPage', (tester) async {
     await tester.pumpWidget(
-      const GetMaterialApp(
-        home: AccountShell(),
+      wrapper(
+        const AccountShell(),
       ),
     );
 

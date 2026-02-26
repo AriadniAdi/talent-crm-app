@@ -3,7 +3,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 
 class MockTalentRepository extends Mock implements TalentRepository {}
 

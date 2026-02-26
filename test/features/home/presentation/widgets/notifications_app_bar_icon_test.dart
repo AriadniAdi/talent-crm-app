@@ -6,7 +6,7 @@ import 'package:talent_crm_app/features/home/presentation/widgets/notifications_
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
-import 'package:talent_crm_app/features/talent/usecases/get_talent_usecase.dart';
+import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 
 import '../../../../presentation/helpers/wrapper.dart';
@@ -66,9 +66,6 @@ void main() {
   late FakeHomeController controller;
 
   setUp(() {
-    Get.testMode = true;
-    Get.reset();
-
     controller = FakeHomeController();
     Get.put<HomeController>(controller);
   });
@@ -80,9 +77,7 @@ void main() {
   testWidgets('renders notification icon', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -94,9 +89,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
     await tester.pump();
@@ -109,9 +102,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -123,9 +114,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -137,9 +126,7 @@ void main() {
   testWidgets('calls changeTab(2) when tapped', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 
@@ -154,9 +141,7 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        const Scaffold(
-          body: NotificationsAppBarIcon(),
-        ),
+        const NotificationsAppBarIcon(),
       ),
     );
 

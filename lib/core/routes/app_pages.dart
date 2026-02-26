@@ -5,6 +5,8 @@ import 'package:talent_crm_app/features/account/presentation/account_shell.dart'
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/splash/splash_page.dart';
+import 'package:talent_crm_app/features/talent/presentation/talent_binding.dart';
+import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
 
 class AppPages {
   static const initial = AppRoutes.home;
@@ -23,6 +25,11 @@ class AppPages {
       name: AppRoutes.account,
       page: () => const AccountShell(),
       binding: AccountBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.talent,
+      page: () => const TalentShell(),
+      binding: TalentBinding(),
     ),
   ];
 }

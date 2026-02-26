@@ -1,24 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get.dart';
 import 'package:talent_crm_app/core/widgets/base_page.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 
+import '../../presentation/helpers/wrapper.dart';
+
 void main() {
-  setUp(() {
-    Get.testMode = true;
-  });
-
-  Widget buildTestWidget(Widget child) {
-    return GetMaterialApp(
-      home: child,
-    );
-  }
-
   group('BasePage', () {
     testWidgets('renders child content', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             title: Text('Title'),
             child: Text('Body'),
@@ -31,7 +22,7 @@ void main() {
 
     testWidgets('shows AppBar when showAppBar is true', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             title: Text('Title'),
             child: SizedBox(),
@@ -44,7 +35,7 @@ void main() {
 
     testWidgets('hides AppBar when showAppBar is false', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             showAppBar: false,
             child: SizedBox(),
@@ -57,7 +48,7 @@ void main() {
 
     testWidgets('shows back button when enabled', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             title: Text('Title'),
             child: SizedBox(),
@@ -70,7 +61,7 @@ void main() {
 
     testWidgets('hides back button when disabled', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             showBackButton: false,
             title: Text('Title'),
@@ -84,7 +75,7 @@ void main() {
 
     testWidgets('applies default padding', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             child: Text('Body'),
           ),
@@ -108,7 +99,7 @@ void main() {
       const customPadding = EdgeInsets.all(50);
 
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             padding: customPadding,
             child: Text('Body'),
@@ -128,11 +119,10 @@ void main() {
 
     testWidgets('renders bottomNavigationBar', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
-            // ignore: sort_child_properties_last
-            child: SizedBox(),
             bottomNavigationBar: Text('Bottom'),
+            child: SizedBox(),
           ),
         ),
       );
@@ -142,7 +132,7 @@ void main() {
 
     testWidgets('renders actions in AppBar', (tester) async {
       await tester.pumpWidget(
-        buildTestWidget(
+        wrapper(
           const BasePage(
             title: Text('Title'),
             actions: [Icon(Icons.add)],
