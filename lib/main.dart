@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: AppRoutes.splash,
       initialBinding: GlobalBinding(),
       getPages: AppPages.pages,
+      initialRoute: AppRoutes.splash,
       debugShowCheckedModeBanner: false,
       locale: const Locale('pt'),
       localizationsDelegates: const [
