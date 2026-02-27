@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/widgets/base_page.dart';
+import 'package:talent_crm_app/core/pages/base_page.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});

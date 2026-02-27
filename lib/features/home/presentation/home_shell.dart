@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:talent_crm_app/core/design/design.dart';
-import 'package:talent_crm_app/core/widgets/base_page.dart';
+import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
