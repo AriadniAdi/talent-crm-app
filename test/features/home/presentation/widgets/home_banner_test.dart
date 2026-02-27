@@ -41,15 +41,13 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {
-              pressed = true;
-            },
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {
+            pressed = true;
+          },
         ),
       ),
     );
@@ -63,13 +61,11 @@ void main() {
   testWidgets('HomeBanner contains CustomPaint background', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {},
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {},
         ),
       ),
     );
@@ -83,13 +79,11 @@ void main() {
   testWidgets('HomeBanner expands full width', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {},
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {},
         ),
       ),
     );

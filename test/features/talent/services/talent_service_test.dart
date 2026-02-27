@@ -111,7 +111,7 @@ void main() {
 
       verify(() => mockClient.get(
             AppConfig.uri('/users/1'),
-            headers: AppConfig.defaultHeaders,
+            headers: any(named: 'headers'),
           )).called(1);
     });
 

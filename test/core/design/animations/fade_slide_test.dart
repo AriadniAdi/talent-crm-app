@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:talent_crm_app/core/design/animations/fade_slide.dart';
 
-import '../../../presentation/helpers/wrapper.dart';
+import '../../../features/helpers/wrapper.dart';
 
 void main() {
   testWidgets('renders child correctly', (tester) async {

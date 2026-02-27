@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:talent_crm_app/core/widgets/base_page.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 
-import '../../presentation/helpers/wrapper.dart';
+import '../../features/helpers/wrapper.dart';
 
 void main() {
+  setUp(() {
+    Get.testMode = true;
+    Get.reset();
+  });
+
+  tearDown(() {
+    Get.reset();
+  });
   group('BasePage', () {
     testWidgets('renders child content', (tester) async {
       await tester.pumpWidget(

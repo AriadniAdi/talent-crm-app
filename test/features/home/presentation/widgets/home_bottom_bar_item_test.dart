@@ -4,7 +4,7 @@ import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_ba
 
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 void main() {
   test('HomeTab enum contains expected values', () {

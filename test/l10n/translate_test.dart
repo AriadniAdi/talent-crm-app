@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 import 'package:talent_crm_app/l10n/translate.dart';
-import '../presentation/helpers/wrapper.dart';
+import '../features/helpers/wrapper.dart';
 
 void main() {
   testWidgets('LocalizationExtension returns AppLocalizations', (tester) async {

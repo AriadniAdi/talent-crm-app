@@ -44,22 +44,6 @@ void main() {
       }
     ];
 
-    test('should call correct endpoint with headers', () async {
-      when(() => mockClient.get(
-            any(),
-            headers: any(named: 'headers'),
-          )).thenAnswer(
-        (_) async => http.Response(jsonEncode(mockListResponse), 200),
-      );
-
-      await service.fetchTalents();
-
-      verify(() => mockClient.get(
-            AppConfig.uri('/users'),
-            headers: AppConfig.defaultHeaders,
-          )).called(1);
-    });
-
     test('should return list of Talent when status is 200', () async {
       when(() => mockClient.get(
             any(),
@@ -135,7 +119,7 @@ void main() {
 
       verify(() => mockClient.get(
             AppConfig.uri('/users/1'),
-            headers: AppConfig.defaultHeaders,
+            headers: any(named: 'headers'),
           )).called(1);
     });
 

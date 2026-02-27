@@ -10,7 +10,7 @@ import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecas
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
 
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 class FakeHomeController extends GetxController implements HomeController {
   @override

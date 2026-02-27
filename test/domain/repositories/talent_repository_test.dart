@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';

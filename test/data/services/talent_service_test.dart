@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:http/http.dart' as http;
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/network/api_client.dart';
+import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 
 class MockHttpClient extends Mock implements http.Client {}

@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
@@ -60,12 +62,13 @@ void main() {
 
   group('HomeController - fetchEmployees', () {
     test('should populate employees lists on success', () async {
-      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockGetTalentsUseCase())
+          .thenAnswer((_) async => Success(mockTalents));
 
       await controller.fetchEmployees();
 
       expect(controller.isLoading.value, false);
-      expect(controller.error.value, null);
+      expect(controller.screenError.value, null);
 
       expect(controller.allEmployees.length, 6);
       expect(controller.allEmployees.first.id, 1);
@@ -79,12 +82,13 @@ void main() {
     });
 
     test('should set error message when usecase throws', () async {
-      when(() => mockGetTalentsUseCase()).thenThrow(Exception('boom'));
+      when(() => mockGetTalentsUseCase())
+          .thenAnswer((_) async => Failure(ServerError()));
 
       await controller.fetchEmployees();
 
       expect(controller.isLoading.value, false);
-      expect(controller.error.value, 'Falha ao carregar funcionários');
+      expect(controller.screenError.value, isA<ServerError>());
 
       expect(controller.allEmployees, isEmpty);
       expect(controller.recentEmployees, isEmpty);
@@ -96,7 +100,7 @@ void main() {
     test('should toggle loading during execution', () async {
       when(() => mockGetTalentsUseCase()).thenAnswer((_) async {
         await Future.delayed(const Duration(milliseconds: 10));
-        return mockTalents;
+        return Success(mockTalents);
       });
 
       final future = controller.fetchEmployees();
@@ -111,7 +115,8 @@ void main() {
 
   group('HomeController - search', () {
     test('should filter allEmployees based on name', () async {
-      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockGetTalentsUseCase())
+          .thenAnswer((_) async => Success(mockTalents));
       await controller.fetchEmployees();
 
       controller.search('John');
@@ -122,7 +127,8 @@ void main() {
     });
 
     test('should restore full list when query is empty', () async {
-      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockGetTalentsUseCase())
+          .thenAnswer((_) async => Success(mockTalents));
       await controller.fetchEmployees();
 
       controller.search('John');
@@ -136,7 +142,8 @@ void main() {
 
   group('HomeController - onInit', () {
     test('should call fetchEmployees on init', () async {
-      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => mockTalents);
+      when(() => mockGetTalentsUseCase())
+          .thenAnswer((_) async => Success(mockTalents));
 
       controller.onInit();
 
