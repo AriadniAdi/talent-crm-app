@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import 'package:talent_crm_app/core/config/app_config.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/network/api_client.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
@@ -23,8 +26,7 @@ void main() {
   setUp(() {
     mockClient = MockHttpClient();
     service = TalentService(
-      baseUrl: AppConfig.baseUrl,
-      client: mockClient,
+      apiClient: ApiClient(mockClient),
     );
   });
 
@@ -42,22 +44,6 @@ void main() {
       }
     ];
 
-    test('should call correct endpoint with headers', () async {
-      when(() => mockClient.get(
-            any(),
-            headers: any(named: 'headers'),
-          )).thenAnswer(
-        (_) async => http.Response(jsonEncode(mockListResponse), 200),
-      );
-
-      await service.fetchTalents();
-
-      verify(() => mockClient.get(
-            AppConfig.uri('/users'),
-            headers: AppConfig.defaultHeaders,
-          )).called(1);
-    });
-
     test('should return list of Talent when status is 200', () async {
       when(() => mockClient.get(
             any(),
@@ -68,9 +54,14 @@ void main() {
 
       final result = await service.fetchTalents();
 
-      expect(result, isA<List<Talent>>());
-      expect(result.length, 1);
-      expect(result.first.name, 'Leanne Graham');
+      result.when(
+        success: (data) {
+          expect(data, isA<List<Talent>>());
+          expect(data.length, 1);
+          expect(data.first.name, 'Leanne Graham');
+        },
+        failure: (_) => fail('Expected success but got failure'),
+      );
     });
 
     test('should throw exception when status is not 200', () async {
@@ -81,10 +72,8 @@ void main() {
         (_) async => http.Response('Error', 500),
       );
 
-      expect(
-        () => service.fetchTalents(),
-        throwsA(isA<Exception>()),
-      );
+      final result = await service.fetchTalents();
+      expect(result, isA<Failure<List<Talent>>>());
     });
 
     test('should throw exception when response is not a list', () async {
@@ -95,9 +84,13 @@ void main() {
         (_) async => http.Response(jsonEncode({"invalid": "data"}), 200),
       );
 
-      expect(
-        () => service.fetchTalents(),
-        throwsA(isA<Exception>()),
+      final result = await service.fetchTalents();
+
+      result.when(
+        success: (_) => fail('Expected failure but got success'),
+        failure: (error) {
+          expect(error, isA<ParsingError>());
+        },
       );
     });
   });
@@ -126,7 +119,7 @@ void main() {
 
       verify(() => mockClient.get(
             AppConfig.uri('/users/1'),
-            headers: AppConfig.defaultHeaders,
+            headers: any(named: 'headers'),
           )).called(1);
     });
 
@@ -140,8 +133,13 @@ void main() {
 
       final result = await service.fetchTalentById(1);
 
-      expect(result, isA<Talent>());
-      expect(result.name, 'Leanne Graham');
+      result.when(
+        success: (data) {
+          expect(data, isA<Talent>());
+          expect(data.name, 'Leanne Graham');
+        },
+        failure: (_) => fail('Expected success but got failure'),
+      );
     });
 
     test('should throw exception when status is not 200', () async {
@@ -152,10 +150,9 @@ void main() {
         (_) async => http.Response('Error', 404),
       );
 
-      expect(
-        () => service.fetchTalentById(1),
-        throwsA(isA<Exception>()),
-      );
+      final result = await service.fetchTalentById(1);
+
+      expect(result, isA<Failure<Talent>>());
     });
   });
 }

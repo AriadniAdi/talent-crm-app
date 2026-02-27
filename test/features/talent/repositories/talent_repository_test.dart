@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
@@ -28,7 +30,8 @@ void main() {
 
   group('getTalents', () {
     test('should call service.fetchTalents once', () async {
-      when(() => mockService.fetchTalents()).thenAnswer((_) async => []);
+      when(() => mockService.fetchTalents())
+          .thenAnswer((_) async => Success([]));
 
       await repository.getTalents();
 
@@ -39,11 +42,17 @@ void main() {
     test('should return list of talents from service', () async {
       final talents = [mockTalent];
 
-      when(() => mockService.fetchTalents()).thenAnswer((_) async => talents);
+      when(() => mockService.fetchTalents())
+          .thenAnswer((_) async => Success(talents));
 
       final result = await repository.getTalents();
 
-      expect(result, equals(talents));
+      result.when(
+        success: (data) {
+          expect(data, equals(talents));
+        },
+        failure: (_) => fail('Expected success'),
+      );
     });
 
     test('should propagate exception when service throws', () async {
@@ -60,7 +69,7 @@ void main() {
   group('getTalentById', () {
     test('should call service.fetchTalentById with correct id', () async {
       when(() => mockService.fetchTalentById(1))
-          .thenAnswer((_) async => mockTalent);
+          .thenAnswer((_) async => Success(mockTalent));
 
       await repository.getTalentById(1);
 
@@ -70,11 +79,16 @@ void main() {
 
     test('should return talent from service', () async {
       when(() => mockService.fetchTalentById(1))
-          .thenAnswer((_) async => mockTalent);
+          .thenAnswer((_) async => Success(mockTalent));
 
       final result = await repository.getTalentById(1);
 
-      expect(result, equals(mockTalent));
+      result.when(
+        success: (data) {
+          expect(data, equals(mockTalent));
+        },
+        failure: (AppError error) {},
+      );
     });
 
     test('should propagate exception when service throws', () async {

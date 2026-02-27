@@ -1,11 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/core/design/brand/talent_logo.dart';
 import 'package:talent_crm_app/core/design/painters/network_painter.dart';
 
-import '../../../presentation/helpers/wrapper.dart';
+import '../../../features/helpers/wrapper.dart';
 
 void main() {
+  setUp(() {
+    Get.testMode = true;
+    Get.reset();
+  });
+
+  tearDown(() {
+    Get.reset();
+  });
   testWidgets('TalentLogo renders without crashing', (tester) async {
     await tester.pumpWidget(
       wrapper(
@@ -32,14 +43,10 @@ void main() {
       ),
     );
 
-    final container = tester.widget<Container>(
-      find.descendant(
-        of: find.byType(TalentLogo),
-        matching: find.byType(Container),
-      ),
-    );
+    final renderedSize = tester.getSize(find.byType(TalentLogo));
 
-    expect(container.constraints?.maxWidth ?? size, size);
+    expect(renderedSize.width, size);
+    expect(renderedSize.height, size);
   });
 
   testWidgets('TalentLogo has correct dimensions', (tester) async {
@@ -51,11 +58,10 @@ void main() {
       ),
     );
 
-    final logoFinder = find.byType(TalentLogo);
-    final sizeRendered = tester.getSize(logoFinder);
+    final renderedSize = tester.getSize(find.byType(TalentLogo));
 
-    expect(sizeRendered.width, size);
-    expect(sizeRendered.height, size);
+    expect(renderedSize.width, size);
+    expect(renderedSize.height, size);
   });
 
   testWidgets('TalentLogo uses NetworkPainter', (tester) async {

@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
@@ -28,7 +30,7 @@ void main() {
   group('GetTalentByIdUseCase', () {
     test('should call repository.getTalentById with correct id', () async {
       when(() => mockRepository.getTalentById(1))
-          .thenAnswer((_) async => mockTalent);
+          .thenAnswer((_) async => Success(mockTalent));
 
       await useCase(1);
 
@@ -36,22 +38,17 @@ void main() {
       verifyNoMoreInteractions(mockRepository);
     });
 
-    test('should return Talent from repository', () async {
+    test('should return Failure when repository fails', () async {
       when(() => mockRepository.getTalentById(1))
-          .thenAnswer((_) async => mockTalent);
+          .thenAnswer((_) async => Failure(ServerError()));
 
       final result = await useCase(1);
 
-      expect(result, equals(mockTalent));
-    });
-
-    test('should propagate exception when repository throws', () async {
-      when(() => mockRepository.getTalentById(1))
-          .thenThrow(Exception('Repository error'));
-
-      expect(
-        () => useCase(1),
-        throwsA(isA<Exception>()),
+      result.when(
+        success: (_) => fail('Expected failure'),
+        failure: (error) {
+          expect(error, isA<ServerError>());
+        },
       );
     });
   });

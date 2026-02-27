@@ -1,51 +1,51 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/config/app_config.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/network/api_client.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/model/talent_model.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 class TalentService {
-  final String baseUrl;
-  final http.Client client;
+  final ApiClient apiClient;
 
   const TalentService({
-    required this.baseUrl,
-    required this.client,
+    required this.apiClient,
   });
 
-  Future<List<Talent>> fetchTalents() async {
-    final response = await client.get(
-      AppConfig.uri('/users'),
-      headers: AppConfig.defaultHeaders,
-    );
+  Future<Result<List<Talent>>> fetchTalents() async {
+    final result = await apiClient.get(AppConfig.uri('/users'));
+    return result.when(
+        success: (data) {
+          if (data is! List) {
+            return Failure(ParsingError());
+          }
+          final talents = data
+              .map<Talent>((json) => TalentModel.fromJson(json).toEntity())
+              .toList();
 
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load talents');
-    }
-
-    final decoded = jsonDecode(response.body);
-
-    if (decoded is! List) {
-      throw Exception('Invalid response format');
-    }
-
-    return decoded
-        .map<Talent>((json) => TalentModel.fromJson(json).toEntity())
-        .toList();
+          return Success(talents);
+        },
+        failure: (error) => Failure(error));
   }
 
-  Future<Talent> fetchTalentById(int id) async {
-    final response = await client.get(
-      AppConfig.uri('/users/$id'),
-      headers: AppConfig.defaultHeaders,
+  Future<Result<Talent>> fetchTalentById(int id) async {
+    final uri = AppConfig.uri('/users/$id');
+
+    final result = await apiClient.get(uri);
+
+    return result.when(
+      success: (data) {
+        if (data is! Map<String, dynamic>) {
+          return Failure(ParsingError());
+        }
+
+        return Success(
+          TalentModel.fromJson(data).toEntity(),
+        );
+      },
+      failure: (error) {
+        return Failure(error);
+      },
     );
-
-    if (response.statusCode != 200) {
-      throw Exception('Failed to load talent');
-    }
-
-    final json = jsonDecode(response.body);
-
-    return TalentModel.fromJson(json).toEntity();
   }
 }

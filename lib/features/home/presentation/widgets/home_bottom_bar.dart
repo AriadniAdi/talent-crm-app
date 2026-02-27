@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
+import 'package:talent_crm_app/core/widgets/notification_icon_widget.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar_item.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
@@ -27,13 +28,13 @@ class HomeBottomBar extends StatelessWidget {
 
           return NavigationDestination(
             icon: isNotifications
-                ? _NotificationIcon(
+                ? NotificationIcon(
                     count: notificationCount,
                     isActive: false,
                   )
                 : Icon(item.icon),
             selectedIcon: isNotifications
-                ? _NotificationIcon(
+                ? NotificationIcon(
                     count: notificationCount,
                     isActive: true,
                   )
@@ -41,46 +42,5 @@ class HomeBottomBar extends StatelessWidget {
             label: item.label(context.translate),
           );
         }).toList());
-  }
-}
-
-class _NotificationIcon extends StatelessWidget {
-  final int count;
-  final bool isActive;
-
-  const _NotificationIcon({
-    required this.count,
-    required this.isActive,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      clipBehavior: Clip.none,
-      children: [
-        Icon(isActive ? Icons.notifications : Icons.notifications_outlined),
-        if (count > 0)
-          Positioned(
-            right: -AppSpacing.sm,
-            top: -AppSpacing.xs,
-            child: Container(
-              padding: const EdgeInsets.all(AppSpacing.xs),
-              decoration: const BoxDecoration(
-                color: AppColors.badge,
-                shape: BoxShape.circle,
-              ),
-              constraints: const BoxConstraints(
-                minWidth: 18,
-                minHeight: 18,
-              ),
-              child: Text(
-                count > 9 ? '9+' : '$count',
-                style: AppTextStyles.badge,
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-      ],
-    );
   }
 }

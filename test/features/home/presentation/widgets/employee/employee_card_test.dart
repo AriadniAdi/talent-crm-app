@@ -1,12 +1,15 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
-import '../../../../../presentation/helpers/wrapper.dart';
+import '../../../../helpers/wrapper.dart';
 
 void main() {
   late Talent fakeTalent;
@@ -16,6 +19,9 @@ void main() {
   });
 
   setUp(() {
+    Get.testMode = true;
+    Get.reset();
+
     FlutterError.onError = (FlutterErrorDetails details) {};
     fakeTalent = const Talent(
       id: 1,
@@ -26,6 +32,10 @@ void main() {
       website: 'website',
       contact: ContactTalent(email: 'email', phone: 'phone'),
     );
+  });
+
+  tearDown(() {
+    Get.reset();
   });
 
   testWidgets('EmployeeCard renders employee name', (tester) async {

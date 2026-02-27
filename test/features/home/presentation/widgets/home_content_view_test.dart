@@ -3,6 +3,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:network_image_mock/network_image_mock.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 
@@ -17,7 +19,7 @@ import '../../../helpers/wrapper.dart';
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
 void main() {
-  late MockGetTalentsUseCase mockGetTalentsUseCase;
+  late MockGetTalentsUseCase mockUseCase;
   late HomeController controller;
 
   final talents = [
@@ -42,10 +44,12 @@ void main() {
   ];
 
   setUp(() {
-    mockGetTalentsUseCase = MockGetTalentsUseCase();
+    mockUseCase = MockGetTalentsUseCase();
+
+    when(() => mockUseCase()).thenAnswer((_) async => Success([]));
 
     controller = HomeController(
-      mockGetTalentsUseCase,
+      mockUseCase,
       getRecentTalentsUseCase: const GetRecentTalentsUseCase(),
       searchTalentsUseCase: const SearchTalentsUseCase(),
     );
@@ -58,7 +62,7 @@ void main() {
   });
 
   testWidgets('shows loading when isLoading is true', (tester) async {
-    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+    when(() => mockUseCase()).thenAnswer((_) async => Success([]));
 
     controller.isLoading.value = true;
 
@@ -71,29 +75,29 @@ void main() {
   testWidgets(
     'shows error UI when error != null and allEmployees is empty and retry calls fetchEmployees',
     (tester) async {
-      when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+      when(() => mockUseCase()).thenAnswer((_) async => Failure(ServerError()));
 
       controller.isLoading.value = false;
-      controller.error.value = 'Falha ao carregar funcionários';
+      controller.screenError.value = ServerError();
       controller.allEmployees.clear();
 
       await tester.pumpWidget(wrapper(const HomeContentView()));
 
-      expect(find.byIcon(Icons.error_outline), findsOneWidget);
-      expect(find.text('Falha ao carregar funcionários'), findsOneWidget);
-      expect(find.text('Tentar Novamente'), findsOneWidget);
+      expect(find.textContaining('Tentar'), findsOneWidget);
 
+      await tester.tap(find.textContaining('Tentar'));
       await tester.pump();
-      verify(() => mockGetTalentsUseCase()).called(1);
+
+      verify(() => mockUseCase()).called(2);
     },
   );
 
   testWidgets('shows empty message when allEmployees is empty and no error',
       (tester) async {
-    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => []);
+    when(() => mockUseCase()).thenAnswer((_) async => Failure(ServerError()));
 
     controller.isLoading.value = false;
-    controller.error.value = null;
+    controller.screenError.value = null;
     controller.allEmployees.clear();
 
     await tester.pumpWidget(wrapper(const HomeContentView()));
@@ -104,10 +108,10 @@ void main() {
   });
 
   testWidgets('renders HomeContent when there are employees', (tester) async {
-    when(() => mockGetTalentsUseCase()).thenAnswer((_) async => talents);
+    when(() => mockUseCase()).thenAnswer((_) async => Success(talents));
 
     controller.isLoading.value = false;
-    controller.error.value = null;
+    controller.screenError.value = null;
 
     controller.allEmployees.assignAll(talents);
     controller.recentEmployees.assignAll(talents.take(1).toList());

@@ -6,14 +6,14 @@ import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
 
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 void main() {
   testWidgets('renders CircleAvatar and letter', (tester) async {
     await tester.pumpWidget(
       wrapper(
         const ProfileAvatarButton(
-          account: Account(id: 1),
+          account: Account(id: 42),
         ),
       ),
     );

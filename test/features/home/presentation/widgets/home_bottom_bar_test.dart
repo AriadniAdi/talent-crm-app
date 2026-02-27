@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 void main() {
+  setUp(() {
+    Get.testMode = true;
+    Get.reset();
+  });
+
+  tearDown(() {
+    Get.reset();
+  });
   testWidgets('HomeBottomBar renders 4 destinations', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 0,
-            onTap: (_) {},
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 0,
+          onTap: (_) {},
         ),
       ),
     );
@@ -24,11 +34,10 @@ void main() {
   testWidgets('HomeBottomBar uses correct selectedIndex', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 2,
-            onTap: (_) {},
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 2,
+          onTap: (_) {},
         ),
       ),
     );
@@ -46,13 +55,12 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 0,
-            onTap: (index) {
-              tappedIndex = index;
-            },
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 0,
+          onTap: (index) {
+            tappedIndex = index;
+          },
         ),
       ),
     );
@@ -66,12 +74,11 @@ void main() {
   testWidgets('Notification badge appears when count > 0', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 0,
-            onTap: (_) {},
-            notificationCount: 3,
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 0,
+          onTap: (_) {},
+          notificationCount: 3,
         ),
       ),
     );
@@ -82,12 +89,11 @@ void main() {
   testWidgets('Notification badge shows 9+ when count > 9', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 0,
-            onTap: (_) {},
-            notificationCount: 15,
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 0,
+          onTap: (_) {},
+          notificationCount: 15,
         ),
       ),
     );
@@ -99,12 +105,11 @@ void main() {
       (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          bottomNavigationBar: HomeBottomBar(
-            currentIndex: 0,
-            onTap: (_) {},
-            notificationCount: 0,
-          ),
+        Container(),
+        bottomNavigationBar: HomeBottomBar(
+          currentIndex: 0,
+          onTap: (_) {},
+          notificationCount: 0,
         ),
       ),
     );

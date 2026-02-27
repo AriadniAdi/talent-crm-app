@@ -4,7 +4,7 @@ import 'package:talent_crm_app/features/account/presentation/account_controller.
 import 'package:talent_crm_app/features/account/presentation/account_page.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
 
-import '../../../presentation/helpers/wrapper.dart';
+import '../../helpers/wrapper.dart';
 
 void main() {
   setUp(() {

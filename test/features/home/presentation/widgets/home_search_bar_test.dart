@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_search_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
+import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
 
@@ -16,7 +18,12 @@ void main() {
   late MockGetTalentsUseCase mockUseCase;
 
   setUp(() {
+    Get.reset();
+
     mockUseCase = MockGetTalentsUseCase();
+
+    when(() => mockUseCase()).thenAnswer((_) async => Success(<Talent>[]));
+
     controller = HomeController(mockUseCase);
 
     Get.put<HomeController>(controller);

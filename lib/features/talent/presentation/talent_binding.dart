@@ -2,6 +2,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
@@ -12,7 +13,7 @@ class TalentBinding extends Bindings {
     final idParam = Get.parameters['id'];
 
     if (idParam == null) {
-      throw Exception('Talent id not provided');
+      throw InvalidRouteError();
     }
 
     final id = int.tryParse(idParam);

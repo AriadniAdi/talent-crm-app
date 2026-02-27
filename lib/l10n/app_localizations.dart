@@ -162,6 +162,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Talent CRM'**
   String get appTitle;
+
+  /// Shown when the device has no internet connection and a network request fails.
+  ///
+  /// In en, this message translates to:
+  /// **'No internet connection. Please check your connection and try again.'**
+  String get noInternet;
+
+  /// Shown when the server returns an unexpected error (e.g., 500).
+  ///
+  /// In en, this message translates to:
+  /// **'Something went wrong on our side. Please try again later.'**
+  String get serverError;
+
+  /// Shown when a requested resource cannot be found (e.g., 404).
+  ///
+  /// In en, this message translates to:
+  /// **'The requested resource was not found.'**
+  String get notFound;
+
+  /// Shown when the response format from the server is invalid or cannot be parsed.
+  ///
+  /// In en, this message translates to:
+  /// **'We received an unexpected response from the server.'**
+  String get invalidFormat;
+
+  /// Shown when navigation is attempted with invalid or missing route parameters.
+  ///
+  /// In en, this message translates to:
+  /// **'The page you tried to access is invalid.'**
+  String get invalidRoute;
+
+  /// Fallback message shown when an unknown or unhandled error occurs.
+  ///
+  /// In en, this message translates to:
+  /// **'An unexpected error occurred. Please try again.'**
+  String get unknownError;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

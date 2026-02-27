@@ -1,5 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
@@ -46,11 +47,11 @@ void main() {
   group('GetTalentsUseCase', () {
     test('should return talents from repository', () async {
       when(() => mockRepository.getTalents())
-          .thenAnswer((_) async => mockTalents);
+          .thenAnswer((_) async => Success(mockTalents));
 
       final result = await useCase();
 
-      expect(result, mockTalents);
+      expect(result, isA<Success<List<Talent>>>());
       verify(() => mockRepository.getTalents()).called(1);
       verifyNoMoreInteractions(mockRepository);
     });

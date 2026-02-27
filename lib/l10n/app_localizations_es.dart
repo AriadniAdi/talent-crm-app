@@ -40,4 +40,22 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get appTitle => 'Talent CRM';
+
+  @override
+  String get noInternet => 'Sin conexión a internet. Verifica tu conexión e inténtalo nuevamente.';
+
+  @override
+  String get serverError => 'Ocurrió un error en el servidor. Inténtalo más tarde.';
+
+  @override
+  String get notFound => 'El recurso solicitado no fue encontrado.';
+
+  @override
+  String get invalidFormat => 'Recibimos una respuesta inesperada del servidor.';
+
+  @override
+  String get invalidRoute => 'La página que intentaste acceder es inválida.';
+
+  @override
+  String get unknownError => 'Ocurrió un error inesperado. Inténtalo nuevamente.';
 }

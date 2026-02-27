@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/core/routes/app_pages.dart';
-import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
@@ -16,9 +18,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: AppRoutes.splash,
       initialBinding: GlobalBinding(),
       getPages: AppPages.pages,
+      initialRoute: AppRoutes.splash,
       debugShowCheckedModeBanner: false,
       locale: const Locale('pt'),
       localizationsDelegates: const [

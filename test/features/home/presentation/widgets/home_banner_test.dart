@@ -1,10 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_banner.dart';
-import '../../../../presentation/helpers/wrapper.dart';
+import '../../../helpers/wrapper.dart';
 
 void main() {
+  setUp(() {
+    Get.testMode = true;
+    Get.reset();
+  });
+
+  tearDown(() {
+    Get.reset();
+  });
   testWidgets('HomeBanner renders title, subtitle and button', (tester) async {
     await tester.pumpWidget(
       wrapper(
@@ -30,15 +41,13 @@ void main() {
 
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {
-              pressed = true;
-            },
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {
+            pressed = true;
+          },
         ),
       ),
     );
@@ -52,13 +61,11 @@ void main() {
   testWidgets('HomeBanner contains CustomPaint background', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {},
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {},
         ),
       ),
     );
@@ -72,13 +79,11 @@ void main() {
   testWidgets('HomeBanner expands full width', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        Scaffold(
-          body: HomeBanner(
-            title: 'Title',
-            subtitle: 'Subtitle',
-            buttonText: 'Click',
-            onPressed: () {},
-          ),
+        HomeBanner(
+          title: 'Title',
+          subtitle: 'Subtitle',
+          buttonText: 'Click',
+          onPressed: () {},
         ),
       ),
     );

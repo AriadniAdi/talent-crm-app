@@ -53,5 +53,36 @@
   "searchEmployeeHint": "Buscar funcionário...",
   "@searchEmployeeHint": {
     "description": "Texto de dica exibido no campo de busca de funcionários"
+  },
+  "noInternet": "Sem conexão com a internet. Verifique sua conexão e tente novamente.",
+  "@noInternet": {
+    "description": "Exibido quando o dispositivo está sem conexão com a internet e uma requisição falha.",
+    "type": "text"
+  },
+  "serverError": "Ocorreu um erro no servidor. Tente novamente mais tarde.",
+  "@serverError": {
+    "description": "Exibido quando o servidor retorna um erro inesperado (ex: 500).",
+    "type": "text"
+  },
+  "notFound": "O recurso solicitado não foi encontrado.",
+  "@notFound": {
+    "description": "Exibido quando um recurso solicitado não é encontrado (ex: 404).",
+    "type": "text"
+  },
+  "invalidFormat": "Recebemos uma resposta inesperada do servidor.",
+  "@invalidFormat": {
+    "description": "Exibido quando o formato da resposta do servidor é inválido ou não pode ser interpretado.",
+    "type": "text"
+  },
+  "invalidRoute": "A página que você tentou acessar é inválida.",
+  "@invalidRoute": {
+    "description": "Exibido quando a navegação é feita com parâmetros inválidos ou ausentes.",
+    "type": "text"
+  },
+  "unknownError": "Ocorreu um erro inesperado. Tente novamente.",
+  "@unknownError": {
+    "description": "Mensagem padrão exibida quando ocorre um erro desconhecido ou não tratado.",
+    "type": "text"
   }
+
 }
