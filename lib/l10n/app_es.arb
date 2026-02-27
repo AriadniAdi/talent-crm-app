@@ -47,5 +47,35 @@
   "appTitle": "Talent CRM",
   "@appTitle": {
   "description": "Nombre de la aplicación"
+  },
+    "noInternet": "Sin conexión a internet. Verifica tu conexión e inténtalo nuevamente.",
+  "@noInternet": {
+    "description": "Se muestra cuando el dispositivo no tiene conexión a internet y una solicitud falla.",
+    "type": "text"
+  },
+  "serverError": "Ocurrió un error en el servidor. Inténtalo más tarde.",
+  "@serverError": {
+    "description": "Se muestra cuando el servidor devuelve un error inesperado (ej: 500).",
+    "type": "text"
+  },
+  "notFound": "El recurso solicitado no fue encontrado.",
+  "@notFound": {
+    "description": "Se muestra cuando un recurso solicitado no se encuentra (ej: 404).",
+    "type": "text"
+  },
+  "invalidFormat": "Recibimos una respuesta inesperada del servidor.",
+  "@invalidFormat": {
+    "description": "Se muestra cuando el formato de la respuesta del servidor es inválido o no puede procesarse.",
+    "type": "text"
+  },
+  "invalidRoute": "La página que intentaste acceder es inválida.",
+  "@invalidRoute": {
+    "description": "Se muestra cuando se intenta navegar con parámetros inválidos o faltantes.",
+    "type": "text"
+  },
+  "unknownError": "Ocurrió un error inesperado. Inténtalo nuevamente.",
+  "@unknownError": {
+     "description": "Mensaje predeterminado cuando ocurre un error desconocido o no manejado.",
+    "type": "text"
   }
 }

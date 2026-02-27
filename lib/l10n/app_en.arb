@@ -47,5 +47,34 @@
   "appTitle": "Talent CRM",
   "@appTitle": {
       "description": "Application name"
+  },
+  "noInternet": "No internet connection. Please check your connection and try again.",
+  "@noInternet": { 
+    "description": "Shown when the device has no internet connection and a network request fails.",
+    "type": "text"},
+  "serverError": "Something went wrong on our side. Please try again later.",
+  "@serverError": {
+    "description": "Shown when the server returns an unexpected error (e.g., 500).",
+    "type": "text"
+  },
+  "notFound": "The requested resource was not found.",
+  "@notFound": {
+    "description": "Shown when a requested resource cannot be found (e.g., 404).",
+    "type": "text"
+  },
+  "invalidFormat": "We received an unexpected response from the server.",
+  "@invalidFormat": {
+    "description": "Shown when the response format from the server is invalid or cannot be parsed.",
+    "type": "text"
+  },
+  "invalidRoute": "The page you tried to access is invalid.",
+  "@invalidRoute": {
+     "description": "Shown when navigation is attempted with invalid or missing route parameters.",
+    "type": "text"
+  },
+  "unknownError": "An unexpected error occurred. Please try again.",
+  "@unknownError": {
+    "description": "Fallback message shown when an unknown or unhandled error occurs.",
+    "type": "text"
   }
 }
