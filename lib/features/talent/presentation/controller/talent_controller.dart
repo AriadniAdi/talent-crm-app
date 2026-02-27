@@ -27,59 +27,49 @@ class TalentController extends GetxController {
   }
 
   Future<void> fetchTalent() async {
-    try {
-      isLoading.value = true;
-      error.value = null;
+    isLoading.value = true;
+    screenError.value = null;
 
-      final result = await getTalentByIdUseCase(id);
-      talent.value = result;
-    } catch (e) {
-      error.value =
-          e is Exception ? e.toString() : 'Erro inesperado ao carregar talento';
-    } finally {
-      isLoading.value = false;
-    }
+    final result = await getTalentByIdUseCase(id);
+
+    result.when(success: (data) {
+      talent.value = data;
+    }, failure: (error) {
+      screenError.value = error;
+    });
+
+    isLoading.value = false;
   }
 
   Future<void> toggleRecording() async {
-    try {
-      audioError.value = null;
+    audioError.value = null;
 
-      if (isRecording.value) {
-        isRecording.value = false;
-
-        voiceNotes.insert(
-          0,
-          VoiceNoteModel(
-            id: DateTime.now().millisecondsSinceEpoch.toString(),
-            duration: const Duration(seconds: 12),
-            filePath: '',
-            createdAt: DateTime.now(),
-          ),
-        );
-      } else {
-        isRecording.value = true;
-      }
-    } catch (e) {
-      audioError.value = 'Erro ao gravar áudio';
+    if (isRecording.value) {
       isRecording.value = false;
+
+      voiceNotes.insert(
+        0,
+        VoiceNoteModel(
+          id: DateTime.now().millisecondsSinceEpoch.toString(),
+          duration: const Duration(seconds: 12),
+          filePath: '',
+          createdAt: DateTime.now(),
+        ),
+      );
+    } else {
+      isRecording.value = true;
     }
   }
 
-  Future<void> togglePlay(VoiceNoteModel note) async {
-    try {
-      audioError.value = null;
+  void togglePlay(VoiceNoteModel note) {
+    audioError.value = null;
 
-      if (isPlayingId.value == note.id) {
-        isPlayingId.value = null;
-        return;
-      }
-
-      isPlayingId.value = note.id;
-    } catch (e) {
-      audioError.value = 'Erro ao reproduzir áudio';
+    if (isPlayingId.value == note.id) {
       isPlayingId.value = null;
+      return;
     }
+
+    isPlayingId.value = note.id;
   }
 
   void deleteNote(String id) {
