@@ -16,7 +16,13 @@ void main() {
   late HomeController controller;
 
   setUp(() {
+    Get.reset();
+
     mockUseCase = MockGetTalentsUseCase();
+    when(() => mockUseCase()).thenAnswer(
+      (_) async => Success(<Talent>[]),
+    );
+
     controller = HomeController(mockUseCase);
 
     Get.put<HomeController>(controller);
@@ -27,6 +33,8 @@ void main() {
   });
   testWidgets('HomeShell renders HomePage initially', (tester) async {
     await tester.pumpWidget(wrapper(const HomeShell()));
+
+    await tester.pump();
 
     expect(find.byType(HomePage), findsOneWidget);
   });

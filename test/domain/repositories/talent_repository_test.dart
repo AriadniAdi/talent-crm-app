@@ -46,11 +46,17 @@ void main() {
   group('TalentRepositoryImpl.getTalents', () {
     test('should return list of talents when service succeeds', () async {
       when(() => mockService.fetchTalents())
-          .thenAnswer((_) async => mockTalents);
+          .thenAnswer((_) async => Success(mockTalents));
 
       final result = await repository.getTalents();
 
-      expect(result, mockTalents);
+      result.when(
+        success: (data) {
+          expect(data, mockTalents);
+        },
+        failure: (_) => fail('Expected success'),
+      );
+
       verify(() => mockService.fetchTalents()).called(1);
       verifyNoMoreInteractions(mockService);
     });

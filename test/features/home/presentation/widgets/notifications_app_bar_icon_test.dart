@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
@@ -24,9 +25,6 @@ class FakeHomeController extends GetxController implements HomeController {
 
   @override
   RxList<Talent> get allEmployees => throw UnimplementedError();
-
-  @override
-  RxnString get error => throw UnimplementedError();
 
   @override
   Future<void> fetchEmployees() {
@@ -60,6 +58,9 @@ class FakeHomeController extends GetxController implements HomeController {
 
   @override
   void updateNotificationCount(int value) {}
+
+  @override
+  Rxn<AppError> get screenError => throw UnimplementedError();
 }
 
 void main() {

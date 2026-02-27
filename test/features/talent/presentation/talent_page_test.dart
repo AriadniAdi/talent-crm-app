@@ -4,6 +4,7 @@ import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';

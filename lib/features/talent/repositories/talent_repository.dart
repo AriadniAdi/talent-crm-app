@@ -1,9 +1,10 @@
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 abstract class TalentRepository {
-  Future<List<Talent>> getTalents();
-  Future<Talent> getTalentById(int id);
+  Future<Result<List<Talent>>> getTalents();
+  Future<Result<Talent>> getTalentById(int id);
 }
 
 class TalentRepositoryImpl implements TalentRepository {
@@ -12,12 +13,12 @@ class TalentRepositoryImpl implements TalentRepository {
   TalentRepositoryImpl(this.service);
 
   @override
-  Future<List<Talent>> getTalents() async {
+  Future<Result<List<Talent>>> getTalents() async {
     return await service.fetchTalents();
   }
 
   @override
-  Future<Talent> getTalentById(int id) async {
+  Future<Result<Talent>> getTalentById(int id) async {
     return await service.fetchTalentById(id);
   }
 }

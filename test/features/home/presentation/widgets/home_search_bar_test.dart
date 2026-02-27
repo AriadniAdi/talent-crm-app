@@ -16,7 +16,12 @@ void main() {
   late MockGetTalentsUseCase mockUseCase;
 
   setUp(() {
+    Get.reset();
+
     mockUseCase = MockGetTalentsUseCase();
+
+    when(() => mockUseCase()).thenAnswer((_) async => Success(<Talent>[]));
+
     controller = HomeController(mockUseCase);
 
     Get.put<HomeController>(controller);

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get_common/get_reset.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/home_section_employees.dart';
 
@@ -7,13 +10,16 @@ import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/employee/employee_card.dart';
 
-import '../../../../../presentation/helpers/wrapper.dart';
+import '../../../../helpers/wrapper.dart';
 
 void main() {
   late Talent fakeTalent1;
   late Talent fakeTalent2;
 
   setUp(() {
+    Get.testMode = true;
+    Get.reset();
+
     fakeTalent1 = const Talent(
       id: 1,
       name: 'John Doe',
@@ -33,6 +39,10 @@ void main() {
       website: 'site',
       contact: ContactTalent(email: 'a', phone: 'b'),
     );
+  });
+
+  tearDown(() {
+    Get.reset();
   });
 
   testWidgets('returns SizedBox.shrink when employees is empty',

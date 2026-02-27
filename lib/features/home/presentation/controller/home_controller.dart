@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
@@ -25,7 +27,7 @@ class HomeController extends GetxController {
   final RxList<Talent> recentEmployees = <Talent>[].obs;
 
   final RxBool isLoading = false.obs;
-  final RxnString error = RxnString();
+  final Rxn<AppError> screenError = Rxn<AppError>();
 
   final RxString searchQuery = ''.obs;
 
@@ -42,21 +44,27 @@ class HomeController extends GetxController {
   }
 
   Future<void> fetchEmployees() async {
-    try {
-      isLoading.value = true;
-      error.value = null;
+    isLoading.value = true;
+    screenError.value = null;
 
-      final talents = await getTalentsUseCase();
+    final result = await getTalentsUseCase();
 
-      _allOriginal = talents;
+    result.when(
+      success: (talents) {
+        _allOriginal = talents;
 
-      allEmployees.assignAll(talents);
-      recentEmployees.assignAll(getRecentTalentsUseCase(talents, limit: 4));
-    } catch (e) {
-      error.value = 'Falha ao carregar funcionários';
-    } finally {
-      isLoading.value = false;
-    }
+        allEmployees.assignAll(talents);
+
+        recentEmployees.assignAll(
+          getRecentTalentsUseCase(talents, limit: 4),
+        );
+      },
+      failure: (error) {
+        screenError.value = error;
+      },
+    );
+
+    isLoading.value = false;
   }
 
   void search(String value) {

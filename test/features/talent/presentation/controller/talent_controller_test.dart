@@ -70,9 +70,14 @@ void main() {
 
       final result = await service.fetchTalents();
 
-      expect(result, isA<List<Talent>>());
-      expect(result.length, 1);
-      expect(result.first.name, 'Leanne Graham');
+      result.when(
+        success: (data) {
+          expect(data, isA<List<Talent>>());
+          expect(data.length, 1);
+          expect(data.first.name, 'Leanne Graham');
+        },
+        failure: (_) => fail('Expected success but got failure'),
+      );
     });
 
     test('should throw exception when status is not 200', () async {
@@ -83,10 +88,8 @@ void main() {
         (_) async => http.Response('Error', 500),
       );
 
-      expect(
-        () => service.fetchTalents(),
-        throwsA(isA<Exception>()),
-      );
+      final result = await service.fetchTalents();
+      expect(result, isA<Failure<List<Talent>>>());
     });
 
     test('should throw exception when response is not a list', () async {
@@ -97,9 +100,13 @@ void main() {
         (_) async => http.Response(jsonEncode({"invalid": "data"}), 200),
       );
 
-      expect(
-        () => service.fetchTalents(),
-        throwsA(isA<Exception>()),
+      final result = await service.fetchTalents();
+
+      result.when(
+        success: (_) => fail('Expected failure but got success'),
+        failure: (error) {
+          expect(error, isA<ParsingError>());
+        },
       );
     });
   });
@@ -142,8 +149,13 @@ void main() {
 
       final result = await service.fetchTalentById(1);
 
-      expect(result, isA<Talent>());
-      expect(result.name, 'Leanne Graham');
+      result.when(
+        success: (data) {
+          expect(data, isA<Talent>());
+          expect(data.name, 'Leanne Graham');
+        },
+        failure: (_) => fail('Expected success but got failure'),
+      );
     });
 
     test('should throw exception when status is not 200', () async {
@@ -154,10 +166,9 @@ void main() {
         (_) async => http.Response('Error', 404),
       );
 
-      expect(
-        () => service.fetchTalentById(1),
-        throwsA(isA<Exception>()),
-      );
+      final result = await service.fetchTalentById(1);
+
+      expect(result, isA<Failure<Talent>>());
     });
   });
 }

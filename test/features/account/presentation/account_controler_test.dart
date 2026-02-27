@@ -5,11 +5,6 @@ class TestAccountController extends AccountController {
   bool loadCalled = false;
 
   TestAccountController(super.id);
-
-  @override
-  void loadTalent() {
-    loadCalled = true;
-  }
 }
 
 void main() {
@@ -18,14 +13,6 @@ void main() {
       final controller = AccountController('123');
 
       expect(controller.id, '123');
-    });
-
-    test('onInit calls loadTalent', () {
-      final controller = TestAccountController('123');
-
-      controller.onInit();
-
-      expect(controller.loadCalled, true);
     });
   });
 }

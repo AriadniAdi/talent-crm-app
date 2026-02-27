@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
 import 'package:talent_crm_app/features/voice_recording/model/voice_note_model.dart';
@@ -10,13 +12,13 @@ class TalentController extends GetxController {
   TalentController(this.getTalentByIdUseCase, this.id);
 
   final isLoading = false.obs;
-  final error = RxnString();
+  Rxn<AppError> screenError = Rxn<AppError>();
   final talent = Rxn<Talent>();
 
   final voiceNotes = <VoiceNoteModel>[].obs;
   final isRecording = false.obs;
   final isPlayingId = RxnString();
-  final audioError = RxnString();
+  final Rxn<AppError> audioError = Rxn<AppError>();
 
   @override
   void onInit() {
