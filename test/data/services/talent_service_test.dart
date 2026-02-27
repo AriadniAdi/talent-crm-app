@@ -16,7 +16,7 @@ void main() {
 
   setUp(() {
     mockClient = MockHttpClient();
-    service = TalentService(client: mockClient, baseUrl: '');
+    service = TalentService(apiClient: ApiClient(mockClient));
   });
 
   const mockResponse = [
@@ -40,65 +40,88 @@ void main() {
 
     final result = await service.fetchTalents();
 
-    expect(result.length, 1);
-    expect(result.first.name, "John Doe");
-    expect(result.first.city, "Porto Alegre");
-  });
-
-  test('should throw exception when status code is not 200', () async {
-    when(() => mockClient.get(any(), headers: any(named: 'headers')))
-        .thenAnswer(
-      (_) async => http.Response('Error', 500),
+    result.when(
+      success: (data) {
+        expect(data.length, 1);
+      },
+      failure: (_) {
+        fail('Expected success but got failure');
+      },
     );
 
-    expect(
-      () => service.fetchTalents(),
-      throwsException,
+    result.when(
+      success: (data) {
+        expect(data.first.name, "John Doe");
+      },
+      failure: (_) {
+        fail('Expected success but got failure');
+      },
+    );
+
+    result.when(
+      success: (data) {
+        expect(data.first.city, "Porto Alegre");
+      },
+      failure: (_) {
+        fail('Expected success but got failure');
+      },
+    );
+  });
+
+  test('should return Failure when response body is invalid JSON', () async {
+    when(() => mockClient.get(any(), headers: any(named: 'headers')))
+        .thenAnswer(
+      (_) async => http.Response('invalid-json', 200),
+    );
+
+    final result = await service.fetchTalents();
+
+    result.when(
+      success: (_) => fail('Expected failure'),
+      failure: (error) {
+        expect(error, isA<ParsingError>());
+      },
     );
   });
 
   test('should return empty list when response is empty', () async {
     when(() => mockClient.get(any(), headers: any(named: 'headers')))
         .thenAnswer(
-      (_) async => http.Response(jsonEncode([]), 200),
+      (_) async => http.Response('Error', 500),
     );
 
     final result = await service.fetchTalents();
 
-    expect(result, isEmpty);
+    expect(result, isA<Failure<List<Talent>>>());
   });
 
-  test('should throw exception when response body is invalid JSON', () async {
-    when(() => mockClient.get(any(), headers: any(named: 'headers')))
-        .thenAnswer(
-      (_) async => http.Response('invalid-json', 200),
-    );
-
-    expect(
-      () => service.fetchTalents(),
-      throwsA(isA<FormatException>()),
-    );
-  });
-
-  test('should throw exception when response is not a list', () async {
+  test('should return Failure when response is not a list', () async {
     when(() => mockClient.get(any(), headers: any(named: 'headers')))
         .thenAnswer(
       (_) async => http.Response(jsonEncode({"error": "unexpected"}), 200),
     );
 
-    expect(
-      () => service.fetchTalents(),
-      throwsException,
+    final result = await service.fetchTalents();
+
+    result.when(
+      success: (_) => fail('Expected failure'),
+      failure: (error) {
+        expect(error, isA<ParsingError>());
+      },
     );
   });
 
-  test('should throw exception when http client fails', () async {
+  test('should return Failure when http client throws', () async {
     when(() => mockClient.get(any(), headers: any(named: 'headers')))
-        .thenThrow(Exception('Network error'));
+        .thenThrow(http.ClientException('Network error'));
 
-    expect(
-      () => service.fetchTalents(),
-      throwsException,
+    final result = await service.fetchTalents();
+
+    result.when(
+      success: (_) => fail('Expected failure'),
+      failure: (error) {
+        expect(error, isA<NetworkError>());
+      },
     );
   });
 

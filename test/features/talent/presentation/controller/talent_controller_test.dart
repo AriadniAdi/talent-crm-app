@@ -5,6 +5,9 @@ import 'package:http/http.dart' as http;
 import 'package:mocktail/mocktail.dart';
 
 import 'package:talent_crm_app/core/config/app_config.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/network/api_client.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
@@ -23,8 +26,7 @@ void main() {
   setUp(() {
     mockClient = MockHttpClient();
     service = TalentService(
-      baseUrl: AppConfig.baseUrl,
-      client: mockClient,
+      apiClient: ApiClient(mockClient),
     );
   });
 
