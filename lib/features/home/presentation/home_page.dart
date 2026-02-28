@@ -23,7 +23,7 @@ class HomePage extends StatelessWidget {
               title: 'Connect with top talents',
               subtitle: 'Explore professionals, teams and skills in one place.',
               buttonText: 'View Profiles',
-              onPressed: () {},
+              onPressed: () {}, //TODO: trocar esses dados fixos
             ),
             const SizedBox(height: AppSpacing.xl),
             const HomeContentView(),

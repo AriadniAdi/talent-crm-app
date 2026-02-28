@@ -4,6 +4,7 @@ import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/formatters/format_internacional_phone.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class InfoCard extends StatelessWidget {
   final Talent talent;
@@ -51,7 +52,7 @@ class InfoCard extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
-            tooltip: 'Copiar',
+            tooltip: context.translate.copy,
             icon: Icon(
               Icons.copy_rounded,
               size: 18,
@@ -80,9 +81,9 @@ class InfoCard extends StatelessWidget {
     Clipboard.setData(ClipboardData(text: value));
 
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Copiado para a área de transferência'),
-        duration: Duration(milliseconds: 800),
+      SnackBar(
+        content: Text(context.translate.copiedToClipboard),
+        duration: const Duration(milliseconds: 800),
         behavior: SnackBarBehavior.floating,
       ),
     );

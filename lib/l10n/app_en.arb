@@ -44,37 +44,87 @@
   "@searchEmployeeHint": {
     "description": "Hint text displayed in the employee search field"
   },
+
   "appTitle": "Talent CRM",
   "@appTitle": {
       "description": "Application name"
   },
+
   "noInternet": "No internet connection. Please check your connection and try again.",
   "@noInternet": { 
     "description": "Shown when the device has no internet connection and a network request fails.",
-    "type": "text"},
+    "type": "text"
+  },
+
   "serverError": "Something went wrong on our side. Please try again later.",
   "@serverError": {
     "description": "Shown when the server returns an unexpected error (e.g., 500).",
     "type": "text"
   },
+
   "notFound": "The requested resource was not found.",
   "@notFound": {
     "description": "Shown when a requested resource cannot be found (e.g., 404).",
     "type": "text"
   },
+
   "invalidFormat": "We received an unexpected response from the server.",
   "@invalidFormat": {
     "description": "Shown when the response format from the server is invalid or cannot be parsed.",
     "type": "text"
   },
+
   "invalidRoute": "The page you tried to access is invalid.",
   "@invalidRoute": {
      "description": "Shown when navigation is attempted with invalid or missing route parameters.",
     "type": "text"
   },
+
   "unknownError": "An unexpected error occurred. Please try again.",
   "@unknownError": {
     "description": "Fallback message shown when an unknown or unhandled error occurs.",
+    "type": "text"
+  },
+
+  "copy": "Copy",
+  "@copy": {
+    "description": "Default message displayed to the user to let them know that the text has been copied",
+    "type": "text"
+  },
+
+  "observations": "Observations",
+  "@observations": {
+    "description": "Section title where talent-related observations are displayed.",
+    "type": "text"
+  },
+
+  "talentNotFound": "Talento no encontrado.",
+  "@talentNotFound": {
+    "description": "Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.",
+    "type": "text"
+  },
+  
+  "stopRecording": "Stop recording",
+  "@stopRecording": {
+    "description": "Text displayed on the button to stop audio recording.",
+    "type": "text"
+  },
+
+  "recordObservation": "Record observation",
+  "@recordObservation": {
+    "description": "Text displayed on the button to start recording an audio observation.",
+    "type": "text"
+  },
+
+  "noRecordingsYet": "No recordings yet",
+  "@noRecordingsYet": {
+    "description": "Message displayed when there are no saved recordings.",
+    "type": "text"
+  },
+  
+  "copiedToClipboard": "Copied to clipboard",
+  "@copiedToClipboard": {
+    "description": "Message displayed when content is copied to the clipboard.",
     "type": "text"
   }
 }

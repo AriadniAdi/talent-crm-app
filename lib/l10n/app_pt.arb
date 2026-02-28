@@ -83,6 +83,40 @@
   "@unknownError": {
     "description": "Mensagem padrão exibida quando ocorre um erro desconhecido ou não tratado.",
     "type": "text"
+  },
+  "copy": "Copiar",
+  "@copy": {
+    "description": "Mensagem padrão exibida para usuário entender que o texto copiado",
+    "type": "text"
+  },
+  "observations": "Observações",
+  "@observations": {
+    "description": "Título da seção onde são exibidas observações relacionadas ao talento.",
+    "type": "text"
+  },
+  "talentNotFound": "Talento não encontrado.",
+  "@talentNotFound": {
+    "description": "Mensagem exibida quando o talento solicitado não é encontrado ou não existe.",
+    "type": "text"
+  },
+  "stopRecording": "Parar gravação",
+  "@stopRecording": {
+    "description": "Texto exibido no botão para interromper a gravação de áudio.",
+    "type": "text"
+  },
+  "recordObservation": "Gravar observação",
+  "@recordObservation": {
+    "description": "Texto exibido no botão para iniciar a gravação de uma observação em áudio.",
+    "type": "text"
+  },
+  "noRecordingsYet": "Nenhuma gravação ainda",
+  "@noRecordingsYet": {
+    "description": "Mensagem exibida quando não existem gravações salvas.",
+    "type": "text"
+  },
+  "copiedToClipboard": "Copiado para a área de transferência",
+  "@copiedToClipboard": {
+    "description": "Mensagem exibida quando o conteúdo é copiado para a área de transferência.",
+    "type": "text"
   }
-
 }

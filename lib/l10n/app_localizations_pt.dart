@@ -58,4 +58,25 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get unknownError => 'Ocorreu um erro inesperado. Tente novamente.';
+
+  @override
+  String get copy => 'Copiar';
+
+  @override
+  String get observations => 'Observações';
+
+  @override
+  String get talentNotFound => 'Talento não encontrado.';
+
+  @override
+  String get stopRecording => 'Parar gravação';
+
+  @override
+  String get recordObservation => 'Gravar observação';
+
+  @override
+  String get noRecordingsYet => 'Nenhuma gravação ainda';
+
+  @override
+  String get copiedToClipboard => 'Copiado para a área de transferência';
 }

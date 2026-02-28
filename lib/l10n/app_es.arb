@@ -77,5 +77,44 @@
   "@unknownError": {
      "description": "Mensaje predeterminado cuando ocurre un error desconocido o no manejado.",
     "type": "text"
+  },
+  "copy": "Copiar",
+  "@copy": {
+    "description": "Mensaje predeterminado que se muestra al usuario para informarle que el texto se ha copiado",
+    "type": "text"
+  },
+  "observations": "Observaciones",
+  "@observations": {
+    "description": "Título de la sección donde se muestran las observaciones relacionadas con el talento.",
+    "type": "text"
+  },
+  "talentNotFound": "Talent not found.",
+  "@talentNotFound": {
+    "description": "Message displayed when the requested talent is not found or does not exist.",
+    "type": "text"
+  },
+  "stopRecording": "Parar gravação",
+  "@stopRecording": {
+    "description": "Texto exibido no botão para interromper a gravação de áudio.",
+    "type": "text"
+  },
+
+  "recordObservation": "Gravar observação",
+  "@recordObservation": {
+    "description": "Texto exibido no botão para iniciar a gravação de uma observação em áudio.",
+    "type": "text"
+  },
+
+  "noRecordingsYet": "Nenhuma gravação ainda",
+  "@noRecordingsYet": {
+    "description": "Mensagem exibida quando não existem gravações salvas.",
+    "type": "text"
+  },
+
+  "copiedToClipboard": "Copiado para a área de transferência",
+  "@copiedToClipboard": {
+    "description": "Mensagem exibida quando o conteúdo é copiado para a área de transferência.",
+    "type": "text"
   }
 }
+
