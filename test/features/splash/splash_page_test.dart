@@ -45,10 +45,9 @@ void main() {
   testWidgets('SplashPage navigates to home', (tester) async {
     await tester.pumpWidget(
       wrapper(
-        SplashPage(
+        const SplashPage(
           delay: Duration.zero,
           enableNavigation: true,
-          appLinks: FakeAppLinks(),
         ),
       ),
     );

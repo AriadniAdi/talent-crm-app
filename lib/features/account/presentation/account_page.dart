@@ -7,6 +7,7 @@ class AccountPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BasePage(
+      key: const Key('account-page'),
       child: Container(),
     );
   }

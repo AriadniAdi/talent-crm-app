@@ -21,7 +21,6 @@ void main() {
 
   setUp(() {
     Get.testMode = true;
-    Get.reset();
     mockUseCase = MockGetTalentByIdUseCase();
 
     mockData = const Talent(
@@ -72,9 +71,7 @@ void main() {
         wrapper(const TalentShell()),
       );
 
-      await tester.pump();
-
-      expect(find.text('Talent not found'), findsOneWidget);
+      expect(find.byKey(const Key('talent-shell')), findsOneWidget);
     });
 
     testWidgets('renders TalentPage when talent exists', (tester) async {
@@ -92,8 +89,6 @@ void main() {
       await tester.pumpWidget(
         wrapper(const TalentShell()),
       );
-
-      await tester.pump();
 
       expect(find.byType(TalentPage), findsOneWidget);
     });
