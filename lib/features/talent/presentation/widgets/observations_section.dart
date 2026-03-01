@@ -4,6 +4,7 @@ import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/voice_note_tile.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 import '../../../../core/design/design.dart';
 
@@ -18,7 +19,8 @@ class ObservationsSection extends GetView<TalentController> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _header(theme: theme, colors: colors),
+        _header(
+            theme: theme, colors: colors, text: context.translate.observations),
         const SizedBox(height: AppSpacing.lg),
         _recordingButton(),
         const SizedBox(height: AppSpacing.xl),
@@ -29,7 +31,11 @@ class ObservationsSection extends GetView<TalentController> {
     );
   }
 
-  Widget _header({required ThemeData theme, required ColorScheme colors}) {
+  Widget _header({
+    required ThemeData theme,
+    required ColorScheme colors,
+    required String text,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xs),
       child: Row(
@@ -37,7 +43,7 @@ class ObservationsSection extends GetView<TalentController> {
           const SizedBox(width: AppSpacing.xl),
           Icon(Icons.notes, color: colors.primary),
           const SizedBox(width: AppSpacing.md),
-          Text("Observações", style: theme.textTheme.titleMedium),
+          Text(text, style: theme.textTheme.titleMedium),
         ],
       ),
     );

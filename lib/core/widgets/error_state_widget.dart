@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class ErrorStateWidget extends StatelessWidget {
   final String message;
@@ -35,7 +36,7 @@ class ErrorStateWidget extends StatelessWidget {
             const SizedBox(height: AppSpacing.lg),
             ElevatedButton(
               onPressed: onRetry,
-              child: const Text('Try again'),
+              child: Text(context.translate.tryAgain),
             ),
           ],
         ),

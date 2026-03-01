@@ -6,8 +6,8 @@ import 'package:talent_crm_app/features/home/home_binding.dart';
 
 void main() {
   group('AppPages', () {
-    test('initial route is home', () {
-      expect(AppPages.initial, AppRoutes.home);
+    test('initial route is splash', () {
+      expect(AppPages.initial, AppRoutes.splash);
     });
 
     test('contains splash route', () {

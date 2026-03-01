@@ -198,6 +198,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'An unexpected error occurred. Please try again.'**
   String get unknownError;
+
+  /// Default message displayed to the user to let them know that the text has been copied
+  ///
+  /// In en, this message translates to:
+  /// **'Copy'**
+  String get copy;
+
+  /// Section title where talent-related observations are displayed.
+  ///
+  /// In en, this message translates to:
+  /// **'Observations'**
+  String get observations;
+
+  /// Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.
+  ///
+  /// In en, this message translates to:
+  /// **'Talento no encontrado.'**
+  String get talentNotFound;
+
+  /// Text displayed on the button to stop audio recording.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop recording'**
+  String get stopRecording;
+
+  /// Text displayed on the button to start recording an audio observation.
+  ///
+  /// In en, this message translates to:
+  /// **'Record observation'**
+  String get recordObservation;
+
+  /// Message displayed when there are no saved recordings.
+  ///
+  /// In en, this message translates to:
+  /// **'No recordings yet'**
+  String get noRecordingsYet;
+
+  /// Message displayed when content is copied to the clipboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Copied to clipboard'**
+  String get copiedToClipboard;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
