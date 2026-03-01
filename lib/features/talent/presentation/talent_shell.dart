@@ -9,24 +9,29 @@ class TalentShell extends GetView<TalentController> {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
-      if (controller.isLoading.value) {
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      }
+    return Scaffold(
+      key: const Key('talent-shell'),
+      body: Obx(
+        () {
+          if (controller.isLoading.value) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
 
-      final talent = controller.talent.value;
+          final talent = controller.talent.value;
 
-      if (talent == null) {
-        return Scaffold(
-          body: Center(child: Text(context.translate.talentNotFound)),
-        );
-      }
+          if (talent == null) {
+            return Scaffold(
+              body: Center(child: Text(context.translate.talentNotFound)),
+            );
+          }
 
-      return TalentPage(
-        talent: talent,
-      );
-    });
+          return TalentPage(
+            talent: talent,
+          );
+        },
+      ),
+    );
   }
 }

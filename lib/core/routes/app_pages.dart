@@ -9,7 +9,7 @@ import 'package:talent_crm_app/features/talent/presentation/talent_binding.dart'
 import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
 
 class AppPages {
-  static const initial = AppRoutes.home;
+  static const initial = AppRoutes.splash;
 
   static final pages = <GetPage>[
     GetPage(
