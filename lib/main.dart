@@ -18,6 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      key: const Key('my-app-key'),
       initialBinding: GlobalBinding(),
       getPages: AppPages.pages,
       initialRoute: AppRoutes.splash,

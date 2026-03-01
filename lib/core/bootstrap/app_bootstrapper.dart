@@ -3,21 +3,24 @@ import 'package:talent_crm_app/main.dart';
 import '../deep_link/deep_link_service.dart';
 
 class AppBootstrapper extends StatefulWidget {
-  const AppBootstrapper({super.key});
+  final DeepLinkService? deepLinkService;
+  const AppBootstrapper({super.key, this.deepLinkService});
 
   @override
   State<AppBootstrapper> createState() => _AppBootstrapperState();
 }
 
 class _AppBootstrapperState extends State<AppBootstrapper> {
-  final DeepLinkService _deepLinkService = DeepLinkService();
+  late final DeepLinkService _service;
 
   @override
   void initState() {
     super.initState();
 
+    _service = widget.deepLinkService ?? DeepLinkService();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      _deepLinkService.init();
+      _service.init();
     });
   }
 
