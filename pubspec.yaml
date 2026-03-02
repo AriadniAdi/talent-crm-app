@@ -38,7 +38,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   http: ^1.6.0
   get: ^4.7.3
-  mocktail: ^1.0.4
+  
   equatable: ^2.0.8
   app_links: ^3.4.3
   
@@ -47,6 +47,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   network_image_mock: ^2.1.1
+  mocktail: ^1.0.4
   flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
 
