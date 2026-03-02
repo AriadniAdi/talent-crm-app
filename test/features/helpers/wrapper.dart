@@ -67,7 +67,11 @@ Widget wrapper(
   );
 }
 
-void setupTestDependencies() {
+void setupTestDependencies<T extends GetxController>({T? mockController}) {
+  if (mockController != null) {
+    Get.put<T>(mockController);
+  }
+
   Get.put<http.Client>(http.Client());
   Get.put<ApiClient>(ApiClient(Get.find()));
   Get.lazyPut<TalentService>(() => TalentService(apiClient: Get.find()));
