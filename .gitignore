@@ -119,7 +119,9 @@ app.*.symbols
 # FVM Version Cache
 .fvm/
 
-# Firebase configuration files (Sensitive data)
+# Firebase
 **/android/app/google-services.json
 **/ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
+.firebase/
+firebase-debug.log
