@@ -118,3 +118,9 @@ app.*.symbols
 
 # FVM Version Cache
 .fvm/
+
+# Firebase
+**/android/app/google-services.json
+**/ios/Runner/GoogleService-Info.plist
+.firebase/
+firebase-debug.log

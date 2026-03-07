@@ -41,6 +41,9 @@ dependencies:
   
   equatable: ^2.0.8
   app_links: ^3.4.3
+  firebase_core: ^4.5.0
+  firebase_auth: ^6.2.0
+  google_sign_in: ^7.2.0
   
 
 dev_dependencies:

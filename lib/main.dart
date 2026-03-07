@@ -1,15 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/core/bootstrap/app_bootstrapper.dart';
+import 'package:talent_crm_app/core/deep_link/deep_link_service.dart';
 import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/core/routes/app_pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
+import 'package:talent_crm_app/firebase_options.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const AppBootstrapper());
+
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  DeepLinkService().init();
+
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
