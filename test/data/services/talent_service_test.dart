@@ -5,7 +5,6 @@ import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
-import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
@@ -47,24 +46,8 @@ void main() {
     result.when(
       success: (data) {
         expect(data.length, 1);
-      },
-      failure: (_) {
-        fail('Expected success but got failure');
-      },
-    );
-
-    result.when(
-      success: (data) {
-        expect(data.first.name, "John Doe");
-      },
-      failure: (_) {
-        fail('Expected success but got failure');
-      },
-    );
-
-    result.when(
-      success: (data) {
-        expect(data.first.city, "Porto Alegre");
+        expect(data.first['name'], "John Doe");
+        expect(data.first['address']['city'], "Porto Alegre");
       },
       failure: (_) {
         fail('Expected success but got failure');
@@ -96,7 +79,7 @@ void main() {
 
     final result = await service.fetchTalents();
 
-    expect(result, isA<Failure<List<Talent>>>());
+    expect(result, isA<Failure<List<Map<String, dynamic>>>>());
   });
 
   test('should return Failure when response is not a list', () async {

@@ -2,8 +2,6 @@ import 'package:talent_crm_app/core/config/app_config.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
-import 'package:talent_crm_app/features/talent/model/talent_model.dart';
-import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 class TalentService {
   final ApiClient apiClient;
@@ -12,23 +10,23 @@ class TalentService {
     required this.apiClient,
   });
 
-  Future<Result<List<Talent>>> fetchTalents() async {
+  Future<Result<List<Map<String, dynamic>>>> fetchTalents() async {
     final result = await apiClient.get(AppConfig.uri('/users'));
+
     return result.when(
         success: (data) {
           if (data is! List) {
             return Failure(ParsingError());
           }
-          final talents = data
-              .map<Talent>((json) => TalentModel.fromJson(json).toEntity())
-              .toList();
 
-          return Success(talents);
+          return Success(
+            data.map((e) => e as Map<String, dynamic>).toList(),
+          );
         },
         failure: (error) => Failure(error));
   }
 
-  Future<Result<Talent>> fetchTalentById(int id) async {
+  Future<Result<Map<String, dynamic>>> fetchTalentById(int id) async {
     final uri = AppConfig.uri('/users/$id');
 
     final result = await apiClient.get(uri);
@@ -39,9 +37,7 @@ class TalentService {
           return Failure(ParsingError());
         }
 
-        return Success(
-          TalentModel.fromJson(data).toEntity(),
-        );
+        return Success(data);
       },
       failure: (error) {
         return Failure(error);

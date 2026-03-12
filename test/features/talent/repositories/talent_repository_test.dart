@@ -28,6 +28,16 @@ void main() {
     contact: ContactTalent(email: 'test@test.com', phone: '123'),
   );
 
+  final jsonTalent = {
+    "id": 1,
+    "name": "Test User",
+    "email": "test@test.com",
+    "phone": "123",
+    "website": "site.com",
+    "address": {"city": "city"},
+    "company": {"name": "company", "catchPhrase": "description"}
+  };
+
   group('getTalents', () {
     test('should call service.fetchTalents once', () async {
       when(() => mockService.fetchTalents())
@@ -40,7 +50,7 @@ void main() {
     });
 
     test('should return list of talents from service', () async {
-      final talents = [mockTalent];
+      final talents = [jsonTalent];
 
       when(() => mockService.fetchTalents())
           .thenAnswer((_) async => Success(talents));
@@ -49,7 +59,17 @@ void main() {
 
       result.when(
         success: (data) {
-          expect(data, equals(talents));
+          expect(data.length, 1);
+
+          final talent = data.first;
+
+          expect(talent.name, 'Test User');
+          expect(talent.city, 'city');
+          expect(talent.company, 'company');
+          expect(talent.description, 'description');
+          expect(talent.website, 'site.com');
+          expect(talent.contact.email, 'test@test.com');
+          expect(talent.contact.phone, '123');
         },
         failure: (_) => fail('Expected success'),
       );
@@ -69,7 +89,7 @@ void main() {
   group('getTalentById', () {
     test('should call service.fetchTalentById with correct id', () async {
       when(() => mockService.fetchTalentById(1))
-          .thenAnswer((_) async => Success(mockTalent));
+          .thenAnswer((_) async => Success(jsonTalent));
 
       await repository.getTalentById(1);
 
@@ -79,7 +99,7 @@ void main() {
 
     test('should return talent from service', () async {
       when(() => mockService.fetchTalentById(1))
-          .thenAnswer((_) async => Success(mockTalent));
+          .thenAnswer((_) async => Success(jsonTalent));
 
       final result = await repository.getTalentById(1);
 

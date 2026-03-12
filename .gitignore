@@ -124,3 +124,5 @@ app.*.symbols
 **/ios/Runner/GoogleService-Info.plist
 .firebase/
 firebase-debug.log
+
+.DS_Store
