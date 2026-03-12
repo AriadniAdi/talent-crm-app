@@ -9,7 +9,6 @@ import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
-import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
@@ -44,7 +43,7 @@ void main() {
       }
     ];
 
-    test('should return list of Talent when status is 200', () async {
+    test('should return list of json when status is 200', () async {
       when(() => mockClient.get(
             any(),
             headers: any(named: 'headers'),
@@ -56,9 +55,14 @@ void main() {
 
       result.when(
         success: (data) {
-          expect(data, isA<List<Talent>>());
           expect(data.length, 1);
-          expect(data.first.name, 'Leanne Graham');
+          expect(data, isA<List<Map<String, dynamic>>>());
+
+          final user = data.first;
+
+          expect(user['name'], 'Leanne Graham');
+          expect(user['email'], 'test@test.com');
+          expect(user['phone'], '123');
         },
         failure: (_) => fail('Expected success but got failure'),
       );
@@ -73,7 +77,7 @@ void main() {
       );
 
       final result = await service.fetchTalents();
-      expect(result, isA<Failure<List<Talent>>>());
+      expect(result, isA<Failure<List<Map<String, dynamic>>>>());
     });
 
     test('should throw exception when response is not a list', () async {
@@ -135,8 +139,8 @@ void main() {
 
       result.when(
         success: (data) {
-          expect(data, isA<Talent>());
-          expect(data.name, 'Leanne Graham');
+          expect(data, isA<Map<String, dynamic>>());
+          expect(data['name'], 'Leanne Graham');
         },
         failure: (_) => fail('Expected success but got failure'),
       );
@@ -152,7 +156,7 @@ void main() {
 
       final result = await service.fetchTalentById(1);
 
-      expect(result, isA<Failure<Talent>>());
+      expect(result, isA<Failure<Map<String, dynamic>>>());
     });
   });
 }
