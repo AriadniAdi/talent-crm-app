@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_banner.dart';
 import 'widgets/home_content/home_content_view.dart';
 import 'widgets/home_search_bar.dart';
@@ -19,6 +22,12 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: AppSpacing.lg),
             const HomeSearchBar(),
             const SizedBox(height: AppSpacing.xl),
+            ElevatedButton(
+              onPressed: () => Get.toNamed(
+                AppRoutes.register,
+              ),
+              child: const Text('Cadastrar'),
+            ),
             HomeBanner(
               title: 'Connect with top talents',
               subtitle: 'Explore professionals, teams and skills in one place.',
