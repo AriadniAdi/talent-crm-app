@@ -4,6 +4,8 @@ import 'package:talent_crm_app/features/account/account_binding.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
+import 'package:talent_crm_app/features/register/presentation/register_binding.dart';
+import 'package:talent_crm_app/features/register/presentation/register_shell.dart';
 import 'package:talent_crm_app/features/splash/splash_page.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_binding.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
@@ -30,6 +32,11 @@ class AppPages {
       name: AppRoutes.talent,
       page: () => const TalentShell(),
       binding: TalentBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.register,
+      page: () => const RegisterShell(),
+      binding: RegisterBinding(),
     ),
   ];
 }
