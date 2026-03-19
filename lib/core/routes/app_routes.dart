@@ -3,4 +3,5 @@ abstract class AppRoutes {
   static const home = '/home';
   static const account = '/account';
   static const talent = '/talent';
+  static const register = '/register';
 }
