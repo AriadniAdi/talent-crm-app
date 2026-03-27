@@ -126,5 +126,149 @@
   "@copiedToClipboard": {
     "description": "Message displayed when content is copied to the clipboard.",
     "type": "text"
+  },
+
+  "fullName": "Full name",
+  "@fullName": {
+    "description": "Full name field label in registration",
+    "type": "text"
+  },
+
+  "cpf": "CPF",
+  "@cpf": {
+    "description": "CPF field label",
+    "type": "text"
+  },
+
+  "birthDateHint": "Birth date (mm/dd/yyyy)",
+  "@birthDateHint": {
+    "description": "Birth date field label",
+    "type": "text"
+  },
+
+  "email": "Email",
+  "@email": {
+    "description": "Email field label",
+    "type": "text"
+  },
+
+  "password": "Password",
+  "@password": {
+    "description": "Password field label",
+    "type": "text"
+  },
+
+  "confirmPassword": "Confirm password",
+  "@confirmPassword": {
+    "description": "Confirm password field label",
+    "type": "text"
+  },
+
+  "phone": "Phone",
+  "@phone": {
+    "description": "Phone field label",
+    "type": "text"
+  },
+
+  "register": "Register",
+  "@register": {
+    "description": "Register button text",
+    "type": "text"
+  },
+
+  "invalidEmail": "Invalid email",
+  "@invalidEmail": {
+    "description": "Error when email is invalid",
+    "type": "text"
+  },
+
+  "invalidCpf": "Invalid CPF",
+  "@invalidCpf": {
+    "description": "Error when CPF is invalid",
+    "type": "text"
+  },
+
+  "invalidBirthDate": "Invalid date",
+  "@invalidBirthDate": {
+    "description": "Error when date is invalid",
+    "type": "text"
+  },
+
+  "underAge": "You must be at least 18 years old",
+  "@underAge": {
+    "description": "Error when user is underage",
+    "type": "text"
+  },
+
+  "passwordMismatch": "Passwords do not match",
+  "@passwordMismatch": {
+    "description": "Error when passwords do not match",
+    "type": "text"
+  },
+
+  "requiredName": "Name is required",
+  "@requiredName": {
+    "description": "Error when name is empty",
+    "type": "text"
+  },
+
+  "passwordTooShort": "Password must be at least 6 characters",
+  "@passwordTooShort": {
+    "description": "Error when password is too short",
+    "type": "text"
+  },
+
+  "invalidNameLength": "Name is too long",
+  "@invalidNameLength": {
+    "description": "Error shown when name exceeds allowed length",
+    "type": "text"
+  },
+
+  "requiredCpf": "CPF is required",
+  "@requiredCpf": {
+    "description": "Error shown when CPF is not provided",
+    "type": "text"
+  },
+
+  "futureBirthDate": "Birth date cannot be in the future",
+  "@futureBirthDate": {
+    "description": "Error shown when the date is in the future",
+    "type": "text"
+  },
+
+  "requiredEmail": "Email is required",
+  "@requiredEmail": {
+    "description": "Error shown when email is empty",
+    "type": "text"
+  },
+
+  "requiredPhone": "Phone is required",
+  "@requiredPhone": {
+    "description": "Error shown when phone is empty",
+    "type": "text"
+  },
+
+  "requiredPassword": "Password is required",
+  "@requiredPassword": {
+    "description": "Error shown when password is empty",
+    "type": "text"
+  },
+
+  "passwordTooLong": "Password must be at most 6 characters",
+  "@passwordTooLong": {
+    "description": "Error shown when password exceeds 6 characters",
+    "type": "text"
+  },
+
+  "requiredConfirmPassword": "Password confirmation is required",
+  "@requiredConfirmPassword": {
+    "description": "Error shown when confirmation is empty",
+    "type": "text"
+  },
+
+  "invalidName": "The name contains invalid characters",
+  "@invalidName": {
+  "description": "Error shown when the name contains invalid characters such as numbers or symbols",
+  "type": "text"
   }
 }

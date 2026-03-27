@@ -79,4 +79,76 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get copiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get fullName => 'Nome completo';
+
+  @override
+  String get cpf => 'CPF';
+
+  @override
+  String get birthDateHint => 'Data de nascimento (dd/mm/yyyy)';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get password => 'Senha';
+
+  @override
+  String get confirmPassword => 'Confirmar senha';
+
+  @override
+  String get phone => 'Telefone';
+
+  @override
+  String get register => 'Cadastrar';
+
+  @override
+  String get invalidEmail => 'E-mail inválido';
+
+  @override
+  String get invalidCpf => 'CPF inválido';
+
+  @override
+  String get invalidBirthDate => 'Data inválida';
+
+  @override
+  String get underAge => 'Você precisa ser maior de idade';
+
+  @override
+  String get passwordMismatch => 'Senhas não coincidem';
+
+  @override
+  String get requiredName => 'Nome obrigatório';
+
+  @override
+  String get passwordTooShort => 'Senha deve ter pelo menos 6 caracteres';
+
+  @override
+  String get invalidNameLength => 'Nome muito longo';
+
+  @override
+  String get requiredCpf => 'CPF obrigatório';
+
+  @override
+  String get futureBirthDate => 'A data de nascimento não pode ser futura';
+
+  @override
+  String get requiredEmail => 'E-mail obrigatório';
+
+  @override
+  String get requiredPhone => 'Telefone obrigatório';
+
+  @override
+  String get requiredPassword => 'Senha obrigatória';
+
+  @override
+  String get passwordTooLong => 'A senha deve ter no máximo 6 caracteres';
+
+  @override
+  String get requiredConfirmPassword => 'Confirmação de senha obrigatória';
+
+  @override
+  String get invalidName => 'O nome contém caracteres inválidos';
 }

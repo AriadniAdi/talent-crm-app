@@ -240,6 +240,150 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Copied to clipboard'**
   String get copiedToClipboard;
+
+  /// Full name field label in registration
+  ///
+  /// In en, this message translates to:
+  /// **'Full name'**
+  String get fullName;
+
+  /// CPF field label
+  ///
+  /// In en, this message translates to:
+  /// **'CPF'**
+  String get cpf;
+
+  /// Birth date field label
+  ///
+  /// In en, this message translates to:
+  /// **'Birth date (mm/dd/yyyy)'**
+  String get birthDateHint;
+
+  /// Email field label
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// Password field label
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// Confirm password field label
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm password'**
+  String get confirmPassword;
+
+  /// Phone field label
+  ///
+  /// In en, this message translates to:
+  /// **'Phone'**
+  String get phone;
+
+  /// Register button text
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get register;
+
+  /// Error when email is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get invalidEmail;
+
+  /// Error when CPF is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid CPF'**
+  String get invalidCpf;
+
+  /// Error when date is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid date'**
+  String get invalidBirthDate;
+
+  /// Error when user is underage
+  ///
+  /// In en, this message translates to:
+  /// **'You must be at least 18 years old'**
+  String get underAge;
+
+  /// Error when passwords do not match
+  ///
+  /// In en, this message translates to:
+  /// **'Passwords do not match'**
+  String get passwordMismatch;
+
+  /// Error when name is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Name is required'**
+  String get requiredName;
+
+  /// Error when password is too short
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at least 6 characters'**
+  String get passwordTooShort;
+
+  /// Error shown when name exceeds allowed length
+  ///
+  /// In en, this message translates to:
+  /// **'Name is too long'**
+  String get invalidNameLength;
+
+  /// Error shown when CPF is not provided
+  ///
+  /// In en, this message translates to:
+  /// **'CPF is required'**
+  String get requiredCpf;
+
+  /// Error shown when the date is in the future
+  ///
+  /// In en, this message translates to:
+  /// **'Birth date cannot be in the future'**
+  String get futureBirthDate;
+
+  /// Error shown when email is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Email is required'**
+  String get requiredEmail;
+
+  /// Error shown when phone is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Phone is required'**
+  String get requiredPhone;
+
+  /// Error shown when password is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Password is required'**
+  String get requiredPassword;
+
+  /// Error shown when password exceeds 6 characters
+  ///
+  /// In en, this message translates to:
+  /// **'Password must be at most 6 characters'**
+  String get passwordTooLong;
+
+  /// Error shown when confirmation is empty
+  ///
+  /// In en, this message translates to:
+  /// **'Password confirmation is required'**
+  String get requiredConfirmPassword;
+
+  /// Error shown when the name contains invalid characters such as numbers or symbols
+  ///
+  /// In en, this message translates to:
+  /// **'The name contains invalid characters'**
+  String get invalidName;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
