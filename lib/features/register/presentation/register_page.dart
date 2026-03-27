@@ -1,24 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class RegisterPage extends StatelessWidget {
-  final TextEditingController fullNameController;
-  final TextEditingController emailController;
-  final TextEditingController passwordController;
-  final TextEditingController confirmPasswordController;
-  final TextEditingController phoneController;
+  final TextEditingController fullNameController,
+      emailController,
+      passwordController,
+      confirmPasswordController,
+      phoneController,
+      cpfController,
+      birthDateController;
 
-  final bool obscurePassword;
-  final bool obscureConfirmPassword;
+  final List<TextInputFormatter>? cpfFormatters;
+  final List<TextInputFormatter>? dateFormatters;
+  final List<TextInputFormatter>? phoneFormatters;
+
+  final bool obscurePassword, obscureConfirmPassword, isLoading;
   final String selectedCountryCode;
-  final bool acceptedTerms;
-  final bool isLoading;
+  final String? errorMessage;
+  final List<String> errorMessages;
+  final bool Function(FieldType field) hasError;
+  final String? Function(FieldType field, BuildContext context) getErrorMessage;
 
-  final VoidCallback onTogglePassword;
-  final VoidCallback onToggleConfirmPassword;
-  final VoidCallback onToggleTerms;
-  final VoidCallback onRegister;
-  final VoidCallback onCountryTap;
+  final ValueChanged<String>? onBirthDateChanged;
+
+  final VoidCallback onTogglePassword,
+      onToggleConfirmPassword,
+      onRegister,
+      onCountryTap;
 
   const RegisterPage({
     super.key,
@@ -59,24 +70,70 @@ class RegisterPage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const SizedBox(height: 36),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Criar conta',
+                    style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Preencha seus dados para continuar',
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        ?.copyWith(color: Colors.grey, fontSize: 18),
+                  ),
+                  const SizedBox(height: 24),
+                ],
+              ),
               _RegisterTextField(
                 controller: fullNameController,
-                hintText: 'Nome completo',
+                hintText: context.translate.fullName,
                 prefixIcon: Icons.person_outline,
+                hasError: hasError(FieldType.name),
+                errorText: getErrorMessage(FieldType.name, context),
+              ),
+              const SizedBox(height: 16),
+              _RegisterTextField(
+                controller: cpfController,
+                hintText: context.translate.cpf,
+                prefixIcon: Icons.badge_outlined,
+                keyboardType: TextInputType.number,
+                inputFormatters: cpfFormatters,
+                hasError: hasError(FieldType.cpf),
+                errorText: getErrorMessage(FieldType.cpf, context),
+              ),
+              const SizedBox(height: 16),
+              _RegisterTextField(
+                controller: birthDateController,
+                hintText: context.translate.birthDateHint,
+                prefixIcon: Icons.calendar_today_outlined,
+                keyboardType: TextInputType.datetime,
+                inputFormatters: dateFormatters,
+                hasError: hasError(FieldType.birthDate),
+                errorText: getErrorMessage(FieldType.birthDate, context),
+                onChanged: onBirthDateChanged,
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
                 controller: emailController,
-                hintText: 'E-mail',
+                hintText: context.translate.email,
                 prefixIcon: Icons.mail_outline,
+                hasError: hasError(FieldType.email),
+                errorText: getErrorMessage(FieldType.email, context),
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
                 controller: passwordController,
-                hintText: 'Senha',
+                hintText: context.translate.password,
                 prefixIcon: Icons.lock_outline,
                 obscureText: obscurePassword,
+                hasError: hasError(FieldType.password),
                 suffixIcon: IconButton(
                   onPressed: onTogglePassword,
                   icon: Icon(
@@ -85,11 +142,12 @@ class RegisterPage extends StatelessWidget {
                         : Icons.visibility_off_outlined,
                   ),
                 ),
+                errorText: getErrorMessage(FieldType.password, context),
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
                 controller: confirmPasswordController,
-                hintText: 'Confirmar senha',
+                hintText: context.translate.confirmPassword,
                 prefixIcon: Icons.lock_outline,
                 obscureText: obscureConfirmPassword,
                 suffixIcon: IconButton(
@@ -131,7 +189,7 @@ class RegisterPage extends StatelessWidget {
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(strokeWidth: 2))
-                      : const Text('Cadastrar'),
+                      : Text(context.translate.register),
                 ),
               ),
             ],
@@ -222,78 +280,105 @@ class _PhoneField extends StatelessWidget {
   final String countryCode;
   final TextEditingController phoneController;
   final VoidCallback onCountryTap;
+  final List<TextInputFormatter>? inputFormatters;
+  final bool hasError;
+  final String? errorText;
 
   const _PhoneField({
     required this.countryCode,
     required this.phoneController,
     required this.onCountryTap,
+    required this.inputFormatters,
+    required this.hasError,
+    required this.errorText,
   });
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
-    return Container(
-      height: 62,
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(28),
-        border: Border.all(
-          color: colors.outline.withValues(alpha: 0.18),
-        ),
-      ),
-      child: Row(
-        children: [
-          InkWell(
-            onTap: onCountryTap,
-            borderRadius: const BorderRadius.horizontal(
-              left: Radius.circular(28),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          height: 62,
+          decoration: BoxDecoration(
+            color: colors.surface,
+            borderRadius: BorderRadius.circular(28),
+            border: Border.all(
+              color: hasError
+                  ? Colors.red
+                  : colors.outline.withValues(alpha: 0.18),
             ),
-            child: Container(
-              height: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 12),
-              decoration: BoxDecoration(
-                border: Border(
-                  right: BorderSide(
-                    color: colors.outline.withValues(alpha: 0.18),
+          ),
+          child: Row(
+            children: [
+              InkWell(
+                onTap: onCountryTap,
+                borderRadius: const BorderRadius.horizontal(
+                  left: Radius.circular(28),
+                ),
+                child: Container(
+                  height: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(
+                        color: colors.outline.withValues(alpha: 0.18),
+                      ),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.phone_outlined, color: colors.primary),
+                      const SizedBox(width: 8),
+                      Text(
+                        countryCode,
+                        style: TextStyle(
+                          color: colors.primary,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: colors.primary,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Icon(Icons.phone_outlined, color: colors.primary),
-                  const SizedBox(width: 8),
-                  Text(
-                    countryCode,
-                    style: TextStyle(
-                      color: colors.primary,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+              Expanded(
+                child: TextField(
+                  controller: phoneController,
+                  keyboardType: TextInputType.phone,
+                  inputFormatters: inputFormatters,
+                  decoration: InputDecoration(
+                    hintText: context.translate.phone,
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 18),
                   ),
-                  const SizedBox(width: 4),
-                  Icon(
-                    Icons.keyboard_arrow_down_rounded,
-                    color: colors.primary,
-                  ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-          Expanded(
-            child: TextField(
-              controller: phoneController,
-              keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(
-                hintText: 'Telefone',
-                border: InputBorder.none,
-                contentPadding: EdgeInsets.symmetric(horizontal: 18),
+        ),
+        if (errorText != null) ...[
+          const SizedBox(height: 6),
+          Padding(
+            padding: const EdgeInsets.only(left: 12),
+            child: Text(
+              errorText!,
+              style: const TextStyle(
+                color: Colors.red,
+                fontSize: 12,
               ),
             ),
           ),
         ],
-      ),
+      ],
     );
   }
 }

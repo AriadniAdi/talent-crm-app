@@ -9,12 +9,15 @@ import '../../helpers/wrapper.dart';
 
 void main() {
   late RegisterController controller;
+  late RegisterUseCase usecase;
 
   setUp(() {
     Get.reset();
     Get.testMode = true;
 
-    controller = RegisterController();
+    usecase = const RegisterUseCase();
+
+    controller = RegisterController(usecase);
 
     Get.put<RegisterController>(controller);
   });
