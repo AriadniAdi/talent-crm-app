@@ -30,13 +30,21 @@ class RegisterPage extends StatelessWidget {
     required this.obscurePassword,
     required this.obscureConfirmPassword,
     required this.selectedCountryCode,
-    required this.acceptedTerms,
     required this.isLoading,
     required this.onTogglePassword,
     required this.onToggleConfirmPassword,
-    required this.onToggleTerms,
     required this.onRegister,
     required this.onCountryTap,
+    required this.cpfController,
+    required this.birthDateController,
+    required this.errorMessage,
+    required this.errorMessages,
+    required this.hasError,
+    required this.getErrorMessage,
+    required this.onBirthDateChanged,
+    required this.cpfFormatters,
+    required this.dateFormatters,
+    required this.phoneFormatters,
   });
 
   @override
@@ -92,26 +100,26 @@ class RegisterPage extends StatelessWidget {
                         : Icons.visibility_off_outlined,
                   ),
                 ),
+                hasError: hasError(FieldType.confirmPassword),
+                errorText: getErrorMessage(FieldType.confirmPassword, context),
               ),
               const SizedBox(height: 16),
               _PhoneField(
                 countryCode: selectedCountryCode,
                 phoneController: phoneController,
                 onCountryTap: onCountryTap,
-              ),
-              const SizedBox(height: 18),
-              Row(
-                children: [
-                  Checkbox(
-                    value: acceptedTerms,
-                    onChanged: (_) => onToggleTerms(),
-                  ),
-                  const Expanded(
-                    child: Text('Eu aceito os termos'),
-                  ),
-                ],
+                inputFormatters: phoneFormatters,
+                hasError: hasError(FieldType.phone),
+                errorText: getErrorMessage(FieldType.phone, context),
               ),
               const SizedBox(height: 24),
+              if (errorMessage != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  errorMessage!,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ],
               SizedBox(
                 height: 58,
                 child: ElevatedButton(
@@ -139,32 +147,41 @@ class _RegisterTextField extends StatelessWidget {
   final String hintText;
   final IconData prefixIcon;
   final TextInputType? keyboardType;
-  final bool obscureText;
-  final Widget? suffixIcon;
+  final bool obscureText, hasError;
+  final String? errorText;
+  final ValueChanged<String>? onChanged;
 
-  const _RegisterTextField({
-    required this.controller,
-    required this.hintText,
-    required this.prefixIcon,
-    // ignore: unused_element_parameter
-    this.keyboardType,
-    this.obscureText = false,
-    this.suffixIcon,
-  });
+  final Widget? suffixIcon;
+  final List<TextInputFormatter>? inputFormatters;
+
+  const _RegisterTextField(
+      {required this.controller,
+      required this.hintText,
+      required this.prefixIcon,
+      this.keyboardType,
+      this.obscureText = false,
+      this.suffixIcon,
+      this.onChanged,
+      this.inputFormatters,
+      required this.hasError,
+      required this.errorText});
 
   @override
   Widget build(BuildContext context) {
     final colors = Theme.of(context).colorScheme;
 
     return TextField(
+      onChanged: onChanged,
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscureText,
+      inputFormatters: inputFormatters,
       style: TextStyle(
         color: colors.onSurface,
         fontSize: 16,
       ),
       decoration: InputDecoration(
+        errorText: errorText,
         hintText: hintText,
         prefixIcon: Icon(prefixIcon, color: colors.primary),
         suffixIcon: suffixIcon,
@@ -177,19 +194,22 @@ class _RegisterTextField extends StatelessWidget {
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(28),
           borderSide: BorderSide(
-            color: colors.outline.withValues(alpha: 0.18),
+            color:
+                hasError ? Colors.red : colors.outline.withValues(alpha: 0.18),
           ),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(28),
           borderSide: BorderSide(
-            color: colors.outline.withValues(alpha: 0.18),
+            color:
+                hasError ? Colors.red : colors.outline.withValues(alpha: 0.18),
           ),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(28),
           borderSide: BorderSide(
-            color: colors.primary.withValues(alpha: 0.35),
+            color:
+                hasError ? Colors.red : colors.primary.withValues(alpha: 0.35),
             width: 1.2,
           ),
         ),

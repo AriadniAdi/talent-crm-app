@@ -6,11 +6,13 @@ import 'package:talent_crm_app/features/register/presentation/register_page.dart
 import '../../helpers/wrapper.dart';
 
 void main() {
-  late TextEditingController fullNameController;
-  late TextEditingController emailController;
-  late TextEditingController passwordController;
-  late TextEditingController confirmPasswordController;
-  late TextEditingController phoneController;
+  late TextEditingController fullNameController,
+      emailController,
+      passwordController,
+      confirmPasswordController,
+      phoneController,
+      cpfController,
+      birthDateController;
 
   setUp(() {
     fullNameController = TextEditingController();
@@ -18,11 +20,12 @@ void main() {
     passwordController = TextEditingController();
     confirmPasswordController = TextEditingController();
     phoneController = TextEditingController();
+    cpfController = TextEditingController();
+    birthDateController = TextEditingController();
   });
 
   RegisterPage buildPage({
     bool isLoading = false,
-    bool acceptedTerms = false,
     bool obscurePassword = true,
     bool obscureConfirmPassword = true,
     String countryCode = '+55',
@@ -41,13 +44,13 @@ void main() {
       obscurePassword: obscurePassword,
       obscureConfirmPassword: obscureConfirmPassword,
       selectedCountryCode: countryCode,
-      acceptedTerms: acceptedTerms,
       isLoading: isLoading,
       onRegister: onRegister ?? () {},
       onTogglePassword: onTogglePassword ?? () {},
       onToggleConfirmPassword: onToggleConfirmPassword ?? () {},
-      onToggleTerms: onToggleTerms ?? () {},
       onCountryTap: onCountryTap ?? () {},
+      cpfController: cpfController,
+      birthDateController: birthDateController,
     );
   }
 
