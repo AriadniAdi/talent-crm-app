@@ -270,5 +270,17 @@
   "@invalidName": {
   "description": "Error shown when the name contains invalid characters such as numbers or symbols",
   "type": "text"
+  },
+
+  "createAccount": "Create account",
+  "@createAccount": {
+    "description": "Button or title text to create a new account",
+    "type": "text"
+  },
+
+  "fillOnTheContinue": "Fill in the fields to continue",
+  "@fillOnTheContinue": {
+    "description": "Text shown to guide the user to fill in the fields to continue",
+    "type": "text"
   }
 }

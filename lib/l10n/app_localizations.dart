@@ -384,6 +384,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The name contains invalid characters'**
   String get invalidName;
+
+  /// Button or title text to create a new account
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// Text shown to guide the user to fill in the fields to continue
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in the fields to continue'**
+  String get fillOnTheContinue;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

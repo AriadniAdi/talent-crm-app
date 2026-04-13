@@ -261,6 +261,18 @@
   "@invalidName": {
   "description": "Erro exibido quando o nome contém caracteres inválidos como números ou símbolos",
   "type": "text"
+  },
+
+  "createAccount": "Criar conta",
+  "@createAccount": {
+    "description": "Texto do botão ou título para criar uma nova conta",
+    "type": "text"
+  },
+
+  "fillOnTheContinue": "Preencha para continuar",
+  "@fillOnTheContinue": {
+    "description": "Texto exibido orientando o usuário a preencher os campos para continuar",
+    "type": "text"
   }
 
 }

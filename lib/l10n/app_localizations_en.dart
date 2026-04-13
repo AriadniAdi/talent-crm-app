@@ -151,4 +151,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get invalidName => 'The name contains invalid characters';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get fillOnTheContinue => 'Fill in the fields to continue';
 }

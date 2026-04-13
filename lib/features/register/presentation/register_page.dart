@@ -74,7 +74,7 @@ class RegisterPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
-                    'Criar conta',
+                    context.translate.createAccount,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.w600,
                           color: Theme.of(context).colorScheme.primary,
@@ -82,7 +82,7 @@ class RegisterPage extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Preencha seus dados para continuar',
+                    context.translate.fillOnTheContinue,
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium

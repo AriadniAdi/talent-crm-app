@@ -151,4 +151,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get invalidName => 'O nome contém caracteres inválidos';
+
+  @override
+  String get createAccount => 'Criar conta';
+
+  @override
+  String get fillOnTheContinue => 'Preencha para continuar';
 }
