@@ -33,6 +33,7 @@ enum ValidationErrorType {
   passwordTooLong,
   requiredConfirmPassword,
   passwordMismatch,
+  tooOld,
 }
 
 class ValidationError extends AppError {

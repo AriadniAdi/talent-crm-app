@@ -118,6 +118,13 @@ class RegisterController extends GetxController {
       return;
     }
 
+    if (_isTooOld(birthDate)) {
+      _setFieldError(ValidationError(
+        ValidationErrorType.tooOld,
+        FieldType.birthDate,
+      ));
+    }
+
     if (!_isAdult(birthDate)) {
       _setFieldError(
         ValidationError(
@@ -286,6 +293,18 @@ class RegisterController extends GetxController {
   }
 
   // Helpers
+
+  bool _isTooOld(DateTime date) {
+    final today = DateTime.now();
+
+    final limitDate = DateTime(
+      today.year - 100,
+      today.month,
+      today.day,
+    );
+
+    return date.isBefore(limitDate);
+  }
 
   bool _isFutureDate(DateTime date) {
     final today = DateTime.now();

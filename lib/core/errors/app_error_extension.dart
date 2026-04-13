@@ -50,6 +50,8 @@ extension AppErrorX on AppError {
           return t.passwordMismatch;
         case ValidationErrorType.invalidName:
           return t.invalidName;
+        case ValidationErrorType.tooOld:
+          return t.invalidBirthDate;
       }
     }
 
