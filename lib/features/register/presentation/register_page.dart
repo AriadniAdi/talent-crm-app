@@ -92,6 +92,7 @@ class RegisterPage extends StatelessWidget {
                 ],
               ),
               _RegisterTextField(
+                fieldKey: const Key('register_full_name_field'),
                 controller: fullNameController,
                 hintText: context.translate.fullName,
                 prefixIcon: Icons.person_outline,
@@ -100,6 +101,7 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
+                fieldKey: const Key('register_cpf_field'),
                 controller: cpfController,
                 hintText: context.translate.cpf,
                 prefixIcon: Icons.badge_outlined,
@@ -110,6 +112,7 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
+                fieldKey: const Key('register_birth_date_field'),
                 controller: birthDateController,
                 hintText: context.translate.birthDateHint,
                 prefixIcon: Icons.calendar_today_outlined,
@@ -121,6 +124,7 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
+                fieldKey: const Key('register_email_field'),
                 controller: emailController,
                 hintText: context.translate.email,
                 prefixIcon: Icons.mail_outline,
@@ -129,12 +133,14 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
+                fieldKey: const Key('register_password_field'),
                 controller: passwordController,
                 hintText: context.translate.password,
                 prefixIcon: Icons.lock_outline,
                 obscureText: obscurePassword,
                 hasError: hasError(FieldType.password),
                 suffixIcon: IconButton(
+                  key: const Key('register_password_toggle'),
                   onPressed: onTogglePassword,
                   icon: Icon(
                     obscurePassword
@@ -146,11 +152,13 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _RegisterTextField(
+                fieldKey: const Key('register_confirm_password_field'),
                 controller: confirmPasswordController,
                 hintText: context.translate.confirmPassword,
                 prefixIcon: Icons.lock_outline,
                 obscureText: obscureConfirmPassword,
                 suffixIcon: IconButton(
+                  key: const Key('register_confirm_password_toggle'),
                   onPressed: onToggleConfirmPassword,
                   icon: Icon(
                     obscureConfirmPassword
@@ -163,6 +171,8 @@ class RegisterPage extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               _PhoneField(
+                countrySelectorKey: const Key('register_country_selector'),
+                phoneFieldKey: const Key('register_phone_field'),
                 countryCode: selectedCountryCode,
                 phoneController: phoneController,
                 onCountryTap: onCountryTap,
@@ -175,12 +185,14 @@ class RegisterPage extends StatelessWidget {
                 const SizedBox(height: 4),
                 Text(
                   errorMessage!,
+                  key: const Key('register_general_error'),
                   style: const TextStyle(color: Colors.red),
                 ),
               ],
               SizedBox(
                 height: 58,
                 child: ElevatedButton(
+                  key: const Key('register_submit_button'),
                   onPressed: () {
                     if (!isLoading) onRegister();
                   },
@@ -188,7 +200,10 @@ class RegisterPage extends StatelessWidget {
                       ? const SizedBox(
                           height: 20,
                           width: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2))
+                          child: CircularProgressIndicator(
+                            key: Key('register_submit_loading'),
+                            strokeWidth: 2,
+                          ))
                       : Text(context.translate.register),
                 ),
               ),
@@ -201,6 +216,7 @@ class RegisterPage extends StatelessWidget {
 }
 
 class _RegisterTextField extends StatelessWidget {
+  final Key? fieldKey;
   final TextEditingController controller;
   final String hintText;
   final IconData prefixIcon;
@@ -213,7 +229,8 @@ class _RegisterTextField extends StatelessWidget {
   final List<TextInputFormatter>? inputFormatters;
 
   const _RegisterTextField(
-      {required this.controller,
+      {this.fieldKey,
+      required this.controller,
       required this.hintText,
       required this.prefixIcon,
       this.keyboardType,
@@ -229,6 +246,7 @@ class _RegisterTextField extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return TextField(
+      key: fieldKey,
       onChanged: onChanged,
       controller: controller,
       keyboardType: keyboardType,
@@ -277,6 +295,7 @@ class _RegisterTextField extends StatelessWidget {
 }
 
 class _PhoneField extends StatelessWidget {
+  final Key? countrySelectorKey, phoneFieldKey;
   final String countryCode;
   final TextEditingController phoneController;
   final VoidCallback onCountryTap;
@@ -285,6 +304,8 @@ class _PhoneField extends StatelessWidget {
   final String? errorText;
 
   const _PhoneField({
+    this.countrySelectorKey,
+    this.phoneFieldKey,
     required this.countryCode,
     required this.phoneController,
     required this.onCountryTap,
@@ -314,6 +335,7 @@ class _PhoneField extends StatelessWidget {
           child: Row(
             children: [
               InkWell(
+                key: countrySelectorKey,
                 onTap: onCountryTap,
                 borderRadius: const BorderRadius.horizontal(
                   left: Radius.circular(28),
@@ -352,6 +374,7 @@ class _PhoneField extends StatelessWidget {
               ),
               Expanded(
                 child: TextField(
+                  key: phoneFieldKey,
                   controller: phoneController,
                   keyboardType: TextInputType.phone,
                   inputFormatters: inputFormatters,
