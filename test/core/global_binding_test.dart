@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/global_binding.dart';
+import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 
 void main() {
   setUp(() {
@@ -38,6 +39,14 @@ void main() {
 
       // permanent: true impede deleção
       expect(Get.isRegistered<http.Client>(), true);
+    });
+
+    test('registers auth repository lazily', () {
+      final binding = GlobalBinding();
+
+      binding.dependencies();
+
+      expect(Get.isRegistered<AuthRepository>(), true);
     });
   });
 }
