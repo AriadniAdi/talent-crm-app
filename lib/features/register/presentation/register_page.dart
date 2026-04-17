@@ -328,7 +328,7 @@ class _PhoneField extends StatelessWidget {
             borderRadius: BorderRadius.circular(28),
             border: Border.all(
               color: hasError
-                  ? Colors.red
+                  ? colors.error
                   : colors.outline.withValues(alpha: 0.18),
             ),
           ),
@@ -394,8 +394,8 @@ class _PhoneField extends StatelessWidget {
             padding: const EdgeInsets.only(left: 12),
             child: Text(
               errorText!,
-              style: const TextStyle(
-                color: Colors.red,
+              style: TextStyle(
+                color: colors.error,
                 fontSize: 12,
               ),
             ),
