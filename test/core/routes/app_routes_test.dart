@@ -5,6 +5,7 @@ void main() {
   group('AppRoutes', () {
     test('route values are correct', () {
       expect(AppRoutes.splash, '/');
+      expect(AppRoutes.login, '/login');
       expect(AppRoutes.home, '/home');
       expect(AppRoutes.account, '/account');
       expect(AppRoutes.talent, '/talent');
@@ -13,6 +14,7 @@ void main() {
     test('all routes start with "/"', () {
       final routes = [
         AppRoutes.splash,
+        AppRoutes.login,
         AppRoutes.home,
         AppRoutes.account,
         AppRoutes.talent,
@@ -26,6 +28,7 @@ void main() {
     test('routes are unique', () {
       final routes = [
         AppRoutes.splash,
+        AppRoutes.login,
         AppRoutes.home,
         AppRoutes.account,
         AppRoutes.talent,
