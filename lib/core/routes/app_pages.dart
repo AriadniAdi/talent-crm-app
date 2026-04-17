@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/account/account_binding.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
+import 'package:talent_crm_app/features/auth/presentation/login_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/login_shell.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/register_binding.dart';
@@ -17,6 +19,11 @@ class AppPages {
     GetPage(
       name: AppRoutes.splash,
       page: () => const SplashPage(),
+    ),
+    GetPage(
+      name: AppRoutes.login,
+      page: () => const LoginShell(),
+      binding: LoginBinding(),
     ),
     GetPage(
       name: AppRoutes.home,

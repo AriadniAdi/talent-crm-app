@@ -127,6 +127,14 @@ firebase-debug.log
 
 # System files (OS generated)
 .DS_Store
+.metadata
+
+# IDE files (local only)
+.idea/libraries/
+.idea/runConfigurations/
+
+# Local iOS files
+ios/Runner/SceneDelegate.swift
 
 # Environment variables (local config)
 .env

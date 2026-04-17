@@ -49,7 +49,7 @@ class _SplashPageState extends State<SplashPage>
     if (!mounted) return;
 
     if (Get.currentRoute == AppRoutes.splash) {
-      Get.offNamed(AppRoutes.home);
+      Get.offNamed(AppRoutes.login);
     }
   }
 

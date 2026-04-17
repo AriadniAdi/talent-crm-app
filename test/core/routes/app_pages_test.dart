@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:talent_crm_app/core/routes/app_pages.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/account/account_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/login_binding.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 
 void main() {
@@ -23,6 +24,13 @@ void main() {
           AppPages.pages.firstWhere((page) => page.name == AppRoutes.home);
 
       expect(homeRoute.binding, isA<HomeBinding>());
+    });
+
+    test('contains login route with binding', () {
+      final loginRoute =
+          AppPages.pages.firstWhere((page) => page.name == AppRoutes.login);
+
+      expect(loginRoute.binding, isA<LoginBinding>());
     });
 
     test('contains account route with binding', () {

@@ -42,7 +42,7 @@ void main() {
     expect(find.text(expectedTitle), findsOneWidget);
   });
 
-  testWidgets('SplashPage navigates to home', (tester) async {
+  testWidgets('SplashPage navigates to login', (tester) async {
     await tester.pumpWidget(
       wrapper(
         const SplashPage(
@@ -54,6 +54,6 @@ void main() {
 
     await tester.pumpAndSettle();
 
-    expect(find.byKey(const Key('Home')), findsOneWidget);
+    expect(find.byKey(const Key('Login')), findsOneWidget);
   });
 }
