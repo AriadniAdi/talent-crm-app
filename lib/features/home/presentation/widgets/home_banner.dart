@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/design/app_banner.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 
 class HomeBanner extends StatelessWidget {
