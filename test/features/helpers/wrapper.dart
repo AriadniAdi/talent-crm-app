@@ -63,6 +63,12 @@ Widget wrapper(
           key: Key('Home'),
         ),
       ),
+      GetPage(
+        name: AppRoutes.login,
+        page: () => const Scaffold(
+          key: Key('Login'),
+        ),
+      ),
     ],
   );
 }
