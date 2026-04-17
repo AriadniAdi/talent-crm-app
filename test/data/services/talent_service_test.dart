@@ -5,12 +5,12 @@ import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
-import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
-  late TalentService service;
+  late TalentRemoteDataSource remoteDataSource;
   late MockHttpClient mockClient;
 
   setUpAll(() {
@@ -19,7 +19,9 @@ void main() {
 
   setUp(() {
     mockClient = MockHttpClient();
-    service = TalentService(apiClient: ApiClient(mockClient));
+    remoteDataSource = TalentRemoteDataSource(
+      apiClient: ApiClient(mockClient),
+    );
   });
 
   const mockResponse = [
@@ -41,7 +43,7 @@ void main() {
       (_) async => http.Response(jsonEncode(mockResponse), 200),
     );
 
-    final result = await service.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     result.when(
       success: (data) {
@@ -61,7 +63,7 @@ void main() {
       (_) async => http.Response('invalid-json', 200),
     );
 
-    final result = await service.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     result.when(
       success: (_) => fail('Expected failure'),
@@ -77,7 +79,7 @@ void main() {
       (_) async => http.Response('Error', 500),
     );
 
-    final result = await service.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     expect(result, isA<Failure<List<Map<String, dynamic>>>>());
   });
@@ -88,7 +90,7 @@ void main() {
       (_) async => http.Response(jsonEncode({"error": "unexpected"}), 200),
     );
 
-    final result = await service.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     result.when(
       success: (_) => fail('Expected failure'),
@@ -102,7 +104,7 @@ void main() {
     when(() => mockClient.get(any(), headers: any(named: 'headers')))
         .thenThrow(http.ClientException('Network error'));
 
-    final result = await service.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     result.when(
       success: (_) => fail('Expected failure'),
@@ -120,7 +122,7 @@ void main() {
       (_) async => http.Response(jsonEncode(mockResponse), 200),
     );
 
-    await service.fetchTalents();
+    await remoteDataSource.fetchTalents();
 
     final captured = verify(() => mockClient.get(
           captureAny(),

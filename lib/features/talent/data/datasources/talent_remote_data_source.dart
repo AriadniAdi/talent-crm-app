@@ -3,10 +3,10 @@ import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 
-class TalentService {
+class TalentRemoteDataSource {
   final ApiClient apiClient;
 
-  const TalentService({
+  const TalentRemoteDataSource({
     required this.apiClient,
   });
 
@@ -14,16 +14,17 @@ class TalentService {
     final result = await apiClient.get(AppConfig.uri('/users'));
 
     return result.when(
-        success: (data) {
-          if (data is! List) {
-            return Failure(ParsingError());
-          }
+      success: (data) {
+        if (data is! List) {
+          return Failure(ParsingError());
+        }
 
-          return Success(
-            data.map((e) => e as Map<String, dynamic>).toList(),
-          );
-        },
-        failure: (error) => Failure(error));
+        return Success(
+          data.map((e) => e as Map<String, dynamic>).toList(),
+        );
+      },
+      failure: (error) => Failure(error),
+    );
   }
 
   Future<Result<Map<String, dynamic>>> fetchTalentById(int id) async {
@@ -39,9 +40,7 @@ class TalentService {
 
         return Success(data);
       },
-      failure: (error) {
-        return Failure(error);
-      },
+      failure: (error) => Failure(error),
     );
   }
 }
