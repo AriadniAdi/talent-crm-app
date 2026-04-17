@@ -7,13 +7,13 @@ import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/config/app_config.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
-import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 
 class MockHttpClient extends Mock implements http.Client {}
 
 void main() {
   late MockHttpClient mockClient;
-  late TalentService service;
+  late TalentRemoteDataSource remoteDataSource;
 
   setUpAll(() {
     registerFallbackValue(Uri.parse('https://example.com'));
@@ -21,7 +21,7 @@ void main() {
 
   setUp(() {
     mockClient = MockHttpClient();
-    service = TalentService(
+    remoteDataSource = TalentRemoteDataSource(
       apiClient: ApiClient(mockClient),
     );
   });
@@ -48,7 +48,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockListResponse), 200),
       );
 
-      final result = await service.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
 
       result.when(
         success: (data) {
@@ -67,7 +67,7 @@ void main() {
         (_) async => http.Response('Error', 500),
       );
 
-      final result = await service.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
 
       expect(result, isA<Failure<List<Map<String, dynamic>>>>());
     });
@@ -80,7 +80,7 @@ void main() {
         (_) async => http.Response(jsonEncode({"invalid": "data"}), 200),
       );
 
-      final result = await service.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
 
       expect(result, isA<Failure<List<Map<String, dynamic>>>>());
     });
@@ -106,7 +106,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockResponse), 200),
       );
 
-      await service.fetchTalentById(1);
+      await remoteDataSource.fetchTalentById(1);
 
       verify(() => mockClient.get(
             AppConfig.uri('/users/1'),
@@ -122,7 +122,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockResponse), 200),
       );
 
-      final result = await service.fetchTalentById(1);
+      final result = await remoteDataSource.fetchTalentById(1);
 
       result.when(
         success: (data) {
@@ -141,7 +141,7 @@ void main() {
         (_) async => http.Response('Error', 404),
       );
 
-      final result = await service.fetchTalentById(1);
+      final result = await remoteDataSource.fetchTalentById(1);
 
       expect(result, isA<Failure<Map<String, dynamic>>>());
     });
