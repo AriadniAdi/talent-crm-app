@@ -1,23 +1,26 @@
-import 'package:get/get_utils/src/get_utils/get_utils.dart';
-import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/register/domain/usecases/register_params.dart';
+import 'package:talent_crm_app/features/register/domain/usecases/register_contract.dart';
 
-class RegisterUseCase {
-  const RegisterUseCase();
+class RegisterUseCase implements RegisterContract {
+  final AuthRepository authRepository;
 
+  const RegisterUseCase(this.authRepository);
+
+  @override
   Future<void> call(RegisterParams params) async {
-    if (params.name.isEmpty) {
-      throw AuthError('Nome obrigatório');
-    }
+    final result = await authRepository.registerUser(
+      name: params.name,
+      email: params.email,
+      password: params.password,
+    );
 
-    if (!GetUtils.isEmail(params.email)) {
-      throw AuthError('E-mail inválido');
+    switch (result) {
+      case Success<bool>():
+        return;
+      case Failure<bool>(error: final error):
+        throw error;
     }
-
-    if (params.password.length < 6) {
-      throw AuthError('Senha muito curta');
-    }
-
-    await Future.delayed(const Duration(milliseconds: 800));
   }
 }

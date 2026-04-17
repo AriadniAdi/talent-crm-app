@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/features/register/domain/usecases/register_usecase.dart';
+import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/features/register/domain/usecases/register_contract.dart';
 
 import 'package:talent_crm_app/features/register/presentation/register_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/controller/register_controller.dart';
 
 import '../../helpers/wrapper.dart';
 
+class MockRegisterContract extends Mock implements RegisterContract {}
+
 void main() {
   late RegisterController controller;
-  late RegisterUseCase usecase;
+  late RegisterContract usecase;
 
   setUp(() {
     Get.reset();
     Get.testMode = true;
 
-    usecase = const RegisterUseCase();
+    usecase = MockRegisterContract();
 
     controller = RegisterController(usecase);
 

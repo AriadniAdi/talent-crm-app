@@ -1,8 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/bindings_interface.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/network/api_client.dart';
+import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 
@@ -23,9 +27,22 @@ class GlobalBinding extends Bindings {
       fenix: true,
     );
 
+    Get.lazyPut<AuthRemoteDataSource>(
+      () => FirebaseAuthRemoteDataSource(
+        auth: FirebaseAuth.instance,
+        db: FirebaseFirestore.instance,
+      ),
+      fenix: true,
+    );
+
     // Presentation
     Get.lazyPut<TalentRepository>(
       () => TalentRepositoryImpl(Get.find()),
+      fenix: true,
+    );
+
+    Get.lazyPut<AuthRepository>(
+      () => AuthRepositoryImpl(Get.find()),
       fenix: true,
     );
   }

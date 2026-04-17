@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:talent_crm_app/core/errors/app_error_extension.dart';
-import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/voice_note_tile.dart';
+import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
 import '../../../../core/design/design.dart';
 
-class ObservationsSection extends GetView<TalentController> {
+class ObservationsSection extends GetView<VoiceRecordingController> {
   const ObservationsSection({super.key});
 
   @override

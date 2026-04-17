@@ -5,12 +5,12 @@ import 'package:get/get.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/errors/app_error_extension.dart';
+import 'package:talent_crm_app/features/register/domain/usecases/register_contract.dart';
 import 'package:talent_crm_app/features/register/domain/usecases/register_params.dart';
-import 'package:talent_crm_app/features/register/domain/usecases/register_usecase.dart';
 import 'package:talent_crm_app/features/register/domain/validators/register_validator.dart';
 
 class RegisterController extends GetxController {
-  final RegisterUseCase registerUseCase;
+  final RegisterContract registerUseCase;
 
   RegisterController(this.registerUseCase);
 
