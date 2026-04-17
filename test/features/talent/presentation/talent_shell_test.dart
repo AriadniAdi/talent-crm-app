@@ -9,6 +9,7 @@ import 'package:talent_crm_app/features/talent/presentation/controller/talent_co
 import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_page.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
+import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
 
 import '../../helpers/wrapper.dart';
 
@@ -42,6 +43,7 @@ void main() {
 
     controller = TalentController(mockUseCase, 1);
     Get.put<TalentController>(controller);
+    Get.put<VoiceRecordingController>(VoiceRecordingController());
   });
 
   tearDown(() {

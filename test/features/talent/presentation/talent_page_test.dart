@@ -13,6 +13,7 @@ import 'package:talent_crm_app/features/talent/presentation/widgets/talent_heade
 import 'package:talent_crm_app/features/talent/presentation/widgets/info_card.dart';
 import 'package:talent_crm_app/features/talent/presentation/widgets/observations_section.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
+import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
 import '../../helpers/wrapper.dart';
 
 class MockGetTalentsByIdUseCase extends Mock implements GetTalentByIdUseCase {}
@@ -40,6 +41,7 @@ void main() {
     );
 
     Get.put<TalentController>(TalentController(mocktalentId, 1));
+    Get.put<VoiceRecordingController>(VoiceRecordingController());
   });
 
   testWidgets('renders all sections properly', (tester) async {
