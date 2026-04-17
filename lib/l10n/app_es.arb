@@ -115,6 +115,114 @@
   "@copiedToClipboard": {
     "description": "Mensagem exibida quando o conteúdo é copiado para a área de transferência.",
     "type": "text"
+  },
+
+  "fullName": "Nombre completo",
+  "@fullName": {
+    "description": "Etiqueta del campo de nombre completo",
+    "type": "text"
+  },
+
+  "cpf": "CPF",
+  "@cpf": {
+    "description": "Etiqueta del campo de CPF",
+    "type": "text"
+  },
+
+  "birthDateHint": "Fecha de nacimiento (dd/mm/yyyy)",
+  "@birthDateHint": {
+    "description": "Etiqueta del campo de fecha de nacimiento",
+    "type": "text"
+  },
+
+  "email": "Correo electrónico",
+  "@email": {
+    "description": "Etiqueta del campo de correo",
+    "type": "text"
+  },
+
+  "password": "Contraseña",
+  "@password": {
+    "description": "Etiqueta del campo de contraseña",
+    "type": "text"
+  },
+
+  "confirmPassword": "Confirmar contraseña",
+  "@confirmPassword": {
+    "description": "Etiqueta del campo de confirmación de contraseña",
+    "type": "text"
+  },
+
+  "phone": "Teléfono",
+  "@phone": {
+    "description": "Etiqueta del campo de teléfono",
+    "type": "text"
+  },
+
+  "register": "Registrarse",
+  "@register": {
+    "description": "Texto del botón de registro",
+    "type": "text"
+  },
+
+  "invalidEmail": "Correo inválido",
+  "@invalidEmail": {
+    "description": "Error cuando el correo es inválido",
+    "type": "text"
+  },
+
+  "invalidCpf": "CPF inválido",
+  "@invalidCpf": {
+    "description": "Error cuando el CPF es inválido",
+    "type": "text"
+  },
+
+  "invalidBirthDate": "Fecha inválida",
+  "@invalidBirthDate": {
+    "description": "Error cuando la fecha es inválida",
+    "type": "text"
+  },
+
+  "underAge": "Debes ser mayor de edad",
+  "@underAge": {
+    "description": "Error cuando el usuario es menor de edad",
+    "type": "text"
+  },
+
+  "passwordMismatch": "Las contraseñas no coinciden",
+  "@passwordMismatch": {
+    "description": "Error cuando las contraseñas no coinciden",
+    "type": "text"
+  },
+
+  "requiredName": "Nombre obligatorio",
+  "@requiredName": {
+    "description": "Error cuando el nombre está vacío",
+    "type": "text"
+  },
+
+  "passwordTooShort": "La contraseña debe tener al menos 6 caracteres",
+  "@passwordTooShort": {
+    "description": "Error cuando la contraseña es muy corta",
+    "type": "text"
+  },
+
+  "invalidName": "El nombre contiene caracteres inválidos",
+  "@invalidName": {
+  "description": "Error mostrado cuando el nombre contiene caracteres inválidos como números o símbolos",
+  "type": "text"
+  },
+
+  "createAccount": "Crear cuenta",
+  "@createAccount": {
+    "description": "Texto del botón o título para crear una nueva cuenta",
+    "type": "text"
+  },
+
+  "fillOnTheContinue": "Complete los campos para continuar",
+  "@fillOnTheContinue": {
+    "description": "Texto que orienta al usuario a completar los campos para continuar",
+    "type": "text"
   }
 }
 

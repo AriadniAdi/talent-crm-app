@@ -79,4 +79,82 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get copiedToClipboard => 'Copiado para a área de transferência';
+
+  @override
+  String get fullName => 'Nombre completo';
+
+  @override
+  String get cpf => 'CPF';
+
+  @override
+  String get birthDateHint => 'Fecha de nacimiento (dd/mm/yyyy)';
+
+  @override
+  String get email => 'Correo electrónico';
+
+  @override
+  String get password => 'Contraseña';
+
+  @override
+  String get confirmPassword => 'Confirmar contraseña';
+
+  @override
+  String get phone => 'Teléfono';
+
+  @override
+  String get register => 'Registrarse';
+
+  @override
+  String get invalidEmail => 'Correo inválido';
+
+  @override
+  String get invalidCpf => 'CPF inválido';
+
+  @override
+  String get invalidBirthDate => 'Fecha inválida';
+
+  @override
+  String get underAge => 'Debes ser mayor de edad';
+
+  @override
+  String get passwordMismatch => 'Las contraseñas no coinciden';
+
+  @override
+  String get requiredName => 'Nombre obligatorio';
+
+  @override
+  String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
+
+  @override
+  String get invalidNameLength => 'Name is too long';
+
+  @override
+  String get requiredCpf => 'CPF is required';
+
+  @override
+  String get futureBirthDate => 'Birth date cannot be in the future';
+
+  @override
+  String get requiredEmail => 'Email is required';
+
+  @override
+  String get requiredPhone => 'Phone is required';
+
+  @override
+  String get requiredPassword => 'Password is required';
+
+  @override
+  String get passwordTooLong => 'Password must be at most 6 characters';
+
+  @override
+  String get requiredConfirmPassword => 'Password confirmation is required';
+
+  @override
+  String get invalidName => 'El nombre contiene caracteres inválidos';
+
+  @override
+  String get createAccount => 'Crear cuenta';
+
+  @override
+  String get fillOnTheContinue => 'Complete los campos para continuar';
 }

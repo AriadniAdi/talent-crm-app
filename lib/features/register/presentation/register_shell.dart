@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/features/register/presentation/controller/register_controller.dart';
 import 'register_page.dart';
 
@@ -18,15 +19,24 @@ class RegisterShell extends GetView<RegisterController> {
         obscurePassword: controller.obscurePassword.value,
         obscureConfirmPassword: controller.obscureConfirmPassword.value,
         selectedCountryCode: controller.selectedCountryCode.value,
-        acceptedTerms: controller.acceptedTerms.value,
         isLoading: controller.isLoading.value,
+        errorMessage: controller.screenError.value?.message(context),
         onTogglePassword: controller.togglePasswordVisibility,
         onToggleConfirmPassword: controller.toggleConfirmPasswordVisibility,
-        onToggleTerms: controller.toggleTerms,
         onRegister: controller.register,
+        cpfController: controller.cpfController,
+        birthDateController: controller.birthDateController,
+        errorMessages:
+            controller.validationErrors.map((e) => e.message(context)).toList(),
         onCountryTap: () {
           _showCountryCodeSheet(context);
         },
+        hasError: controller.hasError,
+        getErrorMessage: controller.getErrorMessage,
+        onBirthDateChanged: controller.onBirthDateChanged,
+        cpfFormatters: [controller.cpfMask],
+        dateFormatters: [controller.dateMask],
+        phoneFormatters: [controller.phoneMask],
       ),
     );
   }

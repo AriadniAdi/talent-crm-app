@@ -79,4 +79,82 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get copiedToClipboard => 'Copied to clipboard';
+
+  @override
+  String get fullName => 'Full name';
+
+  @override
+  String get cpf => 'CPF';
+
+  @override
+  String get birthDateHint => 'Birth date (mm/dd/yyyy)';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get confirmPassword => 'Confirm password';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get register => 'Register';
+
+  @override
+  String get invalidEmail => 'Invalid email';
+
+  @override
+  String get invalidCpf => 'Invalid CPF';
+
+  @override
+  String get invalidBirthDate => 'Invalid date';
+
+  @override
+  String get underAge => 'You must be at least 18 years old';
+
+  @override
+  String get passwordMismatch => 'Passwords do not match';
+
+  @override
+  String get requiredName => 'Name is required';
+
+  @override
+  String get passwordTooShort => 'Password must be at least 6 characters';
+
+  @override
+  String get invalidNameLength => 'Name is too long';
+
+  @override
+  String get requiredCpf => 'CPF is required';
+
+  @override
+  String get futureBirthDate => 'Birth date cannot be in the future';
+
+  @override
+  String get requiredEmail => 'Email is required';
+
+  @override
+  String get requiredPhone => 'Phone is required';
+
+  @override
+  String get requiredPassword => 'Password is required';
+
+  @override
+  String get passwordTooLong => 'Password must be at most 6 characters';
+
+  @override
+  String get requiredConfirmPassword => 'Password confirmation is required';
+
+  @override
+  String get invalidName => 'The name contains invalid characters';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get fillOnTheContinue => 'Fill in the fields to continue';
 }

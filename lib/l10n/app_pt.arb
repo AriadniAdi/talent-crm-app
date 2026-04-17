@@ -118,5 +118,161 @@
   "@copiedToClipboard": {
     "description": "Mensagem exibida quando o conteúdo é copiado para a área de transferência.",
     "type": "text"
+  },
+  "fullName": "Nome completo",
+  "@fullName": {
+    "description": "Label do campo de nome completo no cadastro",
+    "type": "text"
+  },
+
+  "cpf": "CPF",
+  "@cpf": {
+    "description": "Label do campo de CPF",
+    "type": "text"
+  },
+
+  "birthDateHint": "Data de nascimento (dd/mm/yyyy)",
+  "@birthDateHint": {
+    "description": "Label do campo de data de nascimento",
+    "type": "text"
+  },
+
+  "email": "E-mail",
+  "@email": {
+    "description": "Label do campo de e-mail",
+    "type": "text"
+  },
+
+  "password": "Senha",
+  "@password": {
+    "description": "Label do campo de senha",
+    "type": "text"
+  },
+
+  "confirmPassword": "Confirmar senha",
+  "@confirmPassword": {
+    "description": "Label do campo de confirmação de senha",
+    "type": "text"
+  },
+
+  "phone": "Telefone",
+  "@phone": {
+    "description": "Label do campo de telefone",
+    "type": "text"
+  },
+
+  "register": "Cadastrar",
+  "@register": {
+    "description": "Texto do botão de cadastro",
+    "type": "text"
+  },
+
+  "passwordMismatch": "Senhas não coincidem",
+  "@passwordMismatch": {
+    "description": "Erro exibido quando as senhas não coincidem",
+    "type": "text"
+  },
+
+  "requiredName": "Nome obrigatório",
+  "@requiredName": {
+    "description": "Erro exibido quando o nome não é preenchido",
+    "type": "text"
+  },
+
+  "passwordTooShort": "Senha deve ter pelo menos 6 caracteres",
+  "@passwordTooShort": {
+    "description": "Erro exibido quando a senha é muito curta",
+    "type": "text"
+  },
+
+  "invalidNameLength": "Nome muito longo",
+  "@invalidNameLength": {
+    "description": "Erro exibido quando o nome excede o limite permitido",
+    "type": "text"
+  },
+
+  "requiredCpf": "CPF obrigatório",
+  "@requiredCpf": {
+    "description": "Erro exibido quando o CPF não é informado",
+    "type": "text"
+  },
+
+  "invalidCpf": "CPF inválido",
+  "@invalidCpf": {
+    "description": "Erro exibido quando o CPF é inválido",
+    "type": "text"
+  },
+
+  "invalidBirthDate": "Data inválida",
+  "@invalidBirthDate": {
+    "description": "Erro exibido quando a data não pode ser interpretada",
+    "type": "text"
+  },
+
+  "futureBirthDate": "A data de nascimento não pode ser futura",
+  "@futureBirthDate": {
+    "description": "Erro exibido quando a data é maior que a atual",
+    "type": "text"
+  },
+
+  "underAge": "Você precisa ser maior de idade",
+  "@underAge": {
+    "description": "Erro exibido quando o usuário é menor de 18 anos",
+    "type": "text"
+  },
+
+  "requiredEmail": "E-mail obrigatório",
+  "@requiredEmail": {
+    "description": "Erro exibido quando o e-mail não é informado",
+    "type": "text"
+  },
+
+  "invalidEmail": "E-mail inválido",
+  "@invalidEmail": {
+    "description": "Erro exibido quando o e-mail não possui formato válido",
+    "type": "text"
+  },
+
+  "requiredPhone": "Telefone obrigatório",
+  "@requiredPhone": {
+    "description": "Erro exibido quando o telefone não é informado",
+    "type": "text"
+  },
+
+  "requiredPassword": "Senha obrigatória",
+  "@requiredPassword": {
+    "description": "Erro exibido quando a senha não é informada",
+    "type": "text"
+  },
+
+  "passwordTooLong": "A senha deve ter no máximo 6 caracteres",
+  "@passwordTooLong": {
+    "description": "Erro exibido quando a senha excede 6 caracteres",
+    "type": "text"
+  },
+
+  "requiredConfirmPassword": "Confirmação de senha obrigatória",
+  "@requiredConfirmPassword": {
+    "description": "Erro exibido quando a confirmação não é informada",
+    "type": "text"
+  },
+
+  "invalidName": "O nome contém caracteres inválidos",
+  "@invalidName": {
+  "description": "Erro exibido quando o nome contém caracteres inválidos como números ou símbolos",
+  "type": "text"
+  },
+
+  "createAccount": "Criar conta",
+  "@createAccount": {
+    "description": "Texto do botão ou título para criar uma nova conta",
+    "type": "text"
+  },
+
+  "fillOnTheContinue": "Preencha para continuar",
+  "@fillOnTheContinue": {
+    "description": "Texto exibido orientando o usuário a preencher os campos para continuar",
+    "type": "text"
   }
+
 }
