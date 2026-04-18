@@ -7,7 +7,8 @@ import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
+import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 
@@ -45,8 +46,8 @@ class GlobalBinding extends Bindings {
     );
 
     // Data (compartilhado)
-    Get.lazyPut<TalentService>(
-      () => TalentService(apiClient: Get.find()),
+    Get.lazyPut<TalentRemoteDataSource>(
+      () => TalentRemoteDataSourceImpl(apiClient: Get.find()),
       fenix: true,
     );
 
