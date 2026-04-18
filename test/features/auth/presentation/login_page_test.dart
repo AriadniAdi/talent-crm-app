@@ -8,10 +8,12 @@ void main() {
   LoginPage buildPage({
     bool isLoading = false,
     VoidCallback? onContinueWithEmail,
+    VoidCallback? onContinueWithGoogle,
   }) {
     return LoginPage(
       isLoading: isLoading,
       onContinueWithEmail: onContinueWithEmail ?? () {},
+      onContinueWithGoogle: onContinueWithGoogle ?? () {},
     );
   }
 

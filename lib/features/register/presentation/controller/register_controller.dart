@@ -285,12 +285,14 @@ class RegisterController extends GetxController {
     try {
       await registerUseCase(params);
       final l10n = lookupAppLocalizations(Get.locale ?? const Locale('pt'));
-      Get.snackbar(
-        l10n.registerSuccessTitle,
-        l10n.registerSuccessMessage,
-        backgroundColor: Colors.green,
-        colorText: Colors.white,
-      );
+      if (Get.context != null) {
+        Get.snackbar(
+          l10n.registerSuccessTitle,
+          l10n.registerSuccessMessage,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }
     } on AppError catch (e) {
       screenError.value = e;
     } catch (_) {
