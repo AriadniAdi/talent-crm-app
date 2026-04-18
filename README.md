@@ -47,7 +47,8 @@ organização de talentos.
 -   🔗 Navegação dinâmica com suporte a Deep Linking\
 -   🔔 Notificações locais acionadas por eventos da aplicação\
 -   🎙 Gravação e reprodução de áudio\
--   ☁ Upload opcional de arquivos de áudio para o Firebase Storage\
+-   🔐 Autenticação de usuários com Firebase Auth\
+-   🗂 Persistência básica de usuários com Cloud Firestore\
 -   🧪 Testes unitários para camadas de serviço e controle\
 -   ⚙ Integração contínua com análise estática e execução automatizada
     de testes
@@ -59,7 +60,8 @@ organização de talentos.
 -   Flutter\
 -   Dart\
 -   GetX\
--   Firebase Storage\
+-   Firebase Auth\
+-   Cloud Firestore\
 -   flutter_local_notifications\
 -   Biblioteca de gravação e reprodução de áudio\
 -   JSON parsing\
@@ -114,6 +116,12 @@ lib/
 <!-- -->
 ```
     flutter pub get
+
+    Para provisionar os arquivos nativos do Firebase em CI, exporte as
+    variáveis `GOOGLE_SERVICES_JSON` e/ou `GOOGLE_SERVICE_INFO_PLIST`
+    com o conteúdo em base64 e execute:
+
+    ./scripts/setup_firebase.sh
 
 4.  Execute o projeto:
 
