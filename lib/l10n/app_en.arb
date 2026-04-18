@@ -282,5 +282,177 @@
   "@fillOnTheContinue": {
     "description": "Text shown to guide the user to fill in the fields to continue",
     "type": "text"
+  },
+
+  "loginHeadline": "Access your account",
+  "@loginHeadline": {
+    "description": "Main title on the login screen",
+    "type": "text"
+  },
+
+  "loginDescription": "Sign in with your social account or continue with email to follow candidates, teams, and opportunities.",
+  "@loginDescription": {
+    "description": "Supporting text shown in the login banner",
+    "type": "text"
+  },
+
+  "loginOptionsTitle": "Choose how you want to sign in",
+  "@loginOptionsTitle": {
+    "description": "Title for the authentication options section",
+    "type": "text"
+  },
+
+  "loginOptionsSubtitle": "A simple, fast, and familiar flow to get started.",
+  "@loginOptionsSubtitle": {
+    "description": "Supporting text for the authentication options section",
+    "type": "text"
+  },
+
+  "continueWithGoogle": "Continue with Google",
+  "@continueWithGoogle": {
+    "description": "Button to authenticate with Google",
+    "type": "text"
+  },
+
+  "continueWithGoogleDescription": "Use the account connected to your device.",
+  "@continueWithGoogleDescription": {
+    "description": "Description for the Google authentication button",
+    "type": "text"
+  },
+
+  "continueWithApple": "Continue with Apple",
+  "@continueWithApple": {
+    "description": "Button to authenticate with Apple",
+    "type": "text"
+  },
+
+  "continueWithAppleDescription": "Ideal for quick and private access.",
+  "@continueWithAppleDescription": {
+    "description": "Description for the Apple authentication button",
+    "type": "text"
+  },
+
+  "continueWithFacebook": "Continue with Facebook",
+  "@continueWithFacebook": {
+    "description": "Button to authenticate with Facebook",
+    "type": "text"
+  },
+
+  "continueWithFacebookDescription": "Sign in with your traditional social profile.",
+  "@continueWithFacebookDescription": {
+    "description": "Description for the Facebook authentication button",
+    "type": "text"
+  },
+
+  "orDivider": "or",
+  "@orDivider": {
+    "description": "Text divider between login methods",
+    "type": "text"
+  },
+
+  "continueWithEmail": "Continue with email",
+  "@continueWithEmail": {
+    "description": "Button to continue with email login",
+    "type": "text"
+  },
+
+  "createAccountWithEmail": "Create account with email",
+  "@createAccountWithEmail": {
+    "description": "Button to create an account using email",
+    "type": "text"
+  },
+
+  "loginProtectionMessage": "Your access data stays protected, and you can switch login methods later.",
+  "@loginProtectionMessage": {
+    "description": "Informational message about login security",
+    "type": "text"
+  },
+
+  "providerComingSoon": "{provider} will be connected in the next step.",
+  "@providerComingSoon": {
+    "description": "Message shown when a social provider is not yet available",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+
+  "emailLoginTitle": "Email login",
+  "@emailLoginTitle": {
+    "description": "Title of the email login screen",
+    "type": "text"
+  },
+
+  "emailLoginSubtitle": "Enter your email and password to sign in.",
+  "@emailLoginSubtitle": {
+    "description": "Subtitle of the email login screen",
+    "type": "text"
+  },
+
+  "signIn": "Sign in",
+  "@signIn": {
+    "description": "Text for the sign in button",
+    "type": "text"
+  },
+
+  "warningTitle": "Warning",
+  "@warningTitle": {
+    "description": "Default title for warnings and alerts",
+    "type": "text"
+  },
+
+  "fillAllFields": "Fill in all fields.",
+  "@fillAllFields": {
+    "description": "Message shown when the user tries to submit an incomplete form",
+    "type": "text"
+  },
+
+  "loginErrorTitle": "Sign-in error",
+  "@loginErrorTitle": {
+    "description": "Default title for authentication errors",
+    "type": "text"
+  },
+
+  "registerSuccessTitle": "Success",
+  "@registerSuccessTitle": {
+    "description": "Title of the success message after registration",
+    "type": "text"
+  },
+
+  "registerSuccessMessage": "Account created successfully!",
+  "@registerSuccessMessage": {
+    "description": "Message shown after successful registration",
+    "type": "text"
+  },
+
+  "authEmailAlreadyInUse": "Email already registered",
+  "@authEmailAlreadyInUse": {
+    "description": "Error shown when the email is already in use",
+    "type": "text"
+  },
+
+  "authInvalidEmail": "Invalid email",
+  "@authInvalidEmail": {
+    "description": "Error shown when the provided email is invalid",
+    "type": "text"
+  },
+
+  "authGoogleCancelled": "Google sign-in was canceled",
+  "@authGoogleCancelled": {
+    "description": "Error shown when the user cancels Google sign-in",
+    "type": "text"
+  },
+
+  "authInvalidCredentials": "Invalid email or password",
+  "@authInvalidCredentials": {
+    "description": "Error shown when the login credentials are incorrect",
+    "type": "text"
+  },
+
+  "authGenericFailure": "Authentication failed",
+  "@authGenericFailure": {
+    "description": "Generic message for authentication failures",
+    "type": "text"
   }
 }

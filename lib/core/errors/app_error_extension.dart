@@ -4,8 +4,14 @@ import 'app_error.dart';
 
 extension AppErrorX on AppError {
   String message(BuildContext context) {
-    final t = AppLocalizations.of(context)!;
+    return localized(AppLocalizations.of(context)!);
+  }
 
+  String localized(AppLocalizations t) {
+    return _localizedMessage(t);
+  }
+
+  String _localizedMessage(AppLocalizations t) {
     if (this is NetworkError) return t.noInternet;
     if (this is ServerError) return t.serverError;
     if (this is NotFoundError) return t.notFound;
@@ -13,7 +19,22 @@ extension AppErrorX on AppError {
     if (this is InvalidRouteError) return t.invalidRoute;
 
     if (this is AuthError) {
-      return (this as AuthError).message ?? t.unknownError;
+      final error = this as AuthError;
+
+      switch (error.code) {
+        case AuthErrorCode.emailAlreadyInUse:
+          return t.authEmailAlreadyInUse;
+        case AuthErrorCode.invalidEmail:
+          return t.authInvalidEmail;
+        case AuthErrorCode.googleSignInCancelled:
+          return t.authGoogleCancelled;
+        case AuthErrorCode.invalidCredentials:
+          return t.authInvalidCredentials;
+        case AuthErrorCode.authenticationFailed:
+          return t.authGenericFailure;
+        case null:
+          return error.message ?? t.unknownError;
+      }
     }
 
     if (this is ValidationError) {

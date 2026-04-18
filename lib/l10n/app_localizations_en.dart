@@ -157,4 +157,90 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get fillOnTheContinue => 'Fill in the fields to continue';
+
+  @override
+  String get loginHeadline => 'Access your account';
+
+  @override
+  String get loginDescription => 'Sign in with your social account or continue with email to follow candidates, teams, and opportunities.';
+
+  @override
+  String get loginOptionsTitle => 'Choose how you want to sign in';
+
+  @override
+  String get loginOptionsSubtitle => 'A simple, fast, and familiar flow to get started.';
+
+  @override
+  String get continueWithGoogle => 'Continue with Google';
+
+  @override
+  String get continueWithGoogleDescription => 'Use the account connected to your device.';
+
+  @override
+  String get continueWithApple => 'Continue with Apple';
+
+  @override
+  String get continueWithAppleDescription => 'Ideal for quick and private access.';
+
+  @override
+  String get continueWithFacebook => 'Continue with Facebook';
+
+  @override
+  String get continueWithFacebookDescription => 'Sign in with your traditional social profile.';
+
+  @override
+  String get orDivider => 'or';
+
+  @override
+  String get continueWithEmail => 'Continue with email';
+
+  @override
+  String get createAccountWithEmail => 'Create account with email';
+
+  @override
+  String get loginProtectionMessage => 'Your access data stays protected, and you can switch login methods later.';
+
+  @override
+  String providerComingSoon(String provider) {
+    return '$provider will be connected in the next step.';
+  }
+
+  @override
+  String get emailLoginTitle => 'Email login';
+
+  @override
+  String get emailLoginSubtitle => 'Enter your email and password to sign in.';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get warningTitle => 'Warning';
+
+  @override
+  String get fillAllFields => 'Fill in all fields.';
+
+  @override
+  String get loginErrorTitle => 'Sign-in error';
+
+  @override
+  String get registerSuccessTitle => 'Success';
+
+  @override
+  String get registerSuccessMessage => 'Account created successfully!';
+
+  @override
+  String get authEmailAlreadyInUse => 'Email already registered';
+
+  @override
+  String get authInvalidEmail => 'Invalid email';
+
+  @override
+  String get authGoogleCancelled => 'Google sign-in was canceled';
+
+  @override
+  String get authInvalidCredentials => 'Invalid email or password';
+
+  @override
+  String get authGenericFailure => 'Authentication failed';
 }
