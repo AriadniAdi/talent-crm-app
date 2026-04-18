@@ -31,4 +31,8 @@ class AuthManager extends GetxController {
   }
 
   bool get isAuthenticated => user.value != null;
+
+  Future<void> signOut() async {
+    await _auth.signOut();
+  }
 }
