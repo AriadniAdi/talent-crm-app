@@ -1,20 +1,40 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/bindings_interface.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
+import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 
 class GlobalBinding extends Bindings {
+  @override
   void dependencies() {
+    // Firebase (allows mocks to be pre-registered in tests)
+    if (!Get.isRegistered<FirebaseAuth>()) {
+      Get.put<FirebaseAuth>(FirebaseAuth.instance, permanent: true);
+    }
+    if (!Get.isRegistered<FirebaseFirestore>()) {
+      Get.put<FirebaseFirestore>(FirebaseFirestore.instance, permanent: true);
+    }
+    if (!Get.isRegistered<GoogleSignIn>()) {
+      Get.put<GoogleSignIn>(GoogleSignIn.instance, permanent: true);
+    }
+
+    Get.put<FirebaseService>(
+      FirebaseFirestoreService(Get.find<FirebaseFirestore>()),
+      permanent: true,
+    );
+
     // Auth global
-    Get.put<AuthManager>(AuthManager(), permanent: true);
+    Get.put<AuthManager>(
+      AuthManager(auth: Get.find<FirebaseAuth>()),
+      permanent: true,
+    );
 
     // Infra
     Get.put<http.Client>(http.Client(), permanent: true);
@@ -32,8 +52,9 @@ class GlobalBinding extends Bindings {
 
     Get.lazyPut<AuthRemoteDataSource>(
       () => FirebaseAuthRemoteDataSource(
-        auth: FirebaseAuth.instance,
-        db: FirebaseFirestore.instance,
+        auth: Get.find<FirebaseAuth>(),
+        firebaseService: Get.find<FirebaseService>(),
+        googleSignIn: Get.find<GoogleSignIn>(),
       ),
       fenix: true,
     );

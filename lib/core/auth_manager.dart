@@ -3,8 +3,10 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 
 class AuthManager extends GetxController {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth;
   late final Rx<User?> user;
+
+  AuthManager({FirebaseAuth? auth}) : _auth = auth ?? FirebaseAuth.instance;
 
   @override
   void onInit() {
