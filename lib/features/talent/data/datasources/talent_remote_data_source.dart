@@ -3,19 +3,13 @@ import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 
-abstract class TalentRemoteDataSource {
-  Future<Result<List<Map<String, dynamic>>>> fetchTalents();
-  Future<Result<Map<String, dynamic>>> fetchTalentById(int id);
-}
-
-class TalentRemoteDataSourceImpl implements TalentRemoteDataSource {
+class TalentRemoteDataSource {
   final ApiClient apiClient;
 
-  const TalentRemoteDataSourceImpl({
+  const TalentRemoteDataSource({
     required this.apiClient,
   });
 
-  @override
   Future<Result<List<Map<String, dynamic>>>> fetchTalents() async {
     final result = await apiClient.get(AppConfig.uri('/users'));
 
@@ -33,7 +27,6 @@ class TalentRemoteDataSourceImpl implements TalentRemoteDataSource {
     );
   }
 
-  @override
   Future<Result<Map<String, dynamic>>> fetchTalentById(int id) async {
     final uri = AppConfig.uri('/users/$id');
 

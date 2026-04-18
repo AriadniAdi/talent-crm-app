@@ -5,13 +5,13 @@ import 'package:talent_crm_app/features/talent/model/talent_model.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 
 class TalentRepositoryImpl implements TalentRepository {
-  final TalentRemoteDataSource dataSource;
+  final TalentRemoteDataSource remoteDataSource;
 
-  TalentRepositoryImpl(this.dataSource);
+  TalentRepositoryImpl(this.remoteDataSource);
 
   @override
   Future<Result<List<Talent>>> getTalents() async {
-    final result = await dataSource.fetchTalents();
+    final result = await remoteDataSource.fetchTalents();
 
     return result.when(
       success: (data) {
@@ -26,7 +26,7 @@ class TalentRepositoryImpl implements TalentRepository {
 
   @override
   Future<Result<Talent>> getTalentById(int id) async {
-    final result = await dataSource.fetchTalentById(id);
+    final result = await remoteDataSource.fetchTalentById(id);
 
     return result.when(
       success: (data) {

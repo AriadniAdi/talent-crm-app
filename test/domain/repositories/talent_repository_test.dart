@@ -4,11 +4,12 @@ import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 
-class MockTalentRemoteDataSource extends Mock implements TalentRemoteDataSource {}
+class MockTalentRemoteDataSource extends Mock
+    implements TalentRemoteDataSource {}
 
 void main() {
   late TalentRepositoryImpl repository;
-  late MockTalentRemoteDataSource mockDataSource;
+  late MockTalentRemoteDataSource mockRemoteDataSource;
 
   final mockTalentJson = [
     {
@@ -32,13 +33,13 @@ void main() {
   ];
 
   setUp(() {
-    mockDataSource = MockTalentRemoteDataSource();
-    repository = TalentRepositoryImpl(mockDataSource);
+    mockRemoteDataSource = MockTalentRemoteDataSource();
+    repository = TalentRepositoryImpl(mockRemoteDataSource);
   });
 
   group('TalentRepositoryImpl.getTalents', () {
-    test('should return list of talents when service succeeds', () async {
-      when(() => mockDataSource.fetchTalents())
+    test('should return list of talents when datasource succeeds', () async {
+      when(() => mockRemoteDataSource.fetchTalents())
           .thenAnswer((_) async => Success(mockTalentJson));
 
       final result = await repository.getTalents();
@@ -61,12 +62,12 @@ void main() {
         failure: (_) => fail('Expected success'),
       );
 
-      verify(() => mockDataSource.fetchTalents()).called(1);
-      verifyNoMoreInteractions(mockDataSource);
+      verify(() => mockRemoteDataSource.fetchTalents()).called(1);
+      verifyNoMoreInteractions(mockRemoteDataSource);
     });
 
-    test('should propagate exception when service throws', () async {
-      when(() => mockDataSource.fetchTalents())
+    test('should propagate exception when datasource throws', () async {
+      when(() => mockRemoteDataSource.fetchTalents())
           .thenThrow(Exception('Network error'));
 
       expect(
@@ -74,8 +75,8 @@ void main() {
         throwsA(isA<Exception>()),
       );
 
-      verify(() => mockDataSource.fetchTalents()).called(1);
-      verifyNoMoreInteractions(mockDataSource);
+      verify(() => mockRemoteDataSource.fetchTalents()).called(1);
+      verifyNoMoreInteractions(mockRemoteDataSource);
     });
   });
 }

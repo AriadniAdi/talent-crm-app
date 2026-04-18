@@ -16,7 +16,7 @@ class FakeUri extends Fake implements Uri {}
 
 void main() {
   late MockHttpClient mockClient;
-  late TalentRemoteDataSource dataSource;
+  late TalentRemoteDataSource remoteDataSource;
 
   setUpAll(() {
     registerFallbackValue(FakeUri());
@@ -24,7 +24,7 @@ void main() {
 
   setUp(() {
     mockClient = MockHttpClient();
-    dataSource = TalentRemoteDataSourceImpl(
+    remoteDataSource = TalentRemoteDataSource(
       apiClient: ApiClient(mockClient),
     );
   });
@@ -51,7 +51,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockListResponse), 200),
       );
 
-      final result = await dataSource.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
 
       result.when(
         success: (data) {
@@ -68,7 +68,7 @@ void main() {
       );
     });
 
-    test('should return Failure when status is not 200', () async {
+    test('should throw exception when status is not 200', () async {
       when(() => mockClient.get(
             any(),
             headers: any(named: 'headers'),
@@ -76,11 +76,11 @@ void main() {
         (_) async => http.Response('Error', 500),
       );
 
-      final result = await dataSource.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
       expect(result, isA<Failure<List<Map<String, dynamic>>>>());
     });
 
-    test('should return Failure when response is not a list', () async {
+    test('should throw exception when response is not a list', () async {
       when(() => mockClient.get(
             any(),
             headers: any(named: 'headers'),
@@ -88,7 +88,7 @@ void main() {
         (_) async => http.Response(jsonEncode({"invalid": "data"}), 200),
       );
 
-      final result = await dataSource.fetchTalents();
+      final result = await remoteDataSource.fetchTalents();
 
       result.when(
         success: (_) => fail('Expected failure but got success'),
@@ -119,7 +119,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockResponse), 200),
       );
 
-      await dataSource.fetchTalentById(1);
+      await remoteDataSource.fetchTalentById(1);
 
       verify(() => mockClient.get(
             AppConfig.uri('/users/1'),
@@ -127,7 +127,7 @@ void main() {
           )).called(1);
     });
 
-    test('should return json object when status is 200', () async {
+    test('should return Talent when status is 200', () async {
       when(() => mockClient.get(
             any(),
             headers: any(named: 'headers'),
@@ -135,7 +135,7 @@ void main() {
         (_) async => http.Response(jsonEncode(mockResponse), 200),
       );
 
-      final result = await dataSource.fetchTalentById(1);
+      final result = await remoteDataSource.fetchTalentById(1);
 
       result.when(
         success: (data) {
@@ -146,7 +146,7 @@ void main() {
       );
     });
 
-    test('should return Failure when status is not 200', () async {
+    test('should throw exception when status is not 200', () async {
       when(() => mockClient.get(
             any(),
             headers: any(named: 'headers'),
@@ -154,7 +154,7 @@ void main() {
         (_) async => http.Response('Error', 404),
       );
 
-      final result = await dataSource.fetchTalentById(1);
+      final result = await remoteDataSource.fetchTalentById(1);
 
       expect(result, isA<Failure<Map<String, dynamic>>>());
     });
