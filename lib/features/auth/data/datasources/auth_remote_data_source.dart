@@ -3,12 +3,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 
 abstract class AuthRemoteDataSource {
   Future<Result<bool>> registerUser({
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   });
 
   Future<Result<bool>> signIn({
@@ -23,11 +28,13 @@ abstract class AuthRemoteDataSource {
 
 class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
   final FirebaseAuth auth;
-  final FirebaseFirestore db;
+  final FirebaseService firebaseService;
+  final GoogleSignIn googleSignIn;
 
-  const FirebaseAuthRemoteDataSource({
+  FirebaseAuthRemoteDataSource({
     required this.auth,
-    required this.db,
+    required this.firebaseService,
+    required this.googleSignIn,
   });
 
   @override
@@ -35,6 +42,10 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   }) async {
     try {
       final credential = await auth.createUserWithEmailAndPassword(
@@ -42,12 +53,20 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         password: password,
       );
 
-      await db.collection('users').doc(credential.user!.uid).set({
-        'name': name,
-        'email': email,
-        'uid': credential.user!.uid,
-        'data_criacao': FieldValue.serverTimestamp(),
-      });
+      await firebaseService.setData(
+        collection: 'users',
+        docId: credential.user!.uid,
+        data: {
+          'name': name,
+          'email': email,
+          'uid': credential.user!.uid,
+          'phone': phone,
+          'country_code': countryCode,
+          'cpf': cpf,
+          'birth_date': birthDate != null ? Timestamp.fromDate(birthDate) : null,
+          'data_criacao': FieldValue.serverTimestamp(),
+        },
+      );
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
@@ -91,17 +110,17 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
   @override
   Future<Result<bool>> signInWithGoogle() async {
     try {
-      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-
-      if (googleUser == null) {
-        return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
-      }
-
-      final GoogleSignInAuthentication googleAuth =
-          await googleUser.authentication;
+      final googleUser = await googleSignIn.authenticate();
+      final googleAuth = googleUser.authentication;
+      
+      // Em 7.x o accessToken deve ser solicitado via authorizationClient
+      final authz = await googleUser.authorizationClient.authorizeScopes([
+        'email',
+        'openid',
+      ]);
 
       final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
+        accessToken: authz.accessToken,
         idToken: googleAuth.idToken,
       );
 
@@ -109,12 +128,17 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
       // Armazena no Firestore se a conta for recém criada (opcional, p/ consistência)
       if (userCredential.additionalUserInfo?.isNewUser ?? false) {
-        await db.collection('users').doc(userCredential.user!.uid).set({
-          'name': userCredential.user!.displayName ?? 'Usuário',
-          'email': userCredential.user!.email,
-          'uid': userCredential.user!.uid,
-          'data_criacao': FieldValue.serverTimestamp(),
-        }, SetOptions(merge: true));
+        await firebaseService.setData(
+          collection: 'users',
+          docId: userCredential.user!.uid,
+          data: {
+            'name': userCredential.user!.displayName ?? 'Usuário',
+            'email': userCredential.user!.email,
+            'uid': userCredential.user!.uid,
+            'data_criacao': FieldValue.serverTimestamp(),
+          },
+          merge: true,
+        );
       }
 
       return Success(true);
@@ -125,7 +149,10 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
           AuthErrorCode.authenticationFailed,
         ),
       );
-    } catch (_) {
+    } catch (e) {
+      if (e.toString().contains('canceled')) {
+        return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
+      }
       return Failure(UnknownError());
     }
   }

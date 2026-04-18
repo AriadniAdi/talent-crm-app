@@ -6,6 +6,10 @@ abstract class AuthRepository {
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   });
 
   Future<Result<bool>> signIn({
@@ -29,11 +33,19 @@ class AuthRepositoryImpl implements AuthRepository {
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   }) {
     return remoteDataSource.registerUser(
       name: name,
       email: email,
       password: password,
+      phone: phone,
+      countryCode: countryCode,
+      cpf: cpf,
+      birthDate: birthDate,
     );
   }
 
