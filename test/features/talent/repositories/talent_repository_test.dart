@@ -3,19 +3,19 @@ import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
-import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
+import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 
-class MockTalentService extends Mock implements TalentService {}
+class MockTalentRemoteDataSource extends Mock implements TalentRemoteDataSource {}
 
 void main() {
-  late MockTalentService mockService;
+  late MockTalentRemoteDataSource mockDataSource;
   late TalentRepositoryImpl repository;
 
   setUp(() {
-    mockService = MockTalentService();
-    repository = TalentRepositoryImpl(mockService);
+    mockDataSource = MockTalentRemoteDataSource();
+    repository = TalentRepositoryImpl(mockDataSource);
   });
 
   const mockTalent = Talent(
@@ -40,19 +40,19 @@ void main() {
 
   group('getTalents', () {
     test('should call service.fetchTalents once', () async {
-      when(() => mockService.fetchTalents())
+      when(() => mockDataSource.fetchTalents())
           .thenAnswer((_) async => Success([]));
 
       await repository.getTalents();
 
-      verify(() => mockService.fetchTalents()).called(1);
-      verifyNoMoreInteractions(mockService);
+      verify(() => mockDataSource.fetchTalents()).called(1);
+      verifyNoMoreInteractions(mockDataSource);
     });
 
     test('should return list of talents from service', () async {
       final talents = [jsonTalent];
 
-      when(() => mockService.fetchTalents())
+      when(() => mockDataSource.fetchTalents())
           .thenAnswer((_) async => Success(talents));
 
       final result = await repository.getTalents();
@@ -76,7 +76,7 @@ void main() {
     });
 
     test('should propagate exception when service throws', () async {
-      when(() => mockService.fetchTalents())
+      when(() => mockDataSource.fetchTalents())
           .thenThrow(Exception('Service error'));
 
       expect(
@@ -88,17 +88,17 @@ void main() {
 
   group('getTalentById', () {
     test('should call service.fetchTalentById with correct id', () async {
-      when(() => mockService.fetchTalentById(1))
+      when(() => mockDataSource.fetchTalentById(1))
           .thenAnswer((_) async => Success(jsonTalent));
 
       await repository.getTalentById(1);
 
-      verify(() => mockService.fetchTalentById(1)).called(1);
-      verifyNoMoreInteractions(mockService);
+      verify(() => mockDataSource.fetchTalentById(1)).called(1);
+      verifyNoMoreInteractions(mockDataSource);
     });
 
     test('should return talent from service', () async {
-      when(() => mockService.fetchTalentById(1))
+      when(() => mockDataSource.fetchTalentById(1))
           .thenAnswer((_) async => Success(jsonTalent));
 
       final result = await repository.getTalentById(1);
@@ -112,7 +112,7 @@ void main() {
     });
 
     test('should propagate exception when service throws', () async {
-      when(() => mockService.fetchTalentById(1))
+      when(() => mockDataSource.fetchTalentById(1))
           .thenThrow(Exception('Service error'));
 
       expect(

@@ -5,7 +5,8 @@ import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
+import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 Widget wrapper(
@@ -80,6 +81,6 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
 
   Get.put<http.Client>(http.Client());
   Get.put<ApiClient>(ApiClient(Get.find()));
-  Get.lazyPut<TalentService>(() => TalentService(apiClient: Get.find()));
-  Get.lazyPut<TalentRepository>(() => TalentRepositoryImpl(Get.find()));
+  Get.lazyPut<TalentRemoteDataSource>(() => TalentRemoteDataSourceImpl(apiClient: Get.find()));
+  Get.lazyPut<TalentRepository>(() => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
 }
