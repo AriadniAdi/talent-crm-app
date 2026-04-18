@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
+import 'package:talent_crm_app/core/auth_manager.dart';
 
 class SplashPage extends StatefulWidget {
   final Duration delay;
@@ -49,7 +50,11 @@ class _SplashPageState extends State<SplashPage>
     if (!mounted) return;
 
     if (Get.currentRoute == AppRoutes.splash) {
-      Get.offNamed(AppRoutes.login);
+      if (Get.find<AuthManager>().isAuthenticated) {
+        Get.offNamed(AppRoutes.home);
+      } else {
+        Get.offNamed(AppRoutes.login);
+      }
     }
   }
 

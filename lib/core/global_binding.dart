@@ -9,10 +9,13 @@ import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_s
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 import 'package:talent_crm_app/features/talent/services/talent_service.dart';
+import 'package:talent_crm_app/core/auth_manager.dart';
 
 class GlobalBinding extends Bindings {
-  @override
   void dependencies() {
+    // Auth global
+    Get.put<AuthManager>(AuthManager(), permanent: true);
+
     // Infra
     Get.put<http.Client>(http.Client(), permanent: true);
 

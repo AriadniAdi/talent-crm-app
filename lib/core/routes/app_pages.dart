@@ -4,6 +4,8 @@ import 'package:talent_crm_app/features/account/account_binding.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
 import 'package:talent_crm_app/features/auth/presentation/login_binding.dart';
 import 'package:talent_crm_app/features/auth/presentation/login_shell.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_page.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_binding.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/register_binding.dart';
@@ -24,6 +26,11 @@ class AppPages {
       name: AppRoutes.login,
       page: () => const LoginShell(),
       binding: LoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.loginEmail,
+      page: () => const EmailLoginPage(),
+      binding: EmailLoginBinding(),
     ),
     GetPage(
       name: AppRoutes.home,

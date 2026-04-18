@@ -3,15 +3,18 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class LoginPage extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onContinueWithEmail;
+  final VoidCallback onContinueWithGoogle;
 
   const LoginPage({
     super.key,
     required this.isLoading,
     required this.onContinueWithEmail,
+    required this.onContinueWithGoogle,
   });
 
   @override
@@ -19,6 +22,7 @@ class LoginPage extends StatelessWidget {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
     final textTheme = theme.textTheme;
+    final t = context.translate;
 
     return BasePage(
       key: const Key('login-page'),
@@ -48,7 +52,7 @@ class LoginPage extends StatelessWidget {
                       const TalentLogo(size: 22),
                       const SizedBox(width: AppSpacing.md),
                       Text(
-                        'Talent CRM',
+                        t.appTitle,
                         style: textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                           color: colors.primary,
@@ -65,7 +69,7 @@ class LoginPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Acesse sua conta',
+                      t.loginHeadline,
                       style: textTheme.headlineSmall?.copyWith(
                         color: colors.onPrimary,
                         fontWeight: FontWeight.w800,
@@ -73,7 +77,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(height: AppSpacing.md),
                     Text(
-                      'Entre com sua conta social ou continue com e-mail para acompanhar candidatos, equipes e oportunidades.',
+                      t.loginDescription,
                       style: textTheme.bodyMedium?.copyWith(
                         color: colors.onPrimary.withValues(alpha: 0.9),
                         height: 1.4,
@@ -84,14 +88,14 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 28),
               Text(
-                'Escolha como deseja entrar',
+                t.loginOptionsTitle,
                 style: textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w700,
                 ),
               ),
               const SizedBox(height: 10),
               Text(
-                'Um fluxo simples, rápido e familiar para começar.',
+                t.loginOptionsSubtitle,
                 style: textTheme.bodyMedium?.copyWith(
                   color: AppColors.textSecondary,
                   height: 1.4,
@@ -99,24 +103,24 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               _SocialButton(
-                label: 'Continuar com Google',
-                description: 'Use a conta conectada ao seu dispositivo.',
+                label: t.continueWithGoogle,
+                description: t.continueWithGoogleDescription,
                 badgeLabel: 'G',
                 badgeColor: const Color(0xFFDB4437),
-                onPressed: () => _showComingSoon(context, 'Google'),
+                onPressed: isLoading ? () {} : onContinueWithGoogle,
               ),
               const SizedBox(height: 14),
               _SocialButton(
-                label: 'Continuar com Apple',
-                description: 'Ideal para um acesso rapido e privado.',
+                label: t.continueWithApple,
+                description: t.continueWithAppleDescription,
                 badgeIcon: Icons.apple_rounded,
                 badgeColor: Colors.black,
                 onPressed: () => _showComingSoon(context, 'Apple'),
               ),
               const SizedBox(height: 14),
               _SocialButton(
-                label: 'Continuar com Facebook',
-                description: 'Entre com seu perfil social tradicional.',
+                label: t.continueWithFacebook,
+                description: t.continueWithFacebookDescription,
                 badgeLabel: 'f',
                 badgeColor: const Color(0xFF1877F2),
                 onPressed: () => _showComingSoon(context, 'Facebook'),
@@ -132,7 +136,7 @@ class LoginPage extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),
                     child: Text(
-                      'ou',
+                      t.orDivider,
                       style: textTheme.bodyMedium?.copyWith(
                         color: AppColors.textSecondary,
                       ),
@@ -156,13 +160,13 @@ class LoginPage extends StatelessWidget {
                           height: 20,
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
-                      : const Text('Continuar com e-mail'),
+                      : Text(t.continueWithEmail),
                 ),
               ),
               const SizedBox(height: 16),
               TextButton(
                 onPressed: () => Get.toNamed(AppRoutes.register),
-                child: const Text('Criar conta com e-mail'),
+                child: Text(t.createAccountWithEmail),
               ),
               const SizedBox(height: 8),
               Container(
@@ -184,7 +188,7 @@ class LoginPage extends StatelessWidget {
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
-                        'Seus dados de acesso ficam protegidos e voce pode trocar o metodo de login depois.',
+                        t.loginProtectionMessage,
                         style: textTheme.bodySmall?.copyWith(
                           color: AppColors.textSecondary,
                           height: 1.45,
@@ -204,7 +208,7 @@ class LoginPage extends StatelessWidget {
   void _showComingSoon(BuildContext context, String provider) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('$provider sera conectado na proxima etapa.'),
+        content: Text(context.translate.providerComingSoon(provider)),
       ),
     );
   }

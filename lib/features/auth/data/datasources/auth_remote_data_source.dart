@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 
@@ -14,6 +15,8 @@ abstract class AuthRemoteDataSource {
     required String email,
     required String password,
   });
+
+  Future<Result<bool>> signInWithGoogle();
 
   Future<void> signOut();
 }
@@ -49,11 +52,11 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return Success(true);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'email-already-in-use') {
-        return Failure(AuthError('E-mail já cadastrado'));
+        return Failure(AuthError.withCode(AuthErrorCode.emailAlreadyInUse));
       }
 
       if (e.code == 'invalid-email') {
-        return Failure(AuthError('E-mail inválido'));
+        return Failure(AuthError.withCode(AuthErrorCode.invalidEmail));
       }
 
       return Failure(NetworkError());
@@ -76,10 +79,52 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return Success(true);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        return Failure(NotFoundError());
+        return Failure(AuthError.withCode(AuthErrorCode.invalidCredentials));
       }
 
       return Failure(NetworkError());
+    } catch (_) {
+      return Failure(UnknownError());
+    }
+  }
+
+  @override
+  Future<Result<bool>> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+
+      if (googleUser == null) {
+        return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
+      final userCredential = await auth.signInWithCredential(credential);
+
+      // Armazena no Firestore se a conta for recém criada (opcional, p/ consistência)
+      if (userCredential.additionalUserInfo?.isNewUser ?? false) {
+        await db.collection('users').doc(userCredential.user!.uid).set({
+          'name': userCredential.user!.displayName ?? 'Usuário',
+          'email': userCredential.user!.email,
+          'uid': userCredential.user!.uid,
+          'data_criacao': FieldValue.serverTimestamp(),
+        }, SetOptions(merge: true));
+      }
+
+      return Success(true);
+    } on FirebaseAuthException catch (e) {
+      return Failure(
+        AuthError(
+          e.message,
+          AuthErrorCode.authenticationFailed,
+        ),
+      );
     } catch (_) {
       return Failure(UnknownError());
     }

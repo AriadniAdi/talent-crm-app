@@ -13,6 +13,9 @@ abstract class AuthRepository {
     required String password,
   });
 
+  Future<Result<bool>> signInWithGoogle();
+
+
   Future<void> signOut();
 }
 
@@ -43,6 +46,11 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
+  }
+
+  @override
+  Future<Result<bool>> signInWithGoogle() {
+    return remoteDataSource.signInWithGoogle();
   }
 
   @override
