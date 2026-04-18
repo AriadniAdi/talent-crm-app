@@ -6,12 +6,19 @@ abstract class AuthRepository {
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   });
 
   Future<Result<bool>> signIn({
     required String email,
     required String password,
   });
+
+  Future<Result<bool>> signInWithGoogle();
+
 
   Future<void> signOut();
 }
@@ -26,11 +33,19 @@ class AuthRepositoryImpl implements AuthRepository {
     required String name,
     required String email,
     required String password,
+    required String? phone,
+    required String? countryCode,
+    required String? cpf,
+    required DateTime? birthDate,
   }) {
     return remoteDataSource.registerUser(
       name: name,
       email: email,
       password: password,
+      phone: phone,
+      countryCode: countryCode,
+      cpf: cpf,
+      birthDate: birthDate,
     );
   }
 
@@ -43,6 +58,11 @@ class AuthRepositoryImpl implements AuthRepository {
       email: email,
       password: password,
     );
+  }
+
+  @override
+  Future<Result<bool>> signInWithGoogle() {
+    return remoteDataSource.signInWithGoogle();
   }
 
   @override

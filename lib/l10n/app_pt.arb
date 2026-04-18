@@ -273,6 +273,178 @@
   "@fillOnTheContinue": {
     "description": "Texto exibido orientando o usuário a preencher os campos para continuar",
     "type": "text"
+  },
+
+  "loginHeadline": "Acesse sua conta",
+  "@loginHeadline": {
+    "description": "Título principal da tela de login",
+    "type": "text"
+  },
+
+  "loginDescription": "Entre com sua conta social ou continue com e-mail para acompanhar candidatos, equipes e oportunidades.",
+  "@loginDescription": {
+    "description": "Texto de apoio exibido no banner da tela de login",
+    "type": "text"
+  },
+
+  "loginOptionsTitle": "Escolha como deseja entrar",
+  "@loginOptionsTitle": {
+    "description": "Título da seção com opções de autenticação",
+    "type": "text"
+  },
+
+  "loginOptionsSubtitle": "Um fluxo simples, rápido e familiar para começar.",
+  "@loginOptionsSubtitle": {
+    "description": "Texto auxiliar da seção com opções de autenticação",
+    "type": "text"
+  },
+
+  "continueWithGoogle": "Continuar com Google",
+  "@continueWithGoogle": {
+    "description": "Botão para autenticar com Google",
+    "type": "text"
+  },
+
+  "continueWithGoogleDescription": "Use a conta conectada ao seu dispositivo.",
+  "@continueWithGoogleDescription": {
+    "description": "Descrição do botão de autenticação com Google",
+    "type": "text"
+  },
+
+  "continueWithApple": "Continuar com Apple",
+  "@continueWithApple": {
+    "description": "Botão para autenticar com Apple",
+    "type": "text"
+  },
+
+  "continueWithAppleDescription": "Ideal para um acesso rápido e privado.",
+  "@continueWithAppleDescription": {
+    "description": "Descrição do botão de autenticação com Apple",
+    "type": "text"
+  },
+
+  "continueWithFacebook": "Continuar com Facebook",
+  "@continueWithFacebook": {
+    "description": "Botão para autenticar com Facebook",
+    "type": "text"
+  },
+
+  "continueWithFacebookDescription": "Entre com seu perfil social tradicional.",
+  "@continueWithFacebookDescription": {
+    "description": "Descrição do botão de autenticação com Facebook",
+    "type": "text"
+  },
+
+  "orDivider": "ou",
+  "@orDivider": {
+    "description": "Separador textual entre métodos de login",
+    "type": "text"
+  },
+
+  "continueWithEmail": "Continuar com e-mail",
+  "@continueWithEmail": {
+    "description": "Botão para continuar com login por e-mail",
+    "type": "text"
+  },
+
+  "createAccountWithEmail": "Criar conta com e-mail",
+  "@createAccountWithEmail": {
+    "description": "Botão para criar conta usando e-mail",
+    "type": "text"
+  },
+
+  "loginProtectionMessage": "Seus dados de acesso ficam protegidos e você pode trocar o método de login depois.",
+  "@loginProtectionMessage": {
+    "description": "Mensagem informativa sobre segurança na tela de login",
+    "type": "text"
+  },
+
+  "providerComingSoon": "{provider} será conectado na próxima etapa.",
+  "@providerComingSoon": {
+    "description": "Mensagem exibida quando um provedor social ainda não está disponível",
+    "placeholders": {
+      "provider": {
+        "type": "String"
+      }
+    }
+  },
+
+  "emailLoginTitle": "Login com e-mail",
+  "@emailLoginTitle": {
+    "description": "Título da tela de login com e-mail",
+    "type": "text"
+  },
+
+  "emailLoginSubtitle": "Digite seu e-mail e senha para acessar.",
+  "@emailLoginSubtitle": {
+    "description": "Subtítulo da tela de login com e-mail",
+    "type": "text"
+  },
+
+  "signIn": "Entrar",
+  "@signIn": {
+    "description": "Texto do botão de entrar",
+    "type": "text"
+  },
+
+  "warningTitle": "Aviso",
+  "@warningTitle": {
+    "description": "Título padrão para alertas e avisos",
+    "type": "text"
+  },
+
+  "fillAllFields": "Preencha todos os campos.",
+  "@fillAllFields": {
+    "description": "Mensagem exibida quando o usuário tenta enviar um formulário incompleto",
+    "type": "text"
+  },
+
+  "loginErrorTitle": "Erro ao entrar",
+  "@loginErrorTitle": {
+    "description": "Título padrão para erro de autenticação",
+    "type": "text"
+  },
+
+  "registerSuccessTitle": "Sucesso",
+  "@registerSuccessTitle": {
+    "description": "Título do aviso de sucesso após cadastro",
+    "type": "text"
+  },
+
+  "registerSuccessMessage": "Conta criada com sucesso!",
+  "@registerSuccessMessage": {
+    "description": "Mensagem exibida após cadastro concluído",
+    "type": "text"
+  },
+
+  "authEmailAlreadyInUse": "E-mail já cadastrado",
+  "@authEmailAlreadyInUse": {
+    "description": "Erro exibido quando o e-mail já está em uso",
+    "type": "text"
+  },
+
+  "authInvalidEmail": "E-mail inválido",
+  "@authInvalidEmail": {
+    "description": "Erro exibido quando o e-mail informado é inválido",
+    "type": "text"
+  },
+
+  "authGoogleCancelled": "Login com Google cancelado",
+  "@authGoogleCancelled": {
+    "description": "Erro exibido quando o usuário cancela o login com Google",
+    "type": "text"
+  },
+
+  "authInvalidCredentials": "E-mail ou senha inválidos",
+  "@authInvalidCredentials": {
+    "description": "Erro exibido quando as credenciais de login estão incorretas",
+    "type": "text"
+  },
+
+  "authGenericFailure": "Erro na autenticação",
+  "@authGenericFailure": {
+    "description": "Mensagem genérica para falhas de autenticação",
+    "type": "text"
   }
 
 }

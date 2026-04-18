@@ -23,6 +23,10 @@ void main() {
     birthDate: null,
   );
 
+  setUpAll(() {
+    registerFallbackValue(params);
+  });
+
   setUp(() {
     repository = MockAuthRepository();
     useCase = RegisterUseCase(repository);
@@ -35,6 +39,10 @@ void main() {
           name: any(named: 'name'),
           email: any(named: 'email'),
           password: any(named: 'password'),
+          phone: any(named: 'phone'),
+          countryCode: any(named: 'countryCode'),
+          cpf: any(named: 'cpf'),
+          birthDate: any(named: 'birthDate'),
         ),
       ).thenAnswer((_) async => Success(true));
 
@@ -45,6 +53,10 @@ void main() {
           name: params.name,
           email: params.email,
           password: params.password,
+          phone: params.phone,
+          countryCode: params.countryCode,
+          cpf: params.cpf,
+          birthDate: params.birthDate,
         ),
       ).called(1);
     });
@@ -55,6 +67,10 @@ void main() {
           name: any(named: 'name'),
           email: any(named: 'email'),
           password: any(named: 'password'),
+          phone: any(named: 'phone'),
+          countryCode: any(named: 'countryCode'),
+          cpf: any(named: 'cpf'),
+          birthDate: any(named: 'birthDate'),
         ),
       ).thenAnswer((_) async => Failure(AuthError('falha')));
 

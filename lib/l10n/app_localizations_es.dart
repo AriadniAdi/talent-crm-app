@@ -157,4 +157,90 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get fillOnTheContinue => 'Complete los campos para continuar';
+
+  @override
+  String get loginHeadline => 'Accede a tu cuenta';
+
+  @override
+  String get loginDescription => 'Ingresa con tu cuenta social o continúa con correo electrónico para seguir candidatos, equipos y oportunidades.';
+
+  @override
+  String get loginOptionsTitle => 'Elige cómo quieres entrar';
+
+  @override
+  String get loginOptionsSubtitle => 'Un flujo simple, rápido y familiar para comenzar.';
+
+  @override
+  String get continueWithGoogle => 'Continuar con Google';
+
+  @override
+  String get continueWithGoogleDescription => 'Usa la cuenta conectada a tu dispositivo.';
+
+  @override
+  String get continueWithApple => 'Continuar con Apple';
+
+  @override
+  String get continueWithAppleDescription => 'Ideal para un acceso rápido y privado.';
+
+  @override
+  String get continueWithFacebook => 'Continuar con Facebook';
+
+  @override
+  String get continueWithFacebookDescription => 'Ingresa con tu perfil social tradicional.';
+
+  @override
+  String get orDivider => 'o';
+
+  @override
+  String get continueWithEmail => 'Continuar con correo electrónico';
+
+  @override
+  String get createAccountWithEmail => 'Crear cuenta con correo electrónico';
+
+  @override
+  String get loginProtectionMessage => 'Tus datos de acceso permanecen protegidos y puedes cambiar el método de inicio de sesión después.';
+
+  @override
+  String providerComingSoon(String provider) {
+    return '$provider se conectará en la próxima etapa.';
+  }
+
+  @override
+  String get emailLoginTitle => 'Inicio de sesión con correo';
+
+  @override
+  String get emailLoginSubtitle => 'Ingresa tu correo electrónico y contraseña para acceder.';
+
+  @override
+  String get signIn => 'Entrar';
+
+  @override
+  String get warningTitle => 'Aviso';
+
+  @override
+  String get fillAllFields => 'Completa todos los campos.';
+
+  @override
+  String get loginErrorTitle => 'Error al iniciar sesión';
+
+  @override
+  String get registerSuccessTitle => 'Éxito';
+
+  @override
+  String get registerSuccessMessage => '¡Cuenta creada con éxito!';
+
+  @override
+  String get authEmailAlreadyInUse => 'El correo ya está registrado';
+
+  @override
+  String get authInvalidEmail => 'Correo electrónico inválido';
+
+  @override
+  String get authGoogleCancelled => 'Se canceló el inicio de sesión con Google';
+
+  @override
+  String get authInvalidCredentials => 'Correo o contraseña inválidos';
+
+  @override
+  String get authGenericFailure => 'Error en la autenticación';
 }

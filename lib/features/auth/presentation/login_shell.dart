@@ -12,6 +12,7 @@ class LoginShell extends GetView<LoginController> {
       () => LoginPage(
         isLoading: controller.isLoading.value,
         onContinueWithEmail: controller.continueWithEmail,
+        onContinueWithGoogle: controller.continueWithGoogle,
       ),
     );
   }

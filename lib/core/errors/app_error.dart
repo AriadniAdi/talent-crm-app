@@ -14,7 +14,19 @@ class InvalidRouteError extends AppError {}
 
 class AuthError extends AppError {
   final String? message;
-  AuthError([this.message]);
+  final AuthErrorCode? code;
+
+  AuthError([this.message, this.code]);
+
+  AuthError.withCode(this.code) : message = null;
+}
+
+enum AuthErrorCode {
+  emailAlreadyInUse,
+  invalidEmail,
+  googleSignInCancelled,
+  invalidCredentials,
+  authenticationFailed,
 }
 
 enum ValidationErrorType {

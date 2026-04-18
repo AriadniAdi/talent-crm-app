@@ -396,6 +396,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Fill in the fields to continue'**
   String get fillOnTheContinue;
+
+  /// Main title on the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Access your account'**
+  String get loginHeadline;
+
+  /// Supporting text shown in the login banner
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your social account or continue with email to follow candidates, teams, and opportunities.'**
+  String get loginDescription;
+
+  /// Title for the authentication options section
+  ///
+  /// In en, this message translates to:
+  /// **'Choose how you want to sign in'**
+  String get loginOptionsTitle;
+
+  /// Supporting text for the authentication options section
+  ///
+  /// In en, this message translates to:
+  /// **'A simple, fast, and familiar flow to get started.'**
+  String get loginOptionsSubtitle;
+
+  /// Button to authenticate with Google
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Google'**
+  String get continueWithGoogle;
+
+  /// Description for the Google authentication button
+  ///
+  /// In en, this message translates to:
+  /// **'Use the account connected to your device.'**
+  String get continueWithGoogleDescription;
+
+  /// Button to authenticate with Apple
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Apple'**
+  String get continueWithApple;
+
+  /// Description for the Apple authentication button
+  ///
+  /// In en, this message translates to:
+  /// **'Ideal for quick and private access.'**
+  String get continueWithAppleDescription;
+
+  /// Button to authenticate with Facebook
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with Facebook'**
+  String get continueWithFacebook;
+
+  /// Description for the Facebook authentication button
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your traditional social profile.'**
+  String get continueWithFacebookDescription;
+
+  /// Text divider between login methods
+  ///
+  /// In en, this message translates to:
+  /// **'or'**
+  String get orDivider;
+
+  /// Button to continue with email login
+  ///
+  /// In en, this message translates to:
+  /// **'Continue with email'**
+  String get continueWithEmail;
+
+  /// Button to create an account using email
+  ///
+  /// In en, this message translates to:
+  /// **'Create account with email'**
+  String get createAccountWithEmail;
+
+  /// Informational message about login security
+  ///
+  /// In en, this message translates to:
+  /// **'Your access data stays protected, and you can switch login methods later.'**
+  String get loginProtectionMessage;
+
+  /// Message shown when a social provider is not yet available
+  ///
+  /// In en, this message translates to:
+  /// **'{provider} will be connected in the next step.'**
+  String providerComingSoon(String provider);
+
+  /// Title of the email login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Email login'**
+  String get emailLoginTitle;
+
+  /// Subtitle of the email login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email and password to sign in.'**
+  String get emailLoginSubtitle;
+
+  /// Text for the sign in button
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// Default title for warnings and alerts
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get warningTitle;
+
+  /// Message shown when the user tries to submit an incomplete form
+  ///
+  /// In en, this message translates to:
+  /// **'Fill in all fields.'**
+  String get fillAllFields;
+
+  /// Default title for authentication errors
+  ///
+  /// In en, this message translates to:
+  /// **'Sign-in error'**
+  String get loginErrorTitle;
+
+  /// Title of the success message after registration
+  ///
+  /// In en, this message translates to:
+  /// **'Success'**
+  String get registerSuccessTitle;
+
+  /// Message shown after successful registration
+  ///
+  /// In en, this message translates to:
+  /// **'Account created successfully!'**
+  String get registerSuccessMessage;
+
+  /// Error shown when the email is already in use
+  ///
+  /// In en, this message translates to:
+  /// **'Email already registered'**
+  String get authEmailAlreadyInUse;
+
+  /// Error shown when the provided email is invalid
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email'**
+  String get authInvalidEmail;
+
+  /// Error shown when the user cancels Google sign-in
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in was canceled'**
+  String get authGoogleCancelled;
+
+  /// Error shown when the login credentials are incorrect
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid email or password'**
+  String get authInvalidCredentials;
+
+  /// Generic message for authentication failures
+  ///
+  /// In en, this message translates to:
+  /// **'Authentication failed'**
+  String get authGenericFailure;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

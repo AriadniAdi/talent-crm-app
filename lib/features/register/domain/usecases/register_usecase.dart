@@ -14,6 +14,10 @@ class RegisterUseCase implements RegisterContract {
       name: params.name,
       email: params.email,
       password: params.password,
+      phone: params.phone,
+      countryCode: params.countryCode,
+      cpf: params.cpf,
+      birthDate: params.birthDate,
     );
 
     switch (result) {

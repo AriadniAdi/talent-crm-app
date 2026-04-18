@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/features/register/domain/usecases/register_contract.dart';
+import 'package:talent_crm_app/features/register/domain/usecases/register_params.dart';
 
 import 'package:talent_crm_app/features/register/presentation/register_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/controller/register_controller.dart';
@@ -18,6 +19,17 @@ void main() {
   setUp(() {
     Get.reset();
     Get.testMode = true;
+
+    registerFallbackValue(const RegisterParams(
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+      phone: '',
+      countryCode: '',
+      cpf: '',
+      birthDate: null,
+    ));
 
     usecase = MockRegisterContract();
 

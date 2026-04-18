@@ -84,5 +84,5 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
   Get.lazyPut<TalentRemoteDataSource>(
     () => TalentRemoteDataSource(apiClient: Get.find()),
   );
-  Get.lazyPut<TalentRepository>(() => TalentRepositoryImpl(Get.find()));
+  Get.lazyPut<TalentRepository>(() => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
 }

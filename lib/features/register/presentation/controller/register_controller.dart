@@ -8,6 +8,7 @@ import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/features/register/domain/usecases/register_contract.dart';
 import 'package:talent_crm_app/features/register/domain/usecases/register_params.dart';
 import 'package:talent_crm_app/features/register/domain/validators/register_validator.dart';
+import 'package:talent_crm_app/l10n/app_localizations.dart';
 
 class RegisterController extends GetxController {
   final RegisterContract registerUseCase;
@@ -283,6 +284,15 @@ class RegisterController extends GetxController {
 
     try {
       await registerUseCase(params);
+      final l10n = lookupAppLocalizations(Get.locale ?? const Locale('pt'));
+      if (Get.context != null) {
+        Get.snackbar(
+          l10n.registerSuccessTitle,
+          l10n.registerSuccessMessage,
+          backgroundColor: Colors.green,
+          colorText: Colors.white,
+        );
+      }
     } on AppError catch (e) {
       screenError.value = e;
     } catch (_) {

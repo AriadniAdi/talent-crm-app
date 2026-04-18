@@ -4,9 +4,33 @@ import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/global_binding.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:mocktail/mocktail.dart';
+
+class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+
+class MockFirebaseFirestore extends Mock implements FirebaseFirestore {}
+
+class MockUser extends Mock implements User {}
+
 void main() {
+  late MockFirebaseAuth mockAuth;
+  late MockFirebaseFirestore mockDb;
+
   setUp(() {
     Get.reset();
+    mockAuth = MockFirebaseAuth();
+    mockDb = MockFirebaseFirestore();
+
+    // Stub auth state for manager initialization
+    when(() => mockAuth.currentUser).thenReturn(null);
+    when(() => mockAuth.authStateChanges())
+        .thenAnswer((_) => const Stream.empty());
+
+    // Inject mocks that GlobalBinding would normally get from static instances
+    Get.put<FirebaseAuth>(mockAuth);
+    Get.put<FirebaseFirestore>(mockDb);
   });
 
   group('GlobalBinding', () {

@@ -4,6 +4,8 @@ import 'package:talent_crm_app/features/auth/presentation/controller/login_contr
 class LoginBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<LoginController>(() => LoginController());
+    Get.lazyPut<LoginController>(
+      () => LoginController(authRepository: Get.find()),
+    );
   }
 }
