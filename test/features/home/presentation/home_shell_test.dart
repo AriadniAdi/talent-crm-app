@@ -6,10 +6,10 @@ import 'package:network_image_mock/network_image_mock.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/core/widgets/error_state_widget.dart';
-
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
@@ -90,6 +90,18 @@ void main() {
       });
     });
 
+    testWidgets('should render HomeBottomBar', (tester) async {
+      controller.allEmployees.add(mockData);
+      controller.isLoading.value = false;
+
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(wrapper(const HomeShell()));
+        await tester.pump();
+
+        expect(find.byType(HomeBottomBar), findsOneWidget);
+      });
+    });
+
     testWidgets('should show Teams content when selectedIndex is 1',
         (tester) async {
       controller.allEmployees.add(mockData);
@@ -129,6 +141,23 @@ void main() {
         await tester.pump();
 
         expect(find.byKey(const Key('voiceNotesKey')), findsOneWidget);
+      });
+    });
+
+    testWidgets('should navigate to home when logo is tapped', (tester) async {
+      controller.allEmployees.add(mockData);
+      controller.isLoading.value = false;
+      controller.selectedIndex.value = 2;
+
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(wrapper(const HomeShell()));
+        await tester.pump();
+
+        await tester.tap(find.byKey(const Key('homeLogoButton')));
+        await tester.pumpAndSettle();
+
+        expect(controller.selectedIndex.value, 0);
+        expect(find.byKey(const Key('Home')), findsOneWidget);
       });
     });
   });
