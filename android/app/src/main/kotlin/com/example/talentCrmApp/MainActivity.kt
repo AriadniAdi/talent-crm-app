@@ -1,4 +1,4 @@
-package com.example.talent_crm_app
+package com.example.talentCrmApp
 
 import io.flutter.embedding.android.FlutterActivity
 
