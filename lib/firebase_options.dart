@@ -65,7 +65,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAj016UoWw6aJmFql8ixPEyyEJR8AoGgMg',
+    apiKey: 'AIzaSyDPmTgv8VpnXhlZ_p74Jcxw-bh4nlbHCq4',
     appId: '1:751984424318:ios:59e20558093ec55774af2f',
     messagingSenderId: '751984424318',
     projectId: 'talent-crm-app',
