@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>751984424318-3b3k2lh74hpe80bftlmvog7djein53d6.apps.googleusercontent.com</string>
+	<string>751984424318-5vpnq5d9p3v2u9ja5m0fs7imu6qm7kic.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.751984424318-3b3k2lh74hpe80bftlmvog7djein53d6</string>
+	<string>com.googleusercontent.apps.751984424318-5vpnq5d9p3v2u9ja5m0fs7imu6qm7kic</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAj016UoWw6aJmFql8ixPEyyEJR8AoGgMg</string>
+	<string>AIzaSyDPmTgv8VpnXhlZ_p74Jcxw-bh4nlbHCq4</string>
 	<key>GCM_SENDER_ID</key>
 	<string>751984424318</string>
 	<key>PLIST_VERSION</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:751984424318:ios:59e20558093ec55774af2f</string>
+	<string>1:751984424318:ios:fdfeada69894002d74af2f</string>
 </dict>
 </plist>
