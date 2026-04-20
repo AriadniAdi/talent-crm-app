@@ -1,13 +1,20 @@
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/core/locale/app_locale_service.dart';
 
 class AccountController extends GetxController {
   final String? id;
+  final AppLocaleService localeService;
 
-  AccountController(this.id);
+  AccountController(
+    this.id, {
+    AppLocaleService? localeService,
+  }) : localeService = localeService ?? Get.find<AppLocaleService>();
 
   final screenError = Rxn<AppError>();
+
+  Rx<Locale> get currentLocale => localeService.currentLocale;
 
   @override
   void onInit() {
@@ -17,4 +24,6 @@ class AccountController extends GetxController {
       return;
     }
   }
+
+  Future<void> changeLocale(Locale locale) => localeService.setLocale(locale);
 }

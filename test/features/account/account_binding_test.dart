@@ -1,11 +1,13 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/locale/app_locale_service.dart';
 import 'package:talent_crm_app/features/account/account_binding.dart';
 import 'package:talent_crm_app/features/account/presentation/account_controller.dart';
 
 void main() {
   setUp(() {
     Get.reset();
+    Get.put<AppLocaleService>(AppLocaleService.inMemory());
   });
 
   group('AccountBinding', () {
