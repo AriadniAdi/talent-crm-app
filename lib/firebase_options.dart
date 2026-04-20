@@ -17,7 +17,11 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web. '
+        'This app is currently restricted to Android and iOS until a '
+        'secure web Firebase configuration is added.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
@@ -46,32 +50,22 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDGXaJyu63mnidlZJBfjp-SXArCaoTVqcs',
-    appId: '1:751984424318:web:cf35454acb60d6fd74af2f',
-    messagingSenderId: '751984424318',
-    projectId: 'talent-crm-app',
-    authDomain: 'talent-crm-app.firebaseapp.com',
-    storageBucket: 'talent-crm-app.firebasestorage.app',
-    measurementId: 'G-LLL834T786',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBZP8dMr5IR9sdaDImuhgzqPP87kgtKPjA',
-    appId: '1:751984424318:android:5f75d74cb12b5b5574af2f',
+    apiKey: 'AIzaSyCqBz3dDDLykIa85KvYco8HzW_zwtXhPRw',
+    appId: '1:751984424318:android:03e77d1977870b1074af2f',
     messagingSenderId: '751984424318',
     projectId: 'talent-crm-app',
     storageBucket: 'talent-crm-app.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyAj016UoWw6aJmFql8ixPEyyEJR8AoGgMg',
-    appId: '1:751984424318:ios:59e20558093ec55774af2f',
+    apiKey: 'AIzaSyDPmTgv8VpnXhlZ_p74Jcxw-bh4nlbHCq4',
+    appId: '1:751984424318:ios:fdfeada69894002d74af2f',
     messagingSenderId: '751984424318',
     projectId: 'talent-crm-app',
     storageBucket: 'talent-crm-app.firebasestorage.app',
-    iosClientId: '751984424318-3b3k2lh74hpe80bftlmvog7djein53d6.apps.googleusercontent.com',
-    iosBundleId: 'com.example.talentCrmApp',
+    iosClientId: '751984424318-5vpnq5d9p3v2u9ja5m0fs7imu6qm7kic.apps.googleusercontent.com',
+    iosBundleId: 'com.ariadnichioquetta.talentcrm',
   );
 
 }

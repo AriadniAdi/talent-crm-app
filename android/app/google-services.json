@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:751984424318:android:5f75d74cb12b5b5574af2f",
+        "mobilesdk_app_id": "1:751984424318:android:03e77d1977870b1074af2f",
         "android_client_info": {
-          "package_name": "com.example.talent_crm_app"
+          "package_name": "com.ariadnichioquetta.talentcrm"
         }
       },
       "oauth_client": [
@@ -20,7 +20,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBZP8dMr5IR9sdaDImuhgzqPP87kgtKPjA"
+          "current_key": "AIzaSyCqBz3dDDLykIa85KvYco8HzW_zwtXhPRw"
         }
       ],
       "services": {
