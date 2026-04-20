@@ -39,7 +39,10 @@ class HomeBanner extends StatelessWidget {
             ),
           ),
           const SizedBox(height: AppSpacing.lg),
-          ElevatedButton(
+          AppPrimaryButton(
+            label: buttonText,
+            onPressed: onPressed,
+            height: 44,
             style: ElevatedButton.styleFrom(
               backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
               foregroundColor: theme.colorScheme.primary,
@@ -47,8 +50,6 @@ class HomeBanner extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            onPressed: onPressed,
-            child: Text(buttonText),
           ),
         ],
       ),

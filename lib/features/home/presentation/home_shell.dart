@@ -3,10 +3,12 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/core/widgets/error_state_widget.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
+import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
@@ -38,15 +40,27 @@ class HomeShell extends GetView<HomeController> {
         }
 
         return BasePage(
-          title: Row(
-            children: [
-              const TalentLogo(size: 26),
-              const SizedBox(width: AppSpacing.sm),
-              Text(
-                context.translate.appTitle,
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            ],
+          title: InkWell(
+            key: const Key('homeLogoButton'),
+            borderRadius: BorderRadius.circular(AppSpacing.sm),
+            onTap: () {
+              controller.changeTab(0);
+
+              if (Get.currentRoute != AppRoutes.home) {
+                Get.offAllNamed(AppRoutes.home);
+              }
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const TalentLogo(size: 26),
+                const SizedBox(width: AppSpacing.sm),
+                Text(
+                  context.translate.appTitle,
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
+              ],
+            ),
           ),
           showBackButton: false,
           padding: EdgeInsets.zero,
@@ -60,6 +74,11 @@ class HomeShell extends GetView<HomeController> {
               onPressed: () => Get.find<AuthManager>().signOut(),
             ),
           ],
+          bottomNavigationBar: HomeBottomBar(
+            currentIndex: controller.selectedIndex.value,
+            onTap: controller.changeTab,
+            notificationCount: controller.notificationsCount.value,
+          ),
           child: _buildPage(context, controller.selectedIndex.value),
         );
       }),

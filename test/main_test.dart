@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/core/locale/app_locale_service.dart';
 import 'package:talent_crm_app/main.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
@@ -29,6 +30,7 @@ void main() {
     Get.put<FirebaseAuth>(mockAuth);
     Get.put<FirebaseFirestore>(mockDb);
     Get.put<GoogleSignIn>(mockGoogle);
+    Get.put<AppLocaleService>(AppLocaleService.inMemory(), permanent: true);
   });
 
   testWidgets('MyApp builds GetMaterialApp', (tester) async {

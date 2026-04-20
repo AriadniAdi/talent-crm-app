@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
 class ErrorStateWidget extends StatelessWidget {
@@ -34,9 +34,9 @@ class ErrorStateWidget extends StatelessWidget {
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             const SizedBox(height: AppSpacing.lg),
-            ElevatedButton(
+            AppPrimaryButton(
+              label: context.translate.tryAgain,
               onPressed: onRetry,
-              child: Text(context.translate.tryAgain),
             ),
           ],
         ),

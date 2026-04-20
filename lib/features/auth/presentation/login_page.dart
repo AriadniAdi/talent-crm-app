@@ -150,18 +150,10 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              SizedBox(
-                height: 58,
-                child: ElevatedButton(
-                  onPressed: isLoading ? null : onContinueWithEmail,
-                  child: isLoading
-                      ? const SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Text(t.continueWithEmail),
-                ),
+              AppPrimaryButton(
+                label: t.continueWithEmail,
+                isLoading: isLoading,
+                onPressed: onContinueWithEmail,
               ),
               const SizedBox(height: 16),
               TextButton(

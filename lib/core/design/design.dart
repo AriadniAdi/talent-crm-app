@@ -7,3 +7,4 @@ export 'extensions/color_extensions.dart';
 export 'painters/dotted_background_painter.dart';
 export 'painters/network_painter.dart';
 export 'brand/talent_logo.dart';
+export 'widgets/app_primary_button.dart';

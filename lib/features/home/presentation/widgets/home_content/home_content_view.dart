@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/core/design/app_spacing.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
@@ -29,9 +29,9 @@ class HomeContentView extends GetView<HomeController> {
               const SizedBox(height: AppSpacing.md),
               Text(controller.screenError.value!.message(context)),
               const SizedBox(height: AppSpacing.lg),
-              ElevatedButton(
+              AppPrimaryButton(
+                label: AppLocalizations.of(context)!.tryAgain,
                 onPressed: controller.fetchEmployees,
-                child: Text(AppLocalizations.of(context)!.tryAgain),
               ),
             ],
           ),
