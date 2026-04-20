@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
@@ -189,23 +190,11 @@ class RegisterPage extends StatelessWidget {
                   style: const TextStyle(color: Colors.red),
                 ),
               ],
-              SizedBox(
-                height: 58,
-                child: ElevatedButton(
-                  key: const Key('register_submit_button'),
-                  onPressed: () {
-                    if (!isLoading) onRegister();
-                  },
-                  child: isLoading
-                      ? const SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: CircularProgressIndicator(
-                            key: Key('register_submit_loading'),
-                            strokeWidth: 2,
-                          ))
-                      : Text(context.translate.register),
-                ),
+              AppPrimaryButton(
+                buttonKey: const Key('register_submit_button'),
+                label: context.translate.register,
+                isLoading: isLoading,
+                onPressed: onRegister,
               ),
             ],
           ),

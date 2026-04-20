@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/app_spacing.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_banner.dart';
@@ -23,12 +22,6 @@ class HomePage extends StatelessWidget {
             const SizedBox(height: AppSpacing.lg),
             const HomeSearchBar(),
             const SizedBox(height: AppSpacing.xl),
-            ElevatedButton(
-              onPressed: () => Get.toNamed(
-                AppRoutes.register,
-              ),
-              child: const Text('Cadastrar'),
-            ),
             HomeBanner(
               title: context.translate.appTitle, // Using app title for now or specific home banner title
               subtitle: context.translate.emailLoginSubtitle, // Placeholder for real subtitle if needed

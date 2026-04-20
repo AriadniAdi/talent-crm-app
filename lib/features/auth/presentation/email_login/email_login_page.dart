@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_controller.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
@@ -65,20 +66,11 @@ class EmailLoginPage extends GetView<EmailLoginController> {
                     ),
                   )),
               const SizedBox(height: 32),
-              SizedBox(
-                height: 58,
-                child: Obx(
-                  () => ElevatedButton(
-                    onPressed:
-                        controller.isLoading.value ? null : controller.signIn,
-                    child: controller.isLoading.value
-                        ? const SizedBox(
-                            width: 20,
-                            height: 20,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : Text(context.translate.signIn),
-                  ),
+              Obx(
+                () => AppPrimaryButton(
+                  label: context.translate.signIn,
+                  isLoading: controller.isLoading.value,
+                  onPressed: controller.signIn,
                 ),
               ),
             ],
