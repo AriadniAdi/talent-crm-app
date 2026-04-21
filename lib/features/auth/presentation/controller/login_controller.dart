@@ -18,6 +18,10 @@ class LoginController extends GetxController {
   }
 
   Future<void> continueWithGoogle() async {
+    if (isLoading.value) {
+      return;
+    }
+
     isLoading.value = true;
     final result = await authRepository.signInWithGoogle();
     isLoading.value = false;

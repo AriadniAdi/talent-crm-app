@@ -8,35 +8,46 @@ import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+
 class MockFirebaseService extends Mock implements FirebaseService {}
+
 class MockGoogleSignIn extends Mock implements GoogleSignIn {}
+
 class MockUserCredential extends Mock implements UserCredential {}
+
 class MockUser extends Mock implements User {}
+
 class MockAdditionalUserInfo extends Mock implements AdditionalUserInfo {}
 
-class FakeGoogleSignInAuthentication extends Fake implements GoogleSignInAuthentication {
+class FakeGoogleSignInAuthentication extends Fake
+    implements GoogleSignInAuthentication {
   @override
   String? get idToken => 'id-token';
 }
 
-class FakeGoogleSignInClientAuthorization extends Fake implements GoogleSignInClientAuthorization {
+class FakeGoogleSignInClientAuthorization extends Fake
+    implements GoogleSignInClientAuthorization {
   @override
   String get accessToken => 'access-token';
 }
 
-class FakeGoogleSignInAuthorizationClient extends Fake implements GoogleSignInAuthorizationClient {
+class FakeGoogleSignInAuthorizationClient extends Fake
+    implements GoogleSignInAuthorizationClient {
   @override
-  Future<GoogleSignInClientAuthorization> authorizeScopes(List<String> scopes) async {
+  Future<GoogleSignInClientAuthorization> authorizeScopes(
+      List<String> scopes) async {
     return FakeGoogleSignInClientAuthorization();
   }
 }
 
 class FakeGoogleSignInAccount extends Fake implements GoogleSignInAccount {
   @override
-  GoogleSignInAuthentication get authentication => FakeGoogleSignInAuthentication();
+  GoogleSignInAuthentication get authentication =>
+      FakeGoogleSignInAuthentication();
 
   @override
-  GoogleSignInAuthorizationClient get authorizationClient => FakeGoogleSignInAuthorizationClient();
+  GoogleSignInAuthorizationClient get authorizationClient =>
+      FakeGoogleSignInAuthorizationClient();
 
   @override
   String get displayName => 'Test User';
@@ -120,16 +131,18 @@ void main() {
         );
 
         expect(result, isA<Success<bool>>());
-        
-        verify(() => auth.createUserWithEmailAndPassword(email: email, password: password)).called(1);
+
+        verify(() => auth.createUserWithEmailAndPassword(
+            email: email, password: password)).called(1);
         verify(() => firebaseService.setData(
-          collection: 'users',
-          docId: 'test-uid',
-          data: any(named: 'data'),
-        )).called(1);
+              collection: 'users',
+              docId: 'test-uid',
+              data: any(named: 'data'),
+            )).called(1);
       });
 
-      test('returns AuthError when firebase throws email-already-in-use', () async {
+      test('returns AuthError when firebase throws email-already-in-use',
+          () async {
         when(
           () => auth.createUserWithEmailAndPassword(
             email: any(named: 'email'),
@@ -161,20 +174,23 @@ void main() {
         final mockGoogleAccount = FakeGoogleSignInAccount();
         final mockAdditionalInfo = MockAdditionalUserInfo();
 
-        when(() => googleSignIn.authenticate()).thenAnswer((_) async => mockGoogleAccount);
-        
-        when(() => auth.signInWithCredential(any())).thenAnswer((_) async => userCredential);
-        when(() => userCredential.additionalUserInfo).thenReturn(mockAdditionalInfo);
+        when(() => googleSignIn.authenticate())
+            .thenAnswer((_) async => mockGoogleAccount);
+
+        when(() => auth.signInWithCredential(any()))
+            .thenAnswer((_) async => userCredential);
+        when(() => userCredential.additionalUserInfo)
+            .thenReturn(mockAdditionalInfo);
         when(() => mockAdditionalInfo.isNewUser).thenReturn(true);
         when(() => user.displayName).thenReturn(name);
         when(() => user.email).thenReturn(email);
 
         when(() => firebaseService.setData(
-          collection: any(named: 'collection'),
-          docId: any(named: 'docId'),
-          data: any(named: 'data'),
-          merge: any(named: 'merge'),
-        )).thenAnswer((_) async => {});
+              collection: any(named: 'collection'),
+              docId: any(named: 'docId'),
+              data: any(named: 'data'),
+              merge: any(named: 'merge'),
+            )).thenAnswer((_) async => {});
 
         final result = await dataSource.signInWithGoogle();
 
@@ -184,7 +200,8 @@ void main() {
       });
 
       test('returns failure when user cancels google sign in', () async {
-        when(() => googleSignIn.authenticate()).thenThrow(Exception('canceled'));
+        when(() => googleSignIn.authenticate())
+            .thenThrow(Exception('canceled'));
 
         final result = await dataSource.signInWithGoogle();
 
@@ -192,9 +209,47 @@ void main() {
           success: (_) => fail('Should have failed'),
           failure: (error) {
             expect(error, isA<AuthError>());
-            expect((error as AuthError).code, AuthErrorCode.googleSignInCancelled);
+            expect(
+                (error as AuthError).code, AuthErrorCode.googleSignInCancelled);
           },
         );
+      });
+
+      test(
+          'returns failure with provider message on google configuration error',
+          () async {
+        when(
+          () => googleSignIn.authenticate(),
+        ).thenThrow(
+          const GoogleSignInException(
+            code: GoogleSignInExceptionCode.clientConfigurationError,
+            description: 'Google Sign-In configuration is invalid.',
+          ),
+        );
+
+        final result = await dataSource.signInWithGoogle();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect(
+                (error as AuthError).code, AuthErrorCode.authenticationFailed);
+            expect(error.message, 'Google Sign-In configuration is invalid.');
+          },
+        );
+      });
+    });
+
+    group('signOut', () {
+      test('signs out from google and firebase auth', () async {
+        when(() => googleSignIn.signOut()).thenAnswer((_) async => null);
+        when(() => auth.signOut()).thenAnswer((_) async {});
+
+        await dataSource.signOut();
+
+        verify(() => googleSignIn.signOut()).called(1);
+        verify(() => auth.signOut()).called(1);
       });
     });
   });

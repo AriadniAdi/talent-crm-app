@@ -9,6 +9,9 @@ class LoginPage extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onContinueWithEmail;
   final VoidCallback onContinueWithGoogle;
+  static const googleButtonKey = Key('social-button-google');
+  static const appleButtonKey = Key('social-button-apple');
+  static const facebookButtonKey = Key('social-button-facebook');
 
   const LoginPage({
     super.key,
@@ -103,27 +106,30 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               _SocialButton(
+                buttonKey: googleButtonKey,
                 label: t.continueWithGoogle,
                 description: t.continueWithGoogleDescription,
                 badgeLabel: 'G',
                 badgeColor: const Color(0xFFDB4437),
-                onPressed: isLoading ? () {} : onContinueWithGoogle,
+                onPressed: isLoading ? null : onContinueWithGoogle,
               ),
               const SizedBox(height: 14),
               _SocialButton(
+                buttonKey: appleButtonKey,
                 label: t.continueWithApple,
-                description: t.continueWithAppleDescription,
+                description: t.providerComingSoon('Apple'),
                 badgeIcon: Icons.apple_rounded,
                 badgeColor: Colors.black,
-                onPressed: () => _showComingSoon(context, 'Apple'),
+                onPressed: null,
               ),
               const SizedBox(height: 14),
               _SocialButton(
+                buttonKey: facebookButtonKey,
                 label: t.continueWithFacebook,
-                description: t.continueWithFacebookDescription,
+                description: t.providerComingSoon('Facebook'),
                 badgeLabel: 'f',
                 badgeColor: const Color(0xFF1877F2),
-                onPressed: () => _showComingSoon(context, 'Facebook'),
+                onPressed: null,
               ),
               const SizedBox(height: 24),
               Row(
@@ -196,25 +202,19 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-
-  void _showComingSoon(BuildContext context, String provider) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(context.translate.providerComingSoon(provider)),
-      ),
-    );
-  }
 }
 
 class _SocialButton extends StatelessWidget {
+  final Key? buttonKey;
   final String label;
   final String description;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Color badgeColor;
   final String? badgeLabel;
   final IconData? badgeIcon;
 
   const _SocialButton({
+    this.buttonKey,
     required this.label,
     required this.description,
     required this.onPressed,
@@ -230,11 +230,14 @@ class _SocialButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
+    final isEnabled = onPressed != null;
 
     return Material(
-      color: colors.surface,
+      color:
+          isEnabled ? colors.surface : colors.surface.withValues(alpha: 0.78),
       borderRadius: BorderRadius.circular(28),
       child: InkWell(
+        key: buttonKey,
         onTap: onPressed,
         borderRadius: BorderRadius.circular(28),
         child: Ink(
@@ -242,7 +245,7 @@ class _SocialButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28),
             border: Border.all(
-              color: colors.outline.withValues(alpha: 0.16),
+              color: colors.outline.withValues(alpha: isEnabled ? 0.16 : 0.08),
             ),
           ),
           child: Row(
@@ -261,13 +264,18 @@ class _SocialButton extends StatelessWidget {
                       label,
                       style: theme.textTheme.titleSmall?.copyWith(
                         fontWeight: FontWeight.w700,
+                        color: isEnabled
+                            ? null
+                            : colors.onSurface.withValues(alpha: 0.72),
                       ),
                     ),
                     const SizedBox(height: 4),
                     Text(
                       description,
                       style: theme.textTheme.bodySmall?.copyWith(
-                        color: AppColors.textSecondary,
+                        color: isEnabled
+                            ? AppColors.textSecondary
+                            : AppColors.textSecondary.withValues(alpha: 0.78),
                         height: 1.35,
                       ),
                     ),
@@ -277,7 +285,9 @@ class _SocialButton extends StatelessWidget {
               Icon(
                 Icons.arrow_forward_ios_rounded,
                 size: 16,
-                color: colors.primary,
+                color: isEnabled
+                    ? colors.primary
+                    : colors.onSurface.withValues(alpha: 0.32),
               ),
             ],
           ),

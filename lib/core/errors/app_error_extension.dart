@@ -31,7 +31,7 @@ extension AppErrorX on AppError {
         case AuthErrorCode.invalidCredentials:
           return t.authInvalidCredentials;
         case AuthErrorCode.authenticationFailed:
-          return t.authGenericFailure;
+          return error.message ?? t.authGenericFailure;
         case null:
           return error.message ?? t.unknownError;
       }

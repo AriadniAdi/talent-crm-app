@@ -120,6 +120,15 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         'openid',
       ]);
 
+      if (googleAuth.idToken == null || googleAuth.idToken!.isEmpty) {
+        return Failure(
+          AuthError(
+            'Nao foi possivel obter as credenciais do Google para continuar.',
+            AuthErrorCode.authenticationFailed,
+          ),
+        );
+      }
+
       final AuthCredential credential = GoogleAuthProvider.credential(
         accessToken: authz.accessToken,
         idToken: googleAuth.idToken,
@@ -144,6 +153,17 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       }
 
       return Success(true);
+    } on GoogleSignInException catch (e) {
+      if (e.code == GoogleSignInExceptionCode.canceled) {
+        return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
+      }
+
+      return Failure(
+        AuthError(
+          e.description,
+          AuthErrorCode.authenticationFailed,
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       return Failure(
         AuthError(
@@ -161,6 +181,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
   @override
   Future<void> signOut() async {
+    await googleSignIn.signOut();
     await auth.signOut();
   }
 }
