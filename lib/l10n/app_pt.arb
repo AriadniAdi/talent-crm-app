@@ -434,6 +434,16 @@
     "description": "Erro exibido quando o usuário cancela o login com Google",
     "type": "text"
   },
+  "authAppleCancelled": "Login com Apple cancelado",
+  "@authAppleCancelled": {
+    "description": "Erro exibido quando o usuário cancela o login com Apple",
+    "type": "text"
+  },
+  "authFacebookCancelled": "Login com Facebook cancelado",
+  "@authFacebookCancelled": {
+    "description": "Erro exibido quando o usuário cancela o login com Facebook",
+    "type": "text"
+  },
 
   "authInvalidCredentials": "E-mail ou senha inválidos",
   "@authInvalidCredentials": {

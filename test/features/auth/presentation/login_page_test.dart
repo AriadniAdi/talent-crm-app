@@ -9,11 +9,15 @@ void main() {
     bool isLoading = false,
     VoidCallback? onContinueWithEmail,
     VoidCallback? onContinueWithGoogle,
+    VoidCallback? onContinueWithApple,
+    VoidCallback? onContinueWithFacebook,
   }) {
     return LoginPage(
       isLoading: isLoading,
       onContinueWithEmail: onContinueWithEmail ?? () {},
       onContinueWithGoogle: onContinueWithGoogle ?? () {},
+      onContinueWithApple: onContinueWithApple ?? () {},
+      onContinueWithFacebook: onContinueWithFacebook ?? () {},
     );
   }
 
@@ -30,16 +34,15 @@ void main() {
       expect(find.text('Continuar com e-mail'), findsOneWidget);
       expect(find.text('Criar conta com e-mail'), findsOneWidget);
       expect(
-        find.text('Apple será conectado na próxima etapa.'),
-        findsOneWidget,
-      );
+          find.text('Ideal para um acesso rápido e privado.'), findsOneWidget);
       expect(
-        find.text('Facebook será conectado na próxima etapa.'),
+        find.text('Entre com seu perfil social tradicional.'),
         findsOneWidget,
       );
     });
 
-    testWidgets('should keep unsupported providers disabled', (tester) async {
+    testWidgets('should keep social buttons enabled when not loading',
+        (tester) async {
       await tester.pumpWidget(wrapper(buildPage()));
 
       final appleButton = tester.widget<InkWell>(
@@ -48,39 +51,13 @@ void main() {
       final facebookButton = tester.widget<InkWell>(
         find.byKey(LoginPage.facebookButtonKey),
       );
-
-      expect(appleButton.onTap, isNull);
-      expect(facebookButton.onTap, isNull);
-    });
-
-    testWidgets('should trigger google callback when available',
-        (tester) async {
-      var tapCount = 0;
-
-      await tester.pumpWidget(
-        wrapper(
-          buildPage(
-            onContinueWithGoogle: () {
-              tapCount++;
-            },
-          ),
-        ),
-      );
-
-      await tester.tap(find.byKey(LoginPage.googleButtonKey));
-      await tester.pump();
-
-      expect(tapCount, 1);
-    });
-
-    testWidgets('should disable google button while loading', (tester) async {
-      await tester.pumpWidget(wrapper(buildPage(isLoading: true)));
-
       final googleButton = tester.widget<InkWell>(
         find.byKey(LoginPage.googleButtonKey),
       );
 
-      expect(googleButton.onTap, isNull);
+      expect(googleButton.onTap, isNotNull);
+      expect(appleButton.onTap, isNotNull);
+      expect(facebookButton.onTap, isNotNull);
     });
   });
 }

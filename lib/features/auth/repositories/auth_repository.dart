@@ -19,6 +19,9 @@ abstract class AuthRepository {
 
   Future<Result<bool>> signInWithGoogle();
 
+  Future<Result<bool>> signInWithApple();
+
+  Future<Result<bool>> signInWithFacebook();
 
   Future<void> signOut();
 }
@@ -63,6 +66,16 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<bool>> signInWithGoogle() {
     return remoteDataSource.signInWithGoogle();
+  }
+
+  @override
+  Future<Result<bool>> signInWithApple() {
+    return remoteDataSource.signInWithApple();
+  }
+
+  @override
+  Future<Result<bool>> signInWithFacebook() {
+    return remoteDataSource.signInWithFacebook();
   }
 
   @override

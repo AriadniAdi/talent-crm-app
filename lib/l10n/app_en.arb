@@ -443,6 +443,16 @@
     "description": "Error shown when the user cancels Google sign-in",
     "type": "text"
   },
+  "authAppleCancelled": "Apple sign-in was canceled",
+  "@authAppleCancelled": {
+    "description": "Error shown when the user cancels Apple sign-in",
+    "type": "text"
+  },
+  "authFacebookCancelled": "Facebook sign-in was canceled",
+  "@authFacebookCancelled": {
+    "description": "Error shown when the user cancels Facebook sign-in",
+    "type": "text"
+  },
 
   "authInvalidCredentials": "Invalid email or password",
   "@authInvalidCredentials": {

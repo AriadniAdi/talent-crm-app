@@ -24,6 +24,9 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+def facebookAppId = System.getenv("FACEBOOK_APP_ID") ?: ""
+def facebookClientToken = System.getenv("FACEBOOK_CLIENT_TOKEN") ?: ""
+
 android {
     namespace = "com.ariadnichioquetta.talentcrm"
     compileSdk = flutter.compileSdkVersion
@@ -47,6 +50,12 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+        manifestPlaceholders += [
+            facebookAppId: facebookAppId,
+        ]
+        resValue "string", "facebook_app_id", facebookAppId
+        resValue "string", "facebook_client_token", facebookClientToken
+        resValue "string", "fb_login_protocol_scheme", facebookAppId ? "fb${facebookAppId}" : ""
     }
 
     buildTypes {

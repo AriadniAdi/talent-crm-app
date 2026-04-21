@@ -41,16 +41,24 @@ void main() {
       verifyNever(() => authRepository.signInWithGoogle());
     });
 
-    test('continueWithGoogle resets loading on failure result', () async {
-      when(
-        () => authRepository.signInWithGoogle(),
-      ).thenAnswer((_) async =>
-          Failure(AuthError.withCode(AuthErrorCode.authenticationFailed)));
+    test('continueWithApple delegates sign in and resets loading', () async {
+      when(() => authRepository.signInWithApple())
+          .thenAnswer((_) async => Success(true));
 
-      await controller.continueWithGoogle();
+      await controller.continueWithApple();
 
       expect(controller.isLoading.value, isFalse);
-      verify(() => authRepository.signInWithGoogle()).called(1);
+      verify(() => authRepository.signInWithApple()).called(1);
+    });
+
+    test('continueWithFacebook delegates sign in and resets loading', () async {
+      when(() => authRepository.signInWithFacebook())
+          .thenAnswer((_) async => Success(true));
+
+      await controller.continueWithFacebook();
+
+      expect(controller.isLoading.value, isFalse);
+      verify(() => authRepository.signInWithFacebook()).called(1);
     });
   });
 }

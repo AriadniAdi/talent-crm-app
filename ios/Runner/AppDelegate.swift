@@ -1,4 +1,6 @@
 import Flutter
+import firebase_core
+import shared_preferences_foundation
 import UIKit
 
 @main
@@ -12,5 +14,16 @@ import UIKit
 
   func didInitializeImplicitFlutterEngine(_ engineBridge: FlutterImplicitEngineBridge) {
     GeneratedPluginRegistrant.register(with: engineBridge.pluginRegistry)
+    if let registrar = engineBridge.pluginRegistry.registrar(
+      forPlugin: "FLTFirebaseCorePlugin"
+    ) {
+      FLTFirebaseCorePlugin.register(with: registrar)
+    }
+
+    if let registrar = engineBridge.pluginRegistry.registrar(
+      forPlugin: "SharedPreferencesPlugin"
+    ) {
+      SharedPreferencesPlugin.register(with: registrar)
+    }
   }
 }

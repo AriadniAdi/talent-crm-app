@@ -4,7 +4,7 @@ import 'package:talent_crm_app/core/errors/app_error_extension.dart';
 import 'package:talent_crm_app/l10n/app_localizations_pt.dart';
 
 void main() {
-  const translations = AppLocalizationsPt();
+  final translations = AppLocalizationsPt();
 
   group('AppErrorX', () {
     test('returns provider-specific authentication message when available', () {
