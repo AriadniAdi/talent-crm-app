@@ -12,6 +12,11 @@ class UnknownError extends AppError {}
 
 class InvalidRouteError extends AppError {}
 
+class MessageError extends AppError {
+  final String msg;
+  MessageError(this.msg);
+}
+
 class AuthError extends AppError {
   final String? message;
   final AuthErrorCode? code;

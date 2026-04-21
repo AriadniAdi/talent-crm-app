@@ -6,4 +6,5 @@ abstract class AppRoutes {
   static const account = '/account';
   static const talent = '/talent';
   static const register = '/register';
+  static const voices = '/voices';
 }

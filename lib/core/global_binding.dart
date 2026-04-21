@@ -9,6 +9,7 @@ import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
+import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 
@@ -70,5 +71,7 @@ class GlobalBinding extends Bindings {
       () => AuthRepositoryImpl(Get.find()),
       fenix: true,
     );
+
+    Get.put<VoiceRepository>(VoiceRepository(), permanent: true);
   }
 }

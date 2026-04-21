@@ -1,19 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:talent_crm_app/core/design/design.dart';
+import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
 import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 
-class VoiceNoteTile extends StatelessWidget {
-  final VoiceNote note;
-  final String talentId;
+class VoicesPage extends GetView<VoiceController> {
+  const VoicesPage({super.key});
 
-  const VoiceNoteTile({super.key, required this.note, required this.talentId});
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
+    return BasePage(
+      padding: const EdgeInsets.all(16),
+      child: GetBuilder<VoiceController>(
+        builder: (_) {
+          final notes = controller.voiceNotes;
+
+          if (notes.isEmpty) {
+            return Center(
+              child: Text(
+                "Nenhuma voz registrada ainda.",
+                style: theme.textTheme.bodyLarge,
+              ),
+            );
+          }
+
+          return ListView.builder(
+            itemCount: notes.length,
+            itemBuilder: (context, index) {
+              final note = notes[index];
+              return _VoiceNoteListItem(note: note);
+            },
+          );
+        },
+      ),
+    );
+  }
+}
+
+class _VoiceNoteListItem extends GetView<VoiceController> {
+  final VoiceNote note;
+
+  const _VoiceNoteListItem({required this.note});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
-    final VoiceController controller = Get.find<VoiceController>(tag: talentId);
 
     return Obx(() {
       final isPlaying = controller.isPlayingId.value == note.id;
@@ -37,9 +72,14 @@ class VoiceNoteTile extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                if (note.talentId != null)
+                  Text(
+                    "Talento ID: ${note.talentId}",
+                    style: theme.textTheme.labelSmall?.copyWith(color: colors.primary),
+                  ),
                 Text(
-                  note.durationFormatted,
-                  style: theme.textTheme.bodyMedium,
+                  "Gravação ${note.id.substring(0, 8)}",
+                  style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Text(
                   _formatDate(note.createdAt),

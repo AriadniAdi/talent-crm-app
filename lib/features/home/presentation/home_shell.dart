@@ -8,6 +8,7 @@ import 'package:talent_crm_app/core/widgets/error_state_widget.dart';
 import 'package:talent_crm_app/features/account/entities/account.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
+import 'package:talent_crm_app/features/voice/presentation/voices_page.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
@@ -97,9 +98,7 @@ class HomeShell extends GetView<HomeController> {
             key: const Key('notificationsKey'),
             child: Text(context.translate.notifications));
       case 3:
-        return Center(
-            key: const Key('voiceNotesKey'),
-            child: Text(context.translate.voiceNotes));
+        return const VoicesPage();
       default:
         return const HomePage();
     }
