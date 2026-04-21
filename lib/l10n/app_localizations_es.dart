@@ -126,7 +126,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
 
   @override
-  String get invalidNameLength => 'Nome muito longo';
+  String get invalidNameLength => 'Nombre muy largo';
 
   @override
   String get requiredCpf => 'CPF obligatorio';
@@ -144,7 +144,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get requiredPassword => 'Senha obligatoria';
 
   @override
-  String get passwordTooLong => 'A senha deve ter no máximo 6 caracteres';
+  String get passwordTooLong => 'La contraseña debe tener como máximo 6 caracteres';
 
   @override
   String get requiredConfirmPassword => 'Confirmación de senha obligatoria';

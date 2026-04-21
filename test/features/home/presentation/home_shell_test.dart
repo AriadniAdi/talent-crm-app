@@ -9,6 +9,9 @@ import 'package:talent_crm_app/core/widgets/error_state_widget.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/home_page.dart';
+import 'package:talent_crm_app/features/voice/presentation/voices_page.dart';
+import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
+import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
@@ -16,7 +19,14 @@ import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart
 
 import '../../helpers/wrapper.dart';
 
+import 'package:record/record.dart';
+import 'package:audioplayers/audioplayers.dart';
+
 class MockGetTalentsUseCase extends Mock implements GetTalentsUseCase {}
+
+class MockAudioRecorder extends Mock implements AudioRecorder {}
+
+class MockAudioPlayer extends Mock implements AudioPlayer {}
 
 void main() {
   late MockGetTalentsUseCase mockUseCase;
@@ -34,6 +44,13 @@ void main() {
 
     controller = HomeController(mockUseCase);
 
+    Get.put<VoiceRepository>(VoiceRepository());
+    Get.put<VoiceController>(
+      VoiceController(
+        recorder: MockAudioRecorder(),
+        player: MockAudioPlayer(),
+      ),
+    );
     setupTestDependencies<HomeController>(mockController: controller);
 
     mockData = const Talent(
@@ -140,7 +157,7 @@ void main() {
         controller.selectedIndex.value = 3;
         await tester.pump();
 
-        expect(find.byKey(const Key('voiceNotesKey')), findsOneWidget);
+        expect(find.byType(VoicesPage), findsOneWidget);
       });
     });
 

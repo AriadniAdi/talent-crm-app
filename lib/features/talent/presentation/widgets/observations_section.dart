@@ -25,9 +25,9 @@ class ObservationsSection extends StatelessWidget {
         const SizedBox(height: AppSpacing.lg),
         _recordingButton(controller),
         const SizedBox(height: AppSpacing.xl),
-        _audioError(context, controller, theme: theme, colors: colors),
+        _voiceNotesList(context, controller, theme: theme, colors: colors),
         const SizedBox(height: AppSpacing.md),
-        _voicesNotesList(context, controller),
+        _errorMessage(context, controller),
       ],
     );
   }
@@ -76,7 +76,7 @@ class ObservationsSection extends StatelessWidget {
     );
   }
 
-  _audioError(BuildContext context, VoiceController controller, {required ThemeData theme, required ColorScheme colors}) {
+  Widget _voiceNotesList(BuildContext context, VoiceController controller, {required ThemeData theme, required ColorScheme colors}) {
     return Obx(
       () {
         final notes = controller.voiceNotes;
@@ -103,7 +103,7 @@ class ObservationsSection extends StatelessWidget {
     );
   }
 
-  Widget _voicesNotesList(BuildContext context, VoiceController controller) {
+  Widget _errorMessage(BuildContext context, VoiceController controller) {
     return Obx(() {
       final error = controller.audioError.value;
       if (error == null) return const SizedBox.shrink();

@@ -6,7 +6,7 @@
   },
   "tryAgain": "Intentar de nuevo",
   "@tryAgain": {
-    "description": "Etiqueta del botão para reintentar cuando ocurre un erro"
+    "description": "Etiqueta del botón para reintentar cuando ocurre un error"
   },
   "noEmployeesFound": "No se encontraron empleados",
   "@noEmployeesFound": {
@@ -161,7 +161,7 @@
 
   "register": "Registrarse",
   "@register": {
-    "description": "Texto del botão de registro",
+    "description": "Texto del botón de registro",
     "type": "text"
   },
 
@@ -215,7 +215,7 @@
 
   "createAccount": "Crear cuenta",
   "@createAccount": {
-    "description": "Texto del botão o título para crear una nueva cuenta",
+    "description": "Texto del botón o título para crear una nueva cuenta",
     "type": "text"
   },
 
@@ -251,37 +251,37 @@
 
   "continueWithGoogle": "Continuar con Google",
   "@continueWithGoogle": {
-    "description": "Botão para autenticarse con Google",
+    "description": "Botón para autenticarse con Google",
     "type": "text"
   },
 
   "continueWithGoogleDescription": "Usa la cuenta conectada a tu dispositivo.",
   "@continueWithGoogleDescription": {
-    "description": "Descripción del botão de autenticación con Google",
+    "description": "Descripción del botón de autenticación con Google",
     "type": "text"
   },
 
   "continueWithApple": "Continuar con Apple",
   "@continueWithApple": {
-    "description": "Botão para autenticarse con Apple",
+    "description": "Botón para autenticarse con Apple",
     "type": "text"
   },
 
   "continueWithAppleDescription": "Ideal para un acceso rápido y privado.",
   "@continueWithAppleDescription": {
-    "description": "Descripción del botão de autenticación con Apple",
+    "description": "Descripción del botón de autenticación con Apple",
     "type": "text"
   },
 
   "continueWithFacebook": "Continuar con Facebook",
   "@continueWithFacebook": {
-    "description": "Botão para autenticarse con Facebook",
+    "description": "Botón para autenticarse con Facebook",
     "type": "text"
   },
 
   "continueWithFacebookDescription": "Ingresa con tu perfil social tradicional.",
   "@continueWithFacebookDescription": {
-    "description": "Descripción del botão de autenticación con Facebook",
+    "description": "Descripción del botón de autenticación con Facebook",
     "type": "text"
   },
 
@@ -293,13 +293,13 @@
 
   "continueWithEmail": "Continuar con correo electrónico",
   "@continueWithEmail": {
-    "description": "Botão para continuar con inicio de sesión por correo",
+    "description": "Botón para continuar con inicio de sesión por correo",
     "type": "text"
   },
 
   "createAccountWithEmail": "Crear cuenta con correo electrónico",
   "@createAccountWithEmail": {
-    "description": "Botão para crear una cuenta usando correo electrónico",
+    "description": "Botón para crear una cuenta usando correo electrónico",
     "type": "text"
   },
 
@@ -333,7 +333,7 @@
 
   "signIn": "Entrar",
   "@signIn": {
-    "description": "Texto del botão para iniciar sesión",
+    "description": "Texto del botón para iniciar sesión",
     "type": "text"
   },
 
@@ -443,7 +443,7 @@
 
   "futureBirthDate": "La fecha de nacimiento no puede ser futura",
   "@futureBirthDate": {
-    "description": "Error mostrado cuando la fecha es mayor que la atual",
+    "description": "Error mostrado cuando la fecha es mayor que la actual",
     "type": "text"
   },
 
@@ -465,21 +465,21 @@
     "type": "text"
   },
 
-  "passwordTooLong": "A senha deve ter no máximo 6 caracteres",
+  "passwordTooLong": "La contraseña debe tener como máximo 6 caracteres",
   "@passwordTooLong": {
-    "description": "Error mostrado cuando a senha excede 6 caracteres",
+    "description": "Error mostrado cuando la senha excede 6 caracteres",
     "type": "text"
   },
 
   "requiredConfirmPassword": "Confirmación de senha obligatoria",
   "@requiredConfirmPassword": {
-    "description": "Error mostrado cuando a confirmación não é informada",
+    "description": "Error mostrado cuando a confirmación no es informada",
     "type": "text"
   },
 
-  "invalidNameLength": "Nome muito longo",
+  "invalidNameLength": "Nombre muy largo",
   "@invalidNameLength": {
-    "description": "Error mostrado quando o nome excede o limite permitido",
+    "description": "Error mostrado cuando el nombre excede el límite permitido",
     "type": "text"
   }
 }

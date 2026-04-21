@@ -6,11 +6,20 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 
-class MockVoiceRepository extends Mock implements VoiceRepository {}
+class MockVoiceRepository extends Mock implements VoiceRepository {
+  @override
+  InternalFinalCallback<void> get onStart => InternalFinalCallback<void>(callback: () {});
+  @override
+  InternalFinalCallback<void> get onDelete => InternalFinalCallback<void>(callback: () {});
+}
 class MockAudioRecorder extends Mock implements AudioRecorder {}
 class MockAudioPlayer extends Mock implements AudioPlayer {}
+class FakeRecordConfig extends Fake implements RecordConfig {}
 
 void main() {
+  setUpAll(() {
+    registerFallbackValue(FakeRecordConfig());
+  });
   // ignore: unused_local_variable
   late VoiceController controller;
   late MockVoiceRepository mockRepository;
