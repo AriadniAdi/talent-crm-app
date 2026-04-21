@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
@@ -19,6 +18,7 @@ class VoiceController extends GetxController {
   final isRecording = false.obs;
   final isPlayingId = RxnString();
   final audioError = Rxn<AppError>();
+  final _stopwatch = Stopwatch();
 
   final String? talentId;
 
@@ -45,13 +45,17 @@ class VoiceController extends GetxController {
 
     if (isRecording.value) {
       final path = await _recorder.stop();
+      _stopwatch.stop();
       isRecording.value = false;
 
       if (path != null) {
+        final duration = _stopwatch.elapsed;
+        _stopwatch.reset();
+
         final note = VoiceNote(
           id: const Uuid().v4(),
           talentId: talentId,
-          duration: const Duration(seconds: 0),
+          duration: duration,
           filePath: path,
           createdAt: DateTime.now(),
         );
@@ -69,9 +73,10 @@ class VoiceController extends GetxController {
       const config = RecordConfig();
 
       await _recorder.start(config, path: path);
+      _stopwatch.start();
       isRecording.value = true;
     } else {
-      audioError.value = MessageError('Permissão de microfone negada');
+      audioError.value = MessageError((t) => t.microphonePermissionDenied);
     }
   }
 
@@ -92,7 +97,7 @@ class VoiceController extends GetxController {
         isPlayingId.value = null;
       });
     } catch (e) {
-      audioError.value = MessageError('Erro ao reproduzir áudio');
+      audioError.value = MessageError((t) => t.audioPlaybackError);
     }
   }
 

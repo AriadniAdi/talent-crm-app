@@ -1,3 +1,5 @@
+import 'package:talent_crm_app/l10n/app_localizations.dart';
+
 sealed class AppError {}
 
 class NetworkError extends AppError {}
@@ -13,7 +15,7 @@ class UnknownError extends AppError {}
 class InvalidRouteError extends AppError {}
 
 class MessageError extends AppError {
-  final String msg;
+  final String Function(AppLocalizations context) msg;
   MessageError(this.msg);
 }
 

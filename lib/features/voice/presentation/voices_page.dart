@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
 import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
 import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class VoicesPage extends GetView<VoiceController> {
   const VoicesPage({super.key});
@@ -14,14 +14,14 @@ class VoicesPage extends GetView<VoiceController> {
 
     return BasePage(
       padding: const EdgeInsets.all(16),
-      child: GetBuilder<VoiceController>(
-        builder: (_) {
+      child: Obx(
+        () {
           final notes = controller.voiceNotes;
 
           if (notes.isEmpty) {
             return Center(
               child: Text(
-                "Nenhuma voz registrada ainda.",
+                context.translate.noVoicesRegistered,
                 style: theme.textTheme.bodyLarge,
               ),
             );
@@ -74,11 +74,11 @@ class _VoiceNoteListItem extends GetView<VoiceController> {
               children: [
                 if (note.talentId != null)
                   Text(
-                    "Talento ID: ${note.talentId}",
+                    context.translate.talentIdLabel(note.talentId!),
                     style: theme.textTheme.labelSmall?.copyWith(color: colors.primary),
                   ),
                 Text(
-                  "Gravação ${note.id.substring(0, 8)}",
+                  context.translate.recordingLabel(note.id.substring(0, 8)),
                   style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
                 ),
                 Text(

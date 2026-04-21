@@ -53,35 +53,36 @@ class ObservationsSection extends StatelessWidget {
   Widget _recordingButton(VoiceController controller) {
     return SizedBox(
       width: double.infinity,
-      child: Obx(() {
-        return ElevatedButton.icon(
-          onPressed: controller.toggleRecording,
-          icon: Icon(
-            controller.isRecording.value ? Icons.stop : Icons.mic,
-          ),
-          label: Text(
-            controller.isRecording.value
-                ? "Parar gravação"
-                : "Gravar observação",
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+      child: Builder(builder: (context) {
+        return Obx(() {
+          return ElevatedButton.icon(
+            onPressed: controller.toggleRecording,
+            icon: Icon(
+              controller.isRecording.value ? Icons.stop : Icons.mic,
             ),
-          ),
-        );
+            label: Text(
+              controller.isRecording.value
+                  ? context.translate.stopRecording
+                  : context.translate.recordObservation,
+            ),
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+            ),
+          );
+        });
       }),
     );
   }
 
   _audioError(BuildContext context, VoiceController controller, {required ThemeData theme, required ColorScheme colors}) {
-    return GetBuilder<VoiceController>(
-      tag: talentId,
-      builder: (_) {
+    return Obx(
+      () {
         final notes = controller.voiceNotes;
         if (notes.isEmpty) {
           return Text(
-            "Nenhuma gravação ainda",
+            context.translate.noRecordingsYet,
             style: theme.textTheme.bodyMedium?.copyWith(
               color: colors.onSurface.withValues(alpha: 0.6),
             ),

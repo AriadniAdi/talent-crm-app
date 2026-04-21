@@ -98,9 +98,9 @@
     "type": "text"
   },
 
-  "talentNotFound": "Talento no encontrado.",
+  "talentNotFound": "Talent not found.",
   "@talentNotFound": {
-    "description": "Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.",
+    "description": "Message shown when the requested talent is not found or does not exist.",
     "type": "text"
   },
   
@@ -454,5 +454,43 @@
   "@authGenericFailure": {
     "description": "Generic message for authentication failures",
     "type": "text"
+  },
+
+  "microphonePermissionDenied": "Microphone permission denied",
+  "@microphonePermissionDenied": {
+    "description": "Error shown when user denies microphone permission",
+    "type": "text"
+  },
+
+  "audioPlaybackError": "Error playing audio",
+  "@audioPlaybackError": {
+    "description": "Error shown when there's a problem playing audio",
+    "type": "text"
+  },
+
+  "noVoicesRegistered": "No voices registered yet.",
+  "@noVoicesRegistered": {
+    "description": "Message shown on voices page when there are no recordings",
+    "type": "text"
+  },
+
+  "talentIdLabel": "Talent ID: {id}",
+  "@talentIdLabel": {
+    "description": "Label showing the talent ID associated with a voice note",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "recordingLabel": "Recording {id}",
+  "@recordingLabel": {
+    "description": "Label identifying a specific recording",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
   }
 }

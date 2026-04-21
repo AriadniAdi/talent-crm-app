@@ -4,7 +4,7 @@ import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
 class VoiceRepository extends GetxService {
   final _voiceNotes = <VoiceNote>[].obs;
 
-  List<VoiceNote> get voiceNotes => _voiceNotes.toList();
+  RxList<VoiceNote> get voiceNotes => _voiceNotes;
 
   void addVoiceNote(VoiceNote note) {
     _voiceNotes.insert(0, note);

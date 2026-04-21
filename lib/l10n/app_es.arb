@@ -6,7 +6,7 @@
   },
   "tryAgain": "Intentar de nuevo",
   "@tryAgain": {
-    "description": "Etiqueta del botón para reintentar cuando ocurre un error"
+    "description": "Etiqueta del botão para reintentar cuando ocurre un erro"
   },
   "noEmployeesFound": "No se encontraron empleados",
   "@noEmployeesFound": {
@@ -88,32 +88,32 @@
     "description": "Título de la sección donde se muestran las observaciones relacionadas con el talento.",
     "type": "text"
   },
-  "talentNotFound": "Talent not found.",
+  "talentNotFound": "Talento no encontrado.",
   "@talentNotFound": {
-    "description": "Message displayed when the requested talent is not found or does not exist.",
+    "description": "Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.",
     "type": "text"
   },
-  "stopRecording": "Parar gravação",
+  "stopRecording": "Detener grabación",
   "@stopRecording": {
-    "description": "Texto exibido no botão para interromper a gravação de áudio.",
+    "description": "Texto mostrado en el botón para detener la grabación de audio.",
     "type": "text"
   },
 
-  "recordObservation": "Gravar observação",
+  "recordObservation": "Grabar observación",
   "@recordObservation": {
-    "description": "Texto exibido no botão para iniciar a gravação de uma observação em áudio.",
+    "description": "Texto mostrado en el botón para iniciar la grabación de una observación de audio.",
     "type": "text"
   },
 
-  "noRecordingsYet": "Nenhuma gravação ainda",
+  "noRecordingsYet": "Ninguna grabación aún",
   "@noRecordingsYet": {
-    "description": "Mensagem exibida quando não existem gravações salvas.",
+    "description": "Mensaje mostrado cuando no hay grabaciones guardadas.",
     "type": "text"
   },
 
-  "copiedToClipboard": "Copiado para a área de transferência",
+  "copiedToClipboard": "Copiado al portapapeles",
   "@copiedToClipboard": {
-    "description": "Mensagem exibida quando o conteúdo é copiado para a área de transferência.",
+    "description": "Mensaje mostrado cuando el contenido se copia al portapapeles.",
     "type": "text"
   },
 
@@ -161,7 +161,7 @@
 
   "register": "Registrarse",
   "@register": {
-    "description": "Texto del botón de registro",
+    "description": "Texto del botão de registro",
     "type": "text"
   },
 
@@ -215,7 +215,7 @@
 
   "createAccount": "Crear cuenta",
   "@createAccount": {
-    "description": "Texto del botón o título para crear una nueva cuenta",
+    "description": "Texto del botão o título para crear una nueva cuenta",
     "type": "text"
   },
 
@@ -251,37 +251,37 @@
 
   "continueWithGoogle": "Continuar con Google",
   "@continueWithGoogle": {
-    "description": "Botón para autenticarse con Google",
+    "description": "Botão para autenticarse con Google",
     "type": "text"
   },
 
   "continueWithGoogleDescription": "Usa la cuenta conectada a tu dispositivo.",
   "@continueWithGoogleDescription": {
-    "description": "Descripción del botón de autenticación con Google",
+    "description": "Descripción del botão de autenticación con Google",
     "type": "text"
   },
 
   "continueWithApple": "Continuar con Apple",
   "@continueWithApple": {
-    "description": "Botón para autenticarse con Apple",
+    "description": "Botão para autenticarse con Apple",
     "type": "text"
   },
 
   "continueWithAppleDescription": "Ideal para un acceso rápido y privado.",
   "@continueWithAppleDescription": {
-    "description": "Descripción del botón de autenticación con Apple",
+    "description": "Descripción del botão de autenticación con Apple",
     "type": "text"
   },
 
   "continueWithFacebook": "Continuar con Facebook",
   "@continueWithFacebook": {
-    "description": "Botón para autenticarse con Facebook",
+    "description": "Botão para autenticarse con Facebook",
     "type": "text"
   },
 
   "continueWithFacebookDescription": "Ingresa con tu perfil social tradicional.",
   "@continueWithFacebookDescription": {
-    "description": "Descripción del botón de autenticación con Facebook",
+    "description": "Descripción del botão de autenticación con Facebook",
     "type": "text"
   },
 
@@ -293,13 +293,13 @@
 
   "continueWithEmail": "Continuar con correo electrónico",
   "@continueWithEmail": {
-    "description": "Botón para continuar con inicio de sesión por correo",
+    "description": "Botão para continuar con inicio de sesión por correo",
     "type": "text"
   },
 
   "createAccountWithEmail": "Crear cuenta con correo electrónico",
   "@createAccountWithEmail": {
-    "description": "Botón para crear una cuenta usando correo electrónico",
+    "description": "Botão para crear una cuenta usando correo electrónico",
     "type": "text"
   },
 
@@ -333,7 +333,7 @@
 
   "signIn": "Entrar",
   "@signIn": {
-    "description": "Texto del botón para iniciar sesión",
+    "description": "Texto del botão para iniciar sesión",
     "type": "text"
   },
 
@@ -394,6 +394,92 @@
   "authGenericFailure": "Error en la autenticación",
   "@authGenericFailure": {
     "description": "Mensaje genérico para fallas de autenticación",
+    "type": "text"
+  },
+
+  "microphonePermissionDenied": "Permiso de micrófono denegado",
+  "@microphonePermissionDenied": {
+    "description": "Error mostrado cuando el usuario deniega el permiso de micrófono",
+    "type": "text"
+  },
+
+  "audioPlaybackError": "Error al reproducir audio",
+  "@audioPlaybackError": {
+    "description": "Error mostrado cuando hay un problema al reproducir audio",
+    "type": "text"
+  },
+
+  "noVoicesRegistered": "Ninguna voz registrada todavía.",
+  "@noVoicesRegistered": {
+    "description": "Mensaje mostrado en la página de voces cuando no hay grabaciones",
+    "type": "text"
+  },
+
+  "talentIdLabel": "Talento ID: {id}",
+  "@talentIdLabel": {
+    "description": "Etiqueta que muestra el ID del talento asociado con una nota de voz",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "recordingLabel": "Grabación {id}",
+  "@recordingLabel": {
+    "description": "Etiqueta que identifica una grabación específica",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "requiredCpf": "CPF obligatorio",
+  "@requiredCpf": {
+    "description": "Error mostrado cuando el CPF no es informado",
+    "type": "text"
+  },
+
+  "futureBirthDate": "La fecha de nacimiento no puede ser futura",
+  "@futureBirthDate": {
+    "description": "Error mostrado cuando la fecha es mayor que la atual",
+    "type": "text"
+  },
+
+  "requiredEmail": "E-mail obligatorio",
+  "@requiredEmail": {
+    "description": "Error mostrado cuando el e-mail no es informado",
+    "type": "text"
+  },
+
+  "requiredPhone": "Teléfono obligatorio",
+  "@requiredPhone": {
+    "description": "Error mostrado cuando el teléfono no es informado",
+    "type": "text"
+  },
+
+  "requiredPassword": "Senha obligatoria",
+  "@requiredPassword": {
+    "description": "Error mostrado cuando la senha no es informada",
+    "type": "text"
+  },
+
+  "passwordTooLong": "A senha deve ter no máximo 6 caracteres",
+  "@passwordTooLong": {
+    "description": "Error mostrado cuando a senha excede 6 caracteres",
+    "type": "text"
+  },
+
+  "requiredConfirmPassword": "Confirmación de senha obligatoria",
+  "@requiredConfirmPassword": {
+    "description": "Error mostrado cuando a confirmación não é informada",
+    "type": "text"
+  },
+
+  "invalidNameLength": "Nome muito longo",
+  "@invalidNameLength": {
+    "description": "Error mostrado quando o nome excede o limite permitido",
     "type": "text"
   }
 }

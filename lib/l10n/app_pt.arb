@@ -445,6 +445,43 @@
   "@authGenericFailure": {
     "description": "Mensagem genérica para falhas de autenticação",
     "type": "text"
-  }
+  },
 
+  "microphonePermissionDenied": "Permissão de microfone negada",
+  "@microphonePermissionDenied": {
+    "description": "Erro exibido quando o usuário nega a permissão de microfone",
+    "type": "text"
+  },
+
+  "audioPlaybackError": "Erro ao reproduzir áudio",
+  "@audioPlaybackError": {
+    "description": "Erro exibido quando ocorre um problema na reprodução de áudio",
+    "type": "text"
+  },
+
+  "noVoicesRegistered": "Nenhuma voz registrada ainda.",
+  "@noVoicesRegistered": {
+    "description": "Mensagem exibida na página de vozes quando não há gravações",
+    "type": "text"
+  },
+
+  "talentIdLabel": "Talento ID: {id}",
+  "@talentIdLabel": {
+    "description": "Label exibindo o ID do talento associado à nota de voz",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "recordingLabel": "Gravação {id}",
+  "@recordingLabel": {
+    "description": "Label identificando uma gravação específica",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  }
 }
