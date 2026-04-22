@@ -19,6 +19,9 @@ abstract class AuthRepository {
 
   Future<Result<bool>> signInWithGoogle();
 
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  });
 
   Future<void> signOut();
 }
@@ -63,6 +66,13 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<bool>> signInWithGoogle() {
     return remoteDataSource.signInWithGoogle();
+  }
+
+  @override
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  }) {
+    return remoteDataSource.sendPasswordResetEmail(email: email);
   }
 
   @override

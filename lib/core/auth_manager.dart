@@ -21,9 +21,10 @@ class AuthManager extends GetxController {
       if (user == null) {
         Get.offAllNamed(AppRoutes.login);
       } else {
-        if (Get.currentRoute == AppRoutes.login || 
-            Get.currentRoute == AppRoutes.register || 
-            Get.currentRoute == '/loginEmail') {
+        if (Get.currentRoute == AppRoutes.login ||
+            Get.currentRoute == AppRoutes.register ||
+            Get.currentRoute == AppRoutes.loginEmail ||
+            Get.currentRoute == AppRoutes.forgotPassword) {
           Get.offAllNamed(AppRoutes.home);
         }
       }

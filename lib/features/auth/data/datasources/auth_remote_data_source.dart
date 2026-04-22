@@ -23,6 +23,10 @@ abstract class AuthRemoteDataSource {
 
   Future<Result<bool>> signInWithGoogle();
 
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  });
+
   Future<void> signOut();
 }
 
@@ -155,6 +159,28 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       if (e.toString().contains('canceled')) {
         return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
       }
+      return Failure(UnknownError());
+    }
+  }
+
+  @override
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  }) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      return Success(true);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        return Failure(AuthError.withCode(AuthErrorCode.invalidEmail));
+      }
+
+      if (e.code == 'user-not-found') {
+        return Failure(AuthError.withCode(AuthErrorCode.userNotFound));
+      }
+
+      return Failure(NetworkError());
+    } catch (_) {
       return Failure(UnknownError());
     }
   }

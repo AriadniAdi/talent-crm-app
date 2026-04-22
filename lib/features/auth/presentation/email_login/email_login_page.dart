@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/pages/base_page.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_controller.dart';
+import 'package:talent_crm_app/features/auth/presentation/widgets/auth_text_field.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 
 class EmailLoginPage extends GetView<EmailLoginController> {
@@ -44,14 +46,14 @@ class EmailLoginPage extends GetView<EmailLoginController> {
                   const SizedBox(height: 32),
                 ],
               ),
-              _EmailLoginTextField(
+              AuthTextField(
                 controller: controller.emailController,
                 hintText: context.translate.email,
                 prefixIcon: Icons.mail_outline,
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
-              Obx(() => _EmailLoginTextField(
+              Obx(() => AuthTextField(
                     controller: controller.passwordController,
                     hintText: context.translate.password,
                     prefixIcon: Icons.lock_outline,
@@ -65,6 +67,19 @@ class EmailLoginPage extends GetView<EmailLoginController> {
                       ),
                     ),
                   )),
+              const SizedBox(height: 8),
+              Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () => Get.toNamed(
+                    AppRoutes.forgotPassword,
+                    arguments: {
+                      'email': controller.emailController.text,
+                    },
+                  ),
+                  child: Text(context.translate.forgotPasswordAction),
+                ),
+              ),
               const SizedBox(height: 32),
               Obx(
                 () => AppPrimaryButton(
@@ -74,69 +89,6 @@ class EmailLoginPage extends GetView<EmailLoginController> {
                 ),
               ),
             ],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _EmailLoginTextField extends StatelessWidget {
-  final TextEditingController controller;
-  final String hintText;
-  final IconData prefixIcon;
-  final TextInputType? keyboardType;
-  final bool obscureText;
-  final Widget? suffixIcon;
-
-  const _EmailLoginTextField({
-    required this.controller,
-    required this.hintText,
-    required this.prefixIcon,
-    this.keyboardType,
-    this.obscureText = false,
-    this.suffixIcon,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = Theme.of(context).colorScheme;
-
-    return TextField(
-      controller: controller,
-      keyboardType: keyboardType,
-      obscureText: obscureText,
-      style: TextStyle(
-        color: colors.onSurface,
-        fontSize: 16,
-      ),
-      decoration: InputDecoration(
-        hintText: hintText,
-        prefixIcon: Icon(prefixIcon, color: colors.primary),
-        suffixIcon: suffixIcon,
-        filled: true,
-        fillColor: colors.surface,
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: 18,
-          vertical: 20,
-        ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(
-            color: colors.outline.withValues(alpha: 0.18),
-          ),
-        ),
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(
-            color: colors.outline.withValues(alpha: 0.18),
-          ),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(28),
-          borderSide: BorderSide(
-            color: colors.primary.withValues(alpha: 0.35),
-            width: 1.2,
           ),
         ),
       ),

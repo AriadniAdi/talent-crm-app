@@ -92,5 +92,20 @@ void main() {
 
       expect(result, equals(error));
     });
+
+    test('sendPasswordResetEmail delegates to remote data source', () async {
+      when(
+        () => dataSource.sendPasswordResetEmail(
+          email: any(named: 'email'),
+        ),
+      ).thenAnswer((_) async => Success(true));
+
+      final result = await repository.sendPasswordResetEmail(email: email);
+
+      expect(result, isA<Success<bool>>());
+      verify(
+        () => dataSource.sendPasswordResetEmail(email: email),
+      ).called(1);
+    });
   });
 }

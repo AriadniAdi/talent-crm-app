@@ -2,10 +2,12 @@ import 'package:get/get.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/account/account_binding.dart';
 import 'package:talent_crm_app/features/account/presentation/account_shell.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_page.dart';
+import 'package:talent_crm_app/features/auth/presentation/forgot_password/forgot_password_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/forgot_password/forgot_password_page.dart';
 import 'package:talent_crm_app/features/auth/presentation/login_binding.dart';
 import 'package:talent_crm_app/features/auth/presentation/login_shell.dart';
-import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_page.dart';
-import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_binding.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/register_binding.dart';
@@ -31,6 +33,11 @@ class AppPages {
       name: AppRoutes.loginEmail,
       page: () => const EmailLoginPage(),
       binding: EmailLoginBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.forgotPassword,
+      page: () => const ForgotPasswordPage(),
+      binding: ForgotPasswordBinding(),
     ),
     GetPage(
       name: AppRoutes.home,

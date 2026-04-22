@@ -30,6 +30,8 @@ extension AppErrorX on AppError {
           return t.authGoogleCancelled;
         case AuthErrorCode.invalidCredentials:
           return t.authInvalidCredentials;
+        case AuthErrorCode.userNotFound:
+          return t.authUserNotFound;
         case AuthErrorCode.authenticationFailed:
           return t.authGenericFailure;
         case null:

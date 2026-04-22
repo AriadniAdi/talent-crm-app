@@ -26,6 +26,7 @@ enum AuthErrorCode {
   invalidEmail,
   googleSignInCancelled,
   invalidCredentials,
+  userNotFound,
   authenticationFailed,
 }
 
