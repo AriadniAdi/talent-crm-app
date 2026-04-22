@@ -311,18 +311,6 @@
     "type": "text"
   },
 
-  "continueWithApple": "Continuar com Apple",
-  "@continueWithApple": {
-    "description": "Botão para autenticar com Apple",
-    "type": "text"
-  },
-
-  "continueWithAppleDescription": "Ideal para um acesso rápido e privado.",
-  "@continueWithAppleDescription": {
-    "description": "Descrição do botão de autenticação com Apple",
-    "type": "text"
-  },
-
   "continueWithFacebook": "Continuar com Facebook",
   "@continueWithFacebook": {
     "description": "Botão para autenticar com Facebook",
@@ -434,11 +422,6 @@
     "description": "Erro exibido quando o usuário cancela o login com Google",
     "type": "text"
   },
-  "authAppleCancelled": "Login com Apple cancelado",
-  "@authAppleCancelled": {
-    "description": "Erro exibido quando o usuário cancela o login com Apple",
-    "type": "text"
-  },
   "authFacebookCancelled": "Login com Facebook cancelado",
   "@authFacebookCancelled": {
     "description": "Erro exibido quando o usuário cancela o login com Facebook",
@@ -448,6 +431,11 @@
   "authInvalidCredentials": "E-mail ou senha inválidos",
   "@authInvalidCredentials": {
     "description": "Erro exibido quando as credenciais de login estão incorretas",
+    "type": "text"
+  },
+  "authConfigurationInvalid": "A configuracao do Firebase deste app esta invalida ou expirada. Atualize a chave da API e o google-services.json do projeto.",
+  "@authConfigurationInvalid": {
+    "description": "Erro exibido quando a configuracao do Firebase/Auth do app esta invalida, expirada ou nao autorizada",
     "type": "text"
   },
 

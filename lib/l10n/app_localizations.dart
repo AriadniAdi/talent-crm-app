@@ -63,8 +63,7 @@ import 'app_localizations_pt.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale)
-      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -72,8 +71,7 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate =
-      _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -85,8 +83,7 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
-      <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -436,18 +433,6 @@ abstract class AppLocalizations {
   /// **'Use the account connected to your device.'**
   String get continueWithGoogleDescription;
 
-  /// Button to authenticate with Apple
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Apple'**
-  String get continueWithApple;
-
-  /// Description for the Apple authentication button
-  ///
-  /// In en, this message translates to:
-  /// **'Ideal for quick and private access.'**
-  String get continueWithAppleDescription;
-
   /// Button to authenticate with Facebook
   ///
   /// In en, this message translates to:
@@ -556,12 +541,6 @@ abstract class AppLocalizations {
   /// **'Google sign-in was canceled'**
   String get authGoogleCancelled;
 
-  /// Error shown when the user cancels Apple sign-in
-  ///
-  /// In en, this message translates to:
-  /// **'Apple sign-in was canceled'**
-  String get authAppleCancelled;
-
   /// Error shown when the user cancels Facebook sign-in
   ///
   /// In en, this message translates to:
@@ -574,6 +553,12 @@ abstract class AppLocalizations {
   /// **'Invalid email or password'**
   String get authInvalidCredentials;
 
+  /// Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized
+  ///
+  /// In en, this message translates to:
+  /// **'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.'**
+  String get authConfigurationInvalid;
+
   /// Generic message for authentication failures
   ///
   /// In en, this message translates to:
@@ -581,8 +566,7 @@ abstract class AppLocalizations {
   String get authGenericFailure;
 }
 
-class _AppLocalizationsDelegate
-    extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -591,27 +575,26 @@ class _AppLocalizationsDelegate
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['en', 'es', 'pt'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>['en', 'es', 'pt'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
+
+
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'en':
-      return AppLocalizationsEn();
-    case 'es':
-      return AppLocalizationsEs();
-    case 'pt':
-      return AppLocalizationsPt();
+    case 'en': return AppLocalizationsEn();
+    case 'es': return AppLocalizationsEs();
+    case 'pt': return AppLocalizationsPt();
   }
 
   throw FlutterError(
-      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-      'an issue with the localizations generation tool. Please file an issue '
-      'on GitHub with a reproducible sample app and the gen-l10n configuration '
-      'that was used.');
+    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+    'an issue with the localizations generation tool. Please file an issue '
+    'on GitHub with a reproducible sample app and the gen-l10n configuration '
+    'that was used.'
+  );
 }

@@ -42,26 +42,22 @@ class AppLocalizationsEs extends AppLocalizations {
   String get appTitle => 'Talent CRM';
 
   @override
-  String get noInternet =>
-      'Sin conexión a internet. Verifica tu conexión e inténtalo nuevamente.';
+  String get noInternet => 'Sin conexión a internet. Verifica tu conexión e inténtalo nuevamente.';
 
   @override
-  String get serverError =>
-      'Ocurrió un error en el servidor. Inténtalo más tarde.';
+  String get serverError => 'Ocurrió un error en el servidor. Inténtalo más tarde.';
 
   @override
   String get notFound => 'El recurso solicitado no fue encontrado.';
 
   @override
-  String get invalidFormat =>
-      'Recibimos una respuesta inesperada del servidor.';
+  String get invalidFormat => 'Recibimos una respuesta inesperada del servidor.';
 
   @override
   String get invalidRoute => 'La página que intentaste acceder es inválida.';
 
   @override
-  String get unknownError =>
-      'Ocurrió un error inesperado. Inténtalo nuevamente.';
+  String get unknownError => 'Ocurrió un error inesperado. Inténtalo nuevamente.';
 
   @override
   String get copy => 'Copiar';
@@ -127,8 +123,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get requiredName => 'Nombre obligatorio';
 
   @override
-  String get passwordTooShort =>
-      'La contraseña debe tener al menos 6 caracteres';
+  String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
 
   @override
   String get invalidNameLength => 'Name is too long';
@@ -167,36 +162,25 @@ class AppLocalizationsEs extends AppLocalizations {
   String get loginHeadline => 'Accede a tu cuenta';
 
   @override
-  String get loginDescription =>
-      'Ingresa con tu cuenta social o continúa con correo electrónico para seguir candidatos, equipos y oportunidades.';
+  String get loginDescription => 'Ingresa con tu cuenta social o continúa con correo electrónico para seguir candidatos, equipos y oportunidades.';
 
   @override
   String get loginOptionsTitle => 'Elige cómo quieres entrar';
 
   @override
-  String get loginOptionsSubtitle =>
-      'Un flujo simple, rápido y familiar para comenzar.';
+  String get loginOptionsSubtitle => 'Un flujo simple, rápido y familiar para comenzar.';
 
   @override
   String get continueWithGoogle => 'Continuar con Google';
 
   @override
-  String get continueWithGoogleDescription =>
-      'Usa la cuenta conectada a tu dispositivo.';
-
-  @override
-  String get continueWithApple => 'Continuar con Apple';
-
-  @override
-  String get continueWithAppleDescription =>
-      'Ideal para un acceso rápido y privado.';
+  String get continueWithGoogleDescription => 'Usa la cuenta conectada a tu dispositivo.';
 
   @override
   String get continueWithFacebook => 'Continuar con Facebook';
 
   @override
-  String get continueWithFacebookDescription =>
-      'Ingresa con tu perfil social tradicional.';
+  String get continueWithFacebookDescription => 'Ingresa con tu perfil social tradicional.';
 
   @override
   String get orDivider => 'o';
@@ -208,8 +192,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get createAccountWithEmail => 'Crear cuenta con correo electrónico';
 
   @override
-  String get loginProtectionMessage =>
-      'Tus datos de acceso permanecen protegidos y puedes cambiar el método de inicio de sesión después.';
+  String get loginProtectionMessage => 'Tus datos de acceso permanecen protegidos y puedes cambiar el método de inicio de sesión después.';
 
   @override
   String providerComingSoon(String provider) {
@@ -220,8 +203,7 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emailLoginTitle => 'Inicio de sesión con correo';
 
   @override
-  String get emailLoginSubtitle =>
-      'Ingresa tu correo electrónico y contraseña para acceder.';
+  String get emailLoginSubtitle => 'Ingresa tu correo electrónico y contraseña para acceder.';
 
   @override
   String get signIn => 'Entrar';
@@ -251,14 +233,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get authGoogleCancelled => 'Se canceló el inicio de sesión con Google';
 
   @override
-  String get authAppleCancelled => 'Se canceló el inicio de sesión con Apple';
-
-  @override
-  String get authFacebookCancelled =>
-      'Se canceló el inicio de sesión con Facebook';
+  String get authFacebookCancelled => 'Se canceló el inicio de sesión con Facebook';
 
   @override
   String get authInvalidCredentials => 'Correo o contraseña inválidos';
+
+  @override
+  String get authConfigurationInvalid => 'La configuracion de Firebase de esta app es invalida o expiro. Actualiza la clave de API y el archivo google-services.json del proyecto.';
 
   @override
   String get authGenericFailure => 'Error en la autenticación';

@@ -25,8 +25,6 @@ abstract class AuthRemoteDataSource {
 
   Future<Result<bool>> signInWithGoogle();
 
-  Future<Result<bool>> signInWithApple();
-
   Future<Result<bool>> signInWithFacebook();
 
   Future<void> signOut();
@@ -81,15 +79,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'email-already-in-use') {
-        return Failure(AuthError.withCode(AuthErrorCode.emailAlreadyInUse));
-      }
-
-      if (e.code == 'invalid-email') {
-        return Failure(AuthError.withCode(AuthErrorCode.invalidEmail));
-      }
-
-      return Failure(NetworkError());
+      return Failure(_mapFirebaseAuthException(e));
     } catch (_) {
       return Failure(UnknownError());
     }
@@ -108,11 +98,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
-        return Failure(AuthError.withCode(AuthErrorCode.invalidCredentials));
-      }
-
-      return Failure(NetworkError());
+      return Failure(_mapFirebaseAuthException(e));
     } catch (_) {
       return Failure(UnknownError());
     }
@@ -160,46 +146,11 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         ),
       );
     } on FirebaseAuthException catch (e) {
-      return Failure(
-        AuthError(
-          e.message,
-          AuthErrorCode.authenticationFailed,
-        ),
-      );
+      return Failure(_mapFirebaseAuthException(e));
     } catch (e) {
       if (e.toString().contains('canceled')) {
         return Failure(AuthError.withCode(AuthErrorCode.googleSignInCancelled));
       }
-      return Failure(UnknownError());
-    }
-  }
-
-  @override
-  Future<Result<bool>> signInWithApple() async {
-    try {
-      final appleProvider = AppleAuthProvider()
-        ..addScope('email')
-        ..addScope('name');
-      final userCredential = await auth.signInWithProvider(appleProvider);
-      await _persistSocialUser(userCredential, fallbackName: 'Usuario Apple');
-
-      return Success(true);
-    } on FirebaseAuthException catch (e) {
-      if (_isSignInCancelled(e)) {
-        return Failure(AuthError.withCode(AuthErrorCode.appleSignInCancelled));
-      }
-
-      return Failure(
-        AuthError(
-          e.message,
-          AuthErrorCode.authenticationFailed,
-        ),
-      );
-    } catch (e) {
-      if (_looksCancelled(e)) {
-        return Failure(AuthError.withCode(AuthErrorCode.appleSignInCancelled));
-      }
-
       return Failure(UnknownError());
     }
   }
@@ -259,12 +210,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
             AuthError.withCode(AuthErrorCode.facebookSignInCancelled));
       }
 
-      return Failure(
-        AuthError(
-          e.message,
-          AuthErrorCode.authenticationFailed,
-        ),
-      );
+      return Failure(_mapFirebaseAuthException(e));
     } catch (e) {
       if (_looksCancelled(e)) {
         return Failure(
@@ -294,12 +240,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         );
       }
 
-      return Failure(
-        AuthError(
-          e.message,
-          AuthErrorCode.authenticationFailed,
-        ),
-      );
+      return Failure(_mapFirebaseAuthException(e));
     } catch (e) {
       if (_looksCancelled(e)) {
         return Failure(
@@ -341,6 +282,44 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
   bool _looksCancelled(Object error) {
     final message = error.toString().toLowerCase();
     return message.contains('cancel') || message.contains('canceled');
+  }
+
+  AuthError _mapFirebaseAuthException(FirebaseAuthException error) {
+    final code = error.code.toLowerCase();
+    final message = (error.message ?? '').toLowerCase();
+
+    if (code == 'email-already-in-use') {
+      return AuthError.withCode(AuthErrorCode.emailAlreadyInUse);
+    }
+
+    if (code == 'invalid-email') {
+      return AuthError.withCode(AuthErrorCode.invalidEmail);
+    }
+
+    if (code == 'user-not-found' || code == 'wrong-password' || code == 'invalid-credential') {
+      return AuthError.withCode(AuthErrorCode.invalidCredentials);
+    }
+
+    if (_isFirebaseConfigurationIssue(code, message)) {
+      return AuthError.withCode(AuthErrorCode.configurationInvalid);
+    }
+
+    return AuthError(
+      error.message,
+      AuthErrorCode.authenticationFailed,
+    );
+  }
+
+  bool _isFirebaseConfigurationIssue(String code, String message) {
+    return code.contains('api-key') ||
+        code.contains('invalid-api-key') ||
+        code.contains('app-not-authorized') ||
+        code.contains('project-not-found') ||
+        message.contains('api key expired') ||
+        message.contains('please renew the api key') ||
+        message.contains('invalid api key') ||
+        message.contains('api key not valid') ||
+        message.contains('this app is not authorized');
   }
 
   @override

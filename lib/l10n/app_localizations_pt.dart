@@ -42,12 +42,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get appTitle => 'Talent CRM';
 
   @override
-  String get noInternet =>
-      'Sem conexão com a internet. Verifique sua conexão e tente novamente.';
+  String get noInternet => 'Sem conexão com a internet. Verifique sua conexão e tente novamente.';
 
   @override
-  String get serverError =>
-      'Ocorreu um erro no servidor. Tente novamente mais tarde.';
+  String get serverError => 'Ocorreu um erro no servidor. Tente novamente mais tarde.';
 
   @override
   String get notFound => 'O recurso solicitado não foi encontrado.';
@@ -164,36 +162,25 @@ class AppLocalizationsPt extends AppLocalizations {
   String get loginHeadline => 'Acesse sua conta';
 
   @override
-  String get loginDescription =>
-      'Entre com sua conta social ou continue com e-mail para acompanhar candidatos, equipes e oportunidades.';
+  String get loginDescription => 'Entre com sua conta social ou continue com e-mail para acompanhar candidatos, equipes e oportunidades.';
 
   @override
   String get loginOptionsTitle => 'Escolha como deseja entrar';
 
   @override
-  String get loginOptionsSubtitle =>
-      'Um fluxo simples, rápido e familiar para começar.';
+  String get loginOptionsSubtitle => 'Um fluxo simples, rápido e familiar para começar.';
 
   @override
   String get continueWithGoogle => 'Continuar com Google';
 
   @override
-  String get continueWithGoogleDescription =>
-      'Use a conta conectada ao seu dispositivo.';
-
-  @override
-  String get continueWithApple => 'Continuar com Apple';
-
-  @override
-  String get continueWithAppleDescription =>
-      'Ideal para um acesso rápido e privado.';
+  String get continueWithGoogleDescription => 'Use a conta conectada ao seu dispositivo.';
 
   @override
   String get continueWithFacebook => 'Continuar com Facebook';
 
   @override
-  String get continueWithFacebookDescription =>
-      'Entre com seu perfil social tradicional.';
+  String get continueWithFacebookDescription => 'Entre com seu perfil social tradicional.';
 
   @override
   String get orDivider => 'ou';
@@ -205,8 +192,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get createAccountWithEmail => 'Criar conta com e-mail';
 
   @override
-  String get loginProtectionMessage =>
-      'Seus dados de acesso ficam protegidos e você pode trocar o método de login depois.';
+  String get loginProtectionMessage => 'Seus dados de acesso ficam protegidos e você pode trocar o método de login depois.';
 
   @override
   String providerComingSoon(String provider) {
@@ -247,13 +233,13 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authGoogleCancelled => 'Login com Google cancelado';
 
   @override
-  String get authAppleCancelled => 'Login com Apple cancelado';
-
-  @override
   String get authFacebookCancelled => 'Login com Facebook cancelado';
 
   @override
   String get authInvalidCredentials => 'E-mail ou senha inválidos';
+
+  @override
+  String get authConfigurationInvalid => 'A configuracao do Firebase deste app esta invalida ou expirada. Atualize a chave da API e o google-services.json do projeto.';
 
   @override
   String get authGenericFailure => 'Erro na autenticação';

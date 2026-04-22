@@ -13,7 +13,6 @@ class LoginShell extends GetView<LoginController> {
         isLoading: controller.isLoading.value,
         onContinueWithEmail: controller.continueWithEmail,
         onContinueWithGoogle: controller.continueWithGoogle,
-        onContinueWithApple: controller.continueWithApple,
         onContinueWithFacebook: controller.continueWithFacebook,
       ),
     );

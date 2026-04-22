@@ -9,10 +9,8 @@ class LoginPage extends StatelessWidget {
   final bool isLoading;
   final VoidCallback onContinueWithEmail;
   final VoidCallback onContinueWithGoogle;
-  final VoidCallback onContinueWithApple;
   final VoidCallback onContinueWithFacebook;
   static const googleButtonKey = Key('social-button-google');
-  static const appleButtonKey = Key('social-button-apple');
   static const facebookButtonKey = Key('social-button-facebook');
 
   const LoginPage({
@@ -20,7 +18,6 @@ class LoginPage extends StatelessWidget {
     required this.isLoading,
     required this.onContinueWithEmail,
     required this.onContinueWithGoogle,
-    required this.onContinueWithApple,
     required this.onContinueWithFacebook,
   });
 
@@ -116,15 +113,6 @@ class LoginPage extends StatelessWidget {
                 badgeLabel: 'G',
                 badgeColor: const Color(0xFFDB4437),
                 onPressed: isLoading ? null : onContinueWithGoogle,
-              ),
-              const SizedBox(height: 14),
-              _SocialButton(
-                buttonKey: appleButtonKey,
-                label: t.continueWithApple,
-                description: t.continueWithAppleDescription,
-                badgeIcon: Icons.apple_rounded,
-                badgeColor: Colors.black,
-                onPressed: isLoading ? null : onContinueWithApple,
               ),
               const SizedBox(height: 14),
               _SocialButton(

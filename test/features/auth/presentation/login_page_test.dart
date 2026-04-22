@@ -9,14 +9,12 @@ void main() {
     bool isLoading = false,
     VoidCallback? onContinueWithEmail,
     VoidCallback? onContinueWithGoogle,
-    VoidCallback? onContinueWithApple,
     VoidCallback? onContinueWithFacebook,
   }) {
     return LoginPage(
       isLoading: isLoading,
       onContinueWithEmail: onContinueWithEmail ?? () {},
       onContinueWithGoogle: onContinueWithGoogle ?? () {},
-      onContinueWithApple: onContinueWithApple ?? () {},
       onContinueWithFacebook: onContinueWithFacebook ?? () {},
     );
   }
@@ -29,12 +27,9 @@ void main() {
 
       expect(find.text('Acesse sua conta'), findsOneWidget);
       expect(find.text('Continuar com Google'), findsOneWidget);
-      expect(find.text('Continuar com Apple'), findsOneWidget);
       expect(find.text('Continuar com Facebook'), findsOneWidget);
       expect(find.text('Continuar com e-mail'), findsOneWidget);
       expect(find.text('Criar conta com e-mail'), findsOneWidget);
-      expect(
-          find.text('Ideal para um acesso rápido e privado.'), findsOneWidget);
       expect(
         find.text('Entre com seu perfil social tradicional.'),
         findsOneWidget,
@@ -45,9 +40,6 @@ void main() {
         (tester) async {
       await tester.pumpWidget(wrapper(buildPage()));
 
-      final appleButton = tester.widget<InkWell>(
-        find.byKey(LoginPage.appleButtonKey),
-      );
       final facebookButton = tester.widget<InkWell>(
         find.byKey(LoginPage.facebookButtonKey),
       );
@@ -56,7 +48,6 @@ void main() {
       );
 
       expect(googleButton.onTap, isNotNull);
-      expect(appleButton.onTap, isNotNull);
       expect(facebookButton.onTap, isNotNull);
     });
   });

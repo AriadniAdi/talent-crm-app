@@ -1,7 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/auth/presentation/controller/login_controller.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
@@ -39,16 +38,6 @@ void main() {
       await controller.continueWithGoogle();
 
       verifyNever(() => authRepository.signInWithGoogle());
-    });
-
-    test('continueWithApple delegates sign in and resets loading', () async {
-      when(() => authRepository.signInWithApple())
-          .thenAnswer((_) async => Success(true));
-
-      await controller.continueWithApple();
-
-      expect(controller.isLoading.value, isFalse);
-      verify(() => authRepository.signInWithApple()).called(1);
     });
 
     test('continueWithFacebook delegates sign in and resets loading', () async {

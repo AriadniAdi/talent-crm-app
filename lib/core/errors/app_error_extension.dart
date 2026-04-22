@@ -28,12 +28,12 @@ extension AppErrorX on AppError {
           return t.authInvalidEmail;
         case AuthErrorCode.googleSignInCancelled:
           return t.authGoogleCancelled;
-        case AuthErrorCode.appleSignInCancelled:
-          return t.authAppleCancelled;
         case AuthErrorCode.facebookSignInCancelled:
           return t.authFacebookCancelled;
         case AuthErrorCode.invalidCredentials:
           return t.authInvalidCredentials;
+        case AuthErrorCode.configurationInvalid:
+          return t.authConfigurationInvalid;
         case AuthErrorCode.authenticationFailed:
           return error.message ?? t.authGenericFailure;
         case null:

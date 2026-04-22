@@ -25,9 +25,9 @@ enum AuthErrorCode {
   emailAlreadyInUse,
   invalidEmail,
   googleSignInCancelled,
-  appleSignInCancelled,
   facebookSignInCancelled,
   invalidCredentials,
+  configurationInvalid,
   authenticationFailed,
 }
 

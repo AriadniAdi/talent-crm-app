@@ -251,49 +251,6 @@ void main() {
       });
     });
 
-    group('signInWithApple', () {
-      test('successfully signs in with apple', () async {
-        final mockAdditionalInfo = MockAdditionalUserInfo();
-
-        when(() => auth.signInWithProvider(any()))
-            .thenAnswer((_) async => userCredential);
-        when(() => userCredential.additionalUserInfo)
-            .thenReturn(mockAdditionalInfo);
-        when(() => mockAdditionalInfo.isNewUser).thenReturn(true);
-        when(() => user.displayName).thenReturn(name);
-        when(() => user.email).thenReturn(email);
-        when(() => firebaseService.setData(
-              collection: any(named: 'collection'),
-              docId: any(named: 'docId'),
-              data: any(named: 'data'),
-              merge: any(named: 'merge'),
-            )).thenAnswer((_) async => {});
-
-        final result = await dataSource.signInWithApple();
-
-        expect(result, isA<Success<bool>>());
-        verify(() => auth.signInWithProvider(any())).called(1);
-      });
-
-      test('returns cancellation error when apple sign in is aborted',
-          () async {
-        when(() => auth.signInWithProvider(any())).thenThrow(
-          FirebaseAuthException(code: 'web-context-cancelled'),
-        );
-
-        final result = await dataSource.signInWithApple();
-
-        result.when(
-          success: (_) => fail('Should have failed'),
-          failure: (error) {
-            expect(error, isA<AuthError>());
-            expect(
-                (error as AuthError).code, AuthErrorCode.appleSignInCancelled);
-          },
-        );
-      });
-    });
-
     group('signInWithFacebook', () {
       test('successfully signs in with facebook', () async {
         final mockAdditionalInfo = MockAdditionalUserInfo();
@@ -425,7 +382,7 @@ void main() {
 
     group('signOut', () {
       test('signs out from providers and firebase auth', () async {
-        when(() => googleSignIn.signOut()).thenAnswer((_) async => null);
+        when(() => googleSignIn.signOut()).thenAnswer((_) async {});
         when(() => facebookAuthService.logOut()).thenAnswer((_) async {});
         when(() => auth.signOut()).thenAnswer((_) async {});
 

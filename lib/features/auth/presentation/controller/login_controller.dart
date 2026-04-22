@@ -21,10 +21,6 @@ class LoginController extends GetxController {
     await _continueWithProvider(authRepository.signInWithGoogle);
   }
 
-  Future<void> continueWithApple() async {
-    await _continueWithProvider(authRepository.signInWithApple);
-  }
-
   Future<void> continueWithFacebook() async {
     await _continueWithProvider(authRepository.signInWithFacebook);
   }
