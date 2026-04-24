@@ -97,14 +97,6 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-              const SizedBox(height: 10),
-              Text(
-                t.loginOptionsSubtitle,
-                style: textTheme.bodyMedium?.copyWith(
-                  color: AppColors.textSecondary,
-                  height: 1.4,
-                ),
-              ),
               const SizedBox(height: 24),
               _SocialButton(
                 buttonKey: googleButtonKey,

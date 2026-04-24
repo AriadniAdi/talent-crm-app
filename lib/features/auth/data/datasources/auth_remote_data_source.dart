@@ -315,6 +315,9 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         code.contains('invalid-api-key') ||
         code.contains('app-not-authorized') ||
         code.contains('project-not-found') ||
+        message.contains('identitytoolkit') ||
+        message.contains('signinwithidp are blocked') ||
+        message.contains('requests to this api') ||
         message.contains('api key expired') ||
         message.contains('please renew the api key') ||
         message.contains('invalid api key') ||
