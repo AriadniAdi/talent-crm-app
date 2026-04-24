@@ -32,7 +32,9 @@ enum AuthErrorCode {
   emailAlreadyInUse,
   invalidEmail,
   googleSignInCancelled,
+  facebookSignInCancelled,
   invalidCredentials,
+  configurationInvalid,
   authenticationFailed,
 }
 

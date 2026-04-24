@@ -177,12 +177,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueWithGoogleDescription => 'Use the account connected to your device.';
 
   @override
-  String get continueWithApple => 'Continue with Apple';
-
-  @override
-  String get continueWithAppleDescription => 'Ideal for quick and private access.';
-
-  @override
   String get continueWithFacebook => 'Continue with Facebook';
 
   @override
@@ -239,7 +233,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authGoogleCancelled => 'Google sign-in was canceled';
 
   @override
+  String get authFacebookCancelled => 'Facebook sign-in was canceled';
+
+  @override
   String get authInvalidCredentials => 'Invalid email or password';
+
+  @override
+  String get authConfigurationInvalid => 'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.';
 
   @override
   String get authGenericFailure => 'Authentication failed';
