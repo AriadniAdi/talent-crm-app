@@ -8,6 +8,7 @@ class UserModel extends Equatable {
   final String? phone;
   final String? countryCode;
   final String? cpf;
+  final String? bio;
   final DateTime? birthDate;
   final DateTime? createdAt;
 
@@ -18,6 +19,7 @@ class UserModel extends Equatable {
     this.phone,
     this.countryCode,
     this.cpf,
+    this.bio,
     this.birthDate,
     this.createdAt,
   });
@@ -30,6 +32,7 @@ class UserModel extends Equatable {
       'phone': phone,
       'country_code': countryCode,
       'cpf': cpf,
+      'bio': bio,
       'birth_date': birthDate != null ? Timestamp.fromDate(birthDate!) : null,
       'data_criacao': createdAt != null ? Timestamp.fromDate(createdAt!) : FieldValue.serverTimestamp(),
     };
@@ -43,6 +46,7 @@ class UserModel extends Equatable {
       phone: data['phone'],
       countryCode: data['country_code'],
       cpf: data['cpf'],
+      bio: data['bio'],
       birthDate: data['birth_date'] != null ? (data['birth_date'] as Timestamp).toDate() : null,
       createdAt: data['data_criacao'] != null ? (data['data_criacao'] as Timestamp).toDate() : null,
     );
@@ -56,6 +60,7 @@ class UserModel extends Equatable {
         phone,
         countryCode,
         cpf,
+        bio,
         birthDate,
         createdAt,
       ];
