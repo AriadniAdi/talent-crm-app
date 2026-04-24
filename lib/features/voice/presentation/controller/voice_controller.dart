@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:audioplayers/audioplayers.dart';
 import 'package:get/get.dart';
@@ -9,22 +10,33 @@ import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
 import 'package:uuid/uuid.dart';
 
+typedef DocumentsDirectoryProvider = Future<Directory> Function();
+
 class VoiceController extends GetxController {
   final VoiceRepository _repository = Get.find<VoiceRepository>();
 
   final AudioRecorder _recorder;
   final AudioPlayer _player;
+  final DocumentsDirectoryProvider _documentsDirectoryProvider;
 
   final isRecording = false.obs;
   final isPlayingId = RxnString();
   final audioError = Rxn<AppError>();
   final _stopwatch = Stopwatch();
+  StreamSubscription<void>? _playerCompleteSubscription;
 
   final String? talentId;
 
-  VoiceController({this.talentId, AudioRecorder? recorder, AudioPlayer? player})
+  VoiceController({
+    this.talentId,
+    AudioRecorder? recorder,
+    AudioPlayer? player,
+    DocumentsDirectoryProvider? documentsDirectoryProvider,
+  })
     : _recorder = recorder ?? AudioRecorder(),
-      _player = player ?? AudioPlayer();
+      _player = player ?? AudioPlayer(),
+      _documentsDirectoryProvider =
+          documentsDirectoryProvider ?? getApplicationDocumentsDirectory;
 
   List<VoiceNote> get voiceNotes {
     if (talentId != null) {
@@ -35,6 +47,7 @@ class VoiceController extends GetxController {
 
   @override
   void onClose() {
+    _playerCompleteSubscription?.cancel();
     _recorder.dispose();
     _player.dispose();
     super.onClose();
@@ -44,39 +57,33 @@ class VoiceController extends GetxController {
     audioError.value = null;
 
     if (isRecording.value) {
-      final path = await _recorder.stop();
-      _stopwatch.stop();
-      isRecording.value = false;
-
-      if (path != null) {
-        final duration = _stopwatch.elapsed;
-        _stopwatch.reset();
-
-        final note = VoiceNote(
-          id: const Uuid().v4(),
-          talentId: talentId,
-          duration: duration,
-          filePath: path,
-          createdAt: DateTime.now(),
-        );
-        _repository.addVoiceNote(note);
-        update();
-      }
+      await _stopRecording();
       return;
     }
 
-    if (await _recorder.hasPermission()) {
-      final directory = await getApplicationDocumentsDirectory();
-      final fileName = 'recording_${DateTime.now().millisecondsSinceEpoch}.m4a';
-      final path = '${directory.path}/$fileName';
+    try {
+      if (await _recorder.hasPermission()) {
+        final directory = await _documentsDirectoryProvider();
+        final fileName = 'recording_${DateTime.now().millisecondsSinceEpoch}.m4a';
+        final path = '${directory.path}/$fileName';
 
-      const config = RecordConfig();
+        const config = RecordConfig();
 
-      await _recorder.start(config, path: path);
-      _stopwatch.start();
-      isRecording.value = true;
-    } else {
-      audioError.value = MessageError((t) => t.microphonePermissionDenied);
+        _stopwatch
+          ..stop()
+          ..reset()
+          ..start();
+        await _recorder.start(config, path: path);
+        isRecording.value = true;
+      } else {
+        audioError.value = MessageError((t) => t.microphonePermissionDenied);
+      }
+    } catch (_) {
+      _stopwatch
+        ..stop()
+        ..reset();
+      isRecording.value = false;
+      audioError.value = UnknownError();
     }
   }
 
@@ -93,10 +100,11 @@ class VoiceController extends GetxController {
       await _player.play(DeviceFileSource(note.filePath));
       isPlayingId.value = note.id;
 
-      _player.onPlayerComplete.listen((event) {
+      await _playerCompleteSubscription?.cancel();
+      _playerCompleteSubscription = _player.onPlayerComplete.listen((event) {
         isPlayingId.value = null;
       });
-    } catch (e) {
+    } catch (_) {
       audioError.value = MessageError((t) => t.audioPlaybackError);
     }
   }
@@ -109,5 +117,36 @@ class VoiceController extends GetxController {
 
     _repository.deleteVoiceNote(id);
     update();
+  }
+
+  Future<void> _stopRecording() async {
+    try {
+      final path = await _recorder.stop();
+      final duration = _stopwatch.elapsed;
+      _stopwatch
+        ..stop()
+        ..reset();
+      isRecording.value = false;
+
+      if (path == null) {
+        return;
+      }
+
+      final note = VoiceNote(
+        id: const Uuid().v4(),
+        talentId: talentId,
+        duration: duration,
+        filePath: path,
+        createdAt: DateTime.now(),
+      );
+      _repository.addVoiceNote(note);
+      update();
+    } catch (_) {
+      _stopwatch
+        ..stop()
+        ..reset();
+      isRecording.value = false;
+      audioError.value = UnknownError();
+    }
   }
 }
