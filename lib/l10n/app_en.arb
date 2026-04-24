@@ -320,18 +320,6 @@
     "type": "text"
   },
 
-  "continueWithApple": "Continue with Apple",
-  "@continueWithApple": {
-    "description": "Button to authenticate with Apple",
-    "type": "text"
-  },
-
-  "continueWithAppleDescription": "Ideal for quick and private access.",
-  "@continueWithAppleDescription": {
-    "description": "Description for the Apple authentication button",
-    "type": "text"
-  },
-
   "continueWithFacebook": "Continue with Facebook",
   "@continueWithFacebook": {
     "description": "Button to authenticate with Facebook",
@@ -443,10 +431,20 @@
     "description": "Error shown when the user cancels Google sign-in",
     "type": "text"
   },
+  "authFacebookCancelled": "Facebook sign-in was canceled",
+  "@authFacebookCancelled": {
+    "description": "Error shown when the user cancels Facebook sign-in",
+    "type": "text"
+  },
 
   "authInvalidCredentials": "Invalid email or password",
   "@authInvalidCredentials": {
     "description": "Error shown when the login credentials are incorrect",
+    "type": "text"
+  },
+  "authConfigurationInvalid": "This app's Firebase configuration is invalid or expired. Update the API key and the project's google-services.json file.",
+  "@authConfigurationInvalid": {
+    "description": "Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized",
     "type": "text"
   },
 

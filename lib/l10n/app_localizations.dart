@@ -433,18 +433,6 @@ abstract class AppLocalizations {
   /// **'Use the account connected to your device.'**
   String get continueWithGoogleDescription;
 
-  /// Button to authenticate with Apple
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Apple'**
-  String get continueWithApple;
-
-  /// Description for the Apple authentication button
-  ///
-  /// In en, this message translates to:
-  /// **'Ideal for quick and private access.'**
-  String get continueWithAppleDescription;
-
   /// Button to authenticate with Facebook
   ///
   /// In en, this message translates to:
@@ -553,11 +541,23 @@ abstract class AppLocalizations {
   /// **'Google sign-in was canceled'**
   String get authGoogleCancelled;
 
+  /// Error shown when the user cancels Facebook sign-in
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook sign-in was canceled'**
+  String get authFacebookCancelled;
+
   /// Error shown when the login credentials are incorrect
   ///
   /// In en, this message translates to:
   /// **'Invalid email or password'**
   String get authInvalidCredentials;
+
+  /// Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized
+  ///
+  /// In en, this message translates to:
+  /// **'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.'**
+  String get authConfigurationInvalid;
 
   /// Generic message for authentication failures
   ///

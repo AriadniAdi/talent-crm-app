@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:talent_crm_app/core/auth/facebook_auth_service.dart';
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
@@ -28,6 +29,10 @@ class GlobalBinding extends Bindings {
 
     Get.put<FirebaseService>(
       FirebaseFirestoreService(Get.find<FirebaseFirestore>()),
+      permanent: true,
+    );
+    Get.put<FacebookAuthService>(
+      FlutterFacebookAuthService(),
       permanent: true,
     );
 
@@ -56,6 +61,7 @@ class GlobalBinding extends Bindings {
         auth: Get.find<FirebaseAuth>(),
         firebaseService: Get.find<FirebaseService>(),
         googleSignIn: Get.find<GoogleSignIn>(),
+        facebookAuthService: Get.find<FacebookAuthService>(),
       ),
       fenix: true,
     );

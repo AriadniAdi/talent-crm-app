@@ -9,11 +9,13 @@ void main() {
     bool isLoading = false,
     VoidCallback? onContinueWithEmail,
     VoidCallback? onContinueWithGoogle,
+    VoidCallback? onContinueWithFacebook,
   }) {
     return LoginPage(
       isLoading: isLoading,
       onContinueWithEmail: onContinueWithEmail ?? () {},
       onContinueWithGoogle: onContinueWithGoogle ?? () {},
+      onContinueWithFacebook: onContinueWithFacebook ?? () {},
     );
   }
 
@@ -25,10 +27,28 @@ void main() {
 
       expect(find.text('Acesse sua conta'), findsOneWidget);
       expect(find.text('Continuar com Google'), findsOneWidget);
-      expect(find.text('Continuar com Apple'), findsOneWidget);
       expect(find.text('Continuar com Facebook'), findsOneWidget);
       expect(find.text('Continuar com e-mail'), findsOneWidget);
       expect(find.text('Criar conta com e-mail'), findsOneWidget);
+      expect(
+        find.text('Entre com seu perfil social tradicional.'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('should keep social buttons enabled when not loading',
+        (tester) async {
+      await tester.pumpWidget(wrapper(buildPage()));
+
+      final facebookButton = tester.widget<InkWell>(
+        find.byKey(LoginPage.facebookButtonKey),
+      );
+      final googleButton = tester.widget<InkWell>(
+        find.byKey(LoginPage.googleButtonKey),
+      );
+
+      expect(googleButton.onTap, isNotNull);
+      expect(facebookButton.onTap, isNotNull);
     });
   });
 }
