@@ -130,6 +130,9 @@ void main() {
               data: any(named: 'data'),
             )).thenAnswer((_) async => {});
 
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.sendEmailVerification()).thenAnswer((_) async {});
+
         final result = await dataSource.registerUser(
           name: name,
           email: email,
@@ -149,6 +152,7 @@ void main() {
               docId: 'test-uid',
               data: any(named: 'data'),
             )).called(1);
+        verify(() => user.sendEmailVerification()).called(1);
       });
 
       test('returns AuthError when firebase throws email-already-in-use',
@@ -391,6 +395,30 @@ void main() {
         verify(() => googleSignIn.signOut()).called(1);
         verify(() => facebookAuthService.logOut()).called(1);
         verify(() => auth.signOut()).called(1);
+      });
+    });
+
+    group('sendEmailVerification', () {
+      test('successfully sends verification email', () async {
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.sendEmailVerification()).thenAnswer((_) async {});
+
+        final result = await dataSource.sendEmailVerification();
+
+        expect(result, isA<Success<void>>());
+        verify(() => user.sendEmailVerification()).called(1);
+      });
+    });
+
+    group('reloadUser', () {
+      test('successfully reloads user', () async {
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.reload()).thenAnswer((_) async {});
+
+        final result = await dataSource.reloadUser();
+
+        expect(result, isA<Success<void>>());
+        verify(() => user.reload()).called(1);
       });
     });
   });
