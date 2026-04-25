@@ -381,7 +381,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n/bin/sh \"$SRCROOT/../scripts/patch_ios_generated_registrant.sh\"";
+			shellScript = "/bin/sh \"$SRCROOT/../scripts/ensure_ios_native_assets.sh\"\n/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build\n/bin/sh \"$SRCROOT/../scripts/patch_ios_generated_registrant.sh\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

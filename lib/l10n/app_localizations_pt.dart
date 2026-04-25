@@ -243,4 +243,23 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get authGenericFailure => 'Erro na autenticação';
+
+  @override
+  String get microphonePermissionDenied => 'Permissão de microfone negada';
+
+  @override
+  String get audioPlaybackError => 'Erro ao reproduzir áudio';
+
+  @override
+  String get noVoicesRegistered => 'Nenhuma voz registrada ainda.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talento ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Gravação $id';
+  }
 }

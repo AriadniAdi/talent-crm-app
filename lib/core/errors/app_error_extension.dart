@@ -17,6 +17,7 @@ extension AppErrorX on AppError {
     if (this is NotFoundError) return t.notFound;
     if (this is ParsingError) return t.invalidFormat;
     if (this is InvalidRouteError) return t.invalidRoute;
+    if (this is MessageError) return (this as MessageError).msg(t);
 
     if (this is AuthError) {
       final error = this as AuthError;

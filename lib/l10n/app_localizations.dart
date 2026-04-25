@@ -211,10 +211,10 @@ abstract class AppLocalizations {
   /// **'Observations'**
   String get observations;
 
-  /// Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.
+  /// Message shown when the requested talent is not found or does not exist.
   ///
   /// In en, this message translates to:
-  /// **'Talento no encontrado.'**
+  /// **'Talent not found.'**
   String get talentNotFound;
 
   /// Text displayed on the button to stop audio recording.
@@ -564,6 +564,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Authentication failed'**
   String get authGenericFailure;
+
+  /// Error shown when user denies microphone permission
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission denied'**
+  String get microphonePermissionDenied;
+
+  /// Error shown when there's a problem playing audio
+  ///
+  /// In en, this message translates to:
+  /// **'Error playing audio'**
+  String get audioPlaybackError;
+
+  /// Message shown on voices page when there are no recordings
+  ///
+  /// In en, this message translates to:
+  /// **'No voices registered yet.'**
+  String get noVoicesRegistered;
+
+  /// Label showing the talent ID associated with a voice note
+  ///
+  /// In en, this message translates to:
+  /// **'Talent ID: {id}'**
+  String talentIdLabel(String id);
+
+  /// Label identifying a specific recording
+  ///
+  /// In en, this message translates to:
+  /// **'Recording {id}'**
+  String recordingLabel(String id);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

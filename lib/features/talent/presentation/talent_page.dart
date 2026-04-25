@@ -33,7 +33,7 @@ class TalentPage extends StatelessWidget {
             const SizedBox(height: AppSpacing.md),
             InfoCard(talent: talent),
             const SizedBox(height: AppSpacing.md),
-            const ObservationsSection(),
+            ObservationsSection(talentId: talent.id.toString()),
           ],
         ),
       ),

@@ -66,7 +66,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get observations => 'Observations';
 
   @override
-  String get talentNotFound => 'Talento no encontrado.';
+  String get talentNotFound => 'Talent not found.';
 
   @override
   String get stopRecording => 'Stop recording';
@@ -243,4 +243,23 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authGenericFailure => 'Authentication failed';
+
+  @override
+  String get microphonePermissionDenied => 'Microphone permission denied';
+
+  @override
+  String get audioPlaybackError => 'Error playing audio';
+
+  @override
+  String get noVoicesRegistered => 'No voices registered yet.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talent ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Recording $id';
+  }
 }

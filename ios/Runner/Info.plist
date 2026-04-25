@@ -70,6 +70,8 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Precisamos acessar seu microfone para gravar observações em áudio.</string>
 	<key>NSUserTrackingUsageDescription</key>
 	<string>Este identificador será usado para concluir o login com Facebook.</string>
 	<key>UIApplicationSceneManifest</key>

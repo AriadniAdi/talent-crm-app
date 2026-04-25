@@ -66,19 +66,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get observations => 'Observaciones';
 
   @override
-  String get talentNotFound => 'Talent not found.';
+  String get talentNotFound => 'Talento no encontrado.';
 
   @override
-  String get stopRecording => 'Parar gravação';
+  String get stopRecording => 'Detener grabación';
 
   @override
-  String get recordObservation => 'Gravar observação';
+  String get recordObservation => 'Grabar observación';
 
   @override
-  String get noRecordingsYet => 'Nenhuma gravação ainda';
+  String get noRecordingsYet => 'Ninguna grabación aún';
 
   @override
-  String get copiedToClipboard => 'Copiado para a área de transferência';
+  String get copiedToClipboard => 'Copiado al portapapeles';
 
   @override
   String get fullName => 'Nombre completo';
@@ -126,28 +126,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
 
   @override
-  String get invalidNameLength => 'Name is too long';
+  String get invalidNameLength => 'Nombre muy largo';
 
   @override
-  String get requiredCpf => 'CPF is required';
+  String get requiredCpf => 'CPF obligatorio';
 
   @override
-  String get futureBirthDate => 'Birth date cannot be in the future';
+  String get futureBirthDate => 'La fecha de nacimiento no puede ser futura';
 
   @override
-  String get requiredEmail => 'Email is required';
+  String get requiredEmail => 'E-mail obligatorio';
 
   @override
-  String get requiredPhone => 'Phone is required';
+  String get requiredPhone => 'Teléfono obligatorio';
 
   @override
-  String get requiredPassword => 'Password is required';
+  String get requiredPassword => 'Senha obligatoria';
 
   @override
-  String get passwordTooLong => 'Password must be at most 6 characters';
+  String get passwordTooLong => 'La contraseña debe tener como máximo 6 caracteres';
 
   @override
-  String get requiredConfirmPassword => 'Password confirmation is required';
+  String get requiredConfirmPassword => 'Confirmación de senha obligatoria';
 
   @override
   String get invalidName => 'El nombre contiene caracteres inválidos';
@@ -243,4 +243,23 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get authGenericFailure => 'Error en la autenticación';
+
+  @override
+  String get microphonePermissionDenied => 'Permiso de micrófono denegado';
+
+  @override
+  String get audioPlaybackError => 'Error al reproducir audio';
+
+  @override
+  String get noVoicesRegistered => 'Ninguna voz registrada todavía.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talento ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Grabación $id';
+  }
 }

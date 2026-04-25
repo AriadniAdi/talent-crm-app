@@ -6,7 +6,7 @@ import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/features/talent/presentation/controller/talent_controller.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
-import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
+import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 
 class TalentBinding extends Bindings {
   @override
@@ -28,7 +28,7 @@ class TalentBinding extends Bindings {
     Get.lazyPut<GetTalentByIdUseCase>(() => GetTalentByIdUseCase(Get.find()));
 
     // Presentation
-    Get.lazyPut<VoiceRecordingController>(() => VoiceRecordingController());
+    Get.lazyPut<VoiceController>(() => VoiceController(talentId: id.toString()), tag: id.toString());
     Get.lazyPut(() => TalentController(Get.find(), id));
   }
 }
