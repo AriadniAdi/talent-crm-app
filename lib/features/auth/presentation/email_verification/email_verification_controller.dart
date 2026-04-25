@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/core/routes/app_routes.dart';
 import 'package:talent_crm_app/features/auth/repositories/auth_repository.dart';
 
 class EmailVerificationController extends GetxController {
@@ -35,7 +37,14 @@ class EmailVerificationController extends GetxController {
     final result = await _authRepository.reloadUser();
 
     if (result is Failure) {
-      error.value = (result as Failure).error;
+      error.value = result.error;
+    } else {
+      // Firebase reload doesn't always trigger authStateChanges stream immediately
+      // So we manually check and trigger navigation if verified
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null && user.emailVerified) {
+        Get.offAllNamed(AppRoutes.home);
+      }
     }
   }
 
@@ -46,7 +55,7 @@ class EmailVerificationController extends GetxController {
     final result = await _authRepository.sendEmailVerification();
 
     if (result is Failure) {
-      error.value = (result as Failure).error;
+      error.value = result.error;
     }
 
     isResending.value = false;
