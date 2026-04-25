@@ -28,10 +28,6 @@ abstract class AuthRemoteDataSource {
   Future<Result<bool>> signInWithFacebook();
 
   Future<void> signOut();
-
-  Future<Result<void>> sendEmailVerification();
-
-  Future<Result<void>> reloadUser();
 }
 
 class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
@@ -80,8 +76,6 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         docId: userModel.uid,
         data: userModel.toFirestore(),
       );
-
-      await sendEmailVerification();
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
@@ -336,29 +330,5 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
     await googleSignIn.signOut();
     await facebookAuthService.logOut();
     await auth.signOut();
-  }
-
-  @override
-  Future<Result<void>> sendEmailVerification() async {
-    try {
-      await auth.currentUser?.sendEmailVerification();
-      return Success(null);
-    } on FirebaseAuthException catch (e) {
-      return Failure(_mapFirebaseAuthException(e));
-    } catch (_) {
-      return Failure(UnknownError());
-    }
-  }
-
-  @override
-  Future<Result<void>> reloadUser() async {
-    try {
-      await auth.currentUser?.reload();
-      return Success(null);
-    } on FirebaseAuthException catch (e) {
-      return Failure(_mapFirebaseAuthException(e));
-    } catch (_) {
-      return Failure(UnknownError());
-    }
   }
 }

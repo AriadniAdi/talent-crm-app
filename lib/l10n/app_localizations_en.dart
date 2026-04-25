@@ -243,19 +243,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authGenericFailure => 'Authentication failed';
-
-  @override
-  String get emailVerificationTitle => 'Email Verification';
-
-  @override
-  String get emailVerificationSubtitle => 'Confirm your email';
-
-  @override
-  String get emailVerificationMessage => 'We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.';
-
-  @override
-  String get resendEmail => 'Resend confirmation email';
-
-  @override
-  String get backToLogin => 'Back to login';
 }

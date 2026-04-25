@@ -393,30 +393,5 @@
   "@authGenericFailure": {
     "description": "Mensaje genérico para fallas de autenticación",
     "type": "text"
-  },
-  "emailVerificationTitle": "Verificación de Correo",
-  "@emailVerificationTitle": {
-    "description": "Título de la pantalla de verificación de correo",
-    "type": "text"
-  },
-  "emailVerificationSubtitle": "Confirma tu correo",
-  "@emailVerificationSubtitle": {
-    "description": "Subtítulo de la pantalla de verificación de correo",
-    "type": "text"
-  },
-  "emailVerificationMessage": "Enviamos un enlace de confirmación a tu correo electrónico. Por favor, revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.",
-  "@emailVerificationMessage": {
-    "description": "Mensaje informativo sobre el envío del correo de verificación",
-    "type": "text"
-  },
-  "resendEmail": "Reenviar correo de confirmación",
-  "@resendEmail": {
-    "description": "Botón para reenviar el correo de verificación",
-    "type": "text"
-  },
-  "backToLogin": "Volver al inicio de sesión",
-  "@backToLogin": {
-    "description": "Botón para volver a la pantalla de inicio de sesión",
-    "type": "text"
   }
 }
