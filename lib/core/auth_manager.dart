@@ -21,17 +21,9 @@ class AuthManager extends GetxController {
       if (user == null) {
         Get.offAllNamed(AppRoutes.login);
       } else {
-        if (!user.emailVerified && user.providerData.any((p) => p.providerId == 'password')) {
-          if (Get.currentRoute != AppRoutes.emailVerification) {
-            Get.offAllNamed(AppRoutes.emailVerification);
-          }
-          return;
-        }
-
-        if (Get.currentRoute == AppRoutes.login ||
-            Get.currentRoute == AppRoutes.register ||
-            Get.currentRoute == AppRoutes.loginEmail ||
-            Get.currentRoute == AppRoutes.emailVerification) {
+        if (Get.currentRoute == AppRoutes.login || 
+            Get.currentRoute == AppRoutes.register || 
+            Get.currentRoute == '/loginEmail') {
           Get.offAllNamed(AppRoutes.home);
         }
       }

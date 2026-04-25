@@ -452,30 +452,5 @@
   "@authGenericFailure": {
     "description": "Generic message for authentication failures",
     "type": "text"
-  },
-  "emailVerificationTitle": "Email Verification",
-  "@emailVerificationTitle": {
-    "description": "Title of the email verification screen",
-    "type": "text"
-  },
-  "emailVerificationSubtitle": "Confirm your email",
-  "@emailVerificationSubtitle": {
-    "description": "Subtitle of the email verification screen",
-    "type": "text"
-  },
-  "emailVerificationMessage": "We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.",
-  "@emailVerificationMessage": {
-    "description": "Informational message about sending the verification email",
-    "type": "text"
-  },
-  "resendEmail": "Resend confirmation email",
-  "@resendEmail": {
-    "description": "Button to resend the verification email",
-    "type": "text"
-  },
-  "backToLogin": "Back to login",
-  "@backToLogin": {
-    "description": "Button to go back to the login screen",
-    "type": "text"
   }
 }

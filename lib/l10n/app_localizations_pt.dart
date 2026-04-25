@@ -243,19 +243,4 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get authGenericFailure => 'Erro na autenticação';
-
-  @override
-  String get emailVerificationTitle => 'Verificação de E-mail';
-
-  @override
-  String get emailVerificationSubtitle => 'Confirme seu e-mail';
-
-  @override
-  String get emailVerificationMessage => 'Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada e siga as instruções para ativar sua conta.';
-
-  @override
-  String get resendEmail => 'Reenviar e-mail de confirmação';
-
-  @override
-  String get backToLogin => 'Voltar para o login';
 }
