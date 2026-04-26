@@ -43,6 +43,21 @@ class _FakeAuthRepository implements AuthRepository {
   Future<void> signOut() async {
     return;
   }
+
+  @override
+  Future<Result<void>> reloadUser() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<void>> sendEmailVerification() {
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Result<bool>> signInWithFacebook() {
+    throw UnimplementedError();
+  }
 }
 
 void main() {
