@@ -6,6 +6,14 @@ import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
 abstract class AuthRemoteDataSource {
+  Future<Result<UserModel>> getUserProfile({
+    required String uid,
+  });
+
+  Future<Result<bool>> updateUserProfile({
+    required UserModel user,
+  });
+
   Future<Result<bool>> registerUser({
     required String name,
     required String email,
@@ -36,6 +44,44 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
     required this.firebaseService,
     required this.googleSignIn,
   });
+
+  @override
+  Future<Result<UserModel>> getUserProfile({
+    required String uid,
+  }) async {
+    try {
+      final data = await firebaseService.getData(
+        collection: 'users',
+        docId: uid,
+      );
+
+      if (data == null) {
+        return Failure(NotFoundError());
+      }
+
+      return Success(UserModel.fromMap(data, uid));
+    } catch (_) {
+      return Failure(UnknownError());
+    }
+  }
+
+  @override
+  Future<Result<bool>> updateUserProfile({
+    required UserModel user,
+  }) async {
+    try {
+      await firebaseService.setData(
+        collection: 'users',
+        docId: user.uid,
+        data: user.toFirestore(),
+        merge: true,
+      );
+
+      return Success(true);
+    } catch (_) {
+      return Failure(UnknownError());
+    }
+  }
 
   @override
   Future<Result<bool>> registerUser({
@@ -79,7 +125,12 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         return Failure(AuthError.withCode(AuthErrorCode.invalidEmail));
       }
 
-      return Failure(NetworkError());
+      return Failure(
+        AuthError(
+          e.message,
+          AuthErrorCode.authenticationFailed,
+        ),
+      );
     } catch (_) {
       return Failure(UnknownError());
     }
@@ -98,8 +149,24 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found' || e.code == 'wrong-password') {
+      if (e.code == 'user-not-found' ||
+          e.code == 'wrong-password' ||
+          e.code == 'invalid-credential' ||
+          e.code == 'invalid-login-credentials') {
         return Failure(AuthError.withCode(AuthErrorCode.invalidCredentials));
+      }
+
+      if (e.code == 'network-request-failed') {
+        return Failure(NetworkError());
+      }
+
+      if (e.code == 'user-disabled') {
+        return Failure(
+          AuthError(
+            e.message,
+            AuthErrorCode.authenticationFailed,
+          ),
+        );
       }
 
       return Failure(NetworkError());
