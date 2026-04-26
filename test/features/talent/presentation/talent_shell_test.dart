@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:record/record.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:talent_crm_app/core/result/result.dart';
@@ -103,11 +104,13 @@ void main() {
         website: 'website',
       );
 
-      await tester.pumpWidget(
-        wrapper(const TalentShell()),
-      );
+      await mockNetworkImagesFor(() async {
+        await tester.pumpWidget(
+          wrapper(const TalentShell()),
+        );
 
-      expect(find.byType(TalentPage), findsOneWidget);
+        expect(find.byType(TalentPage), findsOneWidget);
+      });
     });
   });
 }

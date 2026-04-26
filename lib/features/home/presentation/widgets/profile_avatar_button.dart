@@ -22,8 +22,7 @@ class ProfileAvatarButton extends StatelessWidget {
       padding: const EdgeInsets.only(right: AppSpacing.lg),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppSpacing.xl),
-        onTap: () => Get.toNamed(AppRoutes.account,
-            parameters: {'id': account.id.toString()}),
+        onTap: () => Get.toNamed(AppRoutes.account),
         child: CircleAvatar(
           radius: 18,
           backgroundColor: colors.primaryContainer,

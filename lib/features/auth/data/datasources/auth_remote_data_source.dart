@@ -8,6 +8,14 @@ import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
 abstract class AuthRemoteDataSource {
+  Future<Result<UserModel>> getUserProfile({
+    required String uid,
+  });
+
+  Future<Result<bool>> updateUserProfile({
+    required UserModel user,
+  });
+
   Future<Result<bool>> registerUser({
     required String name,
     required String email,
@@ -52,6 +60,44 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
     required this.facebookAuthService,
     bool? useNativeFacebookSignIn,
   }) : useNativeFacebookSignIn = useNativeFacebookSignIn ?? !kIsWeb;
+
+  @override
+  Future<Result<UserModel>> getUserProfile({
+    required String uid,
+  }) async {
+    try {
+      final data = await firebaseService.getData(
+        collection: 'users',
+        docId: uid,
+      );
+
+      if (data == null) {
+        return Failure(NotFoundError());
+      }
+
+      return Success(UserModel.fromMap(data, uid));
+    } catch (_) {
+      return Failure(UnknownError());
+    }
+  }
+
+  @override
+  Future<Result<bool>> updateUserProfile({
+    required UserModel user,
+  }) async {
+    try {
+      await firebaseService.setData(
+        collection: 'users',
+        docId: user.uid,
+        data: user.toFirestore(),
+        merge: true,
+      );
+
+      return Success(true);
+    } catch (_) {
+      return Failure(UnknownError());
+    }
+  }
 
   @override
   Future<Result<bool>> registerUser({
@@ -108,6 +154,9 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
 
       return Success(true);
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'network-request-failed') {
+        return Failure(NetworkError());
+      }
       return Failure(_mapFirebaseAuthException(e));
     } catch (_) {
       return Failure(UnknownError());

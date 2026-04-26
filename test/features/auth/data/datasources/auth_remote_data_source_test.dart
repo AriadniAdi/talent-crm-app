@@ -413,6 +413,51 @@ void main() {
       });
     });
 
+    group('signIn', () {
+      test('maps invalid-credential to invalid credentials', () async {
+        when(
+          () => auth.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'invalid-credential'));
+
+        final result = await dataSource.signIn(
+          email: email,
+          password: password,
+        );
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect((error as AuthError).code, AuthErrorCode.invalidCredentials);
+          },
+        );
+      });
+
+      test('maps network-request-failed to NetworkError', () async {
+        when(
+          () => auth.signInWithEmailAndPassword(
+            email: any(named: 'email'),
+            password: any(named: 'password'),
+          ),
+        ).thenThrow(FirebaseAuthException(code: 'network-request-failed'));
+
+        final result = await dataSource.signIn(
+          email: email,
+          password: password,
+        );
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<NetworkError>());
+          },
+        );
+      });
+    });
+
     group('signOut', () {
       test('signs out from providers and firebase auth', () async {
         when(() => googleSignIn.signOut()).thenAnswer((_) async {});
