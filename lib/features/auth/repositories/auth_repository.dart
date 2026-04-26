@@ -1,16 +1,7 @@
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
 abstract class AuthRepository {
-  Future<Result<UserModel>> getUserProfile({
-    required String uid,
-  });
-
-  Future<Result<bool>> updateUserProfile({
-    required UserModel user,
-  });
-
   Future<Result<bool>> registerUser({
     required String name,
     required String email,
@@ -41,20 +32,6 @@ class AuthRepositoryImpl implements AuthRepository {
   final AuthRemoteDataSource remoteDataSource;
 
   const AuthRepositoryImpl(this.remoteDataSource);
-
-  @override
-  Future<Result<UserModel>> getUserProfile({
-    required String uid,
-  }) {
-    return remoteDataSource.getUserProfile(uid: uid);
-  }
-
-  @override
-  Future<Result<bool>> updateUserProfile({
-    required UserModel user,
-  }) {
-    return remoteDataSource.updateUserProfile(user: user);
-  }
 
   @override
   Future<Result<bool>> registerUser({
