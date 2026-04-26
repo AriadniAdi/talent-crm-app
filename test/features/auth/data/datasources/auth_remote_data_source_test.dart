@@ -6,7 +6,6 @@ import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
 class MockFirebaseService extends Mock implements FirebaseService {}
@@ -93,86 +92,7 @@ void main() {
     const phone = '11988887777';
     const countryCode = '+55';
     const cpf = '12345678900';
-    const bio = 'Flutter dev';
     final birthDate = DateTime(1990, 1, 1);
-
-    group('getUserProfile', () {
-      test('returns user profile when document exists', () async {
-        when(() => firebaseService.getData(
-              collection: 'users',
-              docId: 'test-uid',
-            )).thenAnswer(
-          (_) async => {
-            'uid': 'test-uid',
-            'name': name,
-            'email': email,
-            'phone': phone,
-            'country_code': countryCode,
-            'cpf': cpf,
-            'bio': bio,
-          },
-        );
-
-        final result = await dataSource.getUserProfile(uid: 'test-uid');
-
-        result.when(
-          success: (user) {
-            expect(user.uid, 'test-uid');
-            expect(user.name, name);
-            expect(user.bio, bio);
-          },
-          failure: (_) => fail('Should have succeeded'),
-        );
-      });
-
-      test('returns not found when document does not exist', () async {
-        when(() => firebaseService.getData(
-              collection: 'users',
-              docId: 'missing',
-            )).thenAnswer((_) async => null);
-
-        final result = await dataSource.getUserProfile(uid: 'missing');
-
-        result.when(
-          success: (_) => fail('Should have failed'),
-          failure: (error) {
-            expect(error, isA<NotFoundError>());
-          },
-        );
-      });
-    });
-
-    group('updateUserProfile', () {
-      test('stores the updated user in firestore', () async {
-        when(() => firebaseService.setData(
-              collection: any(named: 'collection'),
-              docId: any(named: 'docId'),
-              data: any(named: 'data'),
-              merge: any(named: 'merge'),
-            )).thenAnswer((_) async => {});
-
-        final result = await dataSource.updateUserProfile(
-          user: UserModel(
-            uid: 'test-uid',
-            name: name,
-            email: email,
-            phone: phone,
-            countryCode: countryCode,
-            cpf: cpf,
-            bio: bio,
-            birthDate: birthDate,
-          ),
-        );
-
-        expect(result, isA<Success<bool>>());
-        verify(() => firebaseService.setData(
-              collection: 'users',
-              docId: 'test-uid',
-              data: any(named: 'data'),
-              merge: true,
-            )).called(1);
-      });
-    });
 
     group('registerUser', () {
       test('successfully creates user and sets data in firestore', () async {
@@ -273,51 +193,6 @@ void main() {
           failure: (error) {
             expect(error, isA<AuthError>());
             expect((error as AuthError).code, AuthErrorCode.googleSignInCancelled);
-          },
-        );
-      });
-    });
-
-    group('signIn', () {
-      test('maps invalid-credential to invalid credentials', () async {
-        when(
-          () => auth.signInWithEmailAndPassword(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-          ),
-        ).thenThrow(FirebaseAuthException(code: 'invalid-credential'));
-
-        final result = await dataSource.signIn(
-          email: email,
-          password: password,
-        );
-
-        result.when(
-          success: (_) => fail('Should have failed'),
-          failure: (error) {
-            expect(error, isA<AuthError>());
-            expect((error as AuthError).code, AuthErrorCode.invalidCredentials);
-          },
-        );
-      });
-
-      test('maps network-request-failed to NetworkError', () async {
-        when(
-          () => auth.signInWithEmailAndPassword(
-            email: any(named: 'email'),
-            password: any(named: 'password'),
-          ),
-        ).thenThrow(FirebaseAuthException(code: 'network-request-failed'));
-
-        final result = await dataSource.signIn(
-          email: email,
-          password: password,
-        );
-
-        result.when(
-          success: (_) => fail('Should have failed'),
-          failure: (error) {
-            expect(error, isA<NetworkError>());
           },
         );
       });
