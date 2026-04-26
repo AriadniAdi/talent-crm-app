@@ -7,4 +7,5 @@ abstract class AppRoutes {
   static const talent = '/talent';
   static const register = '/register';
   static const voices = '/voices';
+  static const emailVerification = '/email-verification';
 }

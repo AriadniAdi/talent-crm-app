@@ -594,6 +594,35 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recording {id}'**
   String recordingLabel(String id);
+  /// Title of the email verification screen
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get emailVerificationTitle;
+
+  /// Subtitle of the email verification screen
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your email'**
+  String get emailVerificationSubtitle;
+
+  /// Informational message about sending the verification email
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.'**
+  String get emailVerificationMessage;
+
+  /// Button to resend the verification email
+  ///
+  /// In en, this message translates to:
+  /// **'Resend confirmation email'**
+  String get resendEmail;
+
+  /// Button to go back to the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Back to login'**
+  String get backToLogin;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

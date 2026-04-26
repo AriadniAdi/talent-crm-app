@@ -262,4 +262,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String recordingLabel(String id) {
     return 'Grabación $id';
   }
+
+  @override
+  String get emailVerificationTitle => 'Verificación de Correo';
+
+  @override
+  String get emailVerificationSubtitle => 'Confirma tu correo';
+
+  @override
+  String get emailVerificationMessage => 'Enviamos un enlace de confirmación a tu correo electrónico. Por favor, revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.';
+
+  @override
+  String get resendEmail => 'Reenviar correo de confirmación';
+
+  @override
+  String get backToLogin => 'Volver al inicio de sesión';
 }
