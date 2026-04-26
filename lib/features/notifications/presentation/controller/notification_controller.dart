@@ -18,23 +18,26 @@ class NotificationController extends GetxController {
 
     notifications.insert(0, notification);
 
-    Get.snackbar(
-      title,
-      message,
-      snackPosition: SnackPosition.TOP,
-      backgroundColor: Colors.white.withValues(alpha: 0.9),
-      colorText: Colors.black,
-      margin: const EdgeInsets.all(16),
-      borderRadius: 12,
-      duration: const Duration(seconds: 3),
-      boxShadows: [
-        BoxShadow(
-          color: Colors.black.withValues(alpha: 0.1),
-          blurRadius: 10,
-          offset: const Offset(0, 4),
-        ),
-      ],
-    );
+    // Only show snackbar if not in a test environment and context is available
+    if (!Get.testMode && Get.context != null) {
+      Get.snackbar(
+        title,
+        message,
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.white.withValues(alpha: 0.9),
+        colorText: Colors.black,
+        margin: const EdgeInsets.all(16),
+        borderRadius: 12,
+        duration: const Duration(seconds: 3),
+        boxShadows: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.1),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      );
+    }
   }
 
   void markAsRead(String id) {

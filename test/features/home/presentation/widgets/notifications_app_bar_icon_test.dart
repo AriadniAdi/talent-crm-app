@@ -63,6 +63,7 @@ void main() {
   late NotificationController notificationController;
 
   setUp(() {
+    Get.testMode = true;
     controller = FakeHomeController();
     notificationController = NotificationController();
     Get.put<HomeController>(controller);

@@ -41,6 +41,8 @@ class HomeShell extends GetView<HomeController> {
           );
         }
 
+        final notificationController = Get.find<NotificationController>();
+
         return BasePage(
           title: InkWell(
             key: const Key('homeLogoButton'),
@@ -79,7 +81,7 @@ class HomeShell extends GetView<HomeController> {
           bottomNavigationBar: HomeBottomBar(
             currentIndex: controller.selectedIndex.value,
             onTap: controller.changeTab,
-            notificationCount: Get.find<NotificationController>().unreadCount,
+            notificationCount: notificationController.unreadCount,
           ),
           child: _buildPage(context, controller.selectedIndex.value),
         );
@@ -106,43 +108,46 @@ class HomeShell extends GetView<HomeController> {
   Widget _buildNotificationsList(BuildContext context) {
     final notificationController = Get.find<NotificationController>();
 
-    return Obx(() {
-      final notifications = notificationController.notifications;
+    return Container(
+      key: const Key('notificationsKey'),
+      child: Obx(() {
+        final notifications = notificationController.notifications;
 
-      if (notifications.isEmpty) {
-        return Center(
-          child: Text(context.translate.notifications),
-        );
-      }
-
-      return ListView.separated(
-        padding: const EdgeInsets.all(16),
-        itemCount: notifications.length,
-        separatorBuilder: (context, index) => const Divider(),
-        itemBuilder: (context, index) {
-          final notification = notifications[index];
-          return ListTile(
-            leading: Icon(
-              notification.isRead
-                  ? Icons.notifications_outlined
-                  : Icons.notifications_active,
-              color: notification.isRead ? Colors.grey : AppColors.primary,
-            ),
-            title: Text(
-              notification.title,
-              style: TextStyle(
-                fontWeight: notification.isRead ? FontWeight.normal : FontWeight.bold,
-              ),
-            ),
-            subtitle: Text(notification.message),
-            trailing: Text(
-              "${notification.timestamp.hour}:${notification.timestamp.minute.toString().padLeft(2, '0')}",
-              style: Theme.of(context).textTheme.bodySmall,
-            ),
-            onTap: () => notificationController.markAsRead(notification.id),
+        if (notifications.isEmpty) {
+          return Center(
+            child: Text(context.translate.notifications),
           );
-        },
-      );
-    });
+        }
+
+        return ListView.separated(
+          padding: const EdgeInsets.all(16),
+          itemCount: notifications.length,
+          separatorBuilder: (context, index) => const Divider(),
+          itemBuilder: (context, index) {
+            final notification = notifications[index];
+            return ListTile(
+              leading: Icon(
+                notification.isRead
+                    ? Icons.notifications_outlined
+                    : Icons.notifications_active,
+                color: notification.isRead ? Colors.grey : AppColors.primary,
+              ),
+              title: Text(
+                notification.title,
+                style: TextStyle(
+                  fontWeight: notification.isRead ? FontWeight.normal : FontWeight.bold,
+                ),
+              ),
+              subtitle: Text(notification.message),
+              trailing: Text(
+                "${notification.timestamp.hour}:${notification.timestamp.minute.toString().padLeft(2, '0')}",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              onTap: () => notificationController.markAsRead(notification.id),
+            );
+          },
+        );
+      }),
+    );
   }
 }

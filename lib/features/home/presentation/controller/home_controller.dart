@@ -58,11 +58,14 @@ class HomeController extends GetxController {
           getRecentTalentsUseCase(talents, limit: 4),
         );
 
-        final notificationController = Get.find<NotificationController>();
-        notificationController.addNotification(
-          Get.context!.translate.talentsUpdatedNotification,
-          Get.context!.translate.talentsUpdatedNotification,
-        );
+        final context = Get.context;
+        if (context != null && Get.isRegistered<NotificationController>()) {
+          final notificationController = Get.find<NotificationController>();
+          notificationController.addNotification(
+            context.translate.talentsUpdatedNotification,
+            context.translate.talentsUpdatedNotification,
+          );
+        }
       },
       failure: (error) {
         screenError.value = error;

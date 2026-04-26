@@ -142,12 +142,15 @@ class VoiceController extends GetxController {
         createdAt: DateTime.now(),
       );
       _repository.addVoiceNote(note);
-      
-      final notificationController = Get.find<NotificationController>();
-      notificationController.addNotification(
-        Get.context!.translate.voiceNoteSavedNotification,
-        Get.context!.translate.voiceNoteSavedNotification,
-      );
+
+      final context = Get.context;
+      if (context != null) {
+        final notificationController = Get.find<NotificationController>();
+        notificationController.addNotification(
+          context.translate.voiceNoteSavedNotification,
+          context.translate.voiceNoteSavedNotification,
+        );
+      }
 
       update();
     } catch (_) {
