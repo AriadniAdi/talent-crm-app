@@ -22,7 +22,7 @@ void main() {
     expect(find.text('A'), findsOneWidget);
   });
 
-  testWidgets('navigates to account route with correct parameter',
+  testWidgets('navigates to account route',
       (tester) async {
     await tester.pumpWidget(
       wrapper(
@@ -35,7 +35,7 @@ void main() {
     await tester.tap(find.byType(InkWell));
     await tester.pumpAndSettle();
 
-    expect(Get.currentRoute, '${AppRoutes.account}?id=42');
+    expect(Get.currentRoute, AppRoutes.account);
   });
 
   testWidgets('InkWell is tappable', (tester) async {

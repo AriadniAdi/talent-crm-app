@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/locale/app_locale_service.dart';
+import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/account/repositories/user_repository.dart';
 import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
@@ -29,6 +31,11 @@ class AccountController extends GetxController {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final bioController = TextEditingController();
+
+  final phoneMask = MaskTextInputFormatter(
+    mask: '(##) #####-####',
+    filter: {"#": RegExp(r'\d')},
+  );
 
   @override
   void onInit() {
@@ -108,7 +115,7 @@ class AccountController extends GetxController {
             'Sucesso',
             'Dados atualizados com sucesso!',
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.green.withOpacity(0.1),
+            backgroundColor: Colors.green.withValues(alpha: 0.1),
             colorText: Colors.green[800],
           );
         },
@@ -118,7 +125,7 @@ class AccountController extends GetxController {
             'Erro',
             'Não foi possível atualizar os dados',
             snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: Colors.red.withOpacity(0.1),
+            backgroundColor: Colors.red.withValues(alpha: 0.1),
             colorText: Colors.red[800],
           );
         },

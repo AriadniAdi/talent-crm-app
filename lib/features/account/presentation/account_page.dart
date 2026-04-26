@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/core/locale/app_locale_service.dart';
@@ -15,6 +16,7 @@ class AccountPage extends GetView<AccountController> {
     return BasePage(
       key: const Key('account-page'),
       title: Text(_copy(context, pt: 'Conta', en: 'Account', es: 'Cuenta')),
+      padding: EdgeInsets.zero,
       child: Obx(() {
         if (controller.isLoading.value) {
           return const Center(
@@ -25,14 +27,17 @@ class AccountPage extends GetView<AccountController> {
           );
         }
 
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            _buildProfileSection(context),
-            const SizedBox(height: AppSpacing.xl),
-            _buildPreferencesSection(context, colors),
-            const SizedBox(height: AppSpacing.xxl),
-          ],
+        return SingleChildScrollView(
+          padding: const EdgeInsets.all(AppSpacing.lg),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _buildProfileSection(context),
+              const SizedBox(height: AppSpacing.xl),
+              _buildPreferencesSection(context, colors),
+              const SizedBox(height: AppSpacing.xxl),
+            ],
+          ),
         );
       }),
     );
@@ -42,16 +47,17 @@ class AccountPage extends GetView<AccountController> {
     final colors = Theme.of(context).colorScheme;
 
     return Container(
+      margin: const EdgeInsets.only(top: AppSpacing.lg),
       padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(24),
         border: Border.all(
-          color: colors.outline.withOpacity(0.1),
+          color: colors.outline.withValues(alpha: 0.1),
         ),
         boxShadow: [
           BoxShadow(
-            color: colors.shadow.withOpacity(0.04),
+            color: colors.shadow.withValues(alpha: 0.04),
             blurRadius: 16,
             offset: const Offset(0, 4),
           ),
@@ -105,6 +111,9 @@ class AccountPage extends GetView<AccountController> {
             controller: controller.nameController,
             label: _copy(context, pt: 'Nome Completo', en: 'Full Name', es: 'Nombre Completo'),
             icon: Icons.person_outline_rounded,
+            inputFormatters: [
+              LengthLimitingTextInputFormatter(120),
+            ],
           ),
           const SizedBox(height: AppSpacing.md),
           _buildTextField(
@@ -113,6 +122,7 @@ class AccountPage extends GetView<AccountController> {
             label: _copy(context, pt: 'Telefone', en: 'Phone', es: 'Teléfono'),
             icon: Icons.phone_outlined,
             keyboardType: TextInputType.phone,
+            inputFormatters: [controller.phoneMask],
           ),
           const SizedBox(height: AppSpacing.md),
           _buildTextField(
@@ -167,6 +177,7 @@ class AccountPage extends GetView<AccountController> {
     int maxLines = 1,
     TextInputType? keyboardType,
     String? hint,
+    List<TextInputFormatter>? inputFormatters,
   }) {
     final colors = Theme.of(context).colorScheme;
 
@@ -174,25 +185,26 @@ class AccountPage extends GetView<AccountController> {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         labelText: label,
         hintText: hint,
         floatingLabelBehavior: FloatingLabelBehavior.always,
         prefixIcon: maxLines == 1
-            ? Icon(icon, color: colors.primary.withOpacity(0.7))
+            ? Icon(icon, color: colors.primary.withValues(alpha: 0.7))
             : Padding(
                 padding: const EdgeInsets.only(bottom: 60.0),
-                child: Icon(icon, color: colors.primary.withOpacity(0.7)),
+                child: Icon(icon, color: colors.primary.withValues(alpha: 0.7)),
               ),
         filled: true,
-        fillColor: colors.surfaceContainerHighest.withOpacity(0.3),
+        fillColor: colors.surfaceContainerHighest.withValues(alpha: 0.3),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: colors.outline.withOpacity(0.2)),
+          borderSide: BorderSide(color: colors.outline.withValues(alpha: 0.2)),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: colors.outline.withOpacity(0.2)),
+          borderSide: BorderSide(color: colors.outline.withValues(alpha: 0.2)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
@@ -224,7 +236,7 @@ class AccountPage extends GetView<AccountController> {
             color: colors.surface,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: colors.outline.withOpacity(0.14),
+              color: colors.outline.withValues(alpha: 0.14),
             ),
           ),
           child: ListTile(
@@ -313,11 +325,11 @@ class AccountPage extends GetView<AccountController> {
                             side: BorderSide(
                               color: isSelected
                                   ? colors.primary
-                                  : colors.outline.withOpacity(0.14),
+                                  : colors.outline.withValues(alpha: 0.14),
                             ),
                           ),
                           tileColor: isSelected
-                              ? colors.primary.withOpacity(0.08)
+                              ? colors.primary.withValues(alpha: 0.08)
                               : colors.surface,
                           title: Text(option.nativeLabel),
                           trailing: isSelected

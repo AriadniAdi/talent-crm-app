@@ -4,6 +4,7 @@ import 'package:get/get_common/get_reset.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:network_image_mock/network_image_mock.dart';
 import 'package:record/record.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:talent_crm_app/core/result/result.dart';
@@ -60,15 +61,17 @@ void main() {
   });
 
   testWidgets('renders all sections properly', (tester) async {
-    await tester.pumpWidget(
-      wrapper(
-        const TalentPage(talent: talent),
-      ),
-    );
+    await mockNetworkImagesFor(() async {
+      await tester.pumpWidget(
+        wrapper(
+          const TalentPage(talent: talent),
+        ),
+      );
 
-    expect(find.byType(TalentHeaderBanner), findsOneWidget);
-    expect(find.byType(InfoCard), findsOneWidget);
-    expect(find.byType(ObservationsSection), findsOneWidget);
+      expect(find.byType(TalentHeaderBanner), findsOneWidget);
+      expect(find.byType(InfoCard), findsOneWidget);
+      expect(find.byType(ObservationsSection), findsOneWidget);
+    });
   });
 
   testWidgets('can render centered content when requested', (tester) async {

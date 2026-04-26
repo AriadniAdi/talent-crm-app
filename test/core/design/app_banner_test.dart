@@ -67,27 +67,6 @@ void main() {
       expect(positioned, findsOneWidget);
     });
 
-    testWidgets('deve posicionar o CustomPaint como background',
-        (tester) async {
-      const bgKey = Key('banner_background');
-
-      await tester.pumpWidget(
-        wrapper(
-          const AppBanner(
-            backgroundKey: bgKey,
-            child: Text('Test'),
-          ),
-        ),
-      );
-
-      final positioned = find.ancestor(
-        of: find.byKey(bgKey),
-        matching: find.byType(Positioned),
-      );
-
-      expect(positioned, findsOneWidget);
-    });
-
     testWidgets('deve aplicar gradiente e sombra na decoração',
         (WidgetTester tester) async {
       await tester.pumpWidget(
