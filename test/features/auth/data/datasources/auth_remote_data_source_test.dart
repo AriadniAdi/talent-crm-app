@@ -2,42 +2,57 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:talent_crm_app/core/errors/app_error.dart';
-import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/core/auth/facebook_auth_service.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
+import 'package:talent_crm_app/core/result/result.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
-import 'package:talent_crm_app/features/auth/entities/user_model.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
+
 class MockFirebaseService extends Mock implements FirebaseService {}
+
 class MockGoogleSignIn extends Mock implements GoogleSignIn {}
+
+class MockFacebookAuthService extends Mock implements FacebookAuthService {}
+
 class MockUserCredential extends Mock implements UserCredential {}
+
 class MockUser extends Mock implements User {}
+
 class MockAdditionalUserInfo extends Mock implements AdditionalUserInfo {}
 
-class FakeGoogleSignInAuthentication extends Fake implements GoogleSignInAuthentication {
+class FakeAuthProvider extends Fake implements AuthProvider {}
+
+class FakeGoogleSignInAuthentication extends Fake
+    implements GoogleSignInAuthentication {
   @override
   String? get idToken => 'id-token';
 }
 
-class FakeGoogleSignInClientAuthorization extends Fake implements GoogleSignInClientAuthorization {
+class FakeGoogleSignInClientAuthorization extends Fake
+    implements GoogleSignInClientAuthorization {
   @override
   String get accessToken => 'access-token';
 }
 
-class FakeGoogleSignInAuthorizationClient extends Fake implements GoogleSignInAuthorizationClient {
+class FakeGoogleSignInAuthorizationClient extends Fake
+    implements GoogleSignInAuthorizationClient {
   @override
-  Future<GoogleSignInClientAuthorization> authorizeScopes(List<String> scopes) async {
+  Future<GoogleSignInClientAuthorization> authorizeScopes(
+      List<String> scopes) async {
     return FakeGoogleSignInClientAuthorization();
   }
 }
 
 class FakeGoogleSignInAccount extends Fake implements GoogleSignInAccount {
   @override
-  GoogleSignInAuthentication get authentication => FakeGoogleSignInAuthentication();
+  GoogleSignInAuthentication get authentication =>
+      FakeGoogleSignInAuthentication();
 
   @override
-  GoogleSignInAuthorizationClient get authorizationClient => FakeGoogleSignInAuthorizationClient();
+  GoogleSignInAuthorizationClient get authorizationClient =>
+      FakeGoogleSignInAuthorizationClient();
 
   @override
   String get displayName => 'Test User';
@@ -56,6 +71,7 @@ void main() {
   late MockFirebaseAuth auth;
   late MockFirebaseService firebaseService;
   late MockGoogleSignIn googleSignIn;
+  late MockFacebookAuthService facebookAuthService;
   late FirebaseAuthRemoteDataSource dataSource;
 
   late MockUserCredential userCredential;
@@ -67,16 +83,20 @@ void main() {
       providerId: 'providerId',
       signInMethod: 'signInMethod',
     ));
+    registerFallbackValue(FakeAuthProvider());
   });
 
   setUp(() {
     auth = MockFirebaseAuth();
     firebaseService = MockFirebaseService();
     googleSignIn = MockGoogleSignIn();
+    facebookAuthService = MockFacebookAuthService();
     dataSource = FirebaseAuthRemoteDataSource(
       auth: auth,
       firebaseService: firebaseService,
       googleSignIn: googleSignIn,
+      facebookAuthService: facebookAuthService,
+      useNativeFacebookSignIn: true,
     );
 
     userCredential = MockUserCredential();
@@ -93,86 +113,7 @@ void main() {
     const phone = '11988887777';
     const countryCode = '+55';
     const cpf = '12345678900';
-    const bio = 'Flutter dev';
     final birthDate = DateTime(1990, 1, 1);
-
-    group('getUserProfile', () {
-      test('returns user profile when document exists', () async {
-        when(() => firebaseService.getData(
-              collection: 'users',
-              docId: 'test-uid',
-            )).thenAnswer(
-          (_) async => {
-            'uid': 'test-uid',
-            'name': name,
-            'email': email,
-            'phone': phone,
-            'country_code': countryCode,
-            'cpf': cpf,
-            'bio': bio,
-          },
-        );
-
-        final result = await dataSource.getUserProfile(uid: 'test-uid');
-
-        result.when(
-          success: (user) {
-            expect(user.uid, 'test-uid');
-            expect(user.name, name);
-            expect(user.bio, bio);
-          },
-          failure: (_) => fail('Should have succeeded'),
-        );
-      });
-
-      test('returns not found when document does not exist', () async {
-        when(() => firebaseService.getData(
-              collection: 'users',
-              docId: 'missing',
-            )).thenAnswer((_) async => null);
-
-        final result = await dataSource.getUserProfile(uid: 'missing');
-
-        result.when(
-          success: (_) => fail('Should have failed'),
-          failure: (error) {
-            expect(error, isA<NotFoundError>());
-          },
-        );
-      });
-    });
-
-    group('updateUserProfile', () {
-      test('stores the updated user in firestore', () async {
-        when(() => firebaseService.setData(
-              collection: any(named: 'collection'),
-              docId: any(named: 'docId'),
-              data: any(named: 'data'),
-              merge: any(named: 'merge'),
-            )).thenAnswer((_) async => {});
-
-        final result = await dataSource.updateUserProfile(
-          user: UserModel(
-            uid: 'test-uid',
-            name: name,
-            email: email,
-            phone: phone,
-            countryCode: countryCode,
-            cpf: cpf,
-            bio: bio,
-            birthDate: birthDate,
-          ),
-        );
-
-        expect(result, isA<Success<bool>>());
-        verify(() => firebaseService.setData(
-              collection: 'users',
-              docId: 'test-uid',
-              data: any(named: 'data'),
-              merge: true,
-            )).called(1);
-      });
-    });
 
     group('registerUser', () {
       test('successfully creates user and sets data in firestore', () async {
@@ -189,6 +130,9 @@ void main() {
               data: any(named: 'data'),
             )).thenAnswer((_) async => {});
 
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.sendEmailVerification()).thenAnswer((_) async {});
+
         final result = await dataSource.registerUser(
           name: name,
           email: email,
@@ -200,16 +144,19 @@ void main() {
         );
 
         expect(result, isA<Success<bool>>());
-        
-        verify(() => auth.createUserWithEmailAndPassword(email: email, password: password)).called(1);
+
+        verify(() => auth.createUserWithEmailAndPassword(
+            email: email, password: password)).called(1);
         verify(() => firebaseService.setData(
-          collection: 'users',
-          docId: 'test-uid',
-          data: any(named: 'data'),
-        )).called(1);
+              collection: 'users',
+              docId: 'test-uid',
+              data: any(named: 'data'),
+            )).called(1);
+        verify(() => user.sendEmailVerification()).called(1);
       });
 
-      test('returns AuthError when firebase throws email-already-in-use', () async {
+      test('returns AuthError when firebase throws email-already-in-use',
+          () async {
         when(
           () => auth.createUserWithEmailAndPassword(
             email: any(named: 'email'),
@@ -241,20 +188,23 @@ void main() {
         final mockGoogleAccount = FakeGoogleSignInAccount();
         final mockAdditionalInfo = MockAdditionalUserInfo();
 
-        when(() => googleSignIn.authenticate()).thenAnswer((_) async => mockGoogleAccount);
-        
-        when(() => auth.signInWithCredential(any())).thenAnswer((_) async => userCredential);
-        when(() => userCredential.additionalUserInfo).thenReturn(mockAdditionalInfo);
+        when(() => googleSignIn.authenticate())
+            .thenAnswer((_) async => mockGoogleAccount);
+
+        when(() => auth.signInWithCredential(any()))
+            .thenAnswer((_) async => userCredential);
+        when(() => userCredential.additionalUserInfo)
+            .thenReturn(mockAdditionalInfo);
         when(() => mockAdditionalInfo.isNewUser).thenReturn(true);
         when(() => user.displayName).thenReturn(name);
         when(() => user.email).thenReturn(email);
 
         when(() => firebaseService.setData(
-          collection: any(named: 'collection'),
-          docId: any(named: 'docId'),
-          data: any(named: 'data'),
-          merge: any(named: 'merge'),
-        )).thenAnswer((_) async => {});
+              collection: any(named: 'collection'),
+              docId: any(named: 'docId'),
+              data: any(named: 'data'),
+              merge: any(named: 'merge'),
+            )).thenAnswer((_) async => {});
 
         final result = await dataSource.signInWithGoogle();
 
@@ -264,7 +214,8 @@ void main() {
       });
 
       test('returns failure when user cancels google sign in', () async {
-        when(() => googleSignIn.authenticate()).thenThrow(Exception('canceled'));
+        when(() => googleSignIn.authenticate())
+            .thenThrow(Exception('canceled'));
 
         final result = await dataSource.signInWithGoogle();
 
@@ -272,7 +223,162 @@ void main() {
           success: (_) => fail('Should have failed'),
           failure: (error) {
             expect(error, isA<AuthError>());
-            expect((error as AuthError).code, AuthErrorCode.googleSignInCancelled);
+            expect(
+                (error as AuthError).code, AuthErrorCode.googleSignInCancelled);
+          },
+        );
+      });
+
+      test(
+          'returns failure with provider message on google configuration error',
+          () async {
+        when(
+          () => googleSignIn.authenticate(),
+        ).thenThrow(
+          const GoogleSignInException(
+            code: GoogleSignInExceptionCode.clientConfigurationError,
+            description: 'Google Sign-In configuration is invalid.',
+          ),
+        );
+
+        final result = await dataSource.signInWithGoogle();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect(
+                (error as AuthError).code, AuthErrorCode.authenticationFailed);
+            expect(error.message, 'Google Sign-In configuration is invalid.');
+          },
+        );
+      });
+    });
+
+    group('signInWithFacebook', () {
+      test('successfully signs in with facebook', () async {
+        final mockAdditionalInfo = MockAdditionalUserInfo();
+
+        when(
+          () => facebookAuthService.login(),
+        ).thenAnswer(
+          (_) async => const FacebookLoginResult(
+            status: FacebookLoginStatus.success,
+            accessToken: 'facebook-token',
+          ),
+        );
+        when(() => auth.signInWithCredential(any()))
+            .thenAnswer((_) async => userCredential);
+        when(() => userCredential.additionalUserInfo)
+            .thenReturn(mockAdditionalInfo);
+        when(() => mockAdditionalInfo.isNewUser).thenReturn(true);
+        when(() => user.displayName).thenReturn(name);
+        when(() => user.email).thenReturn(email);
+        when(() => firebaseService.setData(
+              collection: any(named: 'collection'),
+              docId: any(named: 'docId'),
+              data: any(named: 'data'),
+              merge: any(named: 'merge'),
+            )).thenAnswer((_) async => {});
+
+        final result = await dataSource.signInWithFacebook();
+
+        expect(result, isA<Success<bool>>());
+        verify(() => facebookAuthService.login()).called(1);
+        verify(() => auth.signInWithCredential(any())).called(1);
+      });
+
+      test('returns cancellation error when facebook sign in is cancelled',
+          () async {
+        when(
+          () => facebookAuthService.login(),
+        ).thenAnswer(
+          (_) async => const FacebookLoginResult(
+            status: FacebookLoginStatus.cancelled,
+          ),
+        );
+
+        final result = await dataSource.signInWithFacebook();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect((error as AuthError).code,
+                AuthErrorCode.facebookSignInCancelled);
+          },
+        );
+      });
+
+      test('returns provider message when facebook sign in fails', () async {
+        when(
+          () => facebookAuthService.login(),
+        ).thenAnswer(
+          (_) async => const FacebookLoginResult(
+            status: FacebookLoginStatus.failed,
+            message: 'Facebook login is not configured.',
+          ),
+        );
+
+        final result = await dataSource.signInWithFacebook();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect(
+                (error as AuthError).code, AuthErrorCode.authenticationFailed);
+            expect(error.message, 'Facebook login is not configured.');
+          },
+        );
+      });
+
+      test('returns failure when facebook login succeeds without token',
+          () async {
+        when(
+          () => facebookAuthService.login(),
+        ).thenAnswer(
+          (_) async => const FacebookLoginResult(
+            status: FacebookLoginStatus.success,
+          ),
+        );
+
+        final result = await dataSource.signInWithFacebook();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect(
+                (error as AuthError).code, AuthErrorCode.authenticationFailed);
+            expect(
+              error.message,
+              'Nao foi possivel obter as credenciais do Facebook para continuar.',
+            );
+          },
+        );
+      });
+
+      test('returns provider message when facebook login is already running',
+          () async {
+        when(
+          () => facebookAuthService.login(),
+        ).thenAnswer(
+          (_) async => const FacebookLoginResult(
+            status: FacebookLoginStatus.operationInProgress,
+            message: 'Facebook login is already in progress.',
+          ),
+        );
+
+        final result = await dataSource.signInWithFacebook();
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect(
+                (error as AuthError).code, AuthErrorCode.authenticationFailed);
+            expect(error.message, 'Facebook login is already in progress.');
           },
         );
       });
@@ -320,6 +426,44 @@ void main() {
             expect(error, isA<NetworkError>());
           },
         );
+      });
+    });
+
+    group('signOut', () {
+      test('signs out from providers and firebase auth', () async {
+        when(() => googleSignIn.signOut()).thenAnswer((_) async {});
+        when(() => facebookAuthService.logOut()).thenAnswer((_) async {});
+        when(() => auth.signOut()).thenAnswer((_) async {});
+
+        await dataSource.signOut();
+
+        verify(() => googleSignIn.signOut()).called(1);
+        verify(() => facebookAuthService.logOut()).called(1);
+        verify(() => auth.signOut()).called(1);
+      });
+    });
+
+    group('sendEmailVerification', () {
+      test('successfully sends verification email', () async {
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.sendEmailVerification()).thenAnswer((_) async {});
+
+        final result = await dataSource.sendEmailVerification();
+
+        expect(result, isA<Success<void>>());
+        verify(() => user.sendEmailVerification()).called(1);
+      });
+    });
+
+    group('reloadUser', () {
+      test('successfully reloads user', () async {
+        when(() => auth.currentUser).thenReturn(user);
+        when(() => user.reload()).thenAnswer((_) async {});
+
+        final result = await dataSource.reloadUser();
+
+        expect(result, isA<Success<void>>());
+        verify(() => user.reload()).called(1);
       });
     });
   });

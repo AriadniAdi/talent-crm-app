@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-import 'package:talent_crm_app/features/voice_recording/model/voice_note_model.dart';
-import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
+import 'package:get/get.dart';
+import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
+import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 
-class VoiceNoteTile extends GetView<VoiceRecordingController> {
-  final VoiceNoteModel note;
+class VoiceNoteTile extends StatelessWidget {
+  final VoiceNote note;
+  final String talentId;
 
-  const VoiceNoteTile({super.key, required this.note});
+  const VoiceNoteTile({super.key, required this.note, required this.talentId});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = theme.colorScheme;
+    final VoiceController controller = Get.find<VoiceController>(tag: talentId);
 
     return Obx(() {
       final isPlaying = controller.isPlayingId.value == note.id;

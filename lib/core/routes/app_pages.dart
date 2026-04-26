@@ -6,11 +6,15 @@ import 'package:talent_crm_app/features/auth/presentation/login_binding.dart';
 import 'package:talent_crm_app/features/auth/presentation/login_shell.dart';
 import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_page.dart';
 import 'package:talent_crm_app/features/auth/presentation/email_login/email_login_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_verification/email_verification_binding.dart';
+import 'package:talent_crm_app/features/auth/presentation/email_verification/email_verification_page.dart';
 import 'package:talent_crm_app/features/home/home_binding.dart';
 import 'package:talent_crm_app/features/home/presentation/home_shell.dart';
 import 'package:talent_crm_app/features/register/presentation/register_binding.dart';
 import 'package:talent_crm_app/features/register/presentation/register_shell.dart';
 import 'package:talent_crm_app/features/splash/splash_page.dart';
+import 'package:talent_crm_app/features/voice/presentation/voices_binding.dart';
+import 'package:talent_crm_app/features/voice/presentation/voices_page.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_binding.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
 
@@ -51,6 +55,16 @@ class AppPages {
       name: AppRoutes.register,
       page: () => const RegisterShell(),
       binding: RegisterBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.voices,
+      page: () => const VoicesPage(),
+      binding: VoicesBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.emailVerification,
+      page: () => const EmailVerificationPage(),
+      binding: EmailVerificationBinding(),
     ),
   ];
 }

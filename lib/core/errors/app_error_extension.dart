@@ -17,6 +17,7 @@ extension AppErrorX on AppError {
     if (this is NotFoundError) return t.notFound;
     if (this is ParsingError) return t.invalidFormat;
     if (this is InvalidRouteError) return t.invalidRoute;
+    if (this is MessageError) return (this as MessageError).msg(t);
 
     if (this is AuthError) {
       final error = this as AuthError;
@@ -28,10 +29,14 @@ extension AppErrorX on AppError {
           return t.authInvalidEmail;
         case AuthErrorCode.googleSignInCancelled:
           return t.authGoogleCancelled;
+        case AuthErrorCode.facebookSignInCancelled:
+          return t.authFacebookCancelled;
         case AuthErrorCode.invalidCredentials:
           return t.authInvalidCredentials;
+        case AuthErrorCode.configurationInvalid:
+          return t.authConfigurationInvalid;
         case AuthErrorCode.authenticationFailed:
-          return t.authGenericFailure;
+          return error.message ?? t.authGenericFailure;
         case null:
           return error.message ?? t.unknownError;
       }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:record/record.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
@@ -9,11 +11,16 @@ import 'package:talent_crm_app/features/talent/presentation/controller/talent_co
 import 'package:talent_crm_app/features/talent/presentation/talent_shell.dart';
 import 'package:talent_crm_app/features/talent/presentation/talent_page.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talent_by_id_usecase.dart';
-import 'package:talent_crm_app/features/voice_recording/presentation/controller/voice_recording_controller.dart';
+import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
+import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 
 import '../../helpers/wrapper.dart';
 
 class MockGetTalentByIdUseCase extends Mock implements GetTalentByIdUseCase {}
+
+class MockAudioRecorder extends Mock implements AudioRecorder {}
+
+class MockAudioPlayer extends Mock implements AudioPlayer {}
 
 void main() {
   late MockGetTalentByIdUseCase mockUseCase;
@@ -41,9 +48,17 @@ void main() {
       (_) async => Success(mockData),
     );
 
+    Get.put<VoiceRepository>(VoiceRepository());
     controller = TalentController(mockUseCase, 1);
     Get.put<TalentController>(controller);
-    Get.put<VoiceRecordingController>(VoiceRecordingController());
+    Get.put<VoiceController>(
+      VoiceController(
+        talentId: '1',
+        recorder: MockAudioRecorder(),
+        player: MockAudioPlayer(),
+      ),
+      tag: '1',
+    );
   });
 
   tearDown(() {

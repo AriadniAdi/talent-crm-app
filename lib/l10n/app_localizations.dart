@@ -211,10 +211,10 @@ abstract class AppLocalizations {
   /// **'Observations'**
   String get observations;
 
-  /// Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.
+  /// Message shown when the requested talent is not found or does not exist.
   ///
   /// In en, this message translates to:
-  /// **'Talento no encontrado.'**
+  /// **'Talent not found.'**
   String get talentNotFound;
 
   /// Text displayed on the button to stop audio recording.
@@ -433,18 +433,6 @@ abstract class AppLocalizations {
   /// **'Use the account connected to your device.'**
   String get continueWithGoogleDescription;
 
-  /// Button to authenticate with Apple
-  ///
-  /// In en, this message translates to:
-  /// **'Continue with Apple'**
-  String get continueWithApple;
-
-  /// Description for the Apple authentication button
-  ///
-  /// In en, this message translates to:
-  /// **'Ideal for quick and private access.'**
-  String get continueWithAppleDescription;
-
   /// Button to authenticate with Facebook
   ///
   /// In en, this message translates to:
@@ -553,17 +541,88 @@ abstract class AppLocalizations {
   /// **'Google sign-in was canceled'**
   String get authGoogleCancelled;
 
+  /// Error shown when the user cancels Facebook sign-in
+  ///
+  /// In en, this message translates to:
+  /// **'Facebook sign-in was canceled'**
+  String get authFacebookCancelled;
+
   /// Error shown when the login credentials are incorrect
   ///
   /// In en, this message translates to:
   /// **'Invalid email or password'**
   String get authInvalidCredentials;
 
+  /// Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized
+  ///
+  /// In en, this message translates to:
+  /// **'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.'**
+  String get authConfigurationInvalid;
+
   /// Generic message for authentication failures
   ///
   /// In en, this message translates to:
   /// **'Authentication failed'**
   String get authGenericFailure;
+
+  /// Error shown when user denies microphone permission
+  ///
+  /// In en, this message translates to:
+  /// **'Microphone permission denied'**
+  String get microphonePermissionDenied;
+
+  /// Error shown when there's a problem playing audio
+  ///
+  /// In en, this message translates to:
+  /// **'Error playing audio'**
+  String get audioPlaybackError;
+
+  /// Message shown on voices page when there are no recordings
+  ///
+  /// In en, this message translates to:
+  /// **'No voices registered yet.'**
+  String get noVoicesRegistered;
+
+  /// Label showing the talent ID associated with a voice note
+  ///
+  /// In en, this message translates to:
+  /// **'Talent ID: {id}'**
+  String talentIdLabel(String id);
+
+  /// Label identifying a specific recording
+  ///
+  /// In en, this message translates to:
+  /// **'Recording {id}'**
+  String recordingLabel(String id);
+  /// Title of the email verification screen
+  ///
+  /// In en, this message translates to:
+  /// **'Email Verification'**
+  String get emailVerificationTitle;
+
+  /// Subtitle of the email verification screen
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your email'**
+  String get emailVerificationSubtitle;
+
+  /// Informational message about sending the verification email
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.'**
+  String get emailVerificationMessage;
+
+  /// Button to resend the verification email
+  ///
+  /// In en, this message translates to:
+  /// **'Resend confirmation email'**
+  String get resendEmail;
+
+  /// Button to go back to the login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Back to login'**
+  String get backToLogin;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -311,18 +311,6 @@
     "type": "text"
   },
 
-  "continueWithApple": "Continuar com Apple",
-  "@continueWithApple": {
-    "description": "Botão para autenticar com Apple",
-    "type": "text"
-  },
-
-  "continueWithAppleDescription": "Ideal para um acesso rápido e privado.",
-  "@continueWithAppleDescription": {
-    "description": "Descrição do botão de autenticação com Apple",
-    "type": "text"
-  },
-
   "continueWithFacebook": "Continuar com Facebook",
   "@continueWithFacebook": {
     "description": "Botão para autenticar com Facebook",
@@ -434,10 +422,20 @@
     "description": "Erro exibido quando o usuário cancela o login com Google",
     "type": "text"
   },
+  "authFacebookCancelled": "Login com Facebook cancelado",
+  "@authFacebookCancelled": {
+    "description": "Erro exibido quando o usuário cancela o login com Facebook",
+    "type": "text"
+  },
 
   "authInvalidCredentials": "E-mail ou senha inválidos",
   "@authInvalidCredentials": {
     "description": "Erro exibido quando as credenciais de login estão incorretas",
+    "type": "text"
+  },
+  "authConfigurationInvalid": "A configuracao do Firebase deste app esta invalida ou expirada. Atualize a chave da API e o google-services.json do projeto.",
+  "@authConfigurationInvalid": {
+    "description": "Erro exibido quando a configuracao do Firebase/Auth do app esta invalida, expirada ou nao autorizada",
     "type": "text"
   },
 
@@ -445,6 +443,67 @@
   "@authGenericFailure": {
     "description": "Mensagem genérica para falhas de autenticação",
     "type": "text"
-  }
+  },
+  "microphonePermissionDenied": "Permissão de microfone negada",
+  "@microphonePermissionDenied": {
+    "description": "Erro exibido quando o usuário nega a permissão de microfone",
+    "type": "text"
+  },
 
+  "audioPlaybackError": "Erro ao reproduzir áudio",
+  "@audioPlaybackError": {
+    "description": "Erro exibido quando ocorre um problema na reprodução de áudio",
+    "type": "text"
+  },
+
+  "noVoicesRegistered": "Nenhuma voz registrada ainda.",
+  "@noVoicesRegistered": {
+    "description": "Mensagem exibida na página de vozes quando não há gravações",
+    "type": "text"
+  },
+
+  "talentIdLabel": "Talento ID: {id}",
+  "@talentIdLabel": {
+    "description": "Label exibindo o ID do talento associado à nota de voz",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "recordingLabel": "Gravação {id}",
+  "@recordingLabel": {
+    "description": "Label identificando uma gravação específica",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "emailVerificationTitle": "Verificação de E-mail",
+  "@emailVerificationTitle": {
+    "description": "Título da tela de verificação de e-mail",
+    "type": "text"
+  },
+  "emailVerificationSubtitle": "Confirme seu e-mail",
+  "@emailVerificationSubtitle": {
+    "description": "Subtítulo da tela de verificação de e-mail",
+    "type": "text"
+  },
+  "emailVerificationMessage": "Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada e siga as instruções para ativar sua conta.",
+  "@emailVerificationMessage": {
+    "description": "Mensagem informativa sobre o envio do e-mail de verificação",
+    "type": "text"
+  },
+  "resendEmail": "Reenviar e-mail de confirmação",
+  "@resendEmail": {
+    "description": "Botão para reenviar o e-mail de verificação",
+    "type": "text"
+  },
+  "backToLogin": "Voltar para o login",
+  "@backToLogin": {
+    "description": "Botão para voltar à tela de login",
+    "type": "text"
+  }
 }

@@ -28,8 +28,13 @@ abstract class AuthRepository {
 
   Future<Result<bool>> signInWithGoogle();
 
+  Future<Result<bool>> signInWithFacebook();
 
   Future<void> signOut();
+
+  Future<Result<void>> sendEmailVerification();
+
+  Future<Result<void>> reloadUser();
 }
 
 class AuthRepositoryImpl implements AuthRepository {
@@ -89,7 +94,22 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
+  Future<Result<bool>> signInWithFacebook() {
+    return remoteDataSource.signInWithFacebook();
+  }
+
+  @override
   Future<void> signOut() {
     return remoteDataSource.signOut();
+  }
+
+  @override
+  Future<Result<void>> sendEmailVerification() {
+    return remoteDataSource.sendEmailVerification();
+  }
+
+  @override
+  Future<Result<void>> reloadUser() {
+    return remoteDataSource.reloadUser();
   }
 }
