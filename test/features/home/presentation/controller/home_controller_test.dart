@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:get/get.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/result/result.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
@@ -34,6 +36,7 @@ void main() {
 
   setUp(() {
     mockGetTalentsUseCase = MockGetTalentsUseCase();
+    Get.put<NotificationController>(NotificationController());
 
     controller = HomeController(
       mockGetTalentsUseCase,
@@ -51,13 +54,6 @@ void main() {
       expect(controller.selectedIndex.value, 2);
     });
 
-    test('updateNotificationCount should update notificationsCount', () {
-      expect(controller.notificationsCount.value, 0);
-
-      controller.updateNotificationCount(5);
-
-      expect(controller.notificationsCount.value, 5);
-    });
   });
 
   group('HomeController - fetchEmployees', () {

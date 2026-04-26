@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
@@ -13,9 +14,6 @@ import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.d
 import '../../../helpers/wrapper.dart';
 
 class FakeHomeController extends GetxController implements HomeController {
-  @override
-  final RxInt notificationsCount = 0.obs;
-
   int? tappedIndex;
 
   @override
@@ -57,18 +55,18 @@ class FakeHomeController extends GetxController implements HomeController {
   RxInt get selectedIndex => throw UnimplementedError();
 
   @override
-  void updateNotificationCount(int value) {}
-
-  @override
   Rxn<AppError> get screenError => throw UnimplementedError();
 }
 
 void main() {
   late FakeHomeController controller;
+  late NotificationController notificationController;
 
   setUp(() {
     controller = FakeHomeController();
+    notificationController = NotificationController();
     Get.put<HomeController>(controller);
+    Get.put<NotificationController>(notificationController);
   });
 
   tearDown(() {
@@ -86,8 +84,6 @@ void main() {
   });
 
   testWidgets('does not show badge when count = 0', (tester) async {
-    controller.notificationsCount.value = 0;
-
     await tester.pumpWidget(
       wrapper(
         const NotificationsAppBarIcon(),
@@ -99,7 +95,7 @@ void main() {
   });
 
   testWidgets('shows badge when count > 0', (tester) async {
-    controller.notificationsCount.value = 3;
+    notificationController.addNotification('title', 'message');
 
     await tester.pumpWidget(
       wrapper(
@@ -107,11 +103,13 @@ void main() {
       ),
     );
 
-    expect(find.text('3'), findsOneWidget);
+    expect(find.text('1'), findsOneWidget);
   });
 
   testWidgets('shows 9+ when count > 9', (tester) async {
-    controller.notificationsCount.value = 15;
+    for (var i = 0; i < 15; i++) {
+      notificationController.addNotification('title $i', 'message $i');
+    }
 
     await tester.pumpWidget(
       wrapper(
@@ -138,19 +136,18 @@ void main() {
   });
 
   testWidgets('updates reactively when count changes', (tester) async {
-    controller.notificationsCount.value = 1;
-
     await tester.pumpWidget(
       wrapper(
         const NotificationsAppBarIcon(),
       ),
     );
 
+    notificationController.addNotification('title 1', 'message 1');
+    await tester.pump();
     expect(find.text('1'), findsOneWidget);
 
-    controller.notificationsCount.value = 5;
+    notificationController.addNotification('title 2', 'message 2');
     await tester.pump();
-
-    expect(find.text('5'), findsOneWidget);
+    expect(find.text('2'), findsOneWidget);
   });
 }
