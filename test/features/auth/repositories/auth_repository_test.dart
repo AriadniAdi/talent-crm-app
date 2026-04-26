@@ -107,5 +107,15 @@ void main() {
         () => dataSource.sendPasswordResetEmail(email: email),
       ).called(1);
     });
+
+    test('signInWithFacebook delegates to remote data source', () async {
+      when(() => dataSource.signInWithFacebook())
+          .thenAnswer((_) async => Success(true));
+
+      final result = await repository.signInWithFacebook();
+
+      expect(result, isA<Success<bool>>());
+      verify(() => dataSource.signInWithFacebook()).called(1);
+    });
   });
 }

@@ -66,7 +66,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get observations => 'Observations';
 
   @override
-  String get talentNotFound => 'Talento no encontrado.';
+  String get talentNotFound => 'Talent not found.';
 
   @override
   String get stopRecording => 'Stop recording';
@@ -177,12 +177,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get continueWithGoogleDescription => 'Use the account connected to your device.';
 
   @override
-  String get continueWithApple => 'Continue with Apple';
-
-  @override
-  String get continueWithAppleDescription => 'Ideal for quick and private access.';
-
-  @override
   String get continueWithFacebook => 'Continue with Facebook';
 
   @override
@@ -268,11 +262,48 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authGoogleCancelled => 'Google sign-in was canceled';
 
   @override
+  String get authFacebookCancelled => 'Facebook sign-in was canceled';
+
+  @override
   String get authInvalidCredentials => 'Invalid email or password';
 
   @override
   String get authUserNotFound => 'No account was found with this email';
 
   @override
+  String get authConfigurationInvalid => 'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.';
+
+  @override
   String get authGenericFailure => 'Authentication failed';
+
+  @override
+  String get microphonePermissionDenied => 'Microphone permission denied';
+
+  @override
+  String get audioPlaybackError => 'Error playing audio';
+
+  @override
+  String get noVoicesRegistered => 'No voices registered yet.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talent ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Recording $id';
+  }
+
+  @override
+  String get emailVerificationTitle => 'Email Verification';
+
+  @override
+  String get emailVerificationSubtitle => 'Confirm your email';
+
+  @override
+  String get emailVerificationMessage => 'We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.';
+
+  @override
+  String get resendEmail => 'Resend confirmation email';
 }

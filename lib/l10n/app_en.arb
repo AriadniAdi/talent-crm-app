@@ -98,9 +98,9 @@
     "type": "text"
   },
 
-  "talentNotFound": "Talento no encontrado.",
+  "talentNotFound": "Talent not found.",
   "@talentNotFound": {
-    "description": "Mensaje mostrado cuando el talento solicitado no se encuentra o no existe.",
+    "description": "Message shown when the requested talent is not found or does not exist.",
     "type": "text"
   },
   
@@ -320,18 +320,6 @@
     "type": "text"
   },
 
-  "continueWithApple": "Continue with Apple",
-  "@continueWithApple": {
-    "description": "Button to authenticate with Apple",
-    "type": "text"
-  },
-
-  "continueWithAppleDescription": "Ideal for quick and private access.",
-  "@continueWithAppleDescription": {
-    "description": "Description for the Apple authentication button",
-    "type": "text"
-  },
-
   "continueWithFacebook": "Continue with Facebook",
   "@continueWithFacebook": {
     "description": "Button to authenticate with Facebook",
@@ -501,10 +489,20 @@
     "description": "Error shown when the user cancels Google sign-in",
     "type": "text"
   },
+  "authFacebookCancelled": "Facebook sign-in was canceled",
+  "@authFacebookCancelled": {
+    "description": "Error shown when the user cancels Facebook sign-in",
+    "type": "text"
+  },
 
   "authInvalidCredentials": "Invalid email or password",
   "@authInvalidCredentials": {
     "description": "Error shown when the login credentials are incorrect",
+    "type": "text"
+  },
+  "authConfigurationInvalid": "This app's Firebase configuration is invalid or expired. Update the API key and the project's google-services.json file.",
+  "@authConfigurationInvalid": {
+    "description": "Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized",
     "type": "text"
   },
 
@@ -517,6 +515,63 @@
   "authGenericFailure": "Authentication failed",
   "@authGenericFailure": {
     "description": "Generic message for authentication failures",
+    "type": "text"
+  },
+  "microphonePermissionDenied": "Microphone permission denied",
+  "@microphonePermissionDenied": {
+    "description": "Error shown when user denies microphone permission",
+    "type": "text"
+  },
+
+  "audioPlaybackError": "Error playing audio",
+  "@audioPlaybackError": {
+    "description": "Error shown when there's a problem playing audio",
+    "type": "text"
+  },
+
+  "noVoicesRegistered": "No voices registered yet.",
+  "@noVoicesRegistered": {
+    "description": "Message shown on voices page when there are no recordings",
+    "type": "text"
+  },
+
+  "talentIdLabel": "Talent ID: {id}",
+  "@talentIdLabel": {
+    "description": "Label showing the talent ID associated with a voice note",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+
+  "recordingLabel": "Recording {id}",
+  "@recordingLabel": {
+    "description": "Label identifying a specific recording",
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "emailVerificationTitle": "Email Verification",
+  "@emailVerificationTitle": {
+    "description": "Title of the email verification screen",
+    "type": "text"
+  },
+  "emailVerificationSubtitle": "Confirm your email",
+  "@emailVerificationSubtitle": {
+    "description": "Subtitle of the email verification screen",
+    "type": "text"
+  },
+  "emailVerificationMessage": "We sent a confirmation link to your email. Please check your inbox and follow the instructions to activate your account.",
+  "@emailVerificationMessage": {
+    "description": "Informational message about sending the verification email",
+    "type": "text"
+  },
+  "resendEmail": "Resend confirmation email",
+  "@resendEmail": {
+    "description": "Button to resend the verification email",
     "type": "text"
   }
 }

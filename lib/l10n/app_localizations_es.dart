@@ -66,19 +66,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String get observations => 'Observaciones';
 
   @override
-  String get talentNotFound => 'Talent not found.';
+  String get talentNotFound => 'Talento no encontrado.';
 
   @override
-  String get stopRecording => 'Parar gravação';
+  String get stopRecording => 'Detener grabación';
 
   @override
-  String get recordObservation => 'Gravar observação';
+  String get recordObservation => 'Grabar observación';
 
   @override
-  String get noRecordingsYet => 'Nenhuma gravação ainda';
+  String get noRecordingsYet => 'Ninguna grabación aún';
 
   @override
-  String get copiedToClipboard => 'Copiado para a área de transferência';
+  String get copiedToClipboard => 'Copiado al portapapeles';
 
   @override
   String get fullName => 'Nombre completo';
@@ -126,28 +126,28 @@ class AppLocalizationsEs extends AppLocalizations {
   String get passwordTooShort => 'La contraseña debe tener al menos 6 caracteres';
 
   @override
-  String get invalidNameLength => 'Name is too long';
+  String get invalidNameLength => 'Nombre muy largo';
 
   @override
-  String get requiredCpf => 'CPF is required';
+  String get requiredCpf => 'CPF obligatorio';
 
   @override
-  String get futureBirthDate => 'Birth date cannot be in the future';
+  String get futureBirthDate => 'La fecha de nacimiento no puede ser futura';
 
   @override
-  String get requiredEmail => 'Email is required';
+  String get requiredEmail => 'E-mail obligatorio';
 
   @override
-  String get requiredPhone => 'Phone is required';
+  String get requiredPhone => 'Teléfono obligatorio';
 
   @override
-  String get requiredPassword => 'Password is required';
+  String get requiredPassword => 'Senha obligatoria';
 
   @override
-  String get passwordTooLong => 'Password must be at most 6 characters';
+  String get passwordTooLong => 'La contraseña debe tener como máximo 6 caracteres';
 
   @override
-  String get requiredConfirmPassword => 'Password confirmation is required';
+  String get requiredConfirmPassword => 'Confirmación de senha obligatoria';
 
   @override
   String get invalidName => 'El nombre contiene caracteres inválidos';
@@ -175,12 +175,6 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get continueWithGoogleDescription => 'Usa la cuenta conectada a tu dispositivo.';
-
-  @override
-  String get continueWithApple => 'Continuar con Apple';
-
-  @override
-  String get continueWithAppleDescription => 'Ideal para un acceso rápido y privado.';
 
   @override
   String get continueWithFacebook => 'Continuar con Facebook';
@@ -268,11 +262,48 @@ class AppLocalizationsEs extends AppLocalizations {
   String get authGoogleCancelled => 'Se canceló el inicio de sesión con Google';
 
   @override
+  String get authFacebookCancelled => 'Se canceló el inicio de sesión con Facebook';
+
+  @override
   String get authInvalidCredentials => 'Correo o contraseña inválidos';
 
   @override
   String get authUserNotFound => 'No se encontró una cuenta con ese correo';
 
   @override
+  String get authConfigurationInvalid => 'La configuracion de Firebase de esta app es invalida o expiro. Actualiza la clave de API y el archivo google-services.json del proyecto.';
+
+  @override
   String get authGenericFailure => 'Error en la autenticación';
+
+  @override
+  String get microphonePermissionDenied => 'Permiso de micrófono denegado';
+
+  @override
+  String get audioPlaybackError => 'Error al reproducir audio';
+
+  @override
+  String get noVoicesRegistered => 'Ninguna voz registrada todavía.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talento ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Grabación $id';
+  }
+
+  @override
+  String get emailVerificationTitle => 'Verificación de Correo';
+
+  @override
+  String get emailVerificationSubtitle => 'Confirma tu correo';
+
+  @override
+  String get emailVerificationMessage => 'Enviamos un enlace de confirmación a tu correo electrónico. Por favor, revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.';
+
+  @override
+  String get resendEmail => 'Reenviar correo de confirmación';
 }

@@ -177,12 +177,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get continueWithGoogleDescription => 'Use a conta conectada ao seu dispositivo.';
 
   @override
-  String get continueWithApple => 'Continuar com Apple';
-
-  @override
-  String get continueWithAppleDescription => 'Ideal para um acesso rápido e privado.';
-
-  @override
   String get continueWithFacebook => 'Continuar com Facebook';
 
   @override
@@ -268,11 +262,48 @@ class AppLocalizationsPt extends AppLocalizations {
   String get authGoogleCancelled => 'Login com Google cancelado';
 
   @override
+  String get authFacebookCancelled => 'Login com Facebook cancelado';
+
+  @override
   String get authInvalidCredentials => 'E-mail ou senha inválidos';
 
   @override
   String get authUserNotFound => 'Nenhuma conta foi encontrada com esse e-mail';
 
   @override
+  String get authConfigurationInvalid => 'A configuracao do Firebase deste app esta invalida ou expirada. Atualize a chave da API e o google-services.json do projeto.';
+
+  @override
   String get authGenericFailure => 'Erro na autenticação';
+
+  @override
+  String get microphonePermissionDenied => 'Permissão de microfone negada';
+
+  @override
+  String get audioPlaybackError => 'Erro ao reproduzir áudio';
+
+  @override
+  String get noVoicesRegistered => 'Nenhuma voz registrada ainda.';
+
+  @override
+  String talentIdLabel(String id) {
+    return 'Talento ID: $id';
+  }
+
+  @override
+  String recordingLabel(String id) {
+    return 'Gravação $id';
+  }
+
+  @override
+  String get emailVerificationTitle => 'Verificação de E-mail';
+
+  @override
+  String get emailVerificationSubtitle => 'Confirme seu e-mail';
+
+  @override
+  String get emailVerificationMessage => 'Enviamos um link de confirmação para o seu e-mail. Por favor, verifique sua caixa de entrada e siga as instruções para ativar sua conta.';
+
+  @override
+  String get resendEmail => 'Reenviar e-mail de confirmação';
 }

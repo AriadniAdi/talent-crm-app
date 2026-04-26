@@ -1,11 +1,13 @@
-class VoiceNoteModel {
+class VoiceNote {
   final String id;
+  final String? talentId;
   final Duration duration;
   final DateTime createdAt;
   final String filePath;
 
-  VoiceNoteModel({
+  VoiceNote({
     required this.id,
+    this.talentId,
     required this.duration,
     required this.createdAt,
     required this.filePath,
