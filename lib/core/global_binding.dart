@@ -14,6 +14,7 @@ import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
+import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 
 class GlobalBinding extends Bindings {
   @override
@@ -80,6 +81,7 @@ class GlobalBinding extends Bindings {
     );
 
     Get.put<VoiceRepository>(VoiceRepository(), permanent: true);
+    Get.put<NotificationController>(NotificationController(), permanent: true);
     Get.lazyPut<VoiceController>(() => VoiceController(), fenix: true);
   }
 }
