@@ -61,6 +61,9 @@ class FakeHomeController extends GetxController implements HomeController {
 
   @override
   Rxn<AppError> get screenError => throw UnimplementedError();
+
+  @override
+  int get totalTalentsCount => throw UnimplementedError();
 }
 
 void main() {
@@ -134,7 +137,7 @@ void main() {
     await tester.tap(find.byType(IconButton));
     await tester.pump();
 
-    expect(controller.tappedIndex, 2);
+    expect(controller.tappedIndex, 1);
   });
 
   testWidgets('updates reactively when count changes', (tester) async {
@@ -145,11 +148,12 @@ void main() {
         const NotificationsAppBarIcon(),
       ),
     );
+    await tester.pumpAndSettle();
 
     expect(find.text('1'), findsOneWidget);
 
     controller.notificationsCount.value = 5;
-    await tester.pump();
+    await tester.pumpAndSettle();
 
     expect(find.text('5'), findsOneWidget);
   });

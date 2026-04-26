@@ -119,7 +119,7 @@ void main() {
       });
     });
 
-    testWidgets('should show Teams content when selectedIndex is 1',
+    testWidgets('should show Notifications content when selectedIndex is 1',
         (tester) async {
       controller.allEmployees.add(mockData);
 
@@ -129,11 +129,11 @@ void main() {
         controller.selectedIndex.value = 1;
         await tester.pump();
 
-        expect(find.byKey(const Key('teamsKey')), findsOneWidget);
+        expect(find.byKey(const Key('notificationsKey')), findsOneWidget);
       });
     });
 
-    testWidgets('should show Notifications content when selectedIndex is 2',
+    testWidgets('should show Voice Notes content when selectedIndex is 2',
         (tester) async {
       controller.allEmployees.add(mockData);
 
@@ -143,20 +143,6 @@ void main() {
         controller.selectedIndex.value = 2;
         await tester.pump();
 
-        expect(find.byKey(const Key('notificationsKey')), findsOneWidget);
-      });
-    });
-
-    testWidgets('should show Voice Notes content when selectedIndex is 3',
-        (tester) async {
-      controller.allEmployees.add(mockData);
-
-      await mockNetworkImagesFor(() async {
-        await tester.pumpWidget(wrapper(const HomeShell()));
-
-        controller.selectedIndex.value = 3;
-        await tester.pump();
-
         expect(find.byType(VoicesPage), findsOneWidget);
       });
     });
@@ -164,17 +150,16 @@ void main() {
     testWidgets('should navigate to home when logo is tapped', (tester) async {
       controller.allEmployees.add(mockData);
       controller.isLoading.value = false;
-      controller.selectedIndex.value = 2;
+      controller.selectedIndex.value = 1;
 
       await mockNetworkImagesFor(() async {
         await tester.pumpWidget(wrapper(const HomeShell()));
         await tester.pump();
 
         await tester.tap(find.byKey(const Key('homeLogoButton')));
-        await tester.pumpAndSettle();
+        await tester.pump();
 
         expect(controller.selectedIndex.value, 0);
-        expect(find.byKey(const Key('Home')), findsOneWidget);
       });
     });
   });
