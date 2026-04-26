@@ -90,7 +90,17 @@ Widget wrapper(
   );
 }
 
-class MockAuthManager extends Mock implements AuthManager {}
+class MockAuthManager extends GetxController with Mock implements AuthManager {
+  @override
+  final user = Rx<User?>(null);
+
+  @override
+  bool get isAuthenticated => user.value != null;
+
+  @override
+  Future<void> signOut() async {}
+}
+
 
 class MockUserRepository extends Mock implements UserRepository {}
 

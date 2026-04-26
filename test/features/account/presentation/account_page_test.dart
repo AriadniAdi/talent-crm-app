@@ -78,7 +78,13 @@ void main() {
     );
 
     expect(find.byKey(const Key('account-page')), findsOneWidget);
-    expect(find.byKey(const Key('language-selector-tile')), findsOneWidget);
+    
+    // Ensure tile is visible as page might be long
+    final tile = find.byKey(const Key('language-selector-tile'));
+    await tester.ensureVisible(tile);
+    await tester.pumpAndSettle();
+    
+    expect(tile, findsOneWidget);
     expect(find.text('Idioma'), findsOneWidget);
     expect(find.text('Português'), findsOneWidget);
   });
@@ -88,10 +94,15 @@ void main() {
     await tester.pumpWidget(
       wrapper(
         const AccountPage(),
+        surfaceSize: const Size(800, 1000),
       ),
     );
 
-    await tester.tap(find.byKey(const Key('language-selector-tile')));
+    final tile = find.byKey(const Key('language-selector-tile'));
+    await tester.ensureVisible(tile);
+    await tester.pumpAndSettle();
+
+    await tester.tap(tile);
     await tester.pumpAndSettle();
 
     await tester.tap(find.byKey(const Key('language-option-en')));
