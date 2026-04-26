@@ -487,6 +487,60 @@ abstract class AppLocalizations {
   /// **'Enter your email and password to sign in.'**
   String get emailLoginSubtitle;
 
+  /// Action to open the password recovery flow
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot my password'**
+  String get forgotPasswordAction;
+
+  /// Title of the password recovery screen
+  ///
+  /// In en, this message translates to:
+  /// **'Recover password'**
+  String get forgotPasswordTitle;
+
+  /// Subtitle of the password recovery screen
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to receive the reset link.'**
+  String get forgotPasswordSubtitle;
+
+  /// Supporting text on the password recovery screen
+  ///
+  /// In en, this message translates to:
+  /// **'We will send an email with instructions to create a new password and safely access your account again.'**
+  String get forgotPasswordHelper;
+
+  /// Button to send the password recovery email
+  ///
+  /// In en, this message translates to:
+  /// **'Send recovery email'**
+  String get sendRecoveryEmail;
+
+  /// Title of the success state after sending the reset email
+  ///
+  /// In en, this message translates to:
+  /// **'Check your email'**
+  String get passwordResetEmailSentTitle;
+
+  /// Message shown after sending the password reset email
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a reset link to {email}. Open your inbox and follow the instructions to create a new password.'**
+  String passwordResetEmailSentMessage(String email);
+
+  /// Button to return to the email login screen
+  ///
+  /// In en, this message translates to:
+  /// **'Back to login'**
+  String get backToLogin;
+
+  /// Action to change the email after success
+  ///
+  /// In en, this message translates to:
+  /// **'Use another email'**
+  String get useAnotherEmail;
+
   /// Text for the sign in button
   ///
   /// In en, this message translates to:
@@ -553,6 +607,12 @@ abstract class AppLocalizations {
   /// **'Invalid email or password'**
   String get authInvalidCredentials;
 
+  /// Error shown when there is no user for the provided email
+  ///
+  /// In en, this message translates to:
+  /// **'No account was found with this email'**
+  String get authUserNotFound;
+
   /// Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized
   ///
   /// In en, this message translates to:
@@ -618,11 +678,6 @@ abstract class AppLocalizations {
   /// **'Resend confirmation email'**
   String get resendEmail;
 
-  /// Button to go back to the login screen
-  ///
-  /// In en, this message translates to:
-  /// **'Back to login'**
-  String get backToLogin;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

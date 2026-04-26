@@ -21,6 +21,10 @@ abstract class AuthRepository {
 
   Future<Result<bool>> signInWithFacebook();
 
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  });
+
   Future<void> signOut();
 
   Future<Result<void>> sendEmailVerification();
@@ -73,6 +77,13 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Result<bool>> signInWithFacebook() {
     return remoteDataSource.signInWithFacebook();
+  }
+
+  @override
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  }) {
+    return remoteDataSource.sendPasswordResetEmail(email: email);
   }
 
   @override

@@ -319,6 +319,64 @@
     "type": "text"
   },
 
+  "forgotPasswordAction": "Olvidé mi contraseña",
+  "@forgotPasswordAction": {
+    "description": "Acción para abrir el flujo de recuperación de contraseña",
+    "type": "text"
+  },
+
+  "forgotPasswordTitle": "Recuperar contraseña",
+  "@forgotPasswordTitle": {
+    "description": "Título de la pantalla de recuperación de contraseña",
+    "type": "text"
+  },
+
+  "forgotPasswordSubtitle": "Ingresa tu correo para recibir el enlace de restablecimiento.",
+  "@forgotPasswordSubtitle": {
+    "description": "Subtítulo de la pantalla de recuperación de contraseña",
+    "type": "text"
+  },
+
+  "forgotPasswordHelper": "Te enviaremos un correo con instrucciones para crear una nueva contraseña y volver a acceder a tu cuenta de forma segura.",
+  "@forgotPasswordHelper": {
+    "description": "Texto de apoyo de la pantalla de recuperación de contraseña",
+    "type": "text"
+  },
+
+  "sendRecoveryEmail": "Enviar correo de recuperación",
+  "@sendRecoveryEmail": {
+    "description": "Botón para enviar el correo de recuperación de contraseña",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentTitle": "Revisa tu correo",
+  "@passwordResetEmailSentTitle": {
+    "description": "Título del estado de éxito tras enviar el correo de restablecimiento",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentMessage": "Enviamos un enlace de restablecimiento a {email}. Abre tu bandeja de entrada y sigue las instrucciones para crear una nueva contraseña.",
+  "@passwordResetEmailSentMessage": {
+    "description": "Mensaje mostrado después de enviar el correo de restablecimiento de contraseña",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+
+  "backToLogin": "Volver al inicio de sesión",
+  "@backToLogin": {
+    "description": "Botón para volver a la pantalla de inicio de sesión por correo",
+    "type": "text"
+  },
+
+  "useAnotherEmail": "Usar otro correo",
+  "@useAnotherEmail": {
+    "description": "Acción para cambiar el correo después del éxito",
+    "type": "text"
+  },
+
   "signIn": "Entrar",
   "@signIn": {
     "description": "Texto del botón para iniciar sesión",
@@ -389,6 +447,12 @@
     "type": "text"
   },
 
+  "authUserNotFound": "No se encontró una cuenta con ese correo",
+  "@authUserNotFound": {
+    "description": "Error mostrado cuando no existe un usuario para el correo informado",
+    "type": "text"
+  },
+
   "authGenericFailure": "Error en la autenticación",
   "@authGenericFailure": {
     "description": "Mensaje genérico para fallas de autenticación",
@@ -450,11 +514,6 @@
   "resendEmail": "Reenviar correo de confirmación",
   "@resendEmail": {
     "description": "Botón para reenviar el correo de verificación",
-    "type": "text"
-  },
-  "backToLogin": "Volver al inicio de sesión",
-  "@backToLogin": {
-    "description": "Botón para volver a la pantalla de inicio de sesión",
     "type": "text"
   },
   "requiredCpf": "CPF obligatorio",

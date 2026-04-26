@@ -34,6 +34,7 @@ enum AuthErrorCode {
   googleSignInCancelled,
   facebookSignInCancelled,
   invalidCredentials,
+  userNotFound,
   configurationInvalid,
   authenticationFailed,
 }
