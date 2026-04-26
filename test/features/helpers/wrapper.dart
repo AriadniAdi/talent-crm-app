@@ -5,12 +5,12 @@ import 'package:talent_crm_app/core/locale/app_locale_service.dart';
 import 'package:http/http.dart' as http;
 import 'package:talent_crm_app/core/network/api_client.dart';
 import 'package:talent_crm_app/core/routes/app_routes.dart';
+import 'package:talent_crm_app/features/account/repositories/user_repository.dart';
 import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
-import 'package:talent_crm_app/features/auth/repositories/user_repository.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -91,7 +91,9 @@ Widget wrapper(
 }
 
 class MockAuthManager extends Mock implements AuthManager {}
+
 class MockUserRepository extends Mock implements UserRepository {}
+
 class MockUser extends Mock implements User {}
 
 void setupTestDependencies<T extends GetxController>({T? mockController}) {
@@ -101,11 +103,11 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
 
   Get.put<http.Client>(http.Client());
   Get.put<ApiClient>(ApiClient(Get.find()));
-  
+
   if (!Get.isRegistered<AuthManager>()) {
     Get.put<AuthManager>(MockAuthManager());
   }
-  
+
   if (!Get.isRegistered<UserRepository>()) {
     Get.put<UserRepository>(MockUserRepository());
   }
@@ -113,5 +115,6 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
   Get.lazyPut<TalentRemoteDataSource>(
     () => TalentRemoteDataSource(apiClient: Get.find()),
   );
-  Get.lazyPut<TalentRepository>(() => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
+  Get.lazyPut<TalentRepository>(
+      () => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
 }
