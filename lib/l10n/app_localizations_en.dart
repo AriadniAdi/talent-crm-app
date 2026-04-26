@@ -268,10 +268,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get authInvalidCredentials => 'Invalid email or password';
 
   @override
-  String get authUserNotFound => 'No account was found with this email';
+  String get authConfigurationInvalid => 'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.';
 
   @override
-  String get authConfigurationInvalid => 'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.';
+  String get authUserNotFound => 'No account was found with this email';
 
   @override
   String get authGenericFailure => 'Authentication failed';
@@ -306,4 +306,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resendEmail => 'Resend confirmation email';
+
+  @override
+  String get voiceNoteSavedNotification => 'Voice note saved successfully';
+
+  @override
+  String get talentsUpdatedNotification => 'Talent recordings updated';
 }
