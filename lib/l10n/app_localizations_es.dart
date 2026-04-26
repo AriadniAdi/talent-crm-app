@@ -206,6 +206,35 @@ class AppLocalizationsEs extends AppLocalizations {
   String get emailLoginSubtitle => 'Ingresa tu correo electrónico y contraseña para acceder.';
 
   @override
+  String get forgotPasswordAction => 'Olvidé mi contraseña';
+
+  @override
+  String get forgotPasswordTitle => 'Recuperar contraseña';
+
+  @override
+  String get forgotPasswordSubtitle => 'Ingresa tu correo para recibir el enlace de restablecimiento.';
+
+  @override
+  String get forgotPasswordHelper => 'Te enviaremos un correo con instrucciones para crear una nueva contraseña y volver a acceder a tu cuenta de forma segura.';
+
+  @override
+  String get sendRecoveryEmail => 'Enviar correo de recuperación';
+
+  @override
+  String get passwordResetEmailSentTitle => 'Revisa tu correo';
+
+  @override
+  String passwordResetEmailSentMessage(String email) {
+    return 'Enviamos un enlace de restablecimiento a $email. Abre tu bandeja de entrada y sigue las instrucciones para crear una nueva contraseña.';
+  }
+
+  @override
+  String get backToLogin => 'Volver al inicio de sesión';
+
+  @override
+  String get useAnotherEmail => 'Usar otro correo';
+
+  @override
   String get signIn => 'Entrar';
 
   @override
@@ -237,6 +266,9 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get authInvalidCredentials => 'Correo o contraseña inválidos';
+
+  @override
+  String get authUserNotFound => 'No se encontró una cuenta con ese correo';
 
   @override
   String get authConfigurationInvalid => 'La configuracion de Firebase de esta app es invalida o expiro. Actualiza la clave de API y el archivo google-services.json del proyecto.';
@@ -274,7 +306,4 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get resendEmail => 'Reenviar correo de confirmación';
-
-  @override
-  String get backToLogin => 'Volver al inicio de sesión';
 }

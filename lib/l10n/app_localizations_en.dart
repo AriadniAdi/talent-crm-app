@@ -206,6 +206,35 @@ class AppLocalizationsEn extends AppLocalizations {
   String get emailLoginSubtitle => 'Enter your email and password to sign in.';
 
   @override
+  String get forgotPasswordAction => 'Forgot my password';
+
+  @override
+  String get forgotPasswordTitle => 'Recover password';
+
+  @override
+  String get forgotPasswordSubtitle => 'Enter your email to receive the reset link.';
+
+  @override
+  String get forgotPasswordHelper => 'We will send an email with instructions to create a new password and safely access your account again.';
+
+  @override
+  String get sendRecoveryEmail => 'Send recovery email';
+
+  @override
+  String get passwordResetEmailSentTitle => 'Check your email';
+
+  @override
+  String passwordResetEmailSentMessage(String email) {
+    return 'We sent a reset link to $email. Open your inbox and follow the instructions to create a new password.';
+  }
+
+  @override
+  String get backToLogin => 'Back to login';
+
+  @override
+  String get useAnotherEmail => 'Use another email';
+
+  @override
   String get signIn => 'Sign in';
 
   @override
@@ -237,6 +266,9 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get authInvalidCredentials => 'Invalid email or password';
+
+  @override
+  String get authUserNotFound => 'No account was found with this email';
 
   @override
   String get authConfigurationInvalid => 'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.';
@@ -274,7 +306,4 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get resendEmail => 'Resend confirmation email';
-
-  @override
-  String get backToLogin => 'Back to login';
 }

@@ -3,9 +3,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:talent_crm_app/core/auth/facebook_auth_service.dart';
+import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/core/firebase/firebase_service.dart';
 import 'package:talent_crm_app/core/result/result.dart';
-import 'package:talent_crm_app/core/errors/app_error.dart';
 import 'package:talent_crm_app/features/auth/data/datasources/auth_remote_data_source.dart';
 
 class MockFirebaseAuth extends Mock implements FirebaseAuth {}
@@ -250,6 +250,35 @@ void main() {
             expect(
                 (error as AuthError).code, AuthErrorCode.authenticationFailed);
             expect(error.message, 'Google Sign-In configuration is invalid.');
+          },
+        );
+      });
+    });
+
+    group('sendPasswordResetEmail', () {
+      test('successfully sends password reset email', () async {
+        when(
+          () => auth.sendPasswordResetEmail(email: email),
+        ).thenAnswer((_) async {});
+
+        final result = await dataSource.sendPasswordResetEmail(email: email);
+
+        expect(result, isA<Success<bool>>());
+        verify(() => auth.sendPasswordResetEmail(email: email)).called(1);
+      });
+
+      test('returns AuthError when firebase throws user-not-found', () async {
+        when(
+          () => auth.sendPasswordResetEmail(email: any(named: 'email')),
+        ).thenThrow(FirebaseAuthException(code: 'user-not-found'));
+
+        final result = await dataSource.sendPasswordResetEmail(email: email);
+
+        result.when(
+          success: (_) => fail('Should have failed'),
+          failure: (error) {
+            expect(error, isA<AuthError>());
+            expect((error as AuthError).code, AuthErrorCode.userNotFound);
           },
         );
       });

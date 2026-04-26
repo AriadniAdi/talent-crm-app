@@ -378,6 +378,64 @@
     "type": "text"
   },
 
+  "forgotPasswordAction": "Forgot my password",
+  "@forgotPasswordAction": {
+    "description": "Action to open the password recovery flow",
+    "type": "text"
+  },
+
+  "forgotPasswordTitle": "Recover password",
+  "@forgotPasswordTitle": {
+    "description": "Title of the password recovery screen",
+    "type": "text"
+  },
+
+  "forgotPasswordSubtitle": "Enter your email to receive the reset link.",
+  "@forgotPasswordSubtitle": {
+    "description": "Subtitle of the password recovery screen",
+    "type": "text"
+  },
+
+  "forgotPasswordHelper": "We will send an email with instructions to create a new password and safely access your account again.",
+  "@forgotPasswordHelper": {
+    "description": "Supporting text on the password recovery screen",
+    "type": "text"
+  },
+
+  "sendRecoveryEmail": "Send recovery email",
+  "@sendRecoveryEmail": {
+    "description": "Button to send the password recovery email",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentTitle": "Check your email",
+  "@passwordResetEmailSentTitle": {
+    "description": "Title of the success state after sending the reset email",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentMessage": "We sent a reset link to {email}. Open your inbox and follow the instructions to create a new password.",
+  "@passwordResetEmailSentMessage": {
+    "description": "Message shown after sending the password reset email",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+
+  "backToLogin": "Back to login",
+  "@backToLogin": {
+    "description": "Button to return to the email login screen",
+    "type": "text"
+  },
+
+  "useAnotherEmail": "Use another email",
+  "@useAnotherEmail": {
+    "description": "Action to change the email after success",
+    "type": "text"
+  },
+
   "signIn": "Sign in",
   "@signIn": {
     "description": "Text for the sign in button",
@@ -448,6 +506,12 @@
     "type": "text"
   },
 
+  "authUserNotFound": "No account was found with this email",
+  "@authUserNotFound": {
+    "description": "Error shown when there is no user for the provided email",
+    "type": "text"
+  },
+
   "authGenericFailure": "Authentication failed",
   "@authGenericFailure": {
     "description": "Generic message for authentication failures",
@@ -508,11 +572,6 @@
   "resendEmail": "Resend confirmation email",
   "@resendEmail": {
     "description": "Button to resend the verification email",
-    "type": "text"
-  },
-  "backToLogin": "Back to login",
-  "@backToLogin": {
-    "description": "Button to go back to the login screen",
     "type": "text"
   }
 }

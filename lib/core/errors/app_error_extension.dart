@@ -33,6 +33,8 @@ extension AppErrorX on AppError {
           return t.authFacebookCancelled;
         case AuthErrorCode.invalidCredentials:
           return t.authInvalidCredentials;
+        case AuthErrorCode.userNotFound:
+          return t.authUserNotFound;
         case AuthErrorCode.configurationInvalid:
           return t.authConfigurationInvalid;
         case AuthErrorCode.authenticationFailed:

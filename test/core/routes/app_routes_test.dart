@@ -6,6 +6,8 @@ void main() {
     test('route values are correct', () {
       expect(AppRoutes.splash, '/');
       expect(AppRoutes.login, '/login');
+      expect(AppRoutes.loginEmail, '/loginEmail');
+      expect(AppRoutes.forgotPassword, '/forgotPassword');
       expect(AppRoutes.home, '/home');
       expect(AppRoutes.account, '/account');
       expect(AppRoutes.talent, '/talent');
@@ -15,6 +17,8 @@ void main() {
       final routes = [
         AppRoutes.splash,
         AppRoutes.login,
+        AppRoutes.loginEmail,
+        AppRoutes.forgotPassword,
         AppRoutes.home,
         AppRoutes.account,
         AppRoutes.talent,
@@ -29,6 +33,8 @@ void main() {
       final routes = [
         AppRoutes.splash,
         AppRoutes.login,
+        AppRoutes.loginEmail,
+        AppRoutes.forgotPassword,
         AppRoutes.home,
         AppRoutes.account,
         AppRoutes.talent,

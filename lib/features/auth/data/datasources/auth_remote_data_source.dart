@@ -35,6 +35,10 @@ abstract class AuthRemoteDataSource {
 
   Future<Result<bool>> signInWithFacebook();
 
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  });
+
   Future<void> signOut();
 
   Future<Result<void>> sendEmailVerification();
@@ -232,8 +236,7 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         case FacebookLoginStatus.operationInProgress:
           return Failure(
             AuthError(
-              loginResult.message ??
-                  'Nao foi possivel iniciar o Facebook Login.',
+              loginResult.message ?? 'Nao foi possivel iniciar o Facebook Login.',
               AuthErrorCode.authenticationFailed,
             ),
           );
@@ -261,15 +264,13 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return Success(true);
     } on FirebaseAuthException catch (e) {
       if (_isSignInCancelled(e)) {
-        return Failure(
-            AuthError.withCode(AuthErrorCode.facebookSignInCancelled));
+        return Failure(AuthError.withCode(AuthErrorCode.facebookSignInCancelled));
       }
 
       return Failure(_mapFirebaseAuthException(e));
     } catch (e) {
       if (_looksCancelled(e)) {
-        return Failure(
-            AuthError.withCode(AuthErrorCode.facebookSignInCancelled));
+        return Failure(AuthError.withCode(AuthErrorCode.facebookSignInCancelled));
       }
 
       return Failure(UnknownError());
@@ -303,6 +304,28 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
         );
       }
 
+      return Failure(UnknownError());
+    }
+  }
+
+  @override
+  Future<Result<bool>> sendPasswordResetEmail({
+    required String email,
+  }) async {
+    try {
+      await auth.sendPasswordResetEmail(email: email);
+      return Success(true);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'invalid-email') {
+        return Failure(AuthError.withCode(AuthErrorCode.invalidEmail));
+      }
+
+      if (e.code == 'user-not-found') {
+        return Failure(AuthError.withCode(AuthErrorCode.userNotFound));
+      }
+
+      return Failure(_mapFirebaseAuthException(e));
+    } catch (_) {
       return Failure(UnknownError());
     }
   }
@@ -351,7 +374,9 @@ class FirebaseAuthRemoteDataSource implements AuthRemoteDataSource {
       return AuthError.withCode(AuthErrorCode.invalidEmail);
     }
 
-    if (code == 'user-not-found' || code == 'wrong-password' || code == 'invalid-credential') {
+    if (code == 'user-not-found' ||
+        code == 'wrong-password' ||
+        code == 'invalid-credential') {
       return AuthError.withCode(AuthErrorCode.invalidCredentials);
     }
 

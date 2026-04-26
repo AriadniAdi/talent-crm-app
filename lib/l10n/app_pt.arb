@@ -369,6 +369,64 @@
     "type": "text"
   },
 
+  "forgotPasswordAction": "Esqueci minha senha",
+  "@forgotPasswordAction": {
+    "description": "Ação para abrir o fluxo de recuperação de senha",
+    "type": "text"
+  },
+
+  "forgotPasswordTitle": "Recuperar senha",
+  "@forgotPasswordTitle": {
+    "description": "Título da tela de recuperação de senha",
+    "type": "text"
+  },
+
+  "forgotPasswordSubtitle": "Informe seu e-mail para receber o link de redefinição.",
+  "@forgotPasswordSubtitle": {
+    "description": "Subtítulo da tela de recuperação de senha",
+    "type": "text"
+  },
+
+  "forgotPasswordHelper": "Vamos enviar um e-mail com as instruções para criar uma nova senha e voltar a acessar sua conta com segurança.",
+  "@forgotPasswordHelper": {
+    "description": "Texto de apoio da tela de recuperação de senha",
+    "type": "text"
+  },
+
+  "sendRecoveryEmail": "Enviar e-mail de recuperação",
+  "@sendRecoveryEmail": {
+    "description": "Botão para enviar o e-mail de recuperação de senha",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentTitle": "Confira seu e-mail",
+  "@passwordResetEmailSentTitle": {
+    "description": "Título do estado de sucesso após envio do e-mail de redefinição",
+    "type": "text"
+  },
+
+  "passwordResetEmailSentMessage": "Enviamos um link de redefinição para {email}. Abra sua caixa de entrada e siga as instruções para criar uma nova senha.",
+  "@passwordResetEmailSentMessage": {
+    "description": "Mensagem exibida após envio do e-mail de redefinição de senha",
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+
+  "backToLogin": "Voltar para o login",
+  "@backToLogin": {
+    "description": "Botão para voltar à tela de login por e-mail",
+    "type": "text"
+  },
+
+  "useAnotherEmail": "Usar outro e-mail",
+  "@useAnotherEmail": {
+    "description": "Ação para alterar o e-mail após sucesso no envio",
+    "type": "text"
+  },
+
   "signIn": "Entrar",
   "@signIn": {
     "description": "Texto do botão de entrar",
@@ -439,6 +497,12 @@
     "type": "text"
   },
 
+  "authUserNotFound": "Nenhuma conta foi encontrada com esse e-mail",
+  "@authUserNotFound": {
+    "description": "Erro exibido quando não existe usuário para o e-mail informado",
+    "type": "text"
+  },
+
   "authGenericFailure": "Erro na autenticação",
   "@authGenericFailure": {
     "description": "Mensagem genérica para falhas de autenticação",
@@ -499,11 +563,6 @@
   "resendEmail": "Reenviar e-mail de confirmação",
   "@resendEmail": {
     "description": "Botão para reenviar o e-mail de verificação",
-    "type": "text"
-  },
-  "backToLogin": "Voltar para o login",
-  "@backToLogin": {
-    "description": "Botão para voltar à tela de login",
     "type": "text"
   }
 }
