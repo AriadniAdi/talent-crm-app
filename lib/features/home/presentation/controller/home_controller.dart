@@ -59,7 +59,7 @@ class HomeController extends GetxController {
         );
 
         final context = Get.context;
-        if (context != null && Get.isRegistered<NotificationController>()) {
+        if (context != null && context.mounted && Get.isRegistered<NotificationController>()) {
           final notificationController = Get.find<NotificationController>();
           notificationController.addNotification(
             context.translate.talentsUpdatedNotification,

@@ -144,7 +144,7 @@ class VoiceController extends GetxController {
       _repository.addVoiceNote(note);
 
       final context = Get.context;
-      if (context != null) {
+      if (context != null && context.mounted) {
         final notificationController = Get.find<NotificationController>();
         notificationController.addNotification(
           context.translate.voiceNoteSavedNotification,
