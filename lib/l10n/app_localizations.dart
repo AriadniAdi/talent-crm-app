@@ -607,17 +607,17 @@ abstract class AppLocalizations {
   /// **'Invalid email or password'**
   String get authInvalidCredentials;
 
-  /// Error shown when there is no user for the provided email
-  ///
-  /// In en, this message translates to:
-  /// **'No account was found with this email'**
-  String get authUserNotFound;
-
   /// Error shown when the app Firebase/Auth configuration is invalid, expired, or unauthorized
   ///
   /// In en, this message translates to:
   /// **'This app\'s Firebase configuration is invalid or expired. Update the API key and the project\'s google-services.json file.'**
   String get authConfigurationInvalid;
+
+  /// Error shown when there is no user for the provided email
+  ///
+  /// In en, this message translates to:
+  /// **'No account was found with this email'**
+  String get authUserNotFound;
 
   /// Generic message for authentication failures
   ///
@@ -654,6 +654,7 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Recording {id}'**
   String recordingLabel(String id);
+
   /// Title of the email verification screen
   ///
   /// In en, this message translates to:
@@ -678,6 +679,17 @@ abstract class AppLocalizations {
   /// **'Resend confirmation email'**
   String get resendEmail;
 
+  /// Notification shown when a voice note is saved
+  ///
+  /// In en, this message translates to:
+  /// **'Voice note saved successfully'**
+  String get voiceNoteSavedNotification;
+
+  /// Notification shown when talent recordings are updated
+  ///
+  /// In en, this message translates to:
+  /// **'Talent recordings updated'**
+  String get talentsUpdatedNotification;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

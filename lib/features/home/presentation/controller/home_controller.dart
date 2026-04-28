@@ -5,6 +5,8 @@ import 'package:talent_crm_app/features/talent/entities/talent.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_recent_talent_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/get_talents_usecase.dart';
 import 'package:talent_crm_app/features/talent/usecases/search_talents_usecase.dart';
+import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 
 class HomeController extends GetxController {
   final GetTalentsUseCase getTalentsUseCase;
@@ -21,7 +23,6 @@ class HomeController extends GetxController {
             searchTalentsUseCase ?? const SearchTalentsUseCase();
 
   final selectedIndex = 0.obs;
-  final notificationsCount = 0.obs;
 
   final RxList<Talent> allEmployees = <Talent>[].obs;
   final RxList<Talent> recentEmployees = <Talent>[].obs;
@@ -34,8 +35,6 @@ class HomeController extends GetxController {
   List<Talent> _allOriginal = const [];
 
   void changeTab(int index) => selectedIndex.value = index;
-
-  void updateNotificationCount(int value) => notificationsCount.value = value;
 
   @override
   void onInit() {
@@ -58,6 +57,15 @@ class HomeController extends GetxController {
         recentEmployees.assignAll(
           getRecentTalentsUseCase(talents, limit: 4),
         );
+
+        final context = Get.context;
+        if (context != null && context.mounted && Get.isRegistered<NotificationController>()) {
+          final notificationController = Get.find<NotificationController>();
+          notificationController.addNotification(
+            context.translate.talentsUpdatedNotification,
+            context.translate.talentsUpdatedNotification,
+          );
+        }
       },
       failure: (error) {
         screenError.value = error;

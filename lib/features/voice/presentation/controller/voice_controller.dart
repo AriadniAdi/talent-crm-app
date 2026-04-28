@@ -6,8 +6,10 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:record/record.dart';
 import 'package:talent_crm_app/core/errors/app_error.dart';
+import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/features/voice/entities/voice_note.dart';
+import 'package:talent_crm_app/l10n/translate.dart';
 import 'package:uuid/uuid.dart';
 
 typedef DocumentsDirectoryProvider = Future<Directory> Function();
@@ -140,6 +142,16 @@ class VoiceController extends GetxController {
         createdAt: DateTime.now(),
       );
       _repository.addVoiceNote(note);
+
+      final context = Get.context;
+      if (context != null && context.mounted) {
+        final notificationController = Get.find<NotificationController>();
+        notificationController.addNotification(
+          context.translate.voiceNoteSavedNotification,
+          context.translate.voiceNoteSavedNotification,
+        );
+      }
+
       update();
     } catch (_) {
       _stopwatch
