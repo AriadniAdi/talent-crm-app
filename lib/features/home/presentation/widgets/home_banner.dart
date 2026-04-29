@@ -17,6 +17,10 @@ class HomeBanner extends StatelessWidget {
 
     return AppBanner(
       backgroundKey: const Key('home_banner_background'),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 32,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
