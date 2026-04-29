@@ -14,12 +14,11 @@ void main() {
   tearDown(() {
     Get.reset();
   });
-  testWidgets('HomeBanner renders title, search field and talent count', (tester) async {
+  testWidgets('HomeBanner renders search field and talent count', (tester) async {
     await tester.pumpWidget(
       wrapper(
         Scaffold(
           body: HomeBanner(
-            title: 'Connect',
             onSearchChanged: (v) {},
             totalTalents: 38,
           ),
@@ -27,7 +26,6 @@ void main() {
       ),
     );
 
-    expect(find.text('Connect'), findsOneWidget);
     expect(find.byType(TextField), findsOneWidget);
     expect(find.text('38 Talentos Cadastrados'), findsOneWidget);
   });
@@ -38,7 +36,6 @@ void main() {
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
           onSearchChanged: (v) {
             searchValue = v;
           },
@@ -57,7 +54,6 @@ void main() {
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
           onSearchChanged: (v) {},
           totalTalents: 0,
         ),
@@ -74,7 +70,6 @@ void main() {
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
           onSearchChanged: (v) {},
           totalTalents: 0,
         ),

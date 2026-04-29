@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 
 class HomeBanner extends StatelessWidget {
-  final String title;
   final ValueChanged<String> onSearchChanged;
   final int totalTalents;
 
   const HomeBanner({
     super.key,
-    required this.title,
     required this.onSearchChanged,
     required this.totalTalents,
   });
@@ -22,14 +20,6 @@ class HomeBanner extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: theme.textTheme.titleLarge?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: AppSpacing.md),
           Container(
             decoration: BoxDecoration(
               color: Colors.white,

@@ -20,7 +20,6 @@ class HomePage extends GetView<HomeController> {
           children: [
             const SizedBox(height: AppSpacing.lg),
             Obx(() => HomeBanner(
-                  title: context.translate.appTitle,
                   onSearchChanged: controller.search,
                   totalTalents: controller.totalTalentsCount,
                 )),
