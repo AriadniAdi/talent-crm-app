@@ -67,9 +67,11 @@ class HomeShell extends GetView<HomeController> {
           padding: EdgeInsets.zero,
           actions: [
             const NotificationsAppBarIcon(),
+            const SizedBox(width: AppSpacing.sm),
             const ProfileAvatarButton(
               account: Account(id: 1),
             ),
+            const SizedBox(width: AppSpacing.sm),
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () => Get.find<AuthManager>().signOut(),

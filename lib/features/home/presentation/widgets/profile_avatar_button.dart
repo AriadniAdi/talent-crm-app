@@ -19,7 +19,7 @@ class ProfileAvatarButton extends StatelessWidget {
     final colors = Theme.of(context).colorScheme;
 
     return Padding(
-      padding: const EdgeInsets.only(right: AppSpacing.lg),
+      padding: const EdgeInsets.only(right: 0),
       child: InkWell(
         borderRadius: BorderRadius.circular(AppSpacing.xl),
         onTap: () => Get.toNamed(AppRoutes.account),
