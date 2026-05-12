@@ -17,7 +17,7 @@ void main() {
   tearDown(() {
     Get.reset();
   });
-  testWidgets('HomeBottomBar renders 4 destinations', (tester) async {
+  testWidgets('HomeBottomBar renders 3 destinations', (tester) async {
     await tester.pumpWidget(
       wrapper(
         Container(),
@@ -28,7 +28,7 @@ void main() {
       ),
     );
 
-    expect(find.byType(NavigationDestination), findsNWidgets(4));
+    expect(find.byType(NavigationDestination), findsNWidgets(3));
   });
 
   testWidgets('HomeBottomBar uses correct selectedIndex', (tester) async {

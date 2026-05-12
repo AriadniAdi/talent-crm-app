@@ -33,6 +33,9 @@ class HomeController extends GetxController {
   final RxString searchQuery = ''.obs;
 
   List<Talent> _allOriginal = const [];
+  final RxInt _totalTalentsCount = 0.obs;
+
+  int get totalTalentsCount => _totalTalentsCount.value;
 
   void changeTab(int index) => selectedIndex.value = index;
 
@@ -51,6 +54,7 @@ class HomeController extends GetxController {
     result.when(
       success: (talents) {
         _allOriginal = talents;
+        _totalTalentsCount.value = talents.length;
 
         allEmployees.assignAll(talents);
 

@@ -2,17 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 
 class HomeBanner extends StatelessWidget {
-  final String title;
-  final String subtitle;
-  final String buttonText;
-  final VoidCallback onPressed;
+  final ValueChanged<String> onSearchChanged;
+  final int totalTalents;
 
   const HomeBanner({
     super.key,
-    required this.title,
-    required this.subtitle,
-    required this.buttonText,
-    required this.onPressed,
+    required this.onSearchChanged,
+    required this.totalTalents,
   });
 
   @override
@@ -21,37 +17,58 @@ class HomeBanner extends StatelessWidget {
 
     return AppBanner(
       backgroundKey: const Key('home_banner_background'),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: theme.textTheme.titleLarge?.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            subtitle,
-            style: theme.textTheme.bodyMedium?.copyWith(
-              color: Colors.white.withValues(alpha: 0.9),
-            ),
-          ),
-          const SizedBox(height: AppSpacing.lg),
-          AppPrimaryButton(
-            label: buttonText,
-            onPressed: onPressed,
-            height: 44,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: theme.colorScheme.surface.withValues(alpha: 0.9),
-              foregroundColor: theme.colorScheme.primary,
-              shape: RoundedRectangleBorder(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 32,
+      ),
+      child: SizedBox(
+        height: 140,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(12),
               ),
+              child: TextField(
+                onChanged: onSearchChanged,
+                decoration: InputDecoration(
+                  hintText: 'Buscar funcionário por nome ou cargo...',
+                  hintStyle: theme.textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[600],
+                  ),
+                  prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
+                  border: InputBorder.none,
+                  contentPadding: const EdgeInsets.symmetric(
+                    vertical: 12,
+                  ),
+                ),
+              ),
             ),
-          ),
-        ],
+            Container(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12,
+                vertical: 6,
+              ),
+              decoration: BoxDecoration(
+                color: Colors.white.withValues(alpha: 0.2),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
+                  color: Colors.white.withValues(alpha: 0.3),
+                ),
+              ),
+              child: Text(
+                '$totalTalents Talentos Cadastrados',
+                style: theme.textTheme.bodySmall?.copyWith(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

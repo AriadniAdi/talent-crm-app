@@ -17,7 +17,7 @@ class NotificationsAppBarIcon extends GetView<HomeController> {
         children: [
           IconButton(
             icon: const Icon(Icons.notifications_none),
-            onPressed: () => controller.changeTab(2),
+            onPressed: () => controller.changeTab(1),
           ),
           if (count > 0)
             Positioned(

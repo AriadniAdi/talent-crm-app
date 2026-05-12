@@ -70,9 +70,11 @@ class HomeShell extends GetView<HomeController> {
           padding: EdgeInsets.zero,
           actions: [
             const NotificationsAppBarIcon(),
+            const SizedBox(width: AppSpacing.sm),
             const ProfileAvatarButton(
               account: Account(id: 1),
             ),
+            const SizedBox(width: AppSpacing.sm),
             IconButton(
               icon: const Icon(Icons.logout),
               onPressed: () => Get.find<AuthManager>().signOut(),
@@ -94,11 +96,8 @@ class HomeShell extends GetView<HomeController> {
       case 0:
         return const HomePage();
       case 1:
-        return Center(
-            key: const Key('teamsKey'), child: Text(context.translate.teams));
-      case 2:
         return _buildNotificationsList(context);
-      case 3:
+      case 2:
         return const VoicesPage();
       default:
         return const HomePage();
@@ -135,7 +134,8 @@ class HomeShell extends GetView<HomeController> {
               title: Text(
                 notification.title,
                 style: TextStyle(
-                  fontWeight: notification.isRead ? FontWeight.normal : FontWeight.bold,
+                  fontWeight:
+                      notification.isRead ? FontWeight.normal : FontWeight.bold,
                 ),
               ),
               subtitle: Text(notification.message),

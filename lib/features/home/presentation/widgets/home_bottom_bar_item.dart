@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 
-enum HomeTab { home, teams, notifications, voiceNotes }
+enum HomeTab { home, notifications, voiceNotes }
 
 class HomeBottomBarItemConfig {
   final HomeTab tab;
@@ -23,12 +23,6 @@ final homeBottomBarItems = <HomeBottomBarItemConfig>[
     icon: Icons.home_outlined,
     activeIcon: Icons.home,
     label: (l10n) => l10n.home,
-  ),
-  HomeBottomBarItemConfig(
-    tab: HomeTab.teams,
-    icon: Icons.group_outlined,
-    activeIcon: Icons.group,
-    label: (l10n) => l10n.teams,
   ),
   HomeBottomBarItemConfig(
     tab: HomeTab.notifications,

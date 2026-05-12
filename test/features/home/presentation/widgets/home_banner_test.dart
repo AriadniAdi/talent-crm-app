@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:get/get_common/get_reset.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/src/extension_navigation.dart';
+import 'package:get/get.dart';
 
 import 'package:talent_crm_app/features/home/presentation/widgets/home_banner.dart';
 import '../../../helpers/wrapper.dart';
@@ -16,56 +14,48 @@ void main() {
   tearDown(() {
     Get.reset();
   });
-  testWidgets('HomeBanner renders title, subtitle and button', (tester) async {
+  testWidgets('HomeBanner renders search field and talent count', (tester) async {
     await tester.pumpWidget(
       wrapper(
         Scaffold(
           body: HomeBanner(
-            title: 'Connect',
-            subtitle: 'Explore talents',
-            buttonText: 'View',
-            onPressed: () {},
+            onSearchChanged: (v) {},
+            totalTalents: 38,
           ),
         ),
       ),
     );
 
-    expect(find.text('Connect'), findsOneWidget);
-    expect(find.text('Explore talents'), findsOneWidget);
-    expect(find.text('View'), findsOneWidget);
-    expect(find.byType(ElevatedButton), findsOneWidget);
+    expect(find.byType(TextField), findsOneWidget);
+    expect(find.text('38 Talentos Cadastrados'), findsOneWidget);
   });
 
-  testWidgets('HomeBanner calls onPressed when button tapped', (tester) async {
-    bool pressed = false;
+  testWidgets('HomeBanner calls onSearchChanged when typing', (tester) async {
+    String? searchValue;
 
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
-          subtitle: 'Subtitle',
-          buttonText: 'Click',
-          onPressed: () {
-            pressed = true;
+          onSearchChanged: (v) {
+            searchValue = v;
           },
+          totalTalents: 0,
         ),
       ),
     );
 
-    await tester.tap(find.byType(ElevatedButton));
+    await tester.enterText(find.byType(TextField), 'John');
     await tester.pump();
 
-    expect(pressed, isTrue);
+    expect(searchValue, 'John');
   });
 
   testWidgets('HomeBanner contains CustomPaint background', (tester) async {
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
-          subtitle: 'Subtitle',
-          buttonText: 'Click',
-          onPressed: () {},
+          onSearchChanged: (v) {},
+          totalTalents: 0,
         ),
       ),
     );
@@ -80,16 +70,17 @@ void main() {
     await tester.pumpWidget(
       wrapper(
         HomeBanner(
-          title: 'Title',
-          subtitle: 'Subtitle',
-          buttonText: 'Click',
-          onPressed: () {},
+          onSearchChanged: (v) {},
+          totalTalents: 0,
         ),
       ),
     );
 
     final container = tester.widget<Container>(
-      find.byType(Container).first,
+      find.descendant(
+        of: find.byType(HomeBanner),
+        matching: find.byType(Container),
+      ).first,
     );
 
     expect(container.constraints?.maxWidth ?? double.infinity,
