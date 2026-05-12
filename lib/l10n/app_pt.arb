@@ -564,5 +564,15 @@
   "@resendEmail": {
     "description": "Botão para reenviar o e-mail de verificação",
     "type": "text"
+  },
+  "voiceNoteSavedNotification": "Nota de voz salva com sucesso",
+  "@voiceNoteSavedNotification": {
+    "description": "Notificação exibida ao salvar uma nota de voz",
+    "type": "text"
+  },
+  "talentsUpdatedNotification": "Gravações dos talentos atualizadas",
+  "@talentsUpdatedNotification": {
+    "description": "Notificação exibida ao atualizar as gravações dos talentos",
+    "type": "text"
   }
 }

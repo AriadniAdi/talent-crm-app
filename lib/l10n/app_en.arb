@@ -573,5 +573,15 @@
   "@resendEmail": {
     "description": "Button to resend the verification email",
     "type": "text"
+  },
+  "voiceNoteSavedNotification": "Voice note saved successfully",
+  "@voiceNoteSavedNotification": {
+    "description": "Notification shown when a voice note is saved",
+    "type": "text"
+  },
+  "talentsUpdatedNotification": "Talent recordings updated",
+  "@talentsUpdatedNotification": {
+    "description": "Notification shown when talent recordings are updated",
+    "type": "text"
   }
 }
