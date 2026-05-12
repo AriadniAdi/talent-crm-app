@@ -9,7 +9,6 @@ import 'package:talent_crm_app/features/account/repositories/user_repository.dar
 import 'package:talent_crm_app/features/talent/data/datasources/talent_remote_data_source.dart';
 import 'package:talent_crm_app/features/talent/data/repositories/talent_repository_impl.dart';
 import 'package:talent_crm_app/features/talent/repositories/talent_repository.dart';
-import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:talent_crm_app/l10n/app_localizations.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 import 'package:mocktail/mocktail.dart';
@@ -26,10 +25,6 @@ Widget wrapper(
     Get.put<AppLocaleService>(
       AppLocaleService.inMemory(initialLocale: locale),
     );
-  }
-
-  if (!Get.isRegistered<NotificationController>()) {
-    Get.put<NotificationController>(NotificationController());
   }
 
   Widget content = child;
@@ -123,10 +118,6 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
     Get.put<AuthManager>(MockAuthManager());
   }
 
-  if (!Get.isRegistered<NotificationController>()) {
-    Get.put<NotificationController>(NotificationController());
-  }
-
   if (!Get.isRegistered<UserRepository>()) {
     Get.put<UserRepository>(MockUserRepository());
   }
@@ -135,5 +126,5 @@ void setupTestDependencies<T extends GetxController>({T? mockController}) {
     () => TalentRemoteDataSource(apiClient: Get.find()),
   );
   Get.lazyPut<TalentRepository>(
-    () => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
+      () => TalentRepositoryImpl(Get.find<TalentRemoteDataSource>()));
 }

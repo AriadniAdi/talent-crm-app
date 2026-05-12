@@ -1,0 +1,264 @@
+00:00 +0: loading /app/test/l10n/translate_test.dart
+00:00 +0: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:00 +1: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:00 +2: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:00 +3: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:00 +4: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:00 +5: /app/test/l10n/translate_test.dart: LocalizationExtension returns AppLocalizations
+00:01 +6: /app/test/l10n/translate_test.dart: context.translate equals AppLocalizations.of(context)
+00:02 +7: /app/test/core/extensions/json_safe_extension_test.dart: getInt converts string to int
+00:02 +8: /app/test/core/extensions/json_safe_extension_test.dart: getString returns empty if key not exists
+00:02 +9: /app/test/core/extensions/json_safe_extension_test.dart: getDouble returns 0.0 if invalid
+00:03 +10: /app/test/core/widgets/error_state_widget_test.dart: ErrorStateWidget should render the error message correctly
+00:04 +11: /app/test/core/widgets/base_page_test.dart: BasePage renders child content
+00:04 +12: /app/test/core/widgets/base_page_test.dart: BasePage renders child content
+00:04 +13: /app/test/core/widgets/base_page_test.dart: BasePage renders child content
+00:05 +14: /app/test/core/widgets/base_page_test.dart: BasePage renders child content
+00:05 +15: /app/test/core/widgets/base_page_test.dart: BasePage shows AppBar when showAppBar is true
+00:05 +16: /app/test/core/widgets/base_page_test.dart: BasePage hides AppBar when showAppBar is false
+00:05 +17: /app/test/core/widgets/base_page_test.dart: BasePage shows back button when enabled
+00:05 +18: /app/test/core/widgets/base_page_test.dart: BasePage hides back button when disabled
+00:05 +19: /app/test/core/widgets/base_page_test.dart: BasePage applies default padding
+00:05 +20: /app/test/core/widgets/base_page_test.dart: BasePage applies custom padding
+00:05 +21: /app/test/core/widgets/base_page_test.dart: BasePage renders bottomNavigationBar
+00:05 +22: /app/test/core/widgets/base_page_test.dart: BasePage renders actions in AppBar
+00:06 +23: /app/test/core/routes/app_pages_test.dart: AppPages initial route is splash
+00:06 +24: /app/test/core/routes/app_pages_test.dart: AppPages contains splash route
+00:06 +25: /app/test/core/routes/app_pages_test.dart: AppPages contains home route with binding
+00:06 +26: /app/test/core/routes/app_pages_test.dart: AppPages contains login route with binding
+00:06 +27: /app/test/core/routes/app_pages_test.dart: AppPages contains email login route with binding
+00:06 +28: /app/test/core/routes/app_pages_test.dart: AppPages contains forgot password route with binding
+00:06 +29: /app/test/core/routes/app_pages_test.dart: AppPages contains account route with binding
+00:06 +30: /app/test/core/routes/app_pages_test.dart: AppPages all route names are unique
+00:06 +31: /app/test/core/routes/app_routes_test.dart: AppRoutes route values are correct
+00:07 +32: /app/test/core/routes/app_routes_test.dart: AppRoutes all routes start with "/"
+00:07 +33: /app/test/core/routes/app_routes_test.dart: AppRoutes routes are unique
+00:07 +34: /app/test/core/errors/app_error_extension_test.dart: AppErrorX returns provider-specific authentication message when available
+00:07 +35: /app/test/core/errors/app_error_extension_test.dart: AppErrorX falls back to generic authentication message when no message exists
+00:08 +36: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Returns empty string when input is empty
+00:08 +37: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Keeps number unchanged when there is no extension
+00:08 +38: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Formats number with extension using lowercase x
+00:08 +39: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Formats number with extension using uppercase X
+00:08 +40: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Formats number with extension when there is a space after x
+00:08 +41: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Removes duplicated spaces before processing
+00:08 +42: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Preserves original formatting of base number
+00:08 +43: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Keeps dot-separated phone numbers unchanged
+00:08 +44: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Removes extension while keeping the base number intact
+00:08 +45: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Ignores x when it is not followed by digits
+00:08 +46: /app/test/core/formatters/format_internacional_phone_test.dart: formatInternationalPhone Ignores incomplete or invalid extension values
+00:09 +47: /app/test/core/global_binding_test.dart: GlobalBinding registers http.Client in Get
+00:09 +48: /app/test/core/global_binding_test.dart: GlobalBinding registered http.Client can be retrieved
+00:09 +49: /app/test/core/global_binding_test.dart: GlobalBinding http.Client is permanent
+00:09 +50: /app/test/core/global_binding_test.dart: GlobalBinding registers auth repository lazily
+00:09 +51: /app/test/core/design/painters/dotted_background_painter_test.dart: DottedBackgroundPainter shouldRepaint returns false
+00:09 +52: /app/test/core/design/painters/dotted_background_painter_test.dart: paint does not throw
+00:10 +53: /app/test/core/design/painters/network_painter_test.dart: NetworkPainter shouldRepaint returns false
+00:10 +54: /app/test/core/design/painters/network_painter_test.dart: NetworkPainter paint does not throw for normal size
+00:10 +55: /app/test/core/design/painters/network_painter_test.dart: NetworkPainter paint does not throw for small size
+00:10 +56: /app/test/core/design/painters/network_painter_test.dart: NetworkPainter color is stored correctly
+00:11 +57: /app/test/core/design/app_banner_test.dart: AppBanner Widget deve renderizar o child corretamente
+00:12 +58: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo renders without crashing
+00:12 +59: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo renders without crashing
+00:12 +60: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo renders without crashing
+00:12 +61: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo renders without crashing
+00:13 +62: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo respects size parameter
+00:13 +63: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo has correct dimensions
+00:13 +64: /app/test/core/design/brand/talent_logo_test.dart: TalentLogo uses NetworkPainter
+00:13 +65: /app/test/core/design/extensions/color_extensions_test.dart: ColorHex extension returns hex with leading hash by default
+00:13 +66: /app/test/core/design/extensions/color_extensions_test.dart: ColorHex extension returns hex without leading hash when specified
+00:13 +67: /app/test/core/design/extensions/color_extensions_test.dart: ColorHex extension correctly converts black
+00:13 +68: /app/test/core/design/extensions/color_extensions_test.dart: ColorHex extension correctly converts white
+00:13 +69: /app/test/core/design/extensions/color_extensions_test.dart: ColorHex extension values are clamped between 0 and 255
+00:14 +70: /app/test/core/design/animations/fade_slide_test.dart: renders child correctly
+00:15 +71: /app/test/core/design/animations/fade_slide_test.dart: renders child correctly
+00:15 +72: /app/test/core/design/animations/fade_slide_test.dart: renders child correctly
+00:15 +73: /app/test/core/design/animations/fade_slide_test.dart: renders child correctly
+00:15 +74: /app/test/core/design/animations/fade_slide_test.dart: renders child correctly
+00:15 +75: /app/test/core/design/animations/fade_slide_test.dart: starts fully transparent
+00:15 +76: /app/test/core/design/animations/fade_slide_test.dart: animates to full opacity after duration
+00:15 +77: /app/test/core/design/animations/fade_slide_test.dart: applies vertical translation during animation
+00:16 +78: /app/test/domain/entities/contact_talent_test.dart: ContactTalent should create contact with email and phone
+00:17 +79: /app/test/domain/entities/talent_test.dart: Talent Entity two talents with same values should be equal
+00:17 +80: /app/test/domain/entities/talent_test.dart: Talent Entity should generate avatar url containing encoded name
+00:17 +81: /app/test/domain/entities/talent_test.dart: Talent Entity avatar url should be deterministic based on id
+00:17 +82: /app/test/domain/usecases/talent/search_talents_usecase_test.dart: SearchTalentsUseCase should return original list when query is empty
+00:17 +83: /app/test/domain/usecases/talent/search_talents_usecase_test.dart: SearchTalentsUseCase should ignore whitespace-only query and return original list
+00:17 +84: /app/test/domain/usecases/talent/search_talents_usecase_test.dart: SearchTalentsUseCase should filter talents by name (case-insensitive)
+00:17 +85: /app/test/domain/usecases/talent/search_talents_usecase_test.dart: SearchTalentsUseCase should return empty list when no match is found
+00:17 +86: /app/test/domain/usecases/talent/search_talents_usecase_test.dart: SearchTalentsUseCase should match partial name
+00:18 +87: /app/test/domain/usecases/talent/get_recent_talent_usecase_test.dart: GetRecentTalentsUseCase should return empty list when input list is empty
+00:18 +88: /app/test/domain/usecases/talent/get_recent_talent_usecase_test.dart: GetRecentTalentsUseCase should return first 4 items by default
+00:18 +89: /app/test/domain/usecases/talent/get_recent_talent_usecase_test.dart: GetRecentTalentsUseCase should return limited items based on limit parameter
+00:18 +90: /app/test/domain/usecases/talent/get_recent_talent_usecase_test.dart: GetRecentTalentsUseCase should return all items if limit is greater than list length
+00:18 +91: /app/test/domain/usecases/talent/get_recent_talent_usecase_test.dart: GetRecentTalentsUseCase should return empty list if limit is zero or negative
+00:18 +92: /app/test/domain/usecases/talent/get_talent_usecase_test.dart: GetTalentsUseCase should return talents from repository
+00:18 +93: /app/test/domain/usecases/talent/get_talent_usecase_test.dart: GetTalentsUseCase should propagate exception when repository throws
+00:19 +94: /app/test/domain/repositories/talent_repository_test.dart: TalentRepositoryImpl.getTalents should return list of talents when datasource succeeds
+00:19 +95: /app/test/domain/repositories/talent_repository_test.dart: TalentRepositoryImpl.getTalents should propagate exception when datasource throws
+00:20 +96: /app/test/data/models/talent_model_test.dart: TalentModel fromJson should correctly parse complete json
+00:20 +97: /app/test/data/models/talent_model_test.dart: TalentModel fromJson should return default values when json is empty
+00:20 +98: /app/test/data/models/talent_model_test.dart: TalentModel fromJson should handle null nested objects safely
+00:20 +99: /app/test/data/models/talent_model_test.dart: TalentModel fromJson should not crash if nested objects have unexpected type
+00:20 +100: /app/test/data/models/talent_model_test.dart: TalentModel toEntity should convert model to Talent entity correctly
+00:21 +101: /app/test/main_test.dart: MyApp builds GetMaterialApp
+00:21 +102: /app/test/main_test.dart: MyApp builds GetMaterialApp
+00:21 +103: /app/test/main_test.dart: MyApp builds GetMaterialApp
+00:21 +104: /app/test/main_test.dart: MyApp builds GetMaterialApp
+00:22 +105: /app/test/main_test.dart: Initial route is splash
+00:23 +106: /app/test/main_test.dart: Locale is Portuguese
+00:23 +107: /app/test/main_test.dart: Locale is Portuguese
+00:23 +108: /app/test/main_test.dart: Locale is Portuguese
+00:23 +109: /app/test/main_test.dart: Localization delegates include AppLocalizations
+00:23 +110: /app/test/main_test.dart: Debug banner is disabled
+00:24 +111: /app/test/features/account/presentation/account_page_test.dart: AccountPage renders with language selector
+00:24 +112: /app/test/features/account/presentation/account_page_test.dart: AccountPage renders with language selector
+00:26 +113: /app/test/features/account/presentation/account_shell_test.dart: AccountShell renders AccountPage
+00:27 +114: /app/test/features/account/presentation/account_shell_test.dart: AccountShell renders AccountPage
+00:28 +115: /app/test/features/talent/entities/talent_test.dart: Equatable works correctly
+00:28 +116: /app/test/features/talent/entities/talent_test.dart: avatarUrl is deterministic for same id
+00:28 +117: /app/test/features/talent/entities/talent_test.dart: avatarUrl changes with different id
+00:28 +118: /app/test/features/talent/entities/talent_test.dart: avatarUrl contains encoded name
+00:28 +119: /app/test/features/talent/entities/talent_test.dart: avatarUrl does not contain # in background param
+00:28 +120: /app/test/features/talent/entities/talent_test.dart: avatarUrl contains required query params
+00:28 +121: /app/test/features/talent/entities/talent_test.dart: props contains all fields
+00:29 +122: /app/test/features/talent/usecases/get_talent_by_id_usecase_test.dart: GetTalentByIdUseCase should call repository.getTalentById with correct id
+00:29 +123: /app/test/features/talent/usecases/get_talent_by_id_usecase_test.dart: GetTalentByIdUseCase should return Failure when repository fails
+00:29 +124: /app/test/features/talent/usecases/get_talents_usecase_test.dart: GetTalentsUseCase should call repository.getTalents once
+00:29 +125: /app/test/features/talent/usecases/get_talents_usecase_test.dart: GetTalentsUseCase should return list of talents from repository
+00:29 +126: /app/test/features/talent/usecases/get_talents_usecase_test.dart: GetTalentsUseCase should propagate exception when repository throws
+00:30 +127: /app/test/features/talent/presentation/talent_page_test.dart: renders all sections properly
+00:31 +128: /app/test/features/talent/presentation/talent_shell_test.dart: TalentShell shows loading indicator when isLoading is true
+00:32 +129: /app/test/features/talent/presentation/talent_shell_test.dart: TalentShell shows loading indicator when isLoading is true
+00:32 +130: /app/test/features/talent/presentation/talent_shell_test.dart: TalentShell shows "Talent not found" when talent is null
+00:32 +131: /app/test/features/talent/presentation/talent_shell_test.dart: TalentShell renders TalentPage when talent exists
+00:33 +132: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: (setUpAll)
+00:33 +132: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalents should return list of json when status is 200
+00:33 +133: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalents should throw exception when status is not 200
+00:33 +134: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalents should throw exception when response is not a list
+00:33 +135: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalentById should call correct endpoint with id
+00:33 +136: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalentById should return Talent when status is 200
+00:33 +137: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: fetchTalentById should throw exception when status is not 200
+00:33 +138: /app/test/features/talent/data/datasources/talent_remote_data_source_test.dart: (tearDownAll)
+00:34 +138: /app/test/features/talent/repositories/talent_repository_test.dart: getTalents should call datasource.fetchTalents once
+00:34 +139: /app/test/features/talent/repositories/talent_repository_test.dart: getTalents should return list of talents from datasource
+00:34 +140: /app/test/features/talent/repositories/talent_repository_test.dart: getTalents should propagate exception when datasource throws
+00:34 +141: /app/test/features/talent/repositories/talent_repository_test.dart: getTalentById should call datasource.fetchTalentById with correct id
+00:34 +142: /app/test/features/talent/repositories/talent_repository_test.dart: getTalentById should return talent from datasource
+00:34 +143: /app/test/features/talent/repositories/talent_repository_test.dart: getTalentById should propagate exception when datasource throws
+00:34 +144: /app/test/features/register/presentation/register_page_test.dart: RegisterPage Render should render header and all fields
+00:36 +145: /app/test/features/register/presentation/register_shell_test.dart: RegisterShell Integration should render page
+00:36 +146: /app/test/features/register/presentation/register_shell_test.dart: RegisterShell Integration should toggle password via controller
+00:37 +147: /app/test/features/register/presentation/register_shell_test.dart: RegisterShell Integration should update loading state
+00:37 +148: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +149: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +150: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +151: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +152: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +153: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render all fields
+00:39 +154: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Render should render field error message for email
+00:39 +155: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Actions should call onRegister when tapping register button
+00:39 +156: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Controllers should keep typed values in controllers
+00:40 +157: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Controllers should keep typed values in controllers
+00:40 +158: /app/test/features/register/presentation/controller/register_controller_test.dart: RegisterPage Controllers should keep typed values in controllers
+00:41 +159: /app/test/features/home/presentation/widgets/home_content_test.dart: renders both sections with correct titles
+00:41 +160: /app/test/features/home/presentation/widgets/home_content_test.dart: renders both sections with correct titles
+00:41 +161: /app/test/features/home/presentation/widgets/home_content_test.dart: renders both sections with correct titles
+00:41 +162: /app/test/features/home/presentation/widgets/home_content_test.dart: renders both sections with correct titles
+00:42 +163: /app/test/features/home/presentation/widgets/home_bottom_bar_item_test.dart: homeBottomBarItems labels resolve correctly from l10n
+00:44 +164: /app/test/features/home/presentation/widgets/home_banner_test.dart: HomeBanner renders search field and talent count
+00:45 +165: /app/test/features/home/presentation/widgets/profile_avatar_button_test.dart: renders CircleAvatar and letter
+00:45 +166: /app/test/features/home/presentation/widgets/home_banner_test.dart: HomeBanner calls onSearchChanged when typing
+00:45 +167: /app/test/features/home/presentation/widgets/profile_avatar_button_test.dart: navigates to account route
+00:45 +168: /app/test/features/home/presentation/widgets/profile_avatar_button_test.dart: navigates to account route
+00:45 +169: /app/test/features/home/presentation/widgets/profile_avatar_button_test.dart: navigates to account route
+00:45 +170: /app/test/features/home/presentation/widgets/profile_avatar_button_test.dart: InkWell is tappable
+00:47 +171: /app/test/features/home/presentation/widgets/home_bottom_bar_test.dart: HomeBottomBar renders 3 destinations
+00:48 +172: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +173: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +174: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +175: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +176: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +177: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders employee name
+00:48 +178: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard renders avatar image
+00:48 +179: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard shows View Profile button
+00:49 +180: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: EmployeeCard button is tappable
+00:49 +181: /app/test/features/home/presentation/widgets/employee/employee_card_test.dart: (tearDownAll)
+00:50 +181: /app/test/features/home/presentation/widgets/employee/home_section_employees_test.dart: returns SizedBox.shrink when employees is empty
+00:51 +182: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: renders notification icon
+00:51 +183: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: renders notification icon
+00:51 +184: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: renders notification icon
+00:51 +185: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: does not show badge when count = 0
+00:51 +186: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: shows badge when count > 0
+00:51 +187: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: shows 9+ when count > 9
+00:51 +188: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: calls changeTab(2) when tapped
+00:52 +189: /app/test/features/home/presentation/widgets/notifications_app_bar_icon_test.dart: updates reactively when count changes
+00:52 +190: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +191: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +192: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +193: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +194: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +195: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +196: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +197: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +198: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render CircularProgressIndicator when isLoading is true
+00:53 +199: /app/test/features/home/presentation/home_shell_test.dart: HomeShell States should render ErrorStateWidget when there is a screen error and no employees
+00:53 +200: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should render HomePage when selectedIndex is 0
+00:54 +201: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should render HomeBottomBar
+00:54 +202: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should render HomeBottomBar
+00:54 +203: /app/test/features/home/home_binding_test.dart: HomeBinding HomeController resolves dependency chain correctly
+00:54 +204: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should show Notifications content when selectedIndex is 1
+00:55 +205: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should show Voice Notes content when selectedIndex is 2
+00:55 +206: /app/test/features/home/presentation/home_shell_test.dart: HomeShell Navigation should navigate to home when logo is tapped
+00:56 +207: /app/test/features/voice/presentation/controller/voice_controller_test.dart: (setUpAll)
+00:56 +207: /app/test/features/voice/presentation/controller/voice_controller_test.dart: toggleRecording starts recording when not recording
+00:56 +208: /app/test/features/voice/presentation/controller/voice_controller_test.dart: toggleRecording saves the recording into the shared repository when stopping
+00:56 +209: /app/test/features/voice/presentation/controller/voice_controller_test.dart: voice notes recorded in a talent controller are visible in the shared recordings controller
+00:56 +210: /app/test/features/voice/presentation/controller/voice_controller_test.dart: toggleRecording exposes an error when microphone permission is denied
+00:56 +211: /app/test/features/voice/presentation/controller/voice_controller_test.dart: (tearDownAll)
+00:56 +211: /app/test/features/voice/data/voice_repository_test.dart: addVoiceNote adds a note to the list
+00:56 +212: /app/test/features/voice/data/voice_repository_test.dart: deleteVoiceNote removes a note from the list
+00:56 +213: /app/test/features/voice/data/voice_repository_test.dart: getVoiceNotesByTalentId filters notes correctly
+00:57 +214: /app/test/features/splash/splash_page_test.dart: SplashPage renders logo and title
+00:57 +215: /app/test/features/splash/splash_page_test.dart: SplashPage renders logo and title
+00:57 +216: /app/test/features/splash/splash_page_test.dart: SplashPage renders logo and title
+00:58 +217: /app/test/features/splash/splash_page_test.dart: SplashPage navigates to login when not authenticated
+00:58 +218: /app/test/features/splash/splash_page_test.dart: SplashPage navigates to home when authenticated
+00:59 +219: /app/test/features/auth/presentation/login_page_test.dart: LoginPage Render should render social login options and primary CTA
+01:00 +220: /app/test/features/auth/presentation/forgot_password/forgot_password_page_test.dart: renders forgot password form
+01:00 +221: /app/test/features/auth/presentation/forgot_password/forgot_password_page_test.dart: renders forgot password form
+01:01 +222: /app/test/features/auth/presentation/forgot_password/forgot_password_page_test.dart: renders success state when email was sent
+01:01 +223: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should render all components
+01:02 +224: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should render all components
+01:02 +225: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should render all components
+01:02 +226: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should render all components
+01:02 +227: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should call resendVerificationEmail when button pressed
+01:03 +228: /app/test/features/auth/presentation/email_verification/email_verification_page_test.dart: should call signOut when back to login pressed
+01:03 +229: /app/test/features/auth/presentation/controller/login_controller_test.dart: LoginController continueWithGoogle delegates sign in and resets loading on success
+01:03 +230: /app/test/features/auth/presentation/controller/login_controller_test.dart: LoginController continueWithGoogle does not run twice while loading
+01:03 +231: /app/test/features/auth/presentation/controller/login_controller_test.dart: LoginController continueWithFacebook delegates sign in and resets loading
+01:04 +232: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: (setUpAll)
+01:04 +232: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource registerUser successfully creates user and sets data in firestore
+01:04 +233: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource registerUser returns AuthError when firebase throws email-already-in-use
+01:04 +234: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithGoogle successfully signs in with google
+01:04 +235: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithGoogle returns failure when user cancels google sign in
+01:04 +236: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithGoogle returns failure with provider message on google configuration error
+01:04 +237: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource sendPasswordResetEmail successfully sends password reset email
+01:04 +238: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource sendPasswordResetEmail returns AuthError when firebase throws user-not-found
+01:04 +239: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithFacebook successfully signs in with facebook
+01:04 +240: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithFacebook returns cancellation error when facebook sign in is cancelled
+01:04 +241: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithFacebook returns provider message when facebook sign in fails
+01:04 +242: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithFacebook returns failure when facebook login succeeds without token
+01:04 +243: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signInWithFacebook returns provider message when facebook login is already running
+01:04 +244: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signIn maps invalid-credential to invalid credentials
+01:04 +245: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signIn maps network-request-failed to NetworkError
+01:04 +246: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource signOut signs out from providers and firebase auth
+01:04 +247: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource sendEmailVerification successfully sends verification email
+01:04 +248: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: FirebaseAuthRemoteDataSource reloadUser successfully reloads user
+01:04 +249: /app/test/features/auth/data/datasources/auth_remote_data_source_test.dart: (tearDownAll)
+01:05 +249: /app/test/features/auth/repositories/auth_repository_test.dart: (setUpAll)
+01:05 +249: /app/test/features/auth/repositories/auth_repository_test.dart: AuthRepositoryImpl registerUser delegates to remote data source with all parameters
+01:05 +250: /app/test/features/auth/repositories/auth_repository_test.dart: AuthRepositoryImpl registerUser returns failure when data source fails
+01:05 +251: /app/test/features/auth/repositories/auth_repository_test.dart: AuthRepositoryImpl sendPasswordResetEmail delegates to remote data source
+01:05 +252: /app/test/features/auth/repositories/auth_repository_test.dart: AuthRepositoryImpl signInWithFacebook delegates to remote data source
+01:05 +253: /app/test/features/auth/repositories/auth_repository_test.dart: (tearDownAll)
+01:05 +253: All tests passed!

@@ -12,7 +12,6 @@ import 'package:talent_crm_app/features/voice/presentation/voices_page.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/notifications_app_bar_icon.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/profile_avatar_button.dart';
-import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:talent_crm_app/l10n/translate.dart';
 import 'package:talent_crm_app/core/auth_manager.dart';
 
@@ -40,8 +39,6 @@ class HomeShell extends GetView<HomeController> {
             child: Text(context.translate.noEmployeesFound),
           );
         }
-
-        final notificationController = Get.find<NotificationController>();
 
         return BasePage(
           title: InkWell(
@@ -83,7 +80,7 @@ class HomeShell extends GetView<HomeController> {
           bottomNavigationBar: HomeBottomBar(
             currentIndex: controller.selectedIndex.value,
             onTap: controller.changeTab,
-            notificationCount: notificationController.unreadCount,
+            notificationCount: controller.notificationsCount.value,
           ),
           child: _buildPage(context, controller.selectedIndex.value),
         );
@@ -96,58 +93,13 @@ class HomeShell extends GetView<HomeController> {
       case 0:
         return const HomePage();
       case 1:
-        return _buildNotificationsList(context);
+        return Center(
+            key: const Key('notificationsKey'),
+            child: Text(context.translate.notifications));
       case 2:
         return const VoicesPage();
       default:
         return const HomePage();
     }
-  }
-
-  Widget _buildNotificationsList(BuildContext context) {
-    final notificationController = Get.find<NotificationController>();
-
-    return Container(
-      key: const Key('notificationsKey'),
-      child: Obx(() {
-        final notifications = notificationController.notifications;
-
-        if (notifications.isEmpty) {
-          return Center(
-            child: Text(context.translate.notifications),
-          );
-        }
-
-        return ListView.separated(
-          padding: const EdgeInsets.all(16),
-          itemCount: notifications.length,
-          separatorBuilder: (context, index) => const Divider(),
-          itemBuilder: (context, index) {
-            final notification = notifications[index];
-            return ListTile(
-              leading: Icon(
-                notification.isRead
-                    ? Icons.notifications_outlined
-                    : Icons.notifications_active,
-                color: notification.isRead ? Colors.grey : AppColors.primary,
-              ),
-              title: Text(
-                notification.title,
-                style: TextStyle(
-                  fontWeight:
-                      notification.isRead ? FontWeight.normal : FontWeight.bold,
-                ),
-              ),
-              subtitle: Text(notification.message),
-              trailing: Text(
-                "${notification.timestamp.hour}:${notification.timestamp.minute.toString().padLeft(2, '0')}",
-                style: Theme.of(context).textTheme.bodySmall,
-              ),
-              onTap: () => notificationController.markAsRead(notification.id),
-            );
-          },
-        );
-      }),
-    );
   }
 }

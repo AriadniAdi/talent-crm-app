@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:talent_crm_app/core/design/design.dart';
 import 'package:talent_crm_app/features/home/presentation/controller/home_controller.dart';
-import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 
 class NotificationsAppBarIcon extends GetView<HomeController> {
   const NotificationsAppBarIcon({super.key});
@@ -10,7 +10,7 @@ class NotificationsAppBarIcon extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Obx(() {
-      final count = Get.find<NotificationController>().unreadCount;
+      final count = controller.notificationsCount.value;
 
       return Stack(
         clipBehavior: Clip.none,

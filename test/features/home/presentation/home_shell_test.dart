@@ -12,7 +12,6 @@ import 'package:talent_crm_app/features/home/presentation/home_page.dart';
 import 'package:talent_crm_app/features/voice/presentation/voices_page.dart';
 import 'package:talent_crm_app/features/voice/data/voice_repository.dart';
 import 'package:talent_crm_app/features/voice/presentation/controller/voice_controller.dart';
-import 'package:talent_crm_app/features/notifications/presentation/controller/notification_controller.dart';
 import 'package:talent_crm_app/features/home/presentation/widgets/home_bottom_bar.dart';
 import 'package:talent_crm_app/features/talent/entities/contact_talent.dart';
 import 'package:talent_crm_app/features/talent/entities/talent.dart';
@@ -31,8 +30,6 @@ class MockAudioPlayer extends Mock implements AudioPlayer {}
 
 void main() {
   late MockGetTalentsUseCase mockUseCase;
-  late MockAudioRecorder mockAudioRecorder;
-  late MockAudioPlayer mockAudioPlayer;
   late HomeController controller;
   late Talent mockData;
 
@@ -41,22 +38,17 @@ void main() {
     Get.testMode = true;
 
     mockUseCase = MockGetTalentsUseCase();
-    mockAudioRecorder = MockAudioRecorder();
-    mockAudioPlayer = MockAudioPlayer();
     when(() => mockUseCase()).thenAnswer(
       (_) async => Success(<Talent>[]),
     );
-    when(() => mockAudioRecorder.dispose()).thenAnswer((_) async {});
-    when(() => mockAudioPlayer.dispose()).thenAnswer((_) async {});
 
     controller = HomeController(mockUseCase);
 
-    Get.put<NotificationController>(NotificationController());
     Get.put<VoiceRepository>(VoiceRepository());
     Get.put<VoiceController>(
       VoiceController(
-        recorder: mockAudioRecorder,
-        player: mockAudioPlayer,
+        recorder: MockAudioRecorder(),
+        player: MockAudioPlayer(),
       ),
     );
     setupTestDependencies<HomeController>(mockController: controller);
