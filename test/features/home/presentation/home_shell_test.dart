@@ -31,6 +31,8 @@ class MockAudioPlayer extends Mock implements AudioPlayer {}
 
 void main() {
   late MockGetTalentsUseCase mockUseCase;
+  late MockAudioRecorder mockAudioRecorder;
+  late MockAudioPlayer mockAudioPlayer;
   late HomeController controller;
   late Talent mockData;
 
@@ -39,9 +41,13 @@ void main() {
     Get.testMode = true;
 
     mockUseCase = MockGetTalentsUseCase();
+    mockAudioRecorder = MockAudioRecorder();
+    mockAudioPlayer = MockAudioPlayer();
     when(() => mockUseCase()).thenAnswer(
       (_) async => Success(<Talent>[]),
     );
+    when(() => mockAudioRecorder.dispose()).thenAnswer((_) async {});
+    when(() => mockAudioPlayer.dispose()).thenAnswer((_) async {});
 
     controller = HomeController(mockUseCase);
 
@@ -49,8 +55,8 @@ void main() {
     Get.put<VoiceRepository>(VoiceRepository());
     Get.put<VoiceController>(
       VoiceController(
-        recorder: MockAudioRecorder(),
-        player: MockAudioPlayer(),
+        recorder: mockAudioRecorder,
+        player: mockAudioPlayer,
       ),
     );
     setupTestDependencies<HomeController>(mockController: controller);

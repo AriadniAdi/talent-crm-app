@@ -96,12 +96,8 @@ class HomeShell extends GetView<HomeController> {
       case 0:
         return const HomePage();
       case 1:
-        return Center(
-            key: const Key('notificationsKey'),
-            child: Text(context.translate.notifications));
-      case 2:
         return _buildNotificationsList(context);
-      case 3:
+      case 2:
         return const VoicesPage();
       default:
         return const HomePage();
